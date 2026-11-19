@@ -157,7 +157,7 @@ export class TableView {
     this.showBB=this.settings.showBB;
     bindTableAppearance(this.root,this.settings);
     this.root.style.setProperty('--mx-accent',getBrand(this.settings.brandID).accent);
-    this.personalSettings=new PersonalSettingsView(this.settings);
+    this.personalSettings=new PersonalSettingsView(this.settings, options.ui?.deskArtwork);
     const repaint=(root:HTMLElement)=>{
       const paint=(card:HTMLElement)=>CardView.paint(card,Number(card.dataset.cardValue),card.dataset.smallBack==='true');
       if(root.matches('.mx-card[data-card-value]'))paint(root);
@@ -284,7 +284,7 @@ export class TableView {
         const appearance=this.settings.tableAppearance;
         const solid=appearance.style==='solid';
         const felt=appearance.feltColor==='#57427f'?purpleFelt:classicFelt;
-        const [url]=await Promise.all([solid?imageReady(felt).then(()=>felt):AppearanceResources.desk(this.settings.deskType),AppearanceResources.cards(this.settings.tableCardType),appearance.cardBack==='original'?Promise.resolve():imageReady(cardBacks[appearance.cardBack]!)]);
+        const [url]=await Promise.all([solid?imageReady(felt).then(()=>felt):AppearanceResources.desk(this.settings.deskType, options.ui?.deskArtwork?.(this.settings.deskType)),AppearanceResources.cards(this.settings.tableCardType),appearance.cardBack==='original'?Promise.resolve():imageReady(cardBacks[appearance.cardBack]!)]);
         if(generation!==this.appearanceGeneration)return;
         this.root.dataset.felt=solid?'solid':'legacy';
         this.root.dataset.feltTone=solid&&appearance.feltColor==='#57427f'?'flat-purple':'shaded';

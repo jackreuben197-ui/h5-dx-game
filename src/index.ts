@@ -7,4 +7,4 @@ export function mountGame(container: HTMLElement, options: MountOptions): GameCl
   return new GameClient(container, options);
 }
 
-export { style1, style2 } from './config/UiConfig.js';
+export { style1, style2, style3 } from './config/UiConfig.js';

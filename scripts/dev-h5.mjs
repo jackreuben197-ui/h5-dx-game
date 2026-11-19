@@ -29,7 +29,8 @@ try {
   const mx = await createMxServer({
     root: mxRoot,
     cacheDir: 'node_modules/.vite-h5',
-    server: { host, port: mxPort, strictPort: true, cors: { origin: h5Origins } },
+    // CSS and imported media are rendered in the H5 document on a different port.
+    server: { host, port: mxPort, origin: `http://${host}:${mxPort}`, strictPort: true, cors: { origin: h5Origins } },
   });
   servers.push(mx);
   await mx.listen();

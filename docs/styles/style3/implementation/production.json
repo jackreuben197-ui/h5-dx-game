@@ -1,0 +1,39 @@
+{
+  "state": {
+    "skin": "style3",
+    "layout": "balanced",
+    "seats": 9,
+    "background": "url(\"http://127.0.0.1:5184/assets/night-harbor-BML84EF0.webp\")",
+    "nav": 3
+  },
+  "actionBounds": {
+    "top": 769,
+    "bottom": 817,
+    "height": 823,
+    "inside": true,
+    "nearBottom": true
+  },
+  "hostExports": {
+    "style1": "function",
+    "style2": "function",
+    "selected": "function",
+    "mountMxGame": "function"
+  },
+  "artwork": [
+    {
+      "url": "http://127.0.0.1:5184/assets/night-harbor-BML84EF0.webp",
+      "loaded": true,
+      "width": 900,
+      "height": 1350
+    },
+    {
+      "url": "http://127.0.0.1:5184/assets/console-icons-DkvjaXcm.svg",
+      "loaded": true,
+      "width": 300,
+      "height": 50
+    }
+  ],
+  "errors": [],
+  "failures": [],
+  "pass": true
+}

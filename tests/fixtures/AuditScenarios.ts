@@ -1,5 +1,5 @@
 import type { TableSnapshot, Player } from '../../src/core/types.js';
-export interface AuditOptions {layout:string;scene:string;seats:number;hero:number;cards:number;dealer:number;actor:number;long:boolean;scale:number;}
+export interface AuditOptions {tribe?:boolean;fallbackAvatars?:boolean;layout:string;scene:string;seats:number;hero:number;cards:number;dealer:number;actor:number;long:boolean;scale:number;}
 export interface AuditScenario {id:string;group:string;label:string;covers:string[];steps:string;}
 const s=(id:string,group:string,label:string,covers:string[],steps='选择场景；切换本人/他人及座位数；检查元素；执行页面中的操作。'):AuditScenario=>({id,group,label,covers,steps});
 export const auditScenarios:AuditScenario[]=[
@@ -72,7 +72,7 @@ export function makeAuditSnapshot(o:AuditOptions):TableSnapshot {
  const count=Math.min(9,Math.max(2,o.seats)),hero=Math.min(count,Math.max(1,o.hero)),scene=o.scene;
  const n=scene==='four'?4:scene==='five'?5:scene==='six'?6:o.cards;
  const names=['本人昵称','左下玩家','长昵称ABCDEFGHIJKLMN','左上玩家','顶部甲','顶部乙','右上玩家','右侧玩家','右下玩家'];
- const players:Player[]=Array.from({length:count},(_,i)=>({seat:i+1,userRid:100+i,name:o.long||scene==='long'?'Long nickname 玩家ABCDEFGHIJK':names[i]!,chips:o.long||scene==='long'?123456789:20000+i*137,avatar:scene==='zero'?'':new URL('../../src/assets/style1/resources/raw/ui/avatar.png',import.meta.url).href,cards:i+1===hero?[14,29,44,59,13,28].slice(0,n):Array(n).fill(0),roundBet:i===0?200:100+i*17,action:['跟注','下注','跟注','让牌','全下','小盲','大盲','补盲','抓'][i]!,canPlayStatus:1}));
+ const players:Player[]=Array.from({length:count},(_,i)=>({seat:i+1,userRid:100+i,name:o.long||scene==='long'?'Long nickname 玩家ABCDEFGHIJK':names[i]!,chips:o.long||scene==='long'?123456789:20000+i*137,avatar:scene==='zero'||o.fallbackAvatars?'':new URL('../../src/assets/style1/resources/raw/ui/avatar.png',import.meta.url).href,cards:i+1===hero?[14,29,44,59,13,28].slice(0,n):Array(n).fill(0),roundBet:i===0?200:100+i*17,action:['跟注','下注','跟注','让牌','全下','小盲','大盲','补盲','抓'][i]!,canPlayStatus:1}));
  let state:TableSnapshot={roomID:909090,matchID:0,handNum:12,revision:1,presentation:'sync',name:'离线验收',mySeat:hero,seatCount:count,dealerSeat:o.dealer||hero,pot:2040,pots:[2040,1020],smallBlind:10,roundBet:200,community:[18,35,52,37,22],actions:[],betting:{id:'audit-1',call:200,min:400,max:19999,step:1,allIn:20000},players,menu:{insurance:true,retainType:1,retainMinRate:1,storeChips:1000,keepingSeat:false,keepSeatDuration:180},uniqueID:'AUDIT-LOCAL'};
  if(scene==='observer-bottom'){state.mySeat=0;state.actions=[];}
  if(scene==='action-transition'){state.actions=['fold','call','raise'];}

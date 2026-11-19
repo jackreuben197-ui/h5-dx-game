@@ -50,9 +50,9 @@ export class TableMediaView {
       const track=media.videoTrack(player.userRid);
       if(track!==entry.track){entry.track?.stop();entry.video.replaceChildren();entry.track=track;if(track)track.play(entry.video,{fit:'cover',mirror:player.userRid===media.uid});}
       entry.video.hidden=!track;
-      const mask=media.visibleMask(player.userRid);entry.mask.hidden=!mask;if(mask)entry.mask.style.backgroundImage=`url("${mediaImage(`vm${mask}`)}")`;
+      const mask=media.visibleMask(player.userRid);entry.mask.dataset.mask=String(mask);entry.mask.hidden=!mask;if(mask)entry.mask.style.backgroundImage=`url("${mediaImage(`vm${mask}`)}")`;
       const enabled=media.audioEnabled(player.userRid),speaking=media.speaking.has(player.userRid);
-      entry.mic.hidden=!media.joined||(enabled&&!speaking);
+      entry.mic.dataset.mic=enabled?'speaking':'muted';entry.mic.hidden=!media.joined||(enabled&&!speaking);
       (entry.mic as HTMLImageElement).src=mediaImage(enabled?'speaking':'mutemic');
     }
     for(const id of this.seats.keys())if(!ids.has(id))this.remove(id);

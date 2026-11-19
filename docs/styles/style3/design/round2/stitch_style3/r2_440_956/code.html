@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-surface-variant":"#b9cacb","surface":"#151023","surface-container-low":"#1e192b","on-tertiary":"#373100","outline":"#849495","error-container":"#93000a","tertiary-fixed":"#fde400","surface-container":"#221d2f","inverse-surface":"#e8def8","inverse-on-surface":"#332d41","surface-variant":"#373246","surface-bright":"#3c364a","surface-container-high":"#2c273a","on-tertiary-fixed":"#201c00","secondary-container":"#ff506e","on-secondary":"#67001d","secondary-fixed":"#ffdadb","inverse-primary":"#006970","on-secondary-fixed-variant":"#91002d","tertiary":"#fff6d1","primary-fixed":"#7df4ff","on-secondary-fixed":"#40000f","primary-container":"#00f0ff","error":"#ffb4ab","on-tertiary-fixed-variant":"#504700","on-primary":"#00363a","secondary":"#ffb2b8","surface-dim":"#151023","on-primary-fixed-variant":"#004f54","surface-tint":"#00dbe9","tertiary-fixed-dim":"#dec800","tertiary-container":"#f3db00","surface-container-highest":"#373246","primary-fixed-dim":"#00dbe9","on-primary-container":"#006970","outline-variant":"#3b494b","on-surface":"#e8def8","on-primary-fixed":"#002022","on-secondary-container":"#5b0018","surface-container-lowest":"#100b1d","on-tertiary-container":"#6b5f00","on-error":"#690005","on-background":"#e8def8","background":"#151023","primary":"#dbfcff","on-error-container":"#ffdad6","secondary-fixed-dim":"#ffb2b8"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1rem","space-xs":"0.25rem","margin-lg":"2.5rem","space-xl":"2.5rem","space-lg":"1.5rem","margin":"1rem","margin-md":"1.5rem","space-sm":"0.5rem","space-md":"1rem","gutter-lg":"1.5rem"},"fontFamily":{"headline-xl-mobile":["Space Grotesk"],"headline-md":["Space Grotesk"],"headline-xl":["Space Grotesk"],"label-sm":["JetBrains Mono"],"body-sm":["Chivo"],"label-md":["JetBrains Mono"],"body-lg":["Chivo"],"headline-lg":["Space Grotesk"],"body-md":["Chivo"],"label-lg":["JetBrains Mono"],"headline-lg-mobile":["Space Grotesk"]},"fontSize":{"headline-xl-mobile":["30px",{"lineHeight":"38px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-xl":["44px",{"lineHeight":"52px","letterSpacing":"0.06em","fontWeight":"700"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"500"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-md":["13px",{"lineHeight":"18px","letterSpacing":"0.06em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"500"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"0.04em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-lg":["16px",{"lineHeight":"20px","letterSpacing":"0.08em","fontWeight":"700"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"0.03em","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen relative selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.65)]"><div class="h-16 w-full px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container-high"><span class="material-symbols-outlined text-primary-container text-[18px]">terminal</span><span class="font-label-md text-label-md text-primary tracking-wider uppercase">#9090-NLH</span></div><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">LVL</span><span class="font-label-md text-label-md text-tertiary-fixed">8 (500/1000)</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-high shadow-[inset_0_2px_6px_rgba(0,0,0,0.5)]"><span class="font-label-sm text-label-sm text-on-surface-variant">CREDITS</span><span class="font-label-lg text-label-lg text-primary-fixed">$124,580</span></div><div class="flex items-center gap-space-xs"><button aria-label="Audio Switch" class="w-9 h-9 rounded bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">volume_up</span></button><button aria-label="Table Logs" class="w-9 h-9 rounded bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">receipt_long</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 pb-16 bg-surface min-h-screen relative z-10 flex flex-col justify-center"><div class="flex flex-col w-full items-center justify-center p-0 select-none">
+<!-- 440px x 956px Cyberpunk Video Table Viewport Container -->
+<div class="relative w-[440px] h-[956px] bg-surface-container-lowest overflow-hidden shadow-2xl flex flex-col justify-between">
+<!-- LAYER 0: Ambient Cyber Rain, Neon Skyscraper Skyline Backdrop (Top 140px) -->
+<div class="absolute inset-x-0 top-0 h-[170px] pointer-events-none overflow-hidden z-0">
+<!-- Distant Megacity Silhouette & Neon Bloom -->
+<div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest via-surface-container-low/80 to-transparent"></div>
+<div class="absolute -top-10 left-6 w-36 h-36 rounded-full bg-primary-container/20 blur-2xl"></div>
+<div class="absolute -top-6 right-4 w-44 h-44 rounded-full bg-secondary-container/25 blur-3xl"></div>
+<!-- Hologram Grid & Rain FX (Inline SVG, <2KB) -->
+<svg class="absolute inset-0 w-full h-full opacity-35" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="40" id="rain-stripes" patterntransform="rotate(68 0 0)" patternunits="userSpaceOnUse" width="40">
+<line opacity="0.4" stroke="#00f0ff" stroke-width="0.8" x1="0" x2="0" y1="0" y2="38"></line>
+<line opacity="0.3" stroke="#ff506e" stroke-width="0.6" x1="20" x2="20" y1="5" y2="35"></line>
+</pattern>
+<lineargradient id="neon-glow-line" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"></stop>
+<stop offset="50%" stop-color="#93000a" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#ff506e" stop-opacity="0.9"></stop>
+</lineargradient>
+</defs>
+<rect fill="url(#rain-stripes)" height="100%" width="100%"></rect>
+<path d="M0 125 L110 115 L220 128 L330 110 L440 122" fill="none" stroke="url(#neon-glow-line)" stroke-width="1.2"></path>
+</svg>
+</div>
+<!-- LEFT & RIGHT MECHA LIGHTGUIDE RAILS -->
+<div class="absolute top-16 left-0.5 bottom-24 w-1.5 bg-primary-container shadow-[0_0_12px_#00f0ff,0_0_24px_rgba(0,240,255,0.4)] rounded-full z-20 pointer-events-none opacity-80"></div>
+<div class="absolute top-16 right-0.5 bottom-24 w-1.5 bg-secondary-container shadow-[0_0_12px_#ff506e,0_0_24px_rgba(255,80,110,0.4)] rounded-full z-20 pointer-events-none opacity-80"></div>
+<!-- CORNER HAZARD STRIPES (Industrial Chamfers) -->
+<div class="absolute top-1 left-1 w-6 h-6 z-30 opacity-70 pointer-events-none overflow-hidden">
+<div class="w-8 h-2 bg-tertiary-fixed rotate-45 -translate-x-1 -translate-y-0.5 shadow-sm"></div>
+</div>
+<div class="absolute top-1 right-1 w-6 h-6 z-30 opacity-70 pointer-events-none overflow-hidden">
+<div class="w-8 h-2 bg-tertiary-fixed -rotate-45 translate-x-1 -translate-y-0.5 shadow-sm"></div>
+</div>
+<!-- SECTION 1: TOP INDUSTRIAL HUD BAR (h: ~60px) -->
+<div class="relative z-20 w-full px-3 pt-2">
+<div class="flex items-center justify-between bg-surface-container/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-lg">
+<!-- Live Video Deck Badge -->
+<div class="flex items-center gap-2">
+<div class="relative flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-ping absolute"></span>
+<span class="w-2 h-2 rounded-full bg-primary-container relative"></span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-label-md text-primary tracking-wide">黑市全视界视频桌</span>
+<span class="px-1 py-0.2 rounded bg-error-container text-on-error font-label-sm text-[9px] uppercase tracking-tighter">LIVE</span>
+</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant flex items-center gap-1">
+<span>0.50/1.00</span>
+<span class="text-outline">|</span>
+<span class="text-tertiary-fixed">#VID-8088</span>
+</div>
+</div>
+</div>
+<!-- Controls: Time Extension & Audio Toggle -->
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1 px-2 py-1 rounded bg-surface-container-high active:translate-y-0.5 transition-transform shadow-md">
+<span class="font-label-sm text-tertiary-fixed text-[11px] font-bold">+30s</span>
+<span class="font-label-sm text-secondary text-[11px]">10💎</span>
+</button>
+<button class="w-7 h-7 rounded bg-surface-container-high flex items-center justify-center text-primary-container active:scale-95 shadow-md">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SECTION 2: CENTRAL TABLE FELT CHASSIS (Seats 1-7, Cards, Pot Tray) -->
+<div class="relative flex-1 w-full mx-auto px-2 mt-1 mb-1 z-10 flex flex-col justify-center">
+<!-- Table Structural Bezel & Felt Oval -->
+<div class="relative w-full h-[540px] rounded-[110px] bg-surface-container-low shadow-[inset_0_4px_30px_rgba(0,0,0,0.9),0_0_24px_rgba(21,16,35,0.8)] overflow-hidden flex items-center justify-center">
+<!-- Table Felt Tactical Coordinate Micro-Grid -->
+<div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle, #00f0ff 1px, transparent 1px); background-size: 16px 16px;"></div>
+<!-- Table Inner Ring Deco -->
+<div class="absolute inset-5 rounded-[90px] pointer-events-none opacity-20 shadow-[inset_0_0_20px_#00f0ff]"></div>
+<!-- CENTER COMMUNITY STAGE & POT HUD -->
+<div class="absolute flex flex-col items-center justify-center z-20">
+<!-- Cyber Pot Monitor -->
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-highest/90 backdrop-blur-md rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.6)] mb-2.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed animate-pulse"></span>
+<span class="font-headline-md text-label-md text-tertiary-fixed font-bold tracking-wider">底池: 68.50 BB</span>
+<!-- Cyber Chip Graphic Stack -->
+<div class="flex -space-x-1 items-center">
+<span class="w-3.5 h-3.5 rounded-full bg-primary-container shadow-sm"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-secondary-container shadow-sm"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-tertiary-fixed shadow-sm"></span>
+</div>
+</div>
+<!-- 5 Community Cards [A♠] [K♠] [Q♥] [J♦] [10♠] (Royal Flush Draw Scenario) -->
+<div class="flex items-center gap-1.5">
+<!-- A♠ -->
+<div class="w-[44px] h-[64px] bg-[#fbfcf9] rounded shadow-[0_6px_14px_rgba(0,0,0,0.85)] flex flex-col justify-between p-1 select-none transform hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-center leading-none">
+<span class="font-headline-md text-label-md font-bold text-[#0a080f]">A</span>
+<span class="text-[10px] text-[#0a080f]">♠</span>
+</div>
+<div class="text-center text-base leading-none text-[#0a080f]">♠</div>
+<div class="flex justify-between items-center leading-none rotate-180">
+<span class="font-headline-md text-label-md font-bold text-[#0a080f]">A</span>
+<span class="text-[10px] text-[#0a080f]">♠</span>
+</div>
+</div>
+<!-- K♠ -->
+<div class="w-[44px] h-[64px] bg-[#fbfcf9] rounded shadow-[0_6px_14px_rgba(0,0,0,0.85)] flex flex-col justify-between p-1 select-none transform hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-center leading-none">
+<span class="font-headline-md text-label-md font-bold text-[#0a080f]">K</span>
+<span class="text-[10px] text-[#0a080f]">♠</span>
+</div>
+<div class="text-center text-base leading-none text-[#0a080f]">♠</div>
+<div class="flex justify-between items-center leading-none rotate-180">
+<span class="font-headline-md text-label-md font-bold text-[#0a080f]">K</span>
+<span class="text-[10px] text-[#0a080f]">♠</span>
+</div>
+</div>
+<!-- Q♥ -->
+<div class="w-[44px] h-[64px] bg-[#fbfcf9] rounded shadow-[0_6px_14px_rgba(0,0,0,0.85)] flex flex-col justify-between p-1 select-none transform hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-center leading-none">
+<span class="font-headline-md text-label-md font-bold text-[#d91438]">Q</span>
+<span class="text-[10px] text-[#d91438]">♥</span>
+</div>
+<div class="text-center text-base leading-none text-[#d91438]">♥</div>
+<div class="flex justify-between items-center leading-none rotate-180">
+<span class="font-headline-md text-label-md font-bold text-[#d91438]">Q</span>
+<span class="text-[10px] text-[#d91438]">♥</span>
+</div>
+</div>
+<!-- J♦ -->
+<div class="w-[44px] h-[64px] bg-[#fbfcf9] rounded shadow-[0_6px_14px_rgba(0,0,0,0.85)] flex flex-col justify-between p-1 select-none transform hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-center leading-none">
+<span class="font-headline-md text-label-md font-bold text-[#d91438]">J</span>
+<span class="text-[10px] text-[#d91438]">♦</span>
+</div>
+<div class="text-center text-base leading-none text-[#d91438]">♦</div>
+<div class="flex justify-between items-center leading-none rotate-180">
+<span class="font-headline-md text-label-md font-bold text-[#d91438]">J</span>
+<span class="text-[10px] text-[#d91438]">♦</span>
+</div>
+</div>
+<!-- 10♠ -->
+<div class="w-[44px] h-[64px] bg-[#fbfcf9] rounded shadow-[0_6px_14px_rgba(0,0,0,0.85)] flex flex-col justify-between p-1 select-none transform hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-center leading-none">
+<span class="font-headline-md text-label-md font-bold text-[#0a080f]">10</span>
+<span class="text-[10px] text-[#0a080f]">♠</span>
+</div>
+<div class="text-center text-base leading-none text-[#0a080f]">♠</div>
+<div class="flex justify-between items-center leading-none rotate-180">
+<span class="font-headline-md text-label-md font-bold text-[#0a080f]">10</span>
+<span class="text-[10px] text-[#0a080f]">♠</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SEAT 1: Top-Left (极光破晓 3,450 BB) -->
+<div class="absolute top-5 left-10 flex flex-col items-center z-20">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-high p-0.5 shadow-md">
+<img class="w-full h-full object-cover rounded" data-alt="Cyberpunk manga female pilot with luminous cyan mechanical visor and sleek purple hair, live stream glitch effect, underground arcade style portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyaN4OlcuU9QPhlca86580jbd_pr9DIo6l5ybBN7Sle5eUWMFVSoxS0VguxEzdveWluOLHeQXgzvWoRCorrChtY-HoqfOXve_GI6CC5pzcJ3nctvb_i2fl16ecimK9m-w12FRjtlQOzfaUUo3m8RuiOPsu_19GA1d3JMKcTzFENl6x1FsxfeKWKMVcgXFhHko3cTI00PyZl5NhInGW3F2EY6fGkgDva_1-USew1pDd"/>
+<div class="absolute -top-1.5 -right-1 px-1 py-0.2 rounded bg-surface-container-lowest text-primary-container font-label-sm text-[8px] flex items-center gap-0.5 shadow">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>CAM
+            </div>
+</div>
+<div class="mt-1 bg-surface-container-highest/90 px-1.5 py-0.5 rounded shadow text-center max-w-[76px]">
+<p class="font-body-sm text-[10px] text-on-surface truncate leading-tight">极光破晓</p>
+<p class="font-label-sm text-[10px] text-primary-fixed font-bold leading-none">3,450 BB</p>
+</div>
+</div>
+<!-- SEAT 2: Top-Center (深海领航 1,120 BB) -->
+<div class="absolute top-2 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-high p-0.5 shadow-md">
+<img class="w-full h-full object-cover rounded" data-alt="High-tech cyberpunk manga commander with heavy titanium breathing mask and holographic eyepiece, dark tactical violet aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABTo0DdunPvU5FIrMje95SoQs75boOSuRzUk3f4ZxYvLoABKlA-VYmseyxQYSIaKN8IPwWoKKabpqtKWHiQDWVmYfZbl6nZ9aenV0E2_DmSnPEPemf25V6gW3bcWv1ua9r9a7d1beapDl_BSTO8EgNyI8WrvCv8DoSogQuCwSLdjM6jL_UeXl3rHidg9XkDRnburtS-DpMmcI8RjGjM2GVLIePS7YZTmw6R8iI3_6H"/>
+<div class="absolute -top-1.5 -right-1 px-1 py-0.2 rounded bg-surface-container-lowest text-primary-container font-label-sm text-[8px] flex items-center gap-0.5 shadow">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>CAM
+            </div>
+</div>
+<div class="mt-1 bg-surface-container-highest/90 px-1.5 py-0.5 rounded shadow text-center max-w-[76px]">
+<p class="font-body-sm text-[10px] text-on-surface truncate leading-tight">深海领航</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant font-bold leading-none">1,120 BB</p>
+</div>
+<div class="mt-0.5 px-1 py-0.2 rounded-full bg-surface-container text-tertiary-fixed font-label-sm text-[9px] shadow">
+            下注 8.00
+          </div>
+</div>
+<!-- SEAT 3: Top-Right (风暴观察 2,100 BB) -->
+<div class="absolute top-5 right-10 flex flex-col items-center z-20">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-high p-0.5 shadow-md">
+<img class="w-full h-full object-cover rounded" data-alt="Cyberpunk anime hacker with electric magenta audio antenna and neural link jack along cheekbone, rainy night neon rim lights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBicPFg6CJLK6UnYG5UqGMpWpspwfwC1E5cuCr2HUONDzHVGjofcfdyA8jiZ4eHwNMUNPLpQNjcg5t4SXasRrDvOWOl9po6B9MYJbGImXGViEb1kSYlJWr3Vor2s9i3cZQfkeTV7cjgvQu7IUCiamtHtliOQiWJyK7QxzzP_IAx92M3aA4VKSrEmbHs60oWE4PX7evNbau-A3lHl4M23WFonJTFRkKd_cVoITXdae5p"/>
+<div class="absolute -top-1.5 -right-1 px-1 py-0.2 rounded bg-surface-container-lowest text-primary-container font-label-sm text-[8px] flex items-center gap-0.5 shadow">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>CAM
+            </div>
+</div>
+<div class="mt-1 bg-surface-container-highest/90 px-1.5 py-0.5 rounded shadow text-center max-w-[76px]">
+<p class="font-body-sm text-[10px] text-on-surface truncate leading-tight">风暴观察</p>
+<p class="font-label-sm text-[10px] text-primary-fixed font-bold leading-none">2,100 BB</p>
+</div>
+</div>
+<!-- SEAT 4: Mid-Right Active (雷克雅未克 4,900 BB [Active Cyan Timer 12s]) -->
+<div class="absolute top-1/2 -translate-y-1/2 right-2 flex flex-col items-center z-30">
+<div class="relative w-13 h-13 rounded-lg bg-primary-container/20 p-1 shadow-[0_0_16px_#00f0ff]">
+<div class="relative w-11 h-11 rounded bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Cold calculating mecha android gambler with luminous dual-aperture optic eye and metallic neck plate, glowing teal circuit tattoos." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4L5pbhomSbsTOH9N2bmEYaOd3rQzSTqJACagMj2XP39zvENbjEHDFnp7un32o9inwZV_kwMgeHuX1-42UoPNns8lRODyBYr4sXAwdgMtSXlsaq3mUzTZNY5Z666kf6jFZrKGK1_mPZTYOuMoSMQn0qmkMHDax3IsbNtBK4yEGBY3A3HlviwIHf_WjOoNslULO3SS7AkOSj0UQu_Ul-Tf3x-IFxOD6jzaCPdyJJQcj"/>
+<div class="absolute bottom-0 inset-x-0 h-1 bg-primary-container shadow-[0_0_8px_#00f0ff]"></div>
+</div>
+<!-- Timer countdown chip -->
+<div class="absolute -top-2 -right-1 px-1 py-0.2 rounded bg-primary-container text-on-primary-container font-label-sm text-[9px] font-bold shadow">
+              12s
+            </div>
+</div>
+<div class="mt-1 bg-surface-container-highest/95 px-1.5 py-0.5 rounded shadow text-center max-w-[80px]">
+<p class="font-body-sm text-[10px] text-primary-container truncate font-bold leading-tight">雷克雅未克</p>
+<p class="font-label-sm text-[10px] text-tertiary-fixed font-bold leading-none">4,900 BB</p>
+</div>
+<div class="mt-1 px-1.5 py-0.2 rounded bg-surface-container text-tertiary-fixed font-label-sm text-[9px] shadow animate-pulse">
+            跟注 34.00
+          </div>
+</div>
+<!-- SEAT 5: Bottom-Right (夜港幽灵 750 BB - Short Stack Warning) -->
+<div class="absolute bottom-12 right-10 flex flex-col items-center z-20">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-high p-0.5 shadow-md">
+<img class="w-full h-full object-cover rounded" data-alt="Underworld operative with hood, carbon filter mask, and neon pink sensor glow in rainy shadows, manga illustration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqRKgHl23joVnFytdn4dP4DakBUfShqyR7k1JdMcbSIMkD7zHf5vQHfIUQDSe-7mRRDRMPXnnCe1CkPaqq0OjHOimpKaFLdSxrrUh9mlNI3aVD4ReFG0a4lVgXHk8yZud0MF3UiVbNQUJS1W75zHVg7LQJUJu2qoIbM-3t_6GNgoWTSjMlgM9sevWfX8QNWjTb0eImmprnl__PunG2Fqkdgsggg6RkCg3cyp_d1AgF"/>
+<div class="absolute -top-1.5 -right-1 px-1 py-0.2 rounded bg-surface-container-lowest text-primary-container font-label-sm text-[8px] flex items-center gap-0.5 shadow">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>CAM
+            </div>
+</div>
+<div class="mt-1 bg-surface-container-highest/90 px-1.5 py-0.5 rounded shadow text-center max-w-[76px]">
+<p class="font-body-sm text-[10px] text-on-surface truncate leading-tight">夜港幽灵</p>
+<p class="font-label-sm text-[10px] text-tertiary-container font-bold leading-none">750 BB</p>
+</div>
+</div>
+<!-- SEAT 6: Bottom-Left (铁锚之誓 [D] 880 BB - Dealer Button) -->
+<div class="absolute bottom-12 left-10 flex flex-col items-center z-20">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-high p-0.5 shadow-md">
+<img class="w-full h-full object-cover rounded" data-alt="Cybernetic marine veteran with bionic jaw and jagged scar, dark cyber deck background with neon amber sparks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACvIK3U8iGR1G0DGRucjxOzkHw3mc8aEcWKrJAq-1V9OPBd1u3SFSvYobHago5-Ja0dVjbQmtsSjQ-O5nSk_zepcIxzmQDF40A3I1MaIOyWVALpZdeaQzTSeqqzfi9wW2eFNVVddy8__ADe0D39dmtjPCjrjNz8YpE03tDkMoCjZolI0kgQIp8NF00rl-thjgpYFfRqsigyOppPTHO3Cn99LSwO6-KnvJGDYw1p4bc"/>
+<div class="absolute -top-1.5 -left-1 w-4 h-4 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[9px] font-bold flex items-center justify-center shadow">
+              D
+            </div>
+<div class="absolute -top-1.5 -right-1 px-1 py-0.2 rounded bg-surface-container-lowest text-primary-container font-label-sm text-[8px] flex items-center gap-0.5 shadow">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>CAM
+            </div>
+</div>
+<div class="mt-1 bg-surface-container-highest/90 px-1.5 py-0.5 rounded shadow text-center max-w-[76px]">
+<p class="font-body-sm text-[10px] text-on-surface truncate leading-tight">铁锚之誓</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant font-bold leading-none">880 BB</p>
+</div>
+</div>
+<!-- SEAT 7: Mid-Left (潮汐观测 1,980 BB) -->
+<div class="absolute top-1/2 -translate-y-1/2 left-2 flex flex-col items-center z-20">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-high p-0.5 shadow-md">
+<img class="w-full h-full object-cover rounded" data-alt="Cyberpunk female scientist with augmented data goggles projecting cyan charts, sleek dark street jacket." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDP4D_jbskETBTDaot59hy9goM4IpVcRQPr_gC40MZUYMeNiqFvVmAiOAr_Q2LMzVzTLxolxEZHG9D93Bz7Ob7xXffvRiAlOt8cghJbU6GOXQxrLLHslOilDmLA8L2z_D-bL2nDnYHc8nvuHvCx8Xq0Opa4Lle6vzJGlQfV23ukvT1-tdX6fTQJ9MlPz1RT1bSMdy2Q4J2IHh8u2RtX5i8ZOrcLv-IFf-UPz0TwlSk"/>
+<div class="absolute -top-1.5 -right-1 px-1 py-0.2 rounded bg-surface-container-lowest text-primary-container font-label-sm text-[8px] flex items-center gap-0.5 shadow">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>CAM
+            </div>
+</div>
+<div class="mt-1 bg-surface-container-highest/90 px-1.5 py-0.5 rounded shadow text-center max-w-[76px]">
+<p class="font-body-sm text-[10px] text-on-surface truncate leading-tight">潮汐观测</p>
+<p class="font-label-sm text-[10px] text-primary-fixed font-bold leading-none">1,980 BB</p>
+</div>
+<div class="mt-1 px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant font-label-sm text-[9px] shadow">
+            弃牌
+          </div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: HERO STAGE & MECHA ACTION CONSOLE (Seats 8 + Hero Hand + Controls) -->
+<div class="relative z-30 w-full px-2 pb-1 flex flex-col gap-1.5">
+<!-- Hero Pod & Live Hole Cards -->
+<div class="relative flex items-center justify-between px-3 py-1.5 rounded-xl bg-surface-container/95 shadow-xl">
+<!-- Hero Avatar & Identity -->
+<div class="flex items-center gap-2">
+<div class="relative w-11 h-11 rounded-lg bg-surface-container-highest p-0.5 shadow-[0_0_12px_rgba(0,240,255,0.4)]">
+<img class="w-full h-full object-cover rounded" data-alt="Charismatic cyberpunk captain protagonist with glowing neon cyan neural headband and confident gaze, rainy neon cityscape backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDewTypcs_ANzdahPpRbdELgSXYtevdI6EYkX086ATqpdTaXL3XBGmR1crDBz9mIWkgC_H14lzsnWdx1gpGpcsntjt0IJaIcYIDeufn5xj5O_hKshIUd02spbMIO0l8B7TeRVCIf5cWPLHEAMwo-Rohp9opkk5NZuIVR5B5aovWk6VoBychVGD-uVxtzNF6UEO-_Z-Ln2d8L87FjHo7Ke_Mlh5fmk2FE3QWwynkmbR6"/>
+<div class="absolute -bottom-1 -right-1 px-1 py-0.2 rounded bg-surface-container-lowest text-primary-container font-label-sm text-[8px] font-bold">
+              YOU
+            </div>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-headline-md text-label-md text-primary font-bold">夜港船长</span>
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+</div>
+<div class="font-label-md text-label-md text-tertiary-fixed font-bold">2,640.00 BB</div>
+</div>
+</div>
+<!-- Hand Strength Indicator -->
+<div class="px-2 py-0.5 rounded bg-surface-container-high text-center">
+<span class="font-label-sm text-[11px] text-primary-container font-bold tracking-wider">两对 A-10 (听顺)</span>
+</div>
+<!-- Hero Hole Cards: [A♥] [10♠] with Circuit Edge Catch -->
+<div class="flex items-center gap-1">
+<!-- A♥ -->
+<div class="w-[38px] h-[54px] bg-[#fbfcf9] rounded shadow-[0_6px_12px_rgba(0,0,0,0.9)] flex flex-col justify-between p-1 select-none transform -rotate-3">
+<div class="flex justify-between items-center leading-none">
+<span class="font-headline-md text-[13px] font-bold text-[#d91438]">A</span>
+<span class="text-[9px] text-[#d91438]">♥</span>
+</div>
+<div class="text-center text-sm leading-none text-[#d91438]">♥</div>
+<div class="flex justify-between items-center leading-none rotate-180">
+<span class="font-headline-md text-[13px] font-bold text-[#d91438]">A</span>
+<span class="text-[9px] text-[#d91438]">♥</span>
+</div>
+</div>
+<!-- 10♠ -->
+<div class="w-[38px] h-[54px] bg-[#fbfcf9] rounded shadow-[0_6px_12px_rgba(0,0,0,0.9)] flex flex-col justify-between p-1 select-none transform rotate-3">
+<div class="flex justify-between items-center leading-none">
+<span class="font-headline-md text-[12px] font-bold text-[#0a080f]">10</span>
+<span class="text-[9px] text-[#0a080f]">♠</span>
+</div>
+<div class="text-center text-sm leading-none text-[#0a080f]">♠</div>
+<div class="flex justify-between items-center leading-none rotate-180">
+<span class="font-headline-md text-[12px] font-bold text-[#0a080f]">10</span>
+<span class="text-[9px] text-[#0a080f]">♠</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick-Bet Stepper Buttons (5 Cybernetic Presets) -->
+<div class="grid grid-cols-5 gap-1.5 w-full">
+<button class="py-1 rounded bg-surface-container-high text-on-surface hover:bg-surface-bright active:scale-95 transition text-center shadow-md">
+<span class="font-label-sm text-[10px] block leading-tight text-on-surface-variant">1/3</span>
+<span class="font-label-sm text-[10px] block font-bold text-primary">22.80</span>
+</button>
+<button class="py-1 rounded bg-surface-container-high text-on-surface hover:bg-surface-bright active:scale-95 transition text-center shadow-md">
+<span class="font-label-sm text-[10px] block leading-tight text-on-surface-variant">1/2</span>
+<span class="font-label-sm text-[10px] block font-bold text-primary">34.20</span>
+</button>
+<button class="py-1 rounded bg-surface-container-high text-on-surface hover:bg-surface-bright active:scale-95 transition text-center shadow-md">
+<span class="font-label-sm text-[10px] block leading-tight text-on-surface-variant">2/3</span>
+<span class="font-label-sm text-[10px] block font-bold text-primary">45.60</span>
+</button>
+<button class="py-1 rounded bg-surface-container-high text-on-surface hover:bg-surface-bright active:scale-95 transition text-center shadow-md">
+<span class="font-label-sm text-[10px] block leading-tight text-on-surface-variant">1.0</span>
+<span class="font-label-sm text-[10px] block font-bold text-primary">68.50</span>
+</button>
+<button class="py-1 rounded bg-surface-container-high text-on-surface hover:bg-surface-bright active:scale-95 transition text-center shadow-md">
+<span class="font-label-sm text-[10px] block leading-tight text-secondary-fixed">全下</span>
+<span class="font-label-sm text-[10px] block font-bold text-secondary-container">2,640</span>
+</button>
+</div>
+<!-- 3 Chunky 3D Arcade Mechanical Switch Buttons -->
+<div class="grid grid-cols-3 gap-2 w-full pt-0.5">
+<!-- Fold: Graphite Matte Base with Mechanical Push Shadow -->
+<button class="h-11 rounded-lg bg-surface-container-highest text-on-surface-variant flex flex-col items-center justify-center shadow-[0_4px_0_#100b1d,0_6px_12px_rgba(0,0,0,0.6)] active:translate-y-1 active:shadow-[0_1px_0_#100b1d] transition-transform">
+<span class="font-headline-md text-label-md tracking-wider font-bold">弃牌</span>
+<span class="font-label-sm text-[9px] uppercase tracking-widest text-outline">FOLD</span>
+</button>
+<!-- Call: Luminous Electric Cyan Button -->
+<button class="h-11 rounded-lg bg-primary-container text-on-primary-container flex flex-col items-center justify-center shadow-[0_4px_0_#008b94,0_0_18px_rgba(0,240,255,0.5)] active:translate-y-1 active:shadow-[0_1px_0_#008b94] transition-transform">
+<span class="font-headline-md text-label-md tracking-wider font-bold text-on-primary">跟注 34.00</span>
+<span class="font-label-sm text-[9px] uppercase tracking-widest text-on-primary-container font-semibold">CALL BB</span>
+</button>
+<!-- Raise: Vivid Acid Yellow Chassis with Hazard Edge Decals -->
+<button class="h-11 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex flex-col items-center justify-center shadow-[0_4px_0_#dec800,0_0_18px_rgba(253,228,0,0.45)] active:translate-y-1 active:shadow-[0_1px_0_#dec800] transition-transform">
+<span class="font-headline-md text-label-md tracking-wider font-bold text-on-tertiary">加注 48.00+</span>
+<span class="font-label-sm text-[9px] uppercase tracking-widest text-on-tertiary font-semibold">RAISE</span>
+</button>
+</div>
+</div>
+<!-- SECTION 4: BOTTOM 64PX ARCADE DOCK (6 Nav Items + Cert Stamp, >44px Touch Targets) -->
+<div class="relative z-40 w-full h-16 bg-surface-container-lowest/95 backdrop-blur-xl px-2 flex items-center justify-between shadow-[0_-6px_24px_rgba(0,0,0,0.85)]">
+<!-- 1. 战绩 (Stats) -->
+<button class="flex flex-col items-center justify-center min-w-[48px] h-12 rounded hover:bg-surface-container active:scale-95 transition text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[19px]">query_stats</span>
+<span class="font-label-sm text-[10px] tracking-tight">战绩</span>
+</button>
+<!-- 2. 牌谱 (History) -->
+<button class="flex flex-col items-center justify-center min-w-[48px] h-12 rounded hover:bg-surface-container active:scale-95 transition text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[19px]">history_edu</span>
+<span class="font-label-sm text-[10px] tracking-tight">牌谱</span>
+</button>
+<!-- 3. 表情 (Emotes) -->
+<button class="flex flex-col items-center justify-center min-w-[48px] h-12 rounded hover:bg-surface-container active:scale-95 transition text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[19px]">mood</span>
+<span class="font-label-sm text-[10px] tracking-tight">表情</span>
+</button>
+<!-- 4. 认证 (Cert stamp - Cryptographic Security) -->
+<button class="flex flex-col items-center justify-center min-w-[48px] h-12 rounded hover:bg-surface-container active:scale-95 transition text-on-surface-variant hover:text-tertiary-fixed">
+<span class="material-symbols-outlined text-[19px] text-tertiary-fixed">verified_user</span>
+<span class="font-label-sm text-[10px] tracking-tight text-tertiary-fixed">认证</span>
+</button>
+<!-- 5. 特效 (FX) -->
+<button class="flex flex-col items-center justify-center min-w-[48px] h-12 rounded hover:bg-surface-container active:scale-95 transition text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[19px]">auto_fix_high</span>
+<span class="font-label-sm text-[10px] tracking-tight">特效</span>
+</button>
+<!-- 6. 语音 (Voice) -->
+<button class="flex flex-col items-center justify-center min-w-[48px] h-12 rounded hover:bg-surface-container active:scale-95 transition text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[19px]">mic</span>
+<span class="font-label-sm text-[10px] tracking-tight">语音</span>
+</button>
+<!-- 7. 视频 (Video - Active Glowing Cyan / Green Live Arcade Switch) -->
+<button class="flex flex-col items-center justify-center min-w-[50px] h-12 rounded-lg bg-surface-container-high text-primary-container shadow-[0_0_12px_rgba(0,240,255,0.4)] active:scale-95 transition">
+<div class="relative">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">videocam</span>
+<span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-primary-container animate-ping"></span>
+</div>
+<span class="font-label-sm text-[10px] font-bold tracking-tight">视频ON</span>
+</button>
+</div>
+</div>
+</div></main><footer class="fixed bottom-0 left-0 right-0 z-50 h-16 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.7)]"><div class="h-16 w-full px-space-md flex items-center justify-between max-w-7xl mx-auto"><div class="flex items-center gap-space-xs"><div class="w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></div><span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase">SECTOR 04 DECK // LIVE</span></div><nav class="flex items-center gap-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-label-md text-label-md"><a aria-current="page" class="px-space-md py-space-xs rounded uppercase transition-colors bg-primary-container text-on-primary-container font-label-md text-label-md" data-path="live-table" href="#">Table</a><a class="px-space-md py-space-xs rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md uppercase transition-colors" data-path="hand-telemetry" href="#">Telemetry</a><a class="px-space-md py-space-xs rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md uppercase transition-colors" data-path="street-vault" href="#">Vault</a></nav><div class="hidden sm:flex items-center gap-space-sm"><span class="font-label-sm text-label-sm text-on-surface-variant">LATENCY 12MS</span></div></div></footer></body></html>

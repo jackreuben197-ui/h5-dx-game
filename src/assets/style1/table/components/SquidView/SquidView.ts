@@ -101,7 +101,7 @@ export class SquidView {
    this.intro.show(false);
   });
   footer.append(commit);
-  const render=()=>{picture.src=url(`squid_dialog_page_${page+1}`);i18nLabel.bind(text,()=>i18nMgr.Get(page===0?(mode===1?'UIDialogSquid_BloodyPage1':'UIDialogSquid_NormalPage1'):page===1?(mode===1?'UIDialogSquid_Tips1':'UIDialogSquid_Tips2'):'UIDialogSquid_BloodyPage3'));bar.replaceChildren(...[0,1,2].map(i=>{const dot=element('span','');dot.classList.toggle('selected',i===page);return dot;}));};
+  const render=()=>{picture.dataset.page=String(page+1);picture.src=url(`squid_dialog_page_${page+1}`);i18nLabel.bind(text,()=>i18nMgr.Get(page===0?(mode===1?'UIDialogSquid_BloodyPage1':'UIDialogSquid_NormalPage1'):page===1?(mode===1?'UIDialogSquid_Tips1':'UIDialogSquid_Tips2'):'UIDialogSquid_BloodyPage3'));bar.replaceChildren(...[0,1,2].map(i=>{const dot=element('span','');dot.classList.toggle('selected',i===page);return dot;}));};
   left.onclick=()=>{clearInterval(this.loop);page=(page+2)%3;render();};right.onclick=()=>{clearInterval(this.loop);page=(page+1)%3;render();};
   this.intro.content.replaceChildren(title,bar,picture,text,left,right,toggle.root,footer);render();this.intro.show(true);this.loop=setInterval(()=>{page=(page+1)%3;render();},2000);
  }

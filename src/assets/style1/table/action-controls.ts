@@ -78,7 +78,7 @@ export class ActionControls {
         if (action === 'raise') {
           this.mode = 'raise';
           this.range.value = '0';
-          this.amount.hidden = true;
+          this.amount.dataset.adjusted = 'false';
           this.refresh();
           this.range.focus();
         } else if (action === 'fold' && this.state?.actions.includes('check')) {
@@ -123,7 +123,7 @@ export class ActionControls {
     };
     this.range.onblur=()=>this.gesture.cancel();
     this.range.onkeydown=e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Home','End'].includes(e.key))this.confirm.hidden=false;};
-    this.range.oninput = () => { this.amount.hidden = false; this.updateAmount(); };
+    this.range.oninput = () => { this.amount.dataset.adjusted = 'true'; this.updateAmount(); };
     const thumb=node('span','mx-raise-thumb');SpriteAtlas.paint(thumb,'raiseThumb');track.append(thumb);
     this.confirm.type = 'button';
     SpriteAtlas.paint(this.confirm,'raise');

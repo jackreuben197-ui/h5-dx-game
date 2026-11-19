@@ -36,7 +36,7 @@ export class PersonalSettingsView {
   private generation = 0;
   private off: (() => void)[] = [];
   private focus?: HTMLElement;
-  constructor(private settings: Settings = defaultSettings) {
+  constructor(private settings: Settings = defaultSettings, deskArtwork?: (type:number)=>string|undefined) {
     this.root.hidden = true;
     this.panel.setAttribute('role','dialog'); this.panel.setAttribute('aria-modal','true');
     i18nLabel.bind(this.panel,()=>i18nMgr.Get('UIGameplaySetting_CardTableSetting'),'aria-label');
@@ -102,10 +102,10 @@ export class PersonalSettingsView {
       const b=element('button','mx-settings-desk');b.type='button';b.setAttribute('aria-label',String(i));
       SpriteAtlas.paint(b,config.paths.settingsDeskOption);
       const selected=element('span','mx-settings-desk-selected');SpriteAtlas.paint(selected,config.paths.settingsDeskSelected);
-      b.append(selected,new DeskPreview(i).root,element('span','mx-settings-desk-name',`Table ${i}`));
+      b.append(selected,new DeskPreview(i,deskArtwork?.(i)).root,element('span','mx-settings-desk-name',`Table ${i}`));
       b.onclick=()=>{
         void this.choose(async()=>{
-          await AppearanceResources.desk(i);
+          await AppearanceResources.desk(i,deskArtwork?.(i));
           return()=>{this.settings.setDeskTypeToStorage(i);this.settings.updateAppearance({style:'legacy'});};
         });
       };

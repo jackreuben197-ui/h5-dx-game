@@ -3,8 +3,9 @@ import type { UiSkin } from '../../ui/UiSkin.js';
 import { GameClient as ReferenceClient } from '../style1/StyleClient.js';
 import { getBrand } from '../style1/table/appearance/BrandManifest.js';
 import { PicnicLayout } from './layout.js';
+import '../compact-table/layout.css';
 import './style.css';
-/** Reuses existing view subscriptions/actions; all new appearance and geometry is local. */
+/** Picnic artwork over the compact frame. */
 export const style2: UiSkin = {
   getBrand: id => ({...getBrand(id),defaultLayout:'balanced'}),
   createClient(container, options) {
@@ -14,6 +15,7 @@ export const style2: UiSkin = {
       preferences: options.preferences ?? new TexasGamePersonalSettings(brand.id, brand.defaultFelt, brand.layouts, brand.defaultLayout),
       ui: options.ui ?? { createLayout: id => new PicnicLayout(id) },
     });
+    client.element.dataset.tableFrame = 'compact';
     client.element.dataset.skin = 'style2';
     return client;
   },

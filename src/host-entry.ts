@@ -35,4 +35,4 @@ export { LayoutOval } from './config/UiConfig.js';
 export type { SeatPlacement } from './ui/TableLayout.js';
 export type { UiSkin, GameSurface } from './ui/UiSkin.js';
 
-export { style1, style2 } from './config/UiConfig.js';
+export { style1, style2, style3 } from './config/UiConfig.js';

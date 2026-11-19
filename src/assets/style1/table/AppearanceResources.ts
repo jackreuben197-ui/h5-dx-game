@@ -3,8 +3,8 @@ import settings from '../../../data/TexasGamePersonalSettings.js';
 import { resources, imageReady, imageURLs } from './resources.js';
 /** Load only the selected full-size desk / alternate deck, retaining decoded images. */
 export class AppearanceResources {
-  static async desk(type: number): Promise<string> {
-    const url = resources.desks[String(type)] ?? resources.desk;
+  static async desk(type: number, artwork?: string): Promise<string> {
+    const url = artwork ?? resources.desks[String(type)] ?? resources.desk;
     await imageReady(url); return url;
   }
   static async cards(type: number): Promise<void> {

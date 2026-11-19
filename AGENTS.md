@@ -1,5 +1,7 @@
 # h5-dx-game 当前任务
 
+当前 style3 分支从 DX main 的 9fcd8a5 建立。用户确认「夜港」第二轮美术并授权直接实现，追加瓶盖筹码。默认皮肤为 style3，style1/2 可按实例选择。运行截图、验收范围和实现边界见 [style3 设计与验收](docs/styles/style3/DESIGN.md)。后文的 style2 记录是历史。
+
 2026-11-18 用户要求从 h5-mx-game/reorg-qa 建立独立 DX，基线 `a4303a13737e1c0a0e7c6afdc322d3226d7697e4`，分支 codex/style2。下方来源项目的旧分支、提交推送和群消息授权仅是历史，不适用于 DX。
 
 先读 README.md、docs/ui-style-workflow.md、DESIGN.md。DX 有自己的 Git 历史。获取与比较 MX 版本一律在独立临时目录执行，只将选定文件改动同步到 DX 工作树，在 DX 创建自己的提交。默认同步 MX 远端的 `reorg-qa`，确认该分支不存在时自动同步 `main`。用户明确指定其他分支时，以当轮指令为准。新风格完整使用 src/assets/style2，功能参照 style1，deps/h5-game 不修改。先启动 style1 截图，再给 Google Stitch 提交基于代码的约束设计。

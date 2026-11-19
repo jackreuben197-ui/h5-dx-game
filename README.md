@@ -2,6 +2,10 @@
 
 ## DX 风格开发入口
 
+当前分支 `style3` 默认挂载「夜港」赛博朋克牌桌，含瓶盖筹码、机械桌轨与专属控制台图标。宿主可按实例传入 `{skin: style1}`、`{skin: style2}` 或 `{skin: style3}`。设计与运行截图见 [style3 记录](docs/styles/style3/DESIGN.md)。
+
+运行 `npm run dev -- --port 5183 --strictPort` 后，打开 [离线演示牌桌](http://127.0.0.1:5183/?table) 或 [五档瓶盖快捷下注工作台](http://127.0.0.1:5183/tests/fixtures/layout-audit.html?skin=style3&scene=figma&avatars=fallback&width=440&height=782)。以下为 style2 建立时的基线记录。
+
 本项目从 MX 的 reorg-qa 独立建立，冻结提交 `a4303a13737e1c0a0e7c6afdc322d3226d7697e4`。用户已确认可爱风格设计并授权style2实现。DX默认style2，离线工作台通过skin=style1/style2同场景对照，历史截图保留。
 
 最新同步版本及实际运行效果见 [MX 更新后的 style2 验收](docs/styles/style2/implementation/mx-4a0a9da/README.md)。

@@ -276,6 +276,7 @@
 .mx-table:not([data-orientation=landscape]) .mx-operation[data-mode=raise] .mx-raise-amount{position:absolute;left:50%;top:calc(50% - var(--mx-raise-info-offset,100px));display:flex;align-items:center;justify-content:center;gap:5px;width:var(--mx-raise-bubble-width,106px);height:var(--mx-raise-bubble-height,31px);padding:0 5px 5px;transform:translate(-50%,-50%);background-color:transparent;color:#000;font-size:var(--mx-raise-font-size,12px);font-weight:700;line-height:1;white-space:nowrap}
 .mx-raise-chip{display:inline-block;width:var(--mx-raise-chip-size,12px);height:var(--mx-raise-chip-size,12px);flex:none}
 .mx-table:not([data-orientation=landscape]) .mx-raise-chip{--mx-raise-chip-size:calc(112.61px * var(--mx-op-scale,.2))}
+.mx-raise-amount[data-adjusted=false]{visibility:var(--mx-initial-raise-visibility,hidden)}
 .mx-raise-value{overflow:hidden;text-overflow:ellipsis}
 .mx-table:not([data-orientation=landscape]) .mx-operation[data-mode=raise] .mx-raise-range{position:absolute;inset:0;z-index:1;width:100%;height:100%;margin:0;writing-mode:vertical-lr;direction:rtl;appearance:none;-webkit-appearance:none;background:transparent;cursor:pointer}
 .mx-table:not([data-orientation=landscape]) .mx-operation[data-mode=raise] .mx-raise-range::-webkit-slider-runnable-track{width:100%;background:transparent}

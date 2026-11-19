@@ -26,16 +26,19 @@ export class CardView {
     type=Number(root.dataset.cardPreview)||preferences.tableCardType;
     root.dataset.smallBack = String(smallBack);
     root.dataset.cardValue = String(value);
+    root.dataset.cardBack = value === 0 ? preferences.tableAppearance.cardBack : '';
     if (value === 0) {
       const back=preferences.tableAppearance.cardBack;
       if(back==='original')SpriteAtlas.paint(root, smallBack ? config.paths.smallBack : config.paths.back);
-      else {root.style.backgroundImage=`url("${cardBacks[back]}")`;root.style.backgroundSize='100% 100%';root.style.backgroundPosition='center';}
+      else {delete root.dataset.sprite;root.style.backgroundImage=`url("${cardBacks[back]}")`;root.style.backgroundSize='100% 100%';root.style.backgroundPosition='center';}
       i18nLabel.bind(root, () => i18nMgr.Get("MX_CardBack", [], "牌背"), 'aria-label');
       return;
     }
     const rank = value % 15;
     const id = Math.floor(value / 15) * 13 + (rank === 14 ? 0 : rank - 1);
     const faces: Record<string,string> = type === 2 ? config.paths.facesAlt : config.paths.faces;
+    root.style.setProperty('--face-x', (id % 13) / 12 * 100 + '%');
+    root.style.setProperty('--face-y', Math.floor(id / 13) / 3 * 100 + '%');
     const path = faces[String(id)];
     if (!path) return;
     SpriteAtlas.paint(root, path);

@@ -1,0 +1,569 @@
+{
+  "results": [
+    {
+      "test": "six navigation bounds",
+      "layout": "original",
+      "w": 440,
+      "h": 782,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 59.34375,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 59.34375,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "original",
+      "w": 375,
+      "h": 500,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "original",
+      "w": 320,
+      "h": 400,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "balanced",
+      "w": 440,
+      "h": 782,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 59.34375,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 59.34375,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "balanced",
+      "w": 375,
+      "h": 500,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "balanced",
+      "w": 320,
+      "h": 400,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "classic",
+      "w": 440,
+      "h": 782,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 59.34375,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 59.34375,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "classic",
+      "w": 375,
+      "h": 500,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "classic",
+      "w": 320,
+      "h": 400,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "oval",
+      "w": 440,
+      "h": 782,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 59.34375,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 59.34375,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 59.328125,
+          "h": 50,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "oval",
+      "w": 375,
+      "h": 500,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 48.5,
+          "h": 44,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "six navigation bounds",
+      "layout": "oval",
+      "w": 320,
+      "h": 400,
+      "pass": true,
+      "metrics": [
+        {
+          "action": "report",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "replay",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "emoji",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "effect",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "voice",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        },
+        {
+          "action": "camera",
+          "w": 44,
+          "h": 44,
+          "inside": true
+        }
+      ]
+    },
+    {
+      "test": "voice toggle",
+      "before": "true",
+      "after": "false",
+      "pass": true
+    },
+    {
+      "test": "raise submit",
+      "value": "1",
+      "log": "本地操作成功：加注\n手 12 · 5 张公共牌 · live",
+      "pass": true
+    },
+    {
+      "test": "raise cancel",
+      "pass": true
+    },
+    {
+      "test": "report click",
+      "pass": true
+    },
+    {
+      "test": "settings click",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

@@ -119,6 +119,7 @@ export class PlayerInfoView {
     const sex = basic?.sex ?? player.sex;
     if (sex === 1 || sex === 2) {
       const symbol = element('span', 'mx-player-profile-sex', sex === 1 ? '♀' : '♂');
+      symbol.dataset.symbol = sex === 1 ? 'female' : 'male';
       symbol.setAttribute('aria-label', sex === 1 ? t('MX_Female', '女') : t('MX_Male', '男'));
       name.append(symbol);
     }
@@ -126,7 +127,9 @@ export class PlayerInfoView {
     id.append(element('span', 'mx-player-profile-id-label', 'ID'), element('span', '', String(basic?.random_num || player.userRid || '—')));
     details.append(name, id);
     if (this.isOther()) {
-      const remark = element('button', 'mx-player-profile-remark', `${t('UIUserRemarks_7S612w03','备注')}: ${basic?.remark_name || t('MX_AddRemark','添加备注名')} ✎`);
+      const remark = element('button', 'mx-player-profile-remark', `${t('UIUserRemarks_7S612w03','备注')}: ${basic?.remark_name || t('MX_AddRemark','添加备注名')}`);
+      const pencil = element('span','mx-player-profile-pencil',' ✎');
+      pencil.setAttribute('aria-hidden','true'); remark.append(pencil);
       remark.type = 'button';
       remark.onclick = () => {
         const input = element('input', 'mx-player-profile-remark-input') as HTMLInputElement;

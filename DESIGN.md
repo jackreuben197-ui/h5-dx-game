@@ -1,9 +1,5 @@
 # 当前风格设计入口
 
-当前任务：style2，全卡通可爱牌桌。
+当前分支开发 [style3 赛博朋克牌桌](docs/styles/style3/DESIGN.md)，已按获准的街机美术方向实现，含瓶盖筹码与运行验收。
 
-唯一约束正文：[docs/styles/style2/DESIGN.md](docs/styles/style2/DESIGN.md)。
-
-通用开发流程：[docs/ui-style-workflow.md](docs/ui-style-workflow.md)。
-
-统一使用 DESIGN.md 拼写，不维护另一份 DESIGIN.md。后续开发 style3 时保留 style2 正文及验收历史，只更新此入口指向新的风格文档。
+[通用换皮流程](docs/ui-style-workflow.md) · [style2 设计与验收记录](docs/styles/style2/DESIGN.md)

@@ -33,6 +33,8 @@ export class SpriteAtlas {
   }
   static paint(node: HTMLElement, key: Sprite): void {
     const path=SpriteAtlas.sourcePath(key);
+    node.dataset.sprite = path;
+    node.classList.toggle('mx-chip-art', path === legacy.paths.chip);
     if(path===legacy.paths.dialogConfirm){
       node.classList.add('mx-confirm-texture');
       SpriteAtlas.paintButton(node,resources.rawImages[path]!);return;

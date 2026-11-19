@@ -1,0 +1,247 @@
+/* Painted steel, enamel and UV felt. The shared frame positions the interactive components. */
+.mx-game[data-skin=style3] {
+  --aqua: #45fff1;
+  --pink: #ff5bae;
+  --acid: #ffda38;
+  --ink: #10101d;
+  --plate: linear-gradient(154deg,#424157,#25253a 22%,#191927 72%,#343244);
+  --glass: linear-gradient(125deg,#271a32e8,#131825cb 68%,#23182be8);
+  --cap: url('./art/cap-lagoon.svg');
+  background: #11101d;
+  color: #f6f4ff;
+  font-family: system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.mx-game[data-skin=style3] button:focus-visible { outline: 2px solid var(--aqua); outline-offset: 2px; }
+.mx-game[data-skin=style3] button:disabled { opacity: .52; }
+.mx-game[data-skin=style3] .mx-preloading {
+  background: linear-gradient(#17092155,#0e092b80),url('./art/night-harbor.webp') center / cover !important;
+}
+.mx-game[data-skin=style3] .mx-preloading-bar { background: #151821 !important; border: 2px solid #70818e; }
+.mx-game[data-skin=style3] .mx-preloading-fill { background: repeating-linear-gradient(115deg,#00cec4 0 16px,#2bfff1 16px 20px) !important; }
+.mx-game[data-skin=style3] .mx-table[data-table-layout][data-orientation] {
+  --mx-accent: var(--aqua);
+  --mx-action-countdown-color: var(--aqua);
+  --mx-avatar-radius: 50%;
+  color: #faf6ff;
+  &[data-felt=solid] {
+    background-image: url('./art/night-harbor.webp') !important;
+    background-size: 100% calc(100% - 62px) !important;
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
+  }
+  &[data-felt=solid]::before {
+    content: ''; position: absolute; inset: 0; border: 0; pointer-events: none;
+    background: inherit; background-image: none !important; mix-blend-mode: color; opacity: .26;
+  }
+  &[data-felt-tone=flat-purple]::before { opacity: 0; }
+  &[data-felt=solid][data-orientation=landscape] { background-size: calc(100% - 72px) 100% !important; background-position: left center !important; }
+
+  /* The frame supplies a silhouette for missing portraits. Network images still sit above it. */
+  .mx-avatar-border { border: 8px solid #c2bdc7 !important; border-top-color: #fd99ce !important; background: none !important; box-shadow: 0 0 0 6px #241927, inset 0 0 0 3px #41213f !important; border-radius: 50% !important; inset: -105px auto auto -105px; width: 210px; height: 210px; pointer-events: none; }
+  .mx-avatar-border::after { content: none; }
+  :is(.mx-avatar,.mx-avatar-hit,.mx-avatar-fallback,.mx-avatar-video,.mx-avatar-video-mask,.mx-fold-cover) { border-radius: 50% !important; }
+  .mx-seat .mx-seat-timer[data-kind=action] { --mx-action-countdown-color: var(--aqua); }
+  .mx-seat:not(.mx-empty-seat) .mx-avatar-fallback {
+    background: #1d172a url('./art/crew.webp') var(--crew,0%) center / 800% 100% no-repeat !important;
+  }
+  .mx-empty-seat .mx-avatar-fallback { background: #161326da !important; border: 4px dashed #c67cb0 !important; }
+  .mx-empty-seat .mx-avatar-fallback::before { content: '+'; position: absolute; inset: 0; display: grid; place-items: center; font: 90px/1 monospace; color: #fb92cf; }
+  .mx-dealer { background: url('./art/dealer.svg') center / contain no-repeat !important; }
+  .mx-seat[data-seat="2"] { --crew: 14.2857%; } .mx-seat[data-seat="3"] { --crew: 28.5714%; }
+  .mx-seat[data-seat="4"] { --crew: 42.8571%; } .mx-seat[data-seat="5"] { --crew: 57.1429%; }
+  .mx-seat[data-seat="6"] { --crew: 71.4286%; } .mx-seat[data-seat="7"] { --crew: 85.7143%; }
+  .mx-seat[data-seat="1"] { --crew: 100%; }
+  .mx-seat:not(.mx-empty-seat) .mx-avatar-border { background: linear-gradient(155deg,#fceaf5,#73526e 38%,#1e2638 48%,#a6eff8) border-box !important; border: 7px solid transparent !important; mask: radial-gradient(circle,transparent 65%,#000 66%); }
+  .mx-player-info {
+    background: url('./art/seat-plate.webp') center / 100% 100% no-repeat !important;
+    gap: 18px; padding-block: 7px; border: 0; backdrop-filter: none !important;
+  }
+  :is(.mx-player-name,.mx-stack-slot) { color: #fff3ff; background: none !important; border: 0; text-shadow: 0 2px #000; }
+  .mx-stack { color: #b8fff0; font-weight: 730; }
+  .mx-player-action,.mx-seat-hand-type { color: #c5fffa; background: #192730 !important; border: 3px solid #539a99; border-radius: 6px; }
+  .mx-seat-win { color: var(--acid); background: #211627 !important; border: 4px solid #bb8f38; }
+  :is(.mx-pot,.mx-pool-item,.mx-seat-bet,.mx-room-info) { background: #161321ed !important; color: #e9ebf6; border: 2px solid #705477; border-radius: 10px; }
+  .mx-pot { background: url('./art/seat-plate.webp') center / 100% 100% no-repeat !important; color: #fff1a6; font-weight: 800; border: 0; }
+  .mx-pool-item,.mx-seat-bet { border-color: #52747d; }
+  .mx-seat-bet-value { color: #e6fffa; }
+  .mx-room-info { color: #ded4ea; scrollbar-color: #8b4b87 #1b1024; }
+  .mx-card[data-card-value="0"][data-card-back=original] { background: url('./art/circuit-back.svg') center / 100% 100% !important; }
+  .mx-navigation { background: linear-gradient(#302339,#171220 16%,#13101c 86%,#40253d) !important; border: 0; border-top: 2px solid #b4639b; border-image: none !important; border-radius: 0 !important; box-shadow: 0 -2px 0 #1c0e23; }
+  .mx-nav-button { color: #f0d9ed; font-weight: 650; background: url('./art/key-console.webp') center / 100% 100% no-repeat; border: 0; border-radius: 5px; }
+  .mx-nav-button[aria-pressed=true] { color: var(--aqua); box-shadow: inset 0 0 0 2px #35daca; }
+  .mx-nav-icon { background: url('./art/console-icons.svg') var(--icon-x,0%) center / 600% 100% no-repeat !important; }
+  .mx-nav-button[data-action=replay] { --icon-x: 20%; }
+  .mx-nav-button[data-action=emoji] { --icon-x: 40%; }
+  .mx-nav-button[data-action=effect] { --icon-x: 60%; }
+  .mx-nav-button[data-action=voice] { --icon-x: 80%; }
+  .mx-nav-button[data-action=camera] { --icon-x: 100%; }
+  .mx-nav-logo { background: #e6e0e6; border-radius: 4px; }
+  :is(.mx-menu,.mx-menu-back,.mx-support-button,.mx-chat-button) { filter: drop-shadow(0 1px 4px #12081c); }
+  :is(.mx-menu,.mx-menu-back,.mx-support-button) { background: url('./art/key-console.webp') center / 100% 100% no-repeat !important; border: 0; }
+  .mx-menu::before {
+    content: ''; position: absolute; inset: 29% 23%; width: auto; height: auto;
+    border-radius: 0; background: linear-gradient(to bottom,var(--aqua) 0 16%,transparent 16% 42%,#eee 42% 58%,transparent 58% 84%,#eee 84%);
+  }
+  .mx-support-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .mx-chat-button { background: url('./art/chat.svg') center / contain no-repeat !important; }
+  .mx-chat-button>span,.mx-menu-label { color: #fdf8ff; text-shadow: 0 1px 3px #130814; }
+  .mx-table-add-chips,.mx-add-time { background: var(--plate) !important; color: #c4fffa; border: 1px solid #827785; border-radius: 6px; }
+  .mx-table-tool-chip { content: var(--cap); }
+  .mx-operation-row .mx-operation-button,.mx-operation-cancel,.mx-raise-confirm {
+    background: var(--key-face, url('./art/key-graphite.webp')) center / 100% 100% no-repeat !important;
+    color: #fef9ff; border: 0; font-weight: 800; text-shadow: none;
+  }
+  .mx-operation-row :is(.mx-operation-call,.mx-operation-check) { --key-face: url('./art/key-cyan.webp'); color: #062224; }
+  .mx-operation-row :is(.mx-operation-raise,.mx-operation-allin),.mx-raise-confirm { --key-face: url('./art/key-hazard.webp'); color: #251c06; }
+  .mx-operation-button:active,.mx-quick-bet:active { filter: brightness(.84); }
+  .mx-quick-bet {
+    background: var(--cap) left 3px center / clamp(14px,4.4cqw,22px) auto no-repeat,
+      url('./art/key-console.webp') center / 100% 100% no-repeat !important; color: white; border: 0; padding-left: clamp(15px,4.5cqw,23px); }
+  .mx-quick-bet:nth-child(2) { --cap: url('./art/cap-cherry.svg'); }
+  .mx-quick-bet:nth-child(3) { --cap: url('./art/cap-violet.svg'); }
+  .mx-quick-bet:nth-child(4) { --cap: url('./art/cap-steel.svg'); }
+  .mx-quick-bet:nth-child(5) { --cap: url('./art/cap-amber.svg'); }
+  .mx-quick-ratio { color: #fff7fc; font-weight: 750; } .mx-quick-value { color: #b5f5ed; }
+  .mx-auto-operation button { background: #191624 !important; border: 1px solid #8c718d; border-radius: 6px; color: #f3f3fa; }
+  .mx-auto-operation button[aria-pressed=true] { border-color: var(--aqua); color: var(--aqua); }
+  /* The editor occupies the action area above the navigation in both orientations. */
+  .mx-operation[data-mode=raise] {
+    --mx-initial-raise-visibility: visible;
+    background: transparent;
+    :is(.mx-operation-row,.mx-operation-quick) { visibility: hidden; }
+    .mx-raise-editor {
+      position: absolute; inset: auto 8px calc(100% - var(--dx-bottom) + 4px) 8px !important;
+      display: grid; grid-template-columns: minmax(64px, 1fr) minmax(0, 4fr) minmax(64px, 1fr);
+      align-items: center; gap: 8px; width: auto; min-width: 0; max-width: none; height: auto;
+      padding: 6px; border: 1px solid #846783; border-radius: 8px;
+      background: var(--glass); box-shadow: inset 0 1px #e4a3db66, 0 2px 8px #100c19;
+    }
+    .mx-raise-track {
+      grid-column: 2; position: relative; inset: auto !important; transform: none !important;
+      width: 100% !important; height: auto !important; display: grid; gap: 0;
+      align-items: center; background: none !important;
+    }
+    .mx-raise-track::after,.mx-raise-thumb { display: none; }
+    .mx-raise-amount {
+      position: static; inset: auto; transform: none; display: flex; align-items: center;
+      justify-content: center; gap: 5px; width: 100%; min-width: 0; height: auto;
+      padding: 0; background: none !important; color: #fff3cf; font: 700 15px/20px system-ui;
+      white-space: nowrap;
+    }
+    .mx-raise-percent { color: #a2dcd7; font-size: 11px; }
+    .mx-raise-chip { width: 16px; height: 16px; }
+    .mx-raise-range {
+      position: static; width: 100%; height: 44px; margin: 0; padding: 0; touch-action: none;
+      writing-mode: horizontal-tb; direction: ltr; appearance: none;
+      background: transparent; cursor: pointer;
+    }
+    .mx-raise-range {
+      --rail: linear-gradient(to right, var(--aqua) var(--mx-raise-progress), #51435b 0);
+      --knob: var(--cap) center / contain no-repeat;
+    }
+    .mx-raise-range::-webkit-slider-runnable-track { height: 6px; background: var(--rail); border-radius: 3px; }
+    .mx-raise-range::-moz-range-track { height: 6px; background: var(--rail); border-radius: 3px; }
+    .mx-raise-range::-webkit-slider-thumb { appearance: none; width: 26px; height: 26px; margin-top: -10px; border: 0; background: var(--knob); }
+    .mx-raise-range::-moz-range-thumb { width: 26px; height: 26px; border: 0; background: var(--knob); }
+    .mx-raise-range:focus-visible { outline: 2px solid var(--aqua); outline-offset: -2px; border-radius: 5px; }
+    :is(.mx-operation-cancel,.mx-raise-confirm) {
+      position: static !important; inset: auto !important; transform: none !important;
+      width: 100% !important; min-width: 0; height: 44px !important; min-height: 44px;
+      padding: 2px 6px; font-size: 15px !important;
+    }
+    .mx-operation-cancel { grid-area: 1 / 1; }
+    .mx-raise-confirm { grid-area: 1 / 3; }
+  }
+  &[data-orientation=landscape] .mx-operation[data-mode=raise] .mx-raise-editor { right: 86px !important; }
+
+  .mx-squid-join { color: #102024; background: var(--aqua) !important; border: 1px solid #8bfff4; }
+}
+.mx-game[data-skin=style3] .mx-chip-art { background: var(--cap) center / contain no-repeat !important; }
+.mx-game[data-skin=style3] :is(.mx-dialog-glass,.mx-special-panel) {
+  background: var(--glass) !important; color: #f7f1fb; border: 2px solid #8b5586;
+  box-shadow: inset 2px 0 #e660ad66,inset -2px 0 #39d9e08c,0 12px 48px #07031080;
+}
+.mx-game[data-skin=style3] :is(.mx-settings-title,.mx-buyin-title,.mx-record-title,.mx-confirm-title) { color: #fff3fc; text-shadow: 0 2px #49253e; }
+.mx-game[data-skin=style3] :is(.mx-settings-tabs button[aria-selected=true],.mx-insurance-option[aria-pressed=true] .mx-insurance-option-title) { color: var(--aqua); box-shadow: inset 0 -2px var(--aqua); }
+.mx-game[data-skin=style3] .mx-operation-fold>.mx-seat-timer::after { content: attr(data-remaining); position: absolute; inset: 0; display: grid; place-items: center; color: white; font: bold 90px/1 sans-serif; }
+
+/* The bezel stays with the panel when its contents scroll. */
+.mx-game[data-skin=style3] :is(.mx-buyin-title,.mx-personal-settings > h2,.mx-record-header h2) {
+  background: url('./art/seat-plate.webp') center / 100% 100% no-repeat;
+  text-align: center; color: #fff5fc;
+}
+.mx-game[data-skin=style3] :is(.mx-buyin-confirm,.mx-menu-green .mx-menu-item-background) {
+  background: url('./art/key-cyan.webp') center / 100% 100% no-repeat !important;
+  color: #082329; border: 0; border-radius: 0;
+}
+.mx-game[data-skin=style3] .mx-menu-green-label { color: #082329; text-shadow: none; }
+.mx-game[data-skin=style3] .mx-buyin-cancel {
+  background: url('./art/key-graphite.webp') center / 100% 100% no-repeat !important;
+  color: #fff5fc; border: 0; border-radius: 0;
+}
+
+.mx-game[data-skin=style3] .mx-buyin-confirm.mx-confirm-texture::before,
+.mx-game[data-skin=style3] .mx-buyin-confirm.mx-confirm-texture::after { content: none; }
+
+/* H5's transformed body contains the fixed game host. Keep focus changes in
+   the lobby from scrolling the entire table while it is visible. */
+body:has(> #mx-table-host > .mx-game[data-skin=style3]:not([hidden])) { overflow: clip; }
+
+.mx-game[data-skin=style3] .mx-table[data-table-layout][data-orientation] {
+  .mx-table-tools { top: 8px; right: 60px; flex-direction: row; gap: 4px; }
+  .mx-table-tools .mx-table-add-chips { position: static !important; }
+  .mx-table-safety { width: 44px; height: 44px; background-size: contain; background-position: center; }
+  &[data-orientation=landscape] .mx-table-tools { right: 136px; }
+}
+
+/* Keep the icon and the plus in the button's own box at every table scale. */
+.mx-game[data-skin=style3] .mx-table[data-table-layout][data-orientation] {
+  .mx-table-add-chips { display: flex; align-items: center; justify-content: center; gap: 2px; width: 56px; height: 44px; padding: 4px !important; border: 0; background: url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+  .mx-table-add-chips .mx-table-tool-icon { position: static; inset: auto; transform: none; flex: none; width: 25px; height: 25px; }
+  .mx-table-add-chips .mx-table-tool-plus { width: 16px; height: 16px; }
+  .mx-table-tool-background { display: none; }
+  .mx-support-icon { width: 27px; height: 27px; }
+  .mx-menu-back::before { content: ''; position: absolute; inset: 0; width: auto; height: auto; transform: none; border: 0; background: url('./art/glyphs/back.svg') center / 52% auto no-repeat; }
+  .mx-menu-back { font-size: 0 !important; }
+  .mx-table-safety { background: url('./art/glyphs/shield.svg') center / 66% auto no-repeat, url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+  .mx-add-time { background: url('./art/key-console.webp') center / 100% 100% no-repeat !important; border: 0; }
+  .mx-nav-button[aria-pressed=false]:is([data-action=voice],[data-action=camera],[data-action=effect]) .mx-nav-icon { opacity: .55; }
+  &[data-orientation=portrait] {
+    .mx-navigation { padding-left: 54px; }
+    .mx-chat-button { top: auto !important; bottom: calc(10px + var(--dx-safe-bottom)) !important; left: 5px !important; width: 44px !important; height: 44px !important; z-index: 9; background-size: 33px auto !important; background-position: center 1px !important; }
+    .mx-chat-button > span { bottom: 0; }
+  }
+}
+@container (max-width: 420px) {
+  .mx-game[data-skin=style3] .mx-table[data-table-layout][data-orientation=portrait]:has(.mx-navigation[data-layout="6"]) {
+    .mx-navigation { padding-left: 3px; }
+    .mx-chat-button { bottom: calc(182px + var(--dx-safe-bottom)) !important; }
+  }
+}
+
+.mx-game[data-skin=style3] {
+  :is(.mx-settings-tabs,.mx-settings-modes,.mx-settings-option-pair,.mx-settings-layouts) button {
+    color: #ebdfef; border: 1px solid #765676; border-radius: 5px;
+    background: linear-gradient(150deg,#342237,#181827 65%); box-shadow: inset 0 1px #88627d70;
+  }
+  :is(.mx-settings-tabs,.mx-settings-modes,.mx-settings-option-pair,.mx-settings-layouts) :is([aria-pressed=true],[aria-selected=true]) {
+    color: #98fff2; border-color: #56ccce; box-shadow: inset 0 -2px #60e1d4; background: linear-gradient(150deg,#203e46,#1b1a2c);
+  }
+  :is(.mx-personal-settings,.mx-chat-dialog,.mx-buyin) :is(input,select) { accent-color:#4be8d1; }
+  :is(.mx-dialog-glass,.mx-special-panel) :focus-visible { outline:2px solid #77f3e3; outline-offset:-2px; }
+}
+.mx-game[data-skin=style3] .mx-table[data-orientation=landscape][data-table-layout] .mx-chat-button {
+  top: auto !important; bottom: 8px !important; left: 6px !important;
+}
+.mx-game[data-skin=style3] {
+  .mx-table-toast { background: #241a30f5; color: #f8edff; border: 1px solid #bb7cae; border-image: none !important; border-radius: 6px; box-shadow: inset 3px 0 #64e8e0; }
+  .mx-confirm-text-bg { background: linear-gradient(120deg,#302138,#1a1a2b); border: 1px solid #704d72; border-image: none !important; border-radius: 5px; }
+  .mx-confirm-cancel { background: url('./art/key-graphite.webp') center / 100% 100% no-repeat !important; border: 0; color: white; }
+  .mx-confirm-cancel::before, .mx-confirm-cancel::after { content: none; }
+  .mx-table[data-table-layout][data-orientation] .mx-seat-mine .mx-player-info { margin-top: -14px; }
+}
+.mx-game[data-skin=style3] .mx-table:not([data-felt]) {
+  background: #281637 url('./art/night-harbor.webp') center / 100% 100% no-repeat !important;
+}
+

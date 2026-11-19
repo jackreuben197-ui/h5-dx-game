@@ -1,0 +1,238 @@
+/* Style3 illustrations for shared table widgets, history and settings previews. */
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordClose.png"] { background: url('./art/glyphs/close.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordPrev.png"] { background: url('./art/glyphs/back.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordNext.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordDetails.png"] { background: url('./art/glyphs/forward.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordRoom.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/clubDefault.png"] { background: url('./art/glyphs/room.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordPeople.png"] { background: url('./art/glyphs/people.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordPosition.png"] { background: url('./art/glyphs/pin.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordFavorite.png"] { background: url('./art/glyphs/star.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordDiamond.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/emojiDiamond.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/giftDiamond.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/giftFlyDiamond.png"] { background: url('./art/glyphs/diamond.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/infoTip.png"] { background: url('./art/glyphs/warning.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/walletID.png"] { background: url('./art/glyphs/wallet.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/arrowDown.png"] { background: url('./art/glyphs/arrow-down.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/addTimeClock.png"] { background: url('./art/glyphs/clock.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/emojiUc.png"] { background: url('./art/glyphs/chip-stack.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/settingsDeskSelected.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/settingsCardSelected.png"] { background: url('./art/glyphs/check.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/returnGame.png"] { background: url('./art/glyphs/back.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/settingsTabSelected.png"] { background: url('./art/glyphs/bolt.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp1.png"] { background: url('./art/glyphs/kiss.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp2.png"] { background: url('./art/glyphs/money.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp3.png"] { background: url('./art/glyphs/boxing.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp4.png"] { background: url('./art/glyphs/hand.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp5.png"] { background: url('./art/glyphs/tomato.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp6.png"] { background: url('./art/glyphs/fish.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp7.png"] { background: url('./art/glyphs/baseball.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp8.png"] { background: url('./art/glyphs/like.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp9.png"] { background: url('./art/glyphs/cheers.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp10.png"] { background: url('./art/glyphs/chicken.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp11.png"] { background: url('./art/glyphs/flower.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/playerProp12.png"] { background: url('./art/glyphs/shark.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/pool.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/info.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/actionBubble.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/winBoard.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/winPercentTitle.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/winPercentValue.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/cardTypeBg.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/betValue.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/raiseBubble.png"] { background: url('./art/seat-plate.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/confirmPanel.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/settingsCardOption.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/settingsDeskOption.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/giftDataBg.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/recordSlider.png"] { background: url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/autoFoldOff.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/autoCallOff.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/autoOff.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/confirmCancel.png"] { background: url('./art/key-graphite.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/autoFoldOn.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/autoCallOn.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/autoOn.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/dialogConfirm.png"] { background: url('./art/key-cyan.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/raise.png"] { background: url('./art/key-hazard.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/sliderHandle.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/switchKnob.png"],
+.mx-game[data-skin=style3] [data-sprite="raw/ui/raiseThumb.png"] { background: url('./art/cap-lagoon.svg') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-card-highlight { background: none !important; border: 2px solid #ffe863; border-radius: inherit; box-shadow: inset 0 0 5px #ffe863; }
+
+.mx-game[data-skin=style3] .mx-confirm-texture { background: url('./art/key-cyan.webp') center / 100% 100% no-repeat !important; color: #0c2527; }
+
+.mx-game[data-skin=style3] .mx-confirm-texture::before,
+.mx-game[data-skin=style3] .mx-confirm-texture::after { content: none; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/menuSetting.png"] { background: url('./art/glyphs/gear.svg') left 6% center / auto 54% no-repeat, url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/menuRules.png"] { background: url('./art/glyphs/book.svg') left 6% center / auto 54% no-repeat, url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/menuInsurance.png"] { background: url('./art/glyphs/shield.svg') left 6% center / auto 54% no-repeat, url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/menuBringIn.png"] { background: url('./art/glyphs/chip-stack.svg') left 6% center / auto 54% no-repeat, url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/menuKeepSeat.png"] { background: url('./art/glyphs/anchor.svg') left 6% center / auto 54% no-repeat, url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] [data-sprite="raw/ui/menuShowBB.png"] { background: url('./art/glyphs/wallet.svg') left 6% center / auto 54% no-repeat, url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-menu-item-background[data-sprite$="menuGreen.png"] { background: url('./art/key-cyan.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-squid-count,
+.mx-game[data-skin=style3] .mx-seat-squid { background: url('./art/glyphs/squid.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-mtt-cancel { background: url('./art/glyphs/back.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-squid-prev { background: url('./art/glyphs/back.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-squid-next { background: url('./art/glyphs/forward.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-table-safety { background: url('./art/glyphs/shield.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-support-icon { content: url('./art/glyphs/support.svg'); object-fit: contain; }
+
+.mx-game[data-skin=style3] .mx-table-tool-plus { content: url('./art/glyphs/plus.svg'); object-fit: contain; }
+
+.mx-game[data-skin=style3] .mx-table-tool-diamond { content: url('./art/glyphs/diamond.svg'); object-fit: contain; }
+
+.mx-game[data-skin=style3] .mx-squid-start,
+.mx-game[data-skin=style3] .mx-squid-over { content: url('./art/glyphs/squid.svg'); object-fit: contain; }
+
+.mx-game[data-skin=style3] .mx-table-tools .mx-table-safety { background: url('./art/glyphs/shield.svg') center / 64% auto no-repeat, url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-player-profile { --mx-profile-gift-background: url('./art/seat-plate.webp') !important; }
+
+.mx-game[data-skin=style3] .mx-chat-dialog { --chat-send: url('./art/glyphs/send.svg') !important; }
+
+.mx-game[data-skin=style3] .mx-chat-dialog { --chat-quick: url('./art/glyphs/bolt.svg') !important; }
+
+.mx-game[data-skin=style3] .mx-chat-dialog { --chat-panel: url('./art/seat-plate.webp') !important; }
+
+.mx-game[data-skin=style3] .mx-diamond-purchase { --diamond-product: url('./art/glyphs/diamond.svg') !important; }
+
+.mx-game[data-skin=style3] .mx-diamond-purchase { --diamond-usdt: url('./art/glyphs/wallet.svg') !important; }
+
+.mx-game[data-skin=style3] .mx-hand-cards { --mx-show-card-eye: url('./art/glyphs/eye.svg') !important; }
+
+.mx-game[data-skin=style3] [style*="--mx-show-card-eye"] { --mx-show-card-eye: url('./art/glyphs/eye.svg') !important; }
+
+.mx-game[data-skin=style3] [style*="--mx-profile-gift-background"] { --mx-profile-gift-background: url('./art/seat-plate.webp') !important; }
+
+.mx-game[data-skin=style3] .mx-raise-chip,
+.mx-game[data-skin=style3] .mx-chip-art { background: url('./art/cap-lagoon.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-mtt-countdown,
+.mx-game[data-skin=style3] .mx-mtt-tip,
+.mx-game[data-skin=style3] .mx-squid-stand,
+.mx-game[data-skin=style3] .mx-jackpot-pool { background: url('./art/seat-plate.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-diamond-treasure { background: url('./art/glyphs/diamond.svg') center / contain no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-insurance-option-title,
+.mx-game[data-skin=style3] .mx-insurance-cancel { background: url('./art/key-console.webp') center / 100% 100% no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-insurance-option[aria-pressed=true] .mx-insurance-option-title { background-image: url('./art/key-cyan.webp') !important; color:#102b28; }
+
+.mx-game[data-skin=style3] .mx-card[data-sprite^="raw/cards/"]:not([data-card-value="0"]),
+.mx-game[data-skin=style3] .mx-card[data-sprite^="raw/cards1/"]:not([data-card-value="0"]) { background: url('./art/glyphs/deck.svg') var(--face-x) var(--face-y) / 1300% 400% no-repeat !important; }
+
+.mx-game[data-skin=style3] .mx-card[data-sprite^="raw/cards1/"]:not([data-card-value="0"]) { background-image: url('./art/glyphs/deck-four.svg') !important; }
+
+.mx-game[data-skin=style3] .mx-settings-back[aria-label=red] img { content: url('./art/glyphs/back-red.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-card[data-card-value="0"][data-card-back=red] { background: url('./art/glyphs/back-red.svg') center / 100% 100% no-repeat !important; }
+.mx-game[data-skin=style3] .mx-settings-back[aria-label=green] img { content: url('./art/glyphs/back-green.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-card[data-card-value="0"][data-card-back=green] { background: url('./art/glyphs/back-green.svg') center / 100% 100% no-repeat !important; }
+.mx-game[data-skin=style3] .mx-settings-back[aria-label=blue] img { content: url('./art/glyphs/back-blue.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-card[data-card-value="0"][data-card-back=blue] { background: url('./art/glyphs/back-blue.svg') center / 100% 100% no-repeat !important; }
+.mx-game[data-skin=style3] .mx-settings-back[aria-label=indigo] img { content: url('./art/glyphs/back-indigo.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-card[data-card-value="0"][data-card-back=indigo] { background: url('./art/glyphs/back-indigo.svg') center / 100% 100% no-repeat !important; }
+.mx-game[data-skin=style3] .mx-settings-back[aria-label=black] img { content: url('./art/glyphs/back-black.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-card[data-card-value="0"][data-card-back=black] { background: url('./art/glyphs/back-black.svg') center / 100% 100% no-repeat !important; }
+.mx-game[data-skin=style3] .mx-settings-back[aria-label=gold] img { content: url('./art/glyphs/back-gold.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-card[data-card-value="0"][data-card-back=gold] { background: url('./art/glyphs/back-gold.svg') center / 100% 100% no-repeat !important; }
+.mx-game[data-skin=style3] .mx-layout-preview[data-layout=original] { content: url('./art/glyphs/layout-original.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-layout-preview[data-layout=classic] { content: url('./art/glyphs/layout-classic.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-layout-preview[data-layout=balanced] { content: url('./art/glyphs/layout-balanced.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-layout-preview[data-layout=oval] { content: url('./art/glyphs/layout-oval.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-avatar-video-mask[data-mask="1"] { background: url('./art/glyphs/visor-1.svg') center / contain no-repeat !important; }
+.mx-game[data-skin=style3] .mx-avatar-video-mask[data-mask="2"] { background: url('./art/glyphs/visor-2.svg') center / contain no-repeat !important; }
+.mx-game[data-skin=style3] .mx-avatar-video-mask[data-mask="3"] { background: url('./art/glyphs/visor-3.svg') center / contain no-repeat !important; }
+.mx-game[data-skin=style3] .mx-avatar-video-mask[data-mask="4"] { background: url('./art/glyphs/visor-4.svg') center / contain no-repeat !important; }
+.mx-game[data-skin=style3] .mx-avatar-mic[data-mic=speaking] { content: url('./art/glyphs/mic.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-avatar-mic[data-mic=muted] { content: url('./art/glyphs/mute.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-squid-page[data-page="1"] { content: url('./art/glyphs/squid-guide-1.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-squid-page[data-page="2"] { content: url('./art/glyphs/squid-guide-2.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-squid-page[data-page="3"] { content: url('./art/glyphs/squid-guide-3.svg'); object-fit: contain; }
+.mx-game[data-skin=style3] .mx-gameplay-guide-image[data-kind=mushroom] { background: url('./art/glyphs/guide-mushroom.svg') center / contain no-repeat !important; }
+.mx-game[data-skin=style3] .mx-gameplay-guide-image[data-kind=critical-hit] { background: url('./art/glyphs/guide-critical-hit.svg') center / contain no-repeat !important; }
+.mx-game[data-skin=style3] .mx-record-icon[data-sprite$="/recordFavorite.png"] { mask: url('./art/glyphs/star.svg') center / contain no-repeat !important; background-image: none !important; }
+.mx-game[data-skin=style3] .mx-menu-switch-fill { mask: none !important; border-radius: 99px; }
+.mx-game[data-skin=style3] :is(.mx-player-profile-avatar-fallback,.mx-record-avatar) { background: url('./art/crew.webp') 0 center / 800% 100% no-repeat !important; }
+.mx-game[data-skin=style3] [style*="--squid_bg_red"] { --squid_bg_red: url('./art/cap-cherry.svg') !important; --squid_end_bg: url('./art/seat-plate.webp') !important; --squid_reward_bg: url('./art/key-console.webp') !important; }
+
+
+.mx-game[data-skin=style3] {
+  .mx-calltime > img { content: url('./art/glyphs/clock.svg'); object-fit: contain; }
+  .mx-jackpot-start { background: url('./art/glyphs/jackpot.svg') center / contain no-repeat !important; }
+  .mx-critical-start { content: url('./art/glyphs/guide-critical-hit.svg'); object-fit: contain; }
+  .mx-mushroom-amount, .mx-settlement-watch-bg { background: url('./art/seat-plate.webp') center / 100% 100% no-repeat !important; }
+  .mx-mushroom-icon { background: url('./art/glyphs/mushroom.svg') center / contain no-repeat !important; }
+  .mx-mushroom-count { background: url('./art/cap-cherry.svg') center / contain no-repeat !important; }
+  .mx-seat-timer-dot { mask: none !important; border-radius: 50%; box-shadow: 0 0 6px currentColor; }
+  .mx-seat-timer-texture { mask-image: radial-gradient(closest-side, transparent 90%, black 92%) !important; mask-size:100% 100% !important; mask-position:center !important; border-radius:50%; }
+}
+.mx-game[data-skin=style3] {
+  .mx-emoji-item { background: linear-gradient(145deg,#322136,#171627 80%); border:1px solid #65506b; border-radius:8px; }
+  .mx-emoji-item.mx-emoji-selected, .mx-emoji-item:focus-visible { border-color:#6affdf; box-shadow:inset 0 -2px #65d9c5; }
+  .mx-emoji-cost { color:#b8fff2; background:#161725e8; border-radius:8px; }
+  .mx-emoji-category { background:linear-gradient(#37233c,#1b1929); border:1px solid #5f4c67; border-radius:5px; }
+  .mx-emoji-category[aria-selected=true] { border-color:#69e4d6; }
+  .mx-emoji-selected::after, .mx-emoji-category[aria-selected=true]::after { background:#68edd7; }
+  .mx-emoji-retry { background:url('./art/key-cyan.webp') center / 100% 100% no-repeat; color:#092626; }
+}
+
+.mx-game[data-skin=style3] {
+  :is(.mx-buyin-close,.mx-settings-close,.mx-diamond-receipt-close,.mx-room-settings-tip-close) {
+    background: url('./art/glyphs/close.svg') center / 65% 65% no-repeat !important; color:transparent; text-shadow:none;
+  }
+  .mx-player-profile-pencil { color:transparent; display:inline-block; width:1.15em; background:url('./art/glyphs/pencil.svg') center / contain no-repeat; }
+  .mx-player-profile-sex { display:inline-block; color:transparent; background:var(--symbol) center / contain no-repeat; }
+  .mx-player-profile-sex[data-symbol=female] { --symbol:url('./art/glyphs/female.svg'); }
+  .mx-player-profile-sex[data-symbol=male] { --symbol:url('./art/glyphs/male.svg'); }
+}
