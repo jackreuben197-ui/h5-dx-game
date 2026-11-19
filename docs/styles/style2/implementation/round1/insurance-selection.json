@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "skin": "style1",
+      "before": "2",
+      "after": "4",
+      "count": 1,
+      "details": "请选择投保方案\n已投入:100\n赔付额:333\n已投入:66.6",
+      "pass": true
+    },
+    {
+      "skin": "style2",
+      "before": "2",
+      "after": "4",
+      "count": 1,
+      "details": "请选择投保方案\n已投入:100\n赔付额:333\n已投入:66.6",
+      "pass": true
+    }
+  ],
+  "equal": true
+}

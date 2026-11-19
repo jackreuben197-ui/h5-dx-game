@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200, initial-scale=1.0">
+<title>H5扑克卡通可爱风·视觉组件与系统规范 (Style2)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1200px; padding: 36px 40px; background: #1B132B;
+    font-family: 'Fredoka', 'Noto Sans SC', 'Nunito', sans-serif;
+    color: #F5EDFA;
+  }
+  h1 { font-size: 28px; color: #FFEAA7; font-weight: 900; margin-bottom: 6px; }
+  .subtitle { font-size: 14px; color: #B0A0D0; margin-bottom: 28px; font-weight: 600; }
+  .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .spec-card {
+    background: #281D3E; border: 2px solid #4D3775; border-radius: 20px;
+    padding: 22px 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+  .spec-card.full-width { grid-column: span 2; }
+  .card-title {
+    font-size: 17px; font-weight: 900; color: #55EFC4; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px; border-bottom: 1.5px solid #3F2C61;
+    padding-bottom: 8px;
+  }
+
+  /* 状态网格 */
+  .state-row { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+  .state-cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .state-name { font-size: 11px; color: #D6A2E8; font-weight: 700; }
+
+  /* 按钮通用 */
+  .btn-demo {
+    min-width: 90px; height: 42px; border-radius: 14px; display: flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 900; cursor: pointer; padding: 0 12px;
+  }
+  .btn-normal {
+    background: linear-gradient(180deg, #1DD1A1 0%, #10AC84 100%);
+    border: 2px solid #55EFC4; color: #FFF; box-shadow: 0 3px 0 #07624C;
+  }
+  .btn-pressed {
+    background: #10AC84; border: 2px solid #55EFC4; color: #FFF;
+    box-shadow: 0 1px 0 #07624C; transform: translateY(2px);
+  }
+  .btn-selected {
+    background: linear-gradient(180deg, #FFA94D 0%, #FF8A3D 100%);
+    border: 2px solid #FFE082; color: #FFF; box-shadow: 0 0 10px rgba(255,169,77,0.7), 0 3px 0 #C95E1E;
+  }
+  .btn-disabled {
+    background: #3B2F52; border: 2px solid #534272; color: #7A699B;
+    box-shadow: none; cursor: not-allowed;
+  }
+  .btn-busy {
+    background: #47366E; border: 2px dashed #FFD15C; color: #FFD15C;
+    box-shadow: 0 2px 0 #2A1C46; animation: busyPulse 1s infinite alternate;
+  }
+  @keyframes busyPulse { from { opacity: 0.7; } to { opacity: 1; } }
+
+  /* 头像通用 */
+  .avatar-demo-wrap {
+    width: 52px; height: 52px; border-radius: 18px; padding: 3px; position: relative;
+  }
+  .avatar-demo-img { width: 100%; height: 100%; border-radius: 15px; object-fit: cover; }
+  .av-waiting { background: #FFEAA7; box-shadow: 0 3px 0 #D3B96C; }
+  .av-acting {
+    background: #FF9F43; box-shadow: 0 0 14px rgba(255, 159, 67, 0.9), 0 3px 0 #D35400;
+  }
+  .av-acting::after {
+    content: ""; position: absolute; inset: -4px; border-radius: 22px;
+    border: 2.5px solid #00D2D3;
+  }
+  .av-reserved {
+    background: #636E72; filter: grayscale(0.8);
+  }
+  .av-reserved::before {
+    content: "留座"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: #2D3436; color: #FFF; font-size: 9px; padding: 1px 6px; border-radius: 6px;
+  }
+  .av-allin {
+    background: #EE5253; box-shadow: 0 0 16px rgba(238, 82, 83, 0.9);
+  }
+  .av-allin::before {
+    content: "ALL IN"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: #E84118; color: #FFF; font-size: 9px; font-weight: 900; padding: 1px 6px; border-radius: 6px;
+  }
+  .av-winner {
+    background: #FFD15C; box-shadow: 0 0 18px rgba(255, 209, 92, 0.9);
+  }
+  .av-winner::before {
+    content: "👑 WIN"; position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: #FF9F43; color: #FFF; font-size: 9px; font-weight: 900; padding: 1px 6px; border-radius: 6px;
+  }
+
+  /* 牌状态 */
+  .card-demo {
+    width: 42px; height: 60px; border-radius: 8px; background: #FFF;
+    border: 2px solid #E4D9C7; display: flex; flex-direction: column;
+    justify-content: space-between; padding: 2px 4px; position: relative;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+  }
+  .card-demo.card-selected {
+    transform: translateY(-8px); border-color: #55EFC4;
+    box-shadow: 0 10px 18px rgba(85,239,196,0.5);
+  }
+  .card-demo.card-highlight {
+    border-color: #FFD15C; box-shadow: 0 0 14px rgba(255, 209, 92, 0.9);
+  }
+  .card-demo.card-dim {
+    filter: brightness(0.4) grayscale(0.5); opacity: 0.6;
+  }
+
+  /* 调色板色卡 */
+  .color-chips-row { display: flex; gap: 12px; }
+  .color-chip {
+    flex: 1; border-radius: 12px; padding: 10px; display: flex;
+    flex-direction: column; justify-content: flex-end; height: 72px;
+  }
+  .color-name { font-size: 11px; font-weight: 800; }
+  .color-hex { font-size: 10px; opacity: 0.85; font-family: monospace; }
+
+  /* 规范表格 */
+  .spec-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .spec-table th, .spec-table td {
+    padding: 8px 10px; border: 1px solid #4D3775; font-size: 12px; text-align: left;
+  }
+  .spec-table th { background: #332352; color: #FFEAA7; font-weight: 800; }
+  .spec-table td { color: #DCDDE1; background: #26193E; }
+</style>
+</head>
+<body>
+  <h1>H5 扑克全卡通可爱风视觉与响应式组件规范 (Style2 契约)</h1>
+  <div class="subtitle">技术栈基准: HTML DOM + TypeScript · 逻辑基准: 440×782 · 兼容 375×812 / 375×500 / 320×400 · 严禁删除原功能</div>
+
+  <div class="grid-layout">
+    <!-- 调色板定义 -->
+    <div class="spec-card full-width">
+      <div class="card-title">🎨 视觉核心调色板 (柔和玩具奶油 / 薄荷 / 杏桃 / 葡萄紫)</div>
+      <div class="color-chips-row">
+        <div class="color-chip" style="background:#5CD6B2; color:#064E3B;">
+          <span class="color-name">薄荷绿 (台面基底/正向)</span>
+          <span class="color-hex">#5CD6B2 / #10AC84</span>
+        </div>
+        <div class="color-chip" style="background:#FFE8A3; color:#573F03;">
+          <span class="color-name">奶油黄 (曲奇围边/高亮)</span>
+          <span class="color-hex">#FFE8A3 / #FFD15C</span>
+        </div>
+        <div class="color-chip" style="background:#FFA94D; color:#591F03;">
+          <span class="color-name">杏桃橙 (主加注/警告)</span>
+          <span class="color-hex">#FFA94D / #FF8A3D</span>
+        </div>
+        <div class="color-chip" style="background:#493374; color:#FFF;">
+          <span class="color-name">玩具葡萄紫 (外框/暗底)</span>
+          <span class="color-hex">#493374 / #221838</span>
+        </div>
+        <div class="color-chip" style="background:#FF4757; color:#FFF;">
+          <span class="color-name">草莓红 (红桃方块/倒计)</span>
+          <span class="color-hex">#FF4757 / #EE5253</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 按钮五态规范 -->
+    <div class="spec-card">
+      <div class="card-title">🔘 按钮五态规范 (Button Five States)</div>
+      <div class="state-row">
+        <div class="state-cell">
+          <div class="btn-demo btn-normal">跟注 12</div>
+          <span class="state-name">普通 (Normal)</span>
+        </div>
+        <div class="state-cell">
+          <div class="btn-demo btn-pressed">跟注 12</div>
+          <span class="state-name">按下 (Pressed)</span>
+        </div>
+        <div class="state-cell">
+          <div class="btn-demo btn-selected">加注 24</div>
+          <span class="state-name">选中 (Selected)</span>
+        </div>
+        <div class="state-cell">
+          <div class="btn-demo btn-disabled">全下</div>
+          <span class="state-name">禁用 (Disabled)</span>
+        </div>
+        <div class="state-cell">
+          <div class="btn-demo btn-busy">提交中...</div>
+          <span class="state-name">忙碌 (Busy)</span>
+        </div>
+      </div>
+      <div style="font-size: 11px; color:#A695C7; line-height:1.4;">
+        * 触控热区保证 ≥ 44×44px；禁用态透明度 0.45 且完全屏蔽 click 事件；加注与弃牌保持独立图层防误吞手牌。
+      </div>
+    </div>
+
+    <!-- 头像五态规范 -->
+    <div class="spec-card">
+      <div class="card-title">👤 动态头像五态表现 (Avatar States)</div>
+      <div class="state-row">
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-waiting">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">等待他人</span>
+        </div>
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-acting">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">行动中 (呼吸环)</span>
+        </div>
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-reserved">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">留座离桌</span>
+        </div>
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-allin">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">ALL IN 全下</span>
+        </div>
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-winner">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">赢家 (WIN)</span>
+        </div>
+      </div>
+      <div style="font-size: 11px; color:#A695C7; line-height:1.4;">
+        * 内部动态图片槽保持真人图拉取；卡通质感由外包曲奇边框、表情气泡及流光动画表现；倒计时对手依附头像，本人依附弃牌钮。
+      </div>
+    </div>
+
+    <!-- 扑克牌状态与层级 -->
+    <div class="spec-card">
+      <div class="card-title">🎴 扑克牌状态与层级 (Card States)</div>
+      <div class="state-row">
+        <div class="state-cell">
+          <div class="card-demo"><span style="font-weight:900;color:#2F3542;">A♠</span></div>
+          <span class="state-name">正面常态</span>
+        </div>
+        <div class="state-cell">
+          <div class="card-demo" style="background: linear-gradient(135deg, #FF6B6B, #EE5253); border-color:#FFF; color:#FFF; justify-content:center; align-items:center;">★</div>
+          <span class="state-name">背面图案</span>
+        </div>
+        <div class="state-cell">
+          <div class="card-demo card-selected"><span style="font-weight:900;color:#FF4757;">K♥</span></div>
+          <span class="state-name">选中弹起 (-8px)</span>
+        </div>
+        <div class="state-cell">
+          <div class="card-demo card-highlight"><span style="font-weight:900;color:#2F3542;">Q♣</span></div>
+          <span class="state-name">成牌高亮发光</span>
+        </div>
+        <div class="state-cell">
+          <div class="card-demo card-dim"><span style="font-weight:900;color:#FF4757;">2♦</span></div>
+          <span class="state-name">废牌变暗遮罩</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 响应式与极小屏适配 (375x500 / 320x400) -->
+    <div class="spec-card">
+      <div class="card-title">📱 极小屏与短屏适配策略 (Short & Mini Viewports)</div>
+      <table class="spec-table">
+        <tr><th>视口尺寸</th><th>布局与组件调整方案</th></tr>
+        <tr>
+          <td><strong>440×782 (基准)</strong></td>
+          <td>完整 Balanced/Classic 空间；五档快捷钮常态展开；底栏与贴边加时各就其位。</td>
+        </tr>
+        <tr>
+          <td><strong>375×500 (短屏)</strong></td>
+          <td>毛毡台面高度缩窄至 380px，座位垂直向心聚拢 15%；弹窗高度自适应加设内部滚动；手牌与五档快捷间距压减至 4px。</td>
+        </tr>
+        <tr>
+          <td><strong>320×400 (极小屏)</strong></td>
+          <td>切换紧凑模式；五档快捷折叠为三档或下拉；加时/聊天贴边悬浮合并；字体等比阶梯应用 90% 缩放；座位微标压缩。</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 批次覆盖声明与未覆盖清单 -->
+    <div class="spec-card full-width">
+      <div class="card-title">📋 批次交付状态契约与未覆盖清单 (第一批明确范围)</div>
+      <table class="spec-table">
+        <tr>
+          <th style="width: 140px;">批次</th>
+          <th style="width: 260px;">覆盖范围 (本轮已完成设计)</th>
+          <th>暂未覆盖 / 留待后续批次 (严禁声称整套完成)</th>
+        </tr>
+        <tr>
+          <td><strong style="color:#55EFC4;">第一批 (当前交付)</strong></td>
+          <td>
+            1. 八人balanced主桌·本人行动 (UI-001, UI-002, UI-003, UI-007, UI-011)<br>
+            2. 同桌加注面板与拉杆 (UI-008, UI-009)<br>
+            3. 等待他人行动与自动预选 (UI-010, UI-011)<br>
+            4. classic经典双排公共牌变体 (UI-004, UI-005)<br>
+            5. 个性设置默认页 (UI-016, UI-017)<br>
+            6. 多池保险面板 (UI-018)<br>
+            7. 全套视觉组件与响应式规范规范页
+          </td>
+          <td>
+            <strong>后续批次补项清单:</strong><br>
+            • UI-014 / UI-015: 带入、补充、钱包选择、带出与留座提示<br>
+            • UI-019: 二道牌投票弹窗与双排表决态<br>
+            • UI-020 / UI-021: 鱿鱼玩法、蘑菇池/暴击开场动画、Jackpot累积池<br>
+            • UI-022 / UI-023: 详细战绩Tab、观众席列表、牌谱街段滑动回放<br>
+            • UI-024 / UI-025: 玩家资料与权限弹窗、桌内聊天流与道具投掷动效<br>
+            • UI-026 / UI-027: 语音/视频桌分支、MTT桌内赛事实时状态<br>
+            • UI-028 / UI-029: 桌面规则、多语言英/中对照落地、长金额溢出极限压测
+          </td>
+        </tr>
+      </table>
+      <div style="margin-top: 10px; font-size: 11px; color:#FFEAA7; font-weight:700;">
+        ⚠️ 审核说明: 本轮输出供用户审稿，在用户确认并批准前，绝对不开展真实 style2 TypeScript/DOM 生产代码的覆写。
+      </div>
+    </div>
+  </div>
+</body>
+</html>

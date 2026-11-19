@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200, initial-scale=1.0">
+<title>R2: 全卡通可爱风视觉组件与系统规范契约</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1200px; padding: 36px 40px; background: #F9F2E7;
+    font-family: 'Fredoka', 'Noto Sans SC', 'Nunito', sans-serif;
+    color: #4A3E3D;
+  }
+  h1 { font-size: 28px; color: #5D4037; font-weight: 900; margin-bottom: 6px; }
+  .subtitle { font-size: 14px; color: #8D6E63; margin-bottom: 24px; font-weight: 700; }
+  .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .spec-card {
+    background: #FFFDF9; border: 2.5px solid #EAD8C0; border-radius: 20px;
+    padding: 20px 22px; box-shadow: 0 6px 16px rgba(108, 82, 149, 0.12), 0 3px 0 #D4BEA2;
+  }
+  .spec-card.full-width { grid-column: span 2; }
+  .card-title {
+    font-size: 16px; font-weight: 900; color: #6C5295; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #F0E6D8;
+    padding-bottom: 8px;
+  }
+
+  /* 状态排 */
+  .state-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+  .state-cell { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .state-name { font-size: 11px; color: #8D6E63; font-weight: 800; }
+
+  /* 软糖按钮五态 */
+  .btn-demo {
+    min-width: 86px; height: 42px; border-radius: 14px; display: flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 900; cursor: pointer; padding: 0 10px;
+  }
+  .btn-normal {
+    background: linear-gradient(180deg, #2ED5A8 0%, #10AC84 100%);
+    border: 2px solid #76F5D0; color: #FFF; box-shadow: 0 3px 0 #0C7A5E;
+  }
+  .btn-pressed {
+    background: #10AC84; border: 2px solid #76F5D0; color: #FFF;
+    box-shadow: 0 1px 0 #0C7A5E; transform: translateY(2px);
+  }
+  .btn-selected {
+    background: linear-gradient(180deg, #FFA94D 0%, #FF8A3D 100%);
+    border: 2px solid #FFE082; color: #FFF; box-shadow: 0 3px 0 #C95E1E, 0 0 8px rgba(255,169,77,0.5);
+  }
+  .btn-disabled {
+    background: #EAE3D9; border: 2px solid #D5CCC0; color: #A89D8F;
+    box-shadow: none; cursor: not-allowed; opacity: 0.55;
+  }
+  .btn-busy {
+    background: #FAF5EE; border: 2px dashed #FF9F43; color: #D35400;
+    box-shadow: 0 2px 0 #D4BEA2; animation: busyPulse 1s infinite alternate;
+  }
+  @keyframes busyPulse { from { opacity: 0.7; } to { opacity: 1; } }
+
+  /* 曲奇头像五态 */
+  .avatar-demo-wrap {
+    width: 48px; height: 48px; border-radius: 17px; padding: 3px; position: relative;
+  }
+  .avatar-demo-img { width: 100%; height: 100%; border-radius: 14px; object-fit: cover; }
+  .av-waiting { background: #FFEAA7; box-shadow: 0 3px 0 #DAB968; }
+  .av-acting {
+    background: #FF9F43; box-shadow: 0 0 12px rgba(255, 159, 67, 0.8), 0 3px 0 #D35400;
+  }
+  .av-acting::after {
+    content: ""; position: absolute; inset: -4px; border-radius: 21px;
+    border: 2.5px solid #2ED5A8;
+  }
+  .av-reserved {
+    background: #BDC3C7; filter: grayscale(0.85); box-shadow: 0 3px 0 #95A5A6;
+  }
+  .av-reserved::before {
+    content: "留座"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: #5D4037; color: #FFF; font-size: 8px; padding: 1px 5px; border-radius: 5px;
+  }
+  .av-allin {
+    background: #FF4757; box-shadow: 0 0 14px rgba(255, 71, 87, 0.8), 0 3px 0 #C23616;
+  }
+  .av-allin::before {
+    content: "ALL IN"; position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    background: #FF4757; color: #FFF; font-size: 8px; font-weight: 900; padding: 1px 5px; border-radius: 5px;
+  }
+  .av-winner {
+    background: #FFEAA7; box-shadow: 0 0 14px rgba(255, 234, 167, 0.9), 0 3px 0 #DAB968;
+  }
+  .av-winner::before {
+    content: "👑 WIN"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: #FF9F43; color: #FFF; font-size: 8px; font-weight: 900; padding: 1px 5px; border-radius: 5px;
+  }
+
+  /* 牌状态 */
+  .card-demo {
+    width: 40px; height: 56px; border-radius: 8px; background: #FFF;
+    border: 2px solid #EAD8C0; display: flex; flex-direction: column;
+    justify-content: space-between; padding: 2px 3px; position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .card-demo.card-selected {
+    transform: translateY(-8px); border-color: #2ED5A8;
+    box-shadow: 0 8px 14px rgba(46, 213, 168, 0.4);
+  }
+  .card-demo.card-highlight {
+    border-color: #FF9F43; box-shadow: 0 0 12px rgba(255, 159, 67, 0.8);
+  }
+  .card-demo.card-dim {
+    filter: brightness(0.5) grayscale(0.5); opacity: 0.55;
+  }
+
+  /* 表格 */
+  .spec-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .spec-table th, .spec-table td {
+    padding: 8px 10px; border: 1.5px solid #EAD8C0; font-size: 11px; text-align: left;
+  }
+  .spec-table th { background: #FAF5EE; color: #6C5295; font-weight: 900; }
+  .spec-table td { color: #5D4037; background: #FFFDF9; }
+</style>
+</head>
+<body>
+  <h1>R2: H5扑克全卡通可爱风视觉组件与系统规范契约</h1>
+  <div class="subtitle">视觉基准: 奶油底色 + 薄荷毛毡 + 软糖按钮 + 曲奇头像框 · 440×782主稿 · 375×500 / 320×400自适应实测</div>
+
+  <div class="grid-layout">
+    <!-- 1. 软糖按钮五态 -->
+    <div class="spec-card">
+      <div class="card-title">🔘 软糖按钮五态规范 (Button Five States)</div>
+      <div class="state-row">
+        <div class="state-cell">
+          <div class="btn-demo btn-normal">跟注 12</div>
+          <span class="state-name">普通 (Normal)</span>
+        </div>
+        <div class="state-cell">
+          <div class="btn-demo btn-pressed">跟注 12</div>
+          <span class="state-name">按下 (Pressed)</span>
+        </div>
+        <div class="state-cell">
+          <div class="btn-demo btn-selected">加注 24</div>
+          <span class="state-name">选中 (Selected)</span>
+        </div>
+        <div class="state-cell">
+          <div class="btn-demo btn-disabled">全下</div>
+          <span class="state-name">禁用 (Disabled)</span>
+        </div>
+        <div class="state-cell">
+          <div class="btn-demo btn-busy">提交中...</div>
+          <span class="state-name">忙碌 (Busy)</span>
+        </div>
+      </div>
+      <div style="font-size: 11px; color:#8D6E63; line-height:1.4;">
+        * 行动热区保证 ≥ 44×44px；禁用态透明度 0.5 且完全屏蔽点击；聊天、加时与弃牌完全拆开，互不重叠。
+      </div>
+    </div>
+
+    <!-- 2. 曲奇头像五态 -->
+    <div class="spec-card">
+      <div class="card-title">👤 曲奇动态头像五态 (Avatar Cookie States)</div>
+      <div class="state-row">
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-waiting">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">等待他人</span>
+        </div>
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-acting">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">行动中 (呼吸环)</span>
+        </div>
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-reserved">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">留座离桌</span>
+        </div>
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-allin">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">ALL IN</span>
+        </div>
+        <div class="state-cell">
+          <div class="avatar-demo-wrap av-winner">
+            <img class="avatar-demo-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80">
+          </div>
+          <span class="state-name">赢家 (WIN)</span>
+        </div>
+      </div>
+      <div style="font-size: 11px; color:#8D6E63; line-height:1.4;">
+        * 对手行动倒计时依附头像；本人倒计时依附弃牌按钮并配倒计时高光环；留座维持去色滤镜与明确留座标签。
+      </div>
+    </div>
+
+    <!-- 3. classic双排公共牌规则说明 (从游戏界面移至此处) -->
+    <div class="spec-card">
+      <div class="card-title">🎴 classic 双排公共牌排布与层次契约</div>
+      <table class="spec-table">
+        <tr><th>排道</th><th>渲染规则与视觉策略</th></tr>
+        <tr>
+          <td><strong>第一道 (固定五槽)</strong></td>
+          <td>无论翻牌圈(3张)还是转牌圈(4张)，基线始终保留5个等宽物理槽位，未翻开的牌呈现柔和曲奇虚线占位槽，居中锚定不随牌数抖动。</td>
+        </tr>
+        <tr>
+          <td><strong>第二道 (实发张数)</strong></td>
+          <td>仅渲染真实发出的张数（Flop画3张，Turn画4张），严禁补画假槽；利用下位负边距(-16px)叠加高光立体阴影形成纵深叠落，数字花色100%露光可读。</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 4. 行动状态机与预选生命周期 -->
+    <div class="spec-card">
+      <div class="card-title">⚡ 行动状态机与自动预选规则契约</div>
+      <table class="spec-table">
+        <tr><th>场景状态</th><th>行为与交互说明</th></tr>
+        <tr>
+          <td><strong>可让牌时</strong></td>
+          <td>跟注按钮自动转为“让牌(Check)”；若点击弃牌，弹出防误触次级确认弹窗。</td>
+        </tr>
+        <tr>
+          <td><strong>不可让牌时</strong></td>
+          <td>跟注按钮显示精确差额“跟注 X BB”；加注按钮根据 minRaise 计算最小加注。</td>
+        </tr>
+        <tr>
+          <td><strong>自动预选失效</strong></td>
+          <td>当其他玩家下注额变化、跨街/跨手牌、重连同步、或玩家留座托管时，所有预选立即重置清空。</td>
+        </tr>
+        <tr>
+          <td><strong>弹窗与遮罩</strong></td>
+          <td>弹窗统一带遮罩(半透明模糊)；点击空白区域关闭或二次拦截确认；弹窗关闭不得误穿透手牌点击。</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 5. 极小屏与短屏适配规则 (纠正合并错误) -->
+    <div class="spec-card full-width">
+      <div class="card-title">📱 极小屏与短屏响应式规则 (375×500 / 320×400 实测方案)</div>
+      <table class="spec-table">
+        <tr>
+          <th style="width: 140px;">视口规格</th>
+          <th style="width: 240px;">布局避让方案</th>
+          <th>不可妥协契约 (严禁破坏功能)</th>
+        </tr>
+        <tr>
+          <td><strong>375×500 (短屏)</strong></td>
+          <td>毛毡高度缩窄至396px，8人座位向心收拢15%，手牌与五档快捷间距微调为4px；加时与聊天贴紧左右侧壁。</td>
+          <td><strong>五档快捷全部保留</strong>，绝不擅自压缩为三档；加时与聊天热区独立，严禁合并；8人座位全部在屏。</td>
+        </tr>
+        <tr>
+          <td><strong>320×400 (极小屏)</strong></td>
+          <td>启用 Nano 高密度排版模式：文字与牌面缩放至 75%-80%，底栏高度压至 32px，快捷按钮缩为微型曲奇胶囊。</td>
+          <td><strong>仍保留全部8人与五档快捷</strong>；字号确保在点阵渲染下数字与花色清晰可辨；所有固定入口完整存在。</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 6. 第一批与后续批次交付边界声明 -->
+    <div class="spec-card full-width">
+      <div class="card-title">📋 批次交付边界声明与后续清单 (R2 审核基准)</div>
+      <table class="spec-table">
+        <tr>
+          <th style="width: 180px;">本轮R2已完成交付</th>
+          <th>后续批次待交付列表 (严禁声称整套系统已完成)</th>
+        </tr>
+        <tr>
+          <td>
+            1. R2-八人balanced主桌·本人行动 (补本人头像/主底双池/拆分聊天)<br>
+            2. R2-同桌加注面板 (完整8人桌局部展开，手牌与入口不消失，动态文本)<br>
+            3. R2-等待他人行动·自动预选 (完整8人桌，状态控件独立切换)<br>
+            4. R2-classic经典双排公共牌 (剥离技术说明，第1排5槽/第2排3张)<br>
+            5. R2-个性设置·默认牌桌页 (固定标题/金额/布局，展示90-110五档)<br>
+            6. R2-个性设置·快捷加注页 (三/五切换、自定义比例、松手提交)<br>
+            7. R2-个性设置·系统设置页 (音效、触感、语言、动画)<br>
+            8. R2-多池保险面板 (转牌圈4张真实牌，六档数据严格自洽)<br>
+            9. R2-短屏实图 (375×500，保留8人与五档快捷)<br>
+            10. R2-极小屏实图 (320×400，高密度微缩保留全部功能)<br>
+            11. R2-视觉组件与技术契约规范页
+          </td>
+          <td>
+            <strong>后续批次补项清单:</strong><br>
+            • UI-014 / UI-015: 带入、补充、钱包选择、记分牌/钻石/押金、离桌提示<br>
+            • UI-019: 二道牌投票弹窗与双排表决态<br>
+            • UI-020 / UI-021: 鱿鱼玩法加入/奖励、蘑菇池/暴击开场、Jackpot记录入口<br>
+            • UI-022 / UI-023: 详细战绩Tab、观众席、牌谱多街滑动回放与收藏<br>
+            • UI-024 / UI-025: 玩家资料与权限弹窗、桌内聊天长文本与道具投掷动效<br>
+            • UI-026 / UI-027: 语音/视频桌分支、MTT桌内赛事实时状态<br>
+            • UI-028 / UI-030: 桌面规则说明、重连断线恢复与预加载动画
+          </td>
+        </tr>
+      </table>
+      <div style="margin-top: 8px; font-size: 11px; color:#D35400; font-weight:800;">
+        ⚠️ 声明: 本轮交付为 R2 视觉设计方案，交付后暂停并等待用户最终审稿；在获得明确确认前，绝不开展生产代码开发。
+      </div>
+    </div>
+  </div>
+</body>
+</html>

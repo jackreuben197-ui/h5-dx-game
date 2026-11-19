@@ -1,0 +1,369 @@
+{
+  "results": [
+    {
+      "layout": "original",
+      "scene": "observer-bottom",
+      "width": 320,
+      "result": "通过",
+      "image": "original-observer-bottom-320.png"
+    },
+    {
+      "layout": "original",
+      "scene": "actions",
+      "width": 320,
+      "result": "通过",
+      "image": "original-actions-320.png"
+    },
+    {
+      "layout": "original",
+      "scene": "settlement",
+      "width": 320,
+      "result": "通过",
+      "image": "original-settlement-320.png"
+    },
+    {
+      "layout": "original",
+      "scene": "observer-bottom",
+      "width": 375,
+      "result": "通过",
+      "image": "original-observer-bottom-375.png"
+    },
+    {
+      "layout": "original",
+      "scene": "actions",
+      "width": 375,
+      "result": "通过",
+      "image": "original-actions-375.png"
+    },
+    {
+      "layout": "original",
+      "scene": "settlement",
+      "width": 375,
+      "result": "通过",
+      "image": "original-settlement-375.png"
+    },
+    {
+      "layout": "original",
+      "scene": "observer-bottom",
+      "width": 440,
+      "result": "通过",
+      "image": "original-observer-bottom-440.png"
+    },
+    {
+      "layout": "original",
+      "scene": "actions",
+      "width": 440,
+      "result": "通过",
+      "image": "original-actions-440.png"
+    },
+    {
+      "layout": "original",
+      "scene": "settlement",
+      "width": 440,
+      "result": "通过",
+      "image": "original-settlement-440.png"
+    },
+    {
+      "layout": "balanced",
+      "scene": "observer-bottom",
+      "width": 320,
+      "result": "通过",
+      "image": "balanced-observer-bottom-320.png"
+    },
+    {
+      "layout": "balanced",
+      "scene": "actions",
+      "width": 320,
+      "result": "通过",
+      "image": "balanced-actions-320.png"
+    },
+    {
+      "layout": "balanced",
+      "scene": "settlement",
+      "width": 320,
+      "result": "通过",
+      "image": "balanced-settlement-320.png"
+    },
+    {
+      "layout": "balanced",
+      "scene": "observer-bottom",
+      "width": 375,
+      "result": "通过",
+      "image": "balanced-observer-bottom-375.png"
+    },
+    {
+      "layout": "balanced",
+      "scene": "actions",
+      "width": 375,
+      "result": "通过",
+      "image": "balanced-actions-375.png"
+    },
+    {
+      "layout": "balanced",
+      "scene": "settlement",
+      "width": 375,
+      "result": "通过",
+      "image": "balanced-settlement-375.png"
+    },
+    {
+      "layout": "balanced",
+      "scene": "observer-bottom",
+      "width": 440,
+      "result": "通过",
+      "image": "balanced-observer-bottom-440.png"
+    },
+    {
+      "layout": "balanced",
+      "scene": "actions",
+      "width": 440,
+      "result": "通过",
+      "image": "balanced-actions-440.png"
+    },
+    {
+      "layout": "balanced",
+      "scene": "settlement",
+      "width": 440,
+      "result": "通过",
+      "image": "balanced-settlement-440.png"
+    },
+    {
+      "layout": "oval",
+      "scene": "observer-bottom",
+      "width": 320,
+      "result": "通过",
+      "image": "oval-observer-bottom-320.png"
+    },
+    {
+      "layout": "oval",
+      "scene": "actions",
+      "width": 320,
+      "result": "通过",
+      "image": "oval-actions-320.png"
+    },
+    {
+      "layout": "oval",
+      "scene": "settlement",
+      "width": 320,
+      "result": "通过",
+      "image": "oval-settlement-320.png"
+    },
+    {
+      "layout": "oval",
+      "scene": "observer-bottom",
+      "width": 375,
+      "result": "通过",
+      "image": "oval-observer-bottom-375.png"
+    },
+    {
+      "layout": "oval",
+      "scene": "actions",
+      "width": 375,
+      "result": "通过",
+      "image": "oval-actions-375.png"
+    },
+    {
+      "layout": "oval",
+      "scene": "settlement",
+      "width": 375,
+      "result": "通过",
+      "image": "oval-settlement-375.png"
+    },
+    {
+      "layout": "oval",
+      "scene": "observer-bottom",
+      "width": 440,
+      "result": "通过",
+      "image": "oval-observer-bottom-440.png"
+    },
+    {
+      "layout": "oval",
+      "scene": "actions",
+      "width": 440,
+      "result": "通过",
+      "image": "oval-actions-440.png"
+    },
+    {
+      "layout": "oval",
+      "scene": "settlement",
+      "width": 440,
+      "result": "通过",
+      "image": "oval-settlement-440.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "observer-bottom",
+      "width": 320,
+      "result": "通过",
+      "image": "classic-observer-bottom-320.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "actions",
+      "width": 320,
+      "result": "通过",
+      "image": "classic-actions-320.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "settlement",
+      "width": 320,
+      "result": "通过",
+      "image": "classic-settlement-320.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "observer-bottom",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-observer-bottom-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "actions",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-actions-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "settlement",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-settlement-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "observer-bottom",
+      "width": 440,
+      "result": "通过",
+      "image": "classic-observer-bottom-440.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "actions",
+      "width": 440,
+      "result": "通过",
+      "image": "classic-actions-440.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "settlement",
+      "width": 440,
+      "result": "通过",
+      "image": "classic-settlement-440.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-1-data",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-1-data-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-1-allin",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-1-allin-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-2-data",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-2-data-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-2-allin",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-2-allin-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-2-gift",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-2-gift-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-admin-1-data",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-admin-1-data-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-admin-1-allin",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-admin-1-allin-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-admin-2-data",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-admin-2-data-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-admin-2-allin",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-admin-2-allin-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-admin-2-gift",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-admin-2-gift-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-video-1-data",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-video-1-data-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-video-1-allin",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-video-1-allin-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-video-2-data",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-video-2-data-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-video-2-allin",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-video-2-allin-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "profile-video-2-gift",
+      "width": 375,
+      "result": "通过",
+      "image": "classic-profile-video-2-gift-375.png"
+    },
+    {
+      "layout": "classic",
+      "scene": "board-preflop",
+      "width": 440,
+      "result": "通过",
+      "image": "classic-board-preflop-440.png"
+    }
+  ],
+  "errors": []
+}

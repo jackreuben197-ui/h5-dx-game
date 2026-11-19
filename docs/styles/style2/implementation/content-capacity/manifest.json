@@ -1,0 +1,226 @@
+{
+  "createdAt": "2026-11-19T02:23:55.238802+00:00",
+  "type": "offline-runtime-and-user-feedback",
+  "images": [
+    {
+      "path": "balanced-board-dual-turn-440x782.png",
+      "sha256": "5251abcd0bbb4ee3b26b0aa85bcdb22c095e1753104b280759e79eb157d67791",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "balanced-sidepots-long-440x782.png",
+      "sha256": "92b9af983ed9360a920f39e7904a3dc02fc47cbf2b714cccbc7708162ac985e2",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "balanced-sidepots-long-844x440.png",
+      "sha256": "37da4957de90ec1dcd9f773fcd2d0698d784d732f2af2a2aa62f680dfc55e4e5",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "balanced-squid-join-440x782.png",
+      "sha256": "c270299eeedb936f55954710dfd86d2509a761a429f36db0cecd9776e8cc0254",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "classic-board-dual-turn-440x782.png",
+      "sha256": "f4dc01042c0c5319d85da6c5be69b21f2fb5054190f20baa7655ee0d49c42778",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "classic-sidepots-long-440x782.png",
+      "sha256": "f698200141f171e4ee7186d51e4c67f82ba13f2b6d9375b918067c6cb33ebdd6",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "classic-squid-join-440x782.png",
+      "sha256": "abc502f3b85327f74fcd30ad8cf2c06a8cf89e7a21a6cf54cc1ac56c7f9f7c7c",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-balanced-squid-join-440x782-safe0.png",
+      "sha256": "00c9b8e34c41b3ef4acb2409cb9b39378890df870261b77432824fd32c996479",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-balanced-squid-join-440x782-safe34.png",
+      "sha256": "1040217b612af8a1f452d37381897e3cb843345111ca596f79da8c761bc9e1f0",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-classic-squid-join-440x782-safe0.png",
+      "sha256": "698e0768843ed5dfe396f254cf81b05b32c952dfbdd178087b1f65fa0e5db728",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-classic-squid-join-440x782-safe34.png",
+      "sha256": "ffe06f6eb47ffbf386db97c088100a372746b337cf887df9c369f92afeef3c86",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-original-media-video-320x400-safe0.png",
+      "sha256": "12704ad1382050e34bb08a9cdba0955ce37fba120611e0c26cbcacaab693f6f2",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-original-media-video-375x500-safe0.png",
+      "sha256": "798122b7616f707faf173d7027e3d4147a9225666035bf3a9675eaa445ad0270",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-original-media-video-440x782-safe0.png",
+      "sha256": "a68ce4198dc6fde16529ee123871e5c7a702c250c1b542866bcdc5daf6e69991",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-original-media-voice-320x400-safe0.png",
+      "sha256": "215f92b5cc7b8462ee6e336c2ee2cbb7d235b930925a7d970c4c7959b2173b76",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-original-media-voice-375x500-safe0.png",
+      "sha256": "e633ebba9e75ed6654efc2d26a90212b19c381263d9508ef3f2012087a72c79c",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-original-media-voice-440x782-safe0.png",
+      "sha256": "7ffcdac3d88dc22962539d7bff2396cbea706979510ae23abf9a2c77d6c57c27",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-original-squid-join-440x782-safe0.png",
+      "sha256": "0a7a0635cec50d2657cc28d2defeb880d6e939aa3643571326e0023cec503513",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-original-squid-join-440x782-safe34.png",
+      "sha256": "b46e83fdf6243ced7b06fb7bf855cc5d1768d1fbd9b0760f61f238589daf9388",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-original-squid-join-844x440-safe0.png",
+      "sha256": "2e080d8ffe40ef00eb3f5528b69c9e3d8b9a6e9167cdfc9780005d8201028a78",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-oval-squid-join-440x782-safe0.png",
+      "sha256": "489612df14bffba8d0034c4f5da98c5e37af33399f85df59251c504a178d3f83",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "footer-oval-squid-join-440x782-safe34.png",
+      "sha256": "ed96c3875cd830076ff9f6ab3cbbd71b7bfbf95ca5fe8919b3efc3339f20cc67",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "interactions/landscape.png",
+      "sha256": "5fc3b4e2b52aca0e8ac5ecb7462c30073058a73e66f436f71b01f614b945437c",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "interactions/mini-video-sixcards.png",
+      "sha256": "e03a322b186268c42a259b87ebb4deb347cd971e8626038a26c5c474b6aac00b",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-board-dual-turn-320x400.png",
+      "sha256": "330d2b1a8d06f97759b765cdb2e7299f47ad6b36400a2abbe649eb1fbb39a8e8",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-board-dual-turn-375x500.png",
+      "sha256": "5a19aebf92fb21ed3428f9a14f3558ed30f39200ede9cf64df6d7ad6f220939f",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-board-dual-turn-440x782.png",
+      "sha256": "ce1a9ffc9462764a04d24dcbff1516851da78976555a8be915677e042a24661b",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-sidepots-long-320x400.png",
+      "sha256": "df3effe48352b04eb1078166133126df369b4c1aa36c532989181d39ea274f1c",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-sidepots-long-375x500.png",
+      "sha256": "a60cf517019544b57c96da1fdf5c999faa0ddebdeb939e5ea831f89c2497015f",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-sidepots-long-440x782.png",
+      "sha256": "5425851f4e37637dbfae2cec6935529df612c3e3aac33a6a99ff0a2c1aa3de28",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-squid-join-320x400.png",
+      "sha256": "205201107c189b9ad7324050f5bcbf450379595b9d1752a094d05cca1e42dce9",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-squid-join-375x500.png",
+      "sha256": "e99c8cb657f514478bcb67742f090eaa33effea3ffaf4640266d0e98fc34ef47",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-squid-join-440x782.png",
+      "sha256": "46d36ef687102e7f3e9ba9c3cf16e15dc0103004ba0d5c199a604d3cc50a615d",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "original-squid-join-440x956.png",
+      "sha256": "c2269741f62a4819d13369a3670582594e06d60fb557ae83d74f5705b18786c6",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "oval-board-dual-turn-440x782.png",
+      "sha256": "f959ae3d3649cd05f5549dfa9f98276737b7503a36663b2828b4687d6faabd16",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "oval-sidepots-long-440x782.png",
+      "sha256": "1a7c29413b80b08a0e6d5cf7c5faa2496fab33ba99ec9718e3cf69a24938f04d",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "oval-squid-join-440x782.png",
+      "sha256": "f50ddb947347aceefcaa3ef7cc257df042066b9b0c32e2dd11d3ae6a212f1714",
+      "source": "playwright-local-fixture"
+    },
+    {
+      "path": "production-portrait.png",
+      "sha256": "98c02ebd310e9760fec27c4ba3acf223347eac0c8397ad0eb840fe634152da34",
+      "source": "playwright-local-production"
+    },
+    {
+      "path": "production.png",
+      "sha256": "85b90be659fe6e6ac9479037f7cee3cbed72c181d9287b4ab9940b506f45950e",
+      "source": "playwright-local-production"
+    },
+    {
+      "path": "user-before.png",
+      "sha256": "9ef3f915ed9b48363dc807c1581974083777ad25774ea96d20ef87c9a77206b0",
+      "source": "user-cropped-feedback"
+    },
+    {
+      "path": "user-logo-before.png",
+      "sha256": "ca33244d7aaf129829c0c4e606712657823b9c5b98f6c2febdad5ed895c1dd56",
+      "source": "user-cropped-feedback"
+    },
+    {
+      "path": "user-name-balance-before.png",
+      "sha256": "090e9f628adb876db8ef2583e8e8500da2c29565d26e81d2d8cc08d540ec2a28",
+      "source": "user-cropped-feedback"
+    },
+    {
+      "path": "user-quick-before.png",
+      "sha256": "e3e7442c86de46103621cbd63b663fa914cf1f4bde1b6b8b7d14154067a5e616",
+      "source": "user-cropped-feedback"
+    },
+    {
+      "path": "user-seat-spacing-before.png",
+      "sha256": "faae94cf1182cda4b99dfcd9468a4072d54239273562c152a7d602b38e92529f",
+      "source": "user-cropped-feedback"
+    }
+  ]
+}

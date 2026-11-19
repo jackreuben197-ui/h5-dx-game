@@ -1,0 +1,8 @@
+[
+  { action: 'fold', pass: true },
+  { action: 'call', pass: true },
+  { action: 'raise', pass: true },
+  { action: 'quick', pass: true },
+  { action: 'voice', pass: true },
+  { action: 'lifecycle', pass: true }
+]

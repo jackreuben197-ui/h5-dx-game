@@ -1,0 +1,12 @@
+[
+  { case: 'main-voice', errors: [], violations: [] },
+  { case: 'main-video', errors: [], violations: [] },
+  { case: 'voice-safe34', errors: [], violations: [] },
+  { case: 'video-safe34', errors: [], violations: [] },
+  { case: 'short-safe34', errors: [], violations: [] },
+  { case: 'short-six', errors: [], violations: [] },
+  { case: 'wide-raise', errors: [], violations: [] },
+  { case: 'long-en', errors: [], violations: [] },
+  { case: 'short-dual', errors: [], violations: [] },
+  { case: 'video-long', errors: [], violations: [] }
+]

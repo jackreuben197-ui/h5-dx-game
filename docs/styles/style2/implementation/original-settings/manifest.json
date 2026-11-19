@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-19",
+  "source": "offline browser fixture",
+  "screenshots": [
+    {
+      "file": "style1-440x782.png",
+      "sha256": "f9768eb913adff3f660b1a16c864a0119bf1e556b9a8626d20bde56d2f9262d7"
+    },
+    {
+      "file": "style2-320x400.png",
+      "sha256": "401734c2bd2bbc7db65ca73826b5f87e1a41233594e498da366ae8d3d2d47197"
+    },
+    {
+      "file": "style2-440x782.png",
+      "sha256": "bc1d9eca9e02d3b1b114b66dbdec41d87f22cb0f0d4a05accde8ad3396e13a25"
+    },
+    {
+      "file": "style2-844x440.png",
+      "sha256": "c8a55b9739e6ed938079dae3fdd53712758111e8a09c7c462f14400ccf63cee6"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "results": [
+    {
+      "skin": "style2",
+      "w": 440,
+      "h": 782,
+      "orientation": "portrait",
+      "button": {
+        "x": 7.99696159362793,
+        "y": 114.99696350097656,
+        "width": 43.99999809265137,
+        "height": 44
+      },
+      "label": {
+        "x": 7.99696159362793,
+        "y": 146.99913024902344,
+        "width": 43.99999809265137,
+        "height": 11.997833251953125
+      },
+      "aligned": true,
+      "menu": true,
+      "settings": true
+    },
+    {
+      "skin": "style2",
+      "w": 320,
+      "h": 400,
+      "orientation": "portrait",
+      "button": {
+        "x": 8,
+        "y": 115,
+        "width": 44,
+        "height": 44
+      },
+      "label": {
+        "x": 8,
+        "y": 147,
+        "width": 44,
+        "height": 12
+      },
+      "aligned": true,
+      "menu": true,
+      "settings": true
+    },
+    {
+      "skin": "style2",
+      "w": 844,
+      "h": 440,
+      "orientation": "auto",
+      "button": {
+        "x": 7.999349117279053,
+        "y": 114.99935150146484,
+        "width": 44.00000238418579,
+        "height": 44.00000762939453
+      },
+      "label": {
+        "x": 7.999349117279053,
+        "y": 146.9967498779297,
+        "width": 44.00000238418579,
+        "height": 11.9990234375
+      },
+      "aligned": true,
+      "menu": true,
+      "settings": true
+    },
+    {
+      "skin": "style1",
+      "w": 440,
+      "h": 782,
+      "orientation": "portrait",
+      "button": {
+        "x": 18.63888931274414,
+        "y": 128.38888549804688,
+        "width": 33,
+        "height": 33
+      },
+      "label": {
+        "x": 23.22222137451172,
+        "y": 161.69444274902344,
+        "width": 17.72222137451172,
+        "height": 12.527786254882812
+      },
+      "aligned": true,
+      "menu": true,
+      "settings": true
+    }
+  ],
+  "errors": []
+}

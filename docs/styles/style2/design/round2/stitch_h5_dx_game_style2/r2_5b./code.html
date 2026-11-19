@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=440, height=782, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>R2: 个性设置·快捷加注页 (440x782)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  body {
+    width: 440px; height: 782px; overflow: hidden;
+    background: #F9F2E7;
+    font-family: 'Fredoka', 'Noto Sans SC', 'Nunito', sans-serif;
+    color: #4A3E3D; position: relative;
+  }
+  .modal-overlay {
+    position: absolute; inset: 0; background: rgba(60, 42, 85, 0.52);
+    display: flex; align-items: center; justify-content: center; z-index: 60;
+  }
+  .settings-dialog-card {
+    width: 400px; height: 690px; border-radius: 28px;
+    background: #FFFDF9; border: 3px solid #EAD8C0;
+    box-shadow: 0 16px 36px rgba(108, 82, 149, 0.35), 0 4px 0 #D4BEA2;
+    display: flex; flex-direction: column; overflow: hidden; position: relative;
+  }
+  .dialog-fixed-header {
+    height: 54px; display: flex; align-items: center; justify-content: center;
+    border-bottom: 2px solid #F0E6D8; position: relative; background: #FFFFFF;
+  }
+  .dialog-title { font-size: 17px; color: #5D4037; font-weight: 900; }
+  .dialog-close-btn {
+    position: absolute; right: 14px; width: 32px; height: 32px; border-radius: 50%;
+    background: #F5EDFA; border: 1.5px solid #EAD8C0; color: #6C5295;
+    display: flex; align-items: center; justify-content: center; font-size: 15px;
+    font-weight: 900; cursor: pointer;
+  }
+
+  .dialog-fixed-tabs {
+    display: flex; height: 42px; background: #FAF5EE; border-bottom: 2px solid #EEDFCF;
+  }
+  .tab-pill-btn {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; color: #8D6E63; cursor: pointer; position: relative;
+  }
+  .tab-pill-btn.active { color: #6C5295; font-weight: 900; }
+  .tab-pill-btn.active::after {
+    content: ""; position: absolute; bottom: 0; left: 16px; right: 16px; height: 3.5px;
+    background: #FF9F43; border-radius: 3px 3px 0 0;
+  }
+
+  .settings-scroll-body {
+    flex: 1; overflow-y: auto; padding: 14px 16px 20px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .setting-group-box {
+    background: #FAF5EE; border: 1.5px solid #EEDFCF;
+    border-radius: 16px; padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .group-title-row {
+    font-size: 13px; color: #6C5295; font-weight: 900; display: flex; align-items: center; gap: 5px;
+  }
+
+  /* 快捷按钮数量切换 (三键 / 五键) */
+  .quick-count-toggle {
+    display: flex; background: #F5EDFA; border-radius: 12px; padding: 3px;
+    border: 1.5px solid #EAD8C0;
+  }
+  .quick-count-item {
+    flex: 1; text-align: center; padding: 6px 0; border-radius: 9px;
+    font-size: 12px; font-weight: 800; color: #8D6E63; cursor: pointer;
+  }
+  .quick-count-item.selected {
+    background: linear-gradient(180deg, #2ED5A8 0%, #10AC84 100%);
+    color: #FFF; box-shadow: 0 2px 4px rgba(16, 172, 132, 0.3);
+  }
+
+  /* 自定义五档快捷加注比例配置 */
+  .slots-config-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .slot-cfg-card {
+    border-radius: 10px; background: #FFFFFF; border: 1.5px solid #EAD8C0;
+    padding: 6px 2px; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  }
+  .slot-cfg-card .slot-idx { font-size: 9px; color: #8D6E63; font-weight: 700; }
+  .slot-cfg-card .slot-val { font-size: 11px; color: #D35400; font-weight: 900; }
+
+  /* 提交模式开关 (松手即下注 / 点击二次确认) */
+  .switch-row {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #FFFFFF; border: 1.5px solid #EAD8C0; padding: 8px 12px; border-radius: 12px;
+  }
+  .switch-label-col { display: flex; flex-direction: column; }
+  .switch-title { font-size: 12px; font-weight: 900; color: #5D4037; }
+  .switch-desc { font-size: 10px; color: #8D6E63; font-weight: 700; }
+  .toy-switch-toggle {
+    width: 44px; height: 24px; border-radius: 12px; background: #2ED5A8;
+    position: relative; cursor: pointer; box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .toy-switch-knob {
+    width: 20px; height: 20px; border-radius: 50%; background: #FFF;
+    position: absolute; top: 2px; right: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+</style>
+</head>
+<body>
+<div class="modal-overlay">
+  <div class="settings-dialog-card">
+    <div class="dialog-fixed-header">
+      <span class="dialog-title">牌桌个性设置</span>
+      <div class="dialog-close-btn">✕</div>
+    </div>
+
+    <!-- 三Tab入口，当前激活“快捷加注” -->
+    <div class="dialog-fixed-tabs">
+      <div class="tab-pill-btn">牌桌设置</div>
+      <div class="tab-pill-btn active">快捷加注</div>
+      <div class="tab-pill-btn">系统设置</div>
+    </div>
+
+    <div class="settings-scroll-body">
+      <!-- 快捷档位数切换 -->
+      <div class="setting-group-box">
+        <div class="group-title-row"><span>⚡</span><span>快捷下注按钮数量</span></div>
+        <div class="quick-count-toggle">
+          <div class="quick-count-item">三键紧凑模式</div>
+          <div class="quick-count-item selected">五键标准模式</div>
+        </div>
+      </div>
+
+      <!-- 五档快捷比例自定义 -->
+      <div class="setting-group-box">
+        <div class="group-title-row"><span>🎯</span><span>翻前 / 翻后快捷比例</span></div>
+        <div class="slots-config-grid">
+          <div class="slot-cfg-card"><span class="slot-idx">档位 1</span><span class="slot-val">1/3 池</span></div>
+          <div class="slot-cfg-card"><span class="slot-idx">档位 2</span><span class="slot-val">1/2 池</span></div>
+          <div class="slot-cfg-card" style="border-color:#FFA94D;"><span class="slot-idx">档位 3</span><span class="slot-val" style="color:#FF9F43;">2/3 池</span></div>
+          <div class="slot-cfg-card"><span class="slot-idx">档位 4</span><span class="slot-val">1.0 池</span></div>
+          <div class="slot-cfg-card"><span class="slot-idx">档位 5</span><span class="slot-val">1.2 池</span></div>
+        </div>
+        <span style="font-size: 10px; color: #8D6E63; font-weight: 700;">* 支持点击自定义任意档位的底池比例或大盲倍数。</span>
+      </div>
+
+      <!-- 加注提交交互偏好 -->
+      <div class="setting-group-box">
+        <div class="group-title-row"><span>👆</span><span>加注面板提交交互</span></div>
+        <div class="switch-row">
+          <div class="switch-label-col">
+            <span class="switch-title">拖拽松手直接提交</span>
+            <span class="switch-desc">松开滑块时自动下注，无需二次点击“确定”</span>
+          </div>
+          <div class="toy-switch-toggle"><div class="toy-switch-knob"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

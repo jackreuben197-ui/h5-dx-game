@@ -1,0 +1,278 @@
+{
+  "source": "upstream/reorg-qa",
+  "previous": "a4303a13737e1c0a0e7c6afdc322d3226d7697e4",
+  "target": "4a0a9da931e567013ec1f1de97631002f949c747",
+  "workspaceBranch": "codex/style2",
+  "h5Verified": 734,
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "decision": "DX handoff retained",
+      "sha256": "d46d8bfac3ba690f25cd7262ada0fdafbfe7b6b7c14e889ce25d6750e567f8ba"
+    },
+    {
+      "path": "docs/2026-11-18_qa-feedback-41-102.md",
+      "decision": "upstream",
+      "sha256": "6ec47da62739c301c57c1922f107de136c5a2042755b6234785aecbc40b05251"
+    },
+    {
+      "path": "docs/2026-11-19_qa-feedback-103-121.md",
+      "decision": "upstream",
+      "sha256": "b4b873402e5e49765ac1e03db1ded05ccf27f1cb63d75fc46144ef23823caaee"
+    },
+    {
+      "path": "src/assets/style1/table/action-controls.ts",
+      "decision": "upstream",
+      "sha256": "12e1e647d45b8c7eb58dfae8e2e34e295dd9a172cec9856f36f6c2f3f21cd9fb"
+    },
+    {
+      "path": "src/assets/style1/table/appearance/appearance.css",
+      "decision": "upstream",
+      "sha256": "2f97cc46a0b95c2197c25de61a96e94dacd844934e438f8514847287c8db8fe0"
+    },
+    {
+      "path": "src/assets/style1/table/components/ActionButton/config.json",
+      "decision": "upstream",
+      "sha256": "1918d522610b3426da07085d1795a35a49036934e48a7d5bdba14c4c69d4e295"
+    },
+    {
+      "path": "src/assets/style1/table/components/AutoOperationView/AutoOperationView.ts",
+      "decision": "upstream",
+      "sha256": "5388be08b3bb882c64a36f4f024c3cd49f044ff71022cae494cbff6617caa3e4"
+    },
+    {
+      "path": "src/assets/style1/table/components/GameRulesView/layout.css",
+      "decision": "upstream",
+      "sha256": "eca91b028168af64acb502c7bb890e9072e7a0838448cd8e1d62e102f3a7a636"
+    },
+    {
+      "path": "src/assets/style1/table/components/InsuranceRulesView/config.json",
+      "decision": "upstream",
+      "sha256": "f5a11de6e8cd7216ed96f045e21e981e58106cc1e8f72968162eb21ea9558056"
+    },
+    {
+      "path": "src/assets/style1/table/components/PlayerInfoView/PlayerInfoView.ts",
+      "decision": "upstream",
+      "sha256": "e0f874ca9d4e492db824920bf043f51965b4620d7e3909a5367b8eea64e03fed"
+    },
+    {
+      "path": "src/assets/style1/table/components/PlayerInfoView/config.json",
+      "decision": "upstream",
+      "sha256": "7d1ebca0530eb175fd6328370ea3d8cb80b2b9a6b7754fec5f115ec0b30adf33"
+    },
+    {
+      "path": "src/assets/style1/table/components/RecordDialogView/config.json",
+      "decision": "upstream",
+      "sha256": "d2551775962e1562903ccdbe96b4459622e245ab3d15de68666c787bcb90aa3e"
+    },
+    {
+      "path": "src/assets/style1/table/components/RoomInfoView/RoomInfoView.ts",
+      "decision": "upstream",
+      "sha256": "a515aa76e9be06e1a5f1f163c4ed202955c8158c5c734085dc51ce5bfc1cdb40"
+    },
+    {
+      "path": "src/assets/style1/table/components/RoomInfoView/config.json",
+      "decision": "upstream",
+      "sha256": "c786135d2f1abebda7924be4643935e19ed2e4f53ce1bb6e0a52bbdf5740cee5"
+    },
+    {
+      "path": "src/assets/style1/table/components/RoomInfoView/layout.css",
+      "decision": "upstream",
+      "sha256": "b6a311ad4d29338e3178193780b791afcd82cbd909cde5ca0fea5b47b7ce32f9"
+    },
+    {
+      "path": "src/assets/style1/table/components/SeatBetView/config.json",
+      "decision": "upstream",
+      "sha256": "82aaa6c82c066d13e1d1d84d81786ca2891d2ccec9b6f43a9bee36659df273db"
+    },
+    {
+      "path": "src/assets/style1/table/components/SeatCountdownView/config.json",
+      "decision": "upstream",
+      "sha256": "a3d3b263981b36cc6ab2ff9df817a970c772f9cf7b9bca236ef52a14d66f664e"
+    },
+    {
+      "path": "src/assets/style1/table/components/SeatEffectView/SeatEffectView.ts",
+      "decision": "upstream",
+      "sha256": "7d92c98a7a750405f867db23f22cdfca4f7365e0e75641c9d07d85cb7783eb68"
+    },
+    {
+      "path": "src/assets/style1/table/components/SeatEffectView/config.json",
+      "decision": "upstream",
+      "sha256": "1a12de59c4fb65b2f85b345596e0e629bfa4412252b8ec59eb95610158123a95"
+    },
+    {
+      "path": "src/assets/style1/table/components/SeatIdentityView/config.json",
+      "decision": "upstream",
+      "sha256": "43619e7d8a31a3b563c0e9aca1e12cf46440e984d8934e8ed490d0115fdb550e"
+    },
+    {
+      "path": "src/assets/style1/table/components/SeatView/SeatView.ts",
+      "decision": "upstream",
+      "sha256": "b8a1949ef7aa5fac29483badd228b510d0817a2139782c20079c37adce15283d"
+    },
+    {
+      "path": "src/assets/style1/table/components/SquidView/SquidView.ts",
+      "decision": "upstream",
+      "sha256": "ed1983b9ba1d2806a919da8f4f3f1c8d796e4f7e1c2ae34b5bbd4f1a2385a26c"
+    },
+    {
+      "path": "src/assets/style1/table/components/SquidView/config.json",
+      "decision": "upstream",
+      "sha256": "49aae2b990ec3b63abe23b6b7977145c55aa04cce15b1ac530ebc51382575853"
+    },
+    {
+      "path": "src/assets/style1/table/components/TableMenuView/TableMenuView.ts",
+      "decision": "upstream",
+      "sha256": "b68c0f7e47a8265cace44e0d19f80622be1bde6e3d803e505030d27fa4dcad73"
+    },
+    {
+      "path": "src/assets/style1/table/components/TableMenuView/config.json",
+      "decision": "upstream",
+      "sha256": "bf6c647c097b7d52536360ff46498a2f63e74aafd4ee1de5a6d94f7c92227b58"
+    },
+    {
+      "path": "src/assets/style1/table/layouts/LayoutBalanced.ts",
+      "decision": "upstream",
+      "sha256": "0f75f1f315903a68f0e8abddec0bc887e6af6055fbbf525e5277067388c2470e"
+    },
+    {
+      "path": "src/assets/style1/table/layouts/LayoutOriginal.ts",
+      "decision": "upstream",
+      "sha256": "11c7506c89cebfc48c8915fe10f3487fd3579f8d1f92497102c7b488a1f2b91e"
+    },
+    {
+      "path": "src/assets/style1/table/layouts/LayoutOval.ts",
+      "decision": "upstream",
+      "sha256": "bf135dca123913541f3768a44fdd2520536f00f3c290389f3d3b35146517222b"
+    },
+    {
+      "path": "src/assets/style1/table/layouts/LayoutProfile.ts",
+      "decision": "upstream",
+      "sha256": "ef89f10a6e44229902dbe55490d60c3d5c2df8a7050f54a5c4d8946d90e24528"
+    },
+    {
+      "path": "src/assets/style1/table/layouts/TableLayoutProfile.ts",
+      "decision": "upstream",
+      "sha256": "b46bdd9fd2ff138b800ae975afeac049de4933cfd9cf666569a17ec7db5f0917"
+    },
+    {
+      "path": "src/assets/style1/table/media.css",
+      "decision": "upstream",
+      "sha256": "6059512d0a9bc7bd09f16995bc0cc9112c39e273662bb18b80aaef79a9444ef4"
+    },
+    {
+      "path": "src/assets/style1/table/mushroom-boom.css",
+      "decision": "upstream",
+      "sha256": "28d887ee10e445372df9e4c01c0957990568bbf93c073d0d0343fa565f6e55b4"
+    },
+    {
+      "path": "src/assets/style1/table/player-info.css",
+      "decision": "upstream",
+      "sha256": "89383ad3c04bb8e3df791faa17685d18bf687c5401893eed1f3eb18711b221c7"
+    },
+    {
+      "path": "src/assets/style1/table/squid.css",
+      "decision": "upstream",
+      "sha256": "3f17256d2a27a650880524b4fad97f787f652592095d63a19964767cf5a89e0f"
+    },
+    {
+      "path": "src/assets/style1/table/table.css",
+      "decision": "upstream",
+      "sha256": "2c2fecdbb8c5d9c4c8131722e4f9d341ca654be8de44377e88859f918d018a75"
+    },
+    {
+      "path": "src/assets/style1/table/view.ts",
+      "decision": "adapted in DX",
+      "sha256": "6ce8e3d832b7185afd6586a5df9a21628e3823ec0157c2aaa832d94f4171c917"
+    },
+    {
+      "path": "src/ui/TableLayout.ts",
+      "decision": "upstream",
+      "sha256": "5276f2aec7ce65c385012d3d67693054977ce23ef0aa6866362343d35c2b578d"
+    },
+    {
+      "path": "tests/cc-seat-placement.test.mjs",
+      "decision": "upstream",
+      "sha256": "68bdc485a11437fd486a5ae7666730eced3ff8e4bbc1fb64d4260f5e56ea47a3"
+    },
+    {
+      "path": "tests/component-configs.test.mjs",
+      "decision": "upstream",
+      "sha256": "7bc40053eb56b03ba0e07d8f54cae7ead55df74bc32c9d475b514935543a03ce"
+    },
+    {
+      "path": "tests/fixtures/AuditHost.ts",
+      "decision": "upstream",
+      "sha256": "d9d8074df0526cdaec3ef9fc83d40f636520c8cc040b67e68230b1bac9c2eb0f"
+    },
+    {
+      "path": "tests/fixtures/AuditMedia.ts",
+      "decision": "upstream",
+      "sha256": "939f153ba8866d93a3e58b9aa2a94846be60113b115e824785997ab1e9496708"
+    },
+    {
+      "path": "tests/fixtures/AuditScenarios.ts",
+      "decision": "upstream",
+      "sha256": "4ad957602b95125b5d685095dda5b70ad98a28e7b52d2f18df68ef451ef0ddfa"
+    },
+    {
+      "path": "tests/fixtures/layout-audit.ts",
+      "decision": "adapted in DX",
+      "sha256": "1dd8e9d822ecac3770a212976d248ebe7d2745d9d9af968bf4676c27a77a2817"
+    },
+    {
+      "path": "tests/fixtures/verify-feedback-121.mjs",
+      "decision": "adapted in DX",
+      "sha256": "c92cd41cbcef17c10f0adf433b65ff6cf38f396b60b07a1d09aab9d1a57ff250"
+    },
+    {
+      "path": "tests/fixtures/verify-figma-43-44.mjs",
+      "decision": "upstream",
+      "sha256": "db6208e9f7718d7e6dfed699b0382597057d2677e24b5d88efd30f160d586d4a"
+    },
+    {
+      "path": "tests/fixtures/verify-fold-countdown.mjs",
+      "decision": "adapted in DX",
+      "sha256": "18c0c72fbb1df902ceddafadc65611528481812cb058440a71ff3f4336fdef0b"
+    },
+    {
+      "path": "tests/fixtures/verify-product-geometry.mjs",
+      "decision": "upstream",
+      "sha256": "e11e1eccea9538a1667419f3690b9020caf56a8ebdc34b7363fc17254b3e9bdc"
+    },
+    {
+      "path": "tests/fixtures/verify-profile-interactions.mjs",
+      "decision": "adapted in DX",
+      "sha256": "563bc8079fa41eb7ec6b01bdb6b72fc8a4f9ed223d48aa69f262cef1229144f9"
+    },
+    {
+      "path": "tests/fixtures/verify-quick-submit-settings.mjs",
+      "decision": "adapted in DX",
+      "sha256": "615734d652222cf4f50437bea8ef8dfa14429601b0d9c3591ccb952901a62a93"
+    },
+    {
+      "path": "tests/layout-feedback-121.test.mjs",
+      "decision": "upstream",
+      "sha256": "dbb1b409f08168874086af3bef02b21d4a5c2fce430f684a270aa0697e739790"
+    },
+    {
+      "path": "tests/layout-implementations.test.mjs",
+      "decision": "upstream",
+      "sha256": "f84f4584a399ae2dc60b36a256a0124ecd4cfd4a34455bc76432a68168bc1047"
+    },
+    {
+      "path": "tests/qa-ui-adapters.test.mjs",
+      "decision": "upstream",
+      "sha256": "f27d40781e6042e83b944320a8dcbb3b0430adcfc4532c58349f84d0492b3489"
+    },
+    {
+      "path": "tests/table-appearance.test.mjs",
+      "decision": "upstream",
+      "sha256": "7747c63395bf1d90f94e51ef5bf43d9efa34274e1bb85251d1f8fad24a9da90c"
+    }
+  ],
+  "dxStyle2": {
+    "src/assets/style2/layout.ts": "3f6aef817b915c1dc677002e8a0b9b95aebe9c0f925f432569da396d9e6a159e",
+    "src/assets/style2/style.css": "a9643bef22869fe95fc576583b37e993c024cf981d80e1ae4f950cf2362004ac"
+  }
+}

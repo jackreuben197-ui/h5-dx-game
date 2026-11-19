@@ -1,0 +1,147 @@
+{
+  "rows": [
+    {
+      "action": "fold",
+      "pair": [
+        {
+          "phase": "table",
+          "pot": "底池: 20BB",
+          "stack": "1KBB",
+          "success": [
+            "本地操作成功：弃牌"
+          ],
+          "tables": 1
+        },
+        {
+          "phase": "table",
+          "pot": "底池: 20BB",
+          "stack": "1KBB",
+          "success": [
+            "本地操作成功：弃牌"
+          ],
+          "tables": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "action": "call",
+      "pair": [
+        {
+          "phase": "table",
+          "pot": "底池: 32BB",
+          "stack": "988BB",
+          "success": [
+            "本地操作成功：跟注"
+          ],
+          "tables": 1
+        },
+        {
+          "phase": "table",
+          "pot": "底池: 32BB",
+          "stack": "988BB",
+          "success": [
+            "本地操作成功：跟注"
+          ],
+          "tables": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "action": "raise",
+      "pair": [
+        {
+          "phase": "table",
+          "pot": "底池: 44BB",
+          "stack": "975.90BB",
+          "success": [
+            "本地操作成功：加注"
+          ],
+          "tables": 1
+        },
+        {
+          "phase": "table",
+          "pot": "底池: 44BB",
+          "stack": "975.90BB",
+          "success": [
+            "本地操作成功：加注"
+          ],
+          "tables": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "action": "quick",
+      "pair": [
+        {
+          "phase": "table",
+          "pot": "底池: 44BB",
+          "stack": "976BB",
+          "success": [
+            "本地操作成功：加注"
+          ],
+          "tables": 1
+        },
+        {
+          "phase": "table",
+          "pot": "底池: 44BB",
+          "stack": "976BB",
+          "success": [
+            "本地操作成功：加注"
+          ],
+          "tables": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "action": "voice",
+      "pair": [
+        {
+          "phase": "table",
+          "pot": "底池: 20.40",
+          "stack": "200",
+          "success": [],
+          "voice": "false",
+          "tables": 1
+        },
+        {
+          "phase": "table",
+          "pot": "底池: 20.40",
+          "stack": "200",
+          "success": [],
+          "voice": "false",
+          "tables": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "action": "lifecycle",
+      "pair": [
+        {
+          "phase": "table",
+          "pot": "底池: 32BB",
+          "stack": "988BB",
+          "success": [
+            "本地操作成功：跟注"
+          ],
+          "tables": 1
+        },
+        {
+          "phase": "table",
+          "pot": "底池: 32BB",
+          "stack": "988BB",
+          "success": [
+            "本地操作成功：跟注"
+          ],
+          "tables": 1
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "errors": []
+}

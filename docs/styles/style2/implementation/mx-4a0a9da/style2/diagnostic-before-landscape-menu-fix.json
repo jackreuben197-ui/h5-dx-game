@@ -1,0 +1,421 @@
+[
+  {
+    "layout": "original",
+    "quick": 3,
+    "test": "immediate submit, delayed acknowledgement/broadcast, retry and account isolation",
+    "pass": true
+  },
+  {
+    "layout": "original",
+    "quick": 5,
+    "test": "immediate submit, delayed acknowledgement/broadcast, retry and account isolation",
+    "pass": true
+  },
+  {
+    "layout": "balanced",
+    "quick": 3,
+    "test": "immediate submit, delayed acknowledgement/broadcast, retry and account isolation",
+    "pass": true
+  },
+  {
+    "layout": "balanced",
+    "quick": 5,
+    "test": "immediate submit, delayed acknowledgement/broadcast, retry and account isolation",
+    "pass": true
+  },
+  {
+    "layout": "oval",
+    "quick": 3,
+    "test": "immediate submit, delayed acknowledgement/broadcast, retry and account isolation",
+    "pass": true
+  },
+  {
+    "layout": "oval",
+    "quick": 5,
+    "test": "immediate submit, delayed acknowledgement/broadcast, retry and account isolation",
+    "pass": true
+  },
+  {
+    "layout": "classic",
+    "quick": 3,
+    "test": "immediate submit, delayed acknowledgement/broadcast, retry and account isolation",
+    "pass": true
+  },
+  {
+    "layout": "classic",
+    "quick": 5,
+    "test": "immediate submit, delayed acknowledgement/broadcast, retry and account isolation",
+    "pass": true
+  },
+  {
+    "layout": "original",
+    "width": 320,
+    "height": 400,
+    "test": "settings click; portrait settings/squid separation",
+    "pass": true,
+    "geometry": {
+      "orientation": "portrait",
+      "menu": {
+        "x": 8,
+        "y": 106.11111450195312,
+        "width": 44,
+        "height": 44,
+        "top": 106.11111450195312,
+        "right": 52,
+        "bottom": 150.11111450195312,
+        "left": 8
+      },
+      "label": {
+        "x": 8,
+        "y": 138.11111450195312,
+        "width": 44,
+        "height": 12,
+        "top": 138.11111450195312,
+        "right": 52,
+        "bottom": 150.11111450195312,
+        "left": 8
+      },
+      "squid": {
+        "x": 0.53125,
+        "y": 154.34375,
+        "width": 27.765625,
+        "height": 42.21875,
+        "top": 154.34375,
+        "right": 28.296875,
+        "bottom": 196.5625,
+        "left": 0.53125
+      },
+      "stand": {
+        "x": 0,
+        "y": 175.328125,
+        "width": 55.546875,
+        "height": 23.328125,
+        "top": 175.328125,
+        "right": 55.546875,
+        "bottom": 198.65625,
+        "left": 0
+      },
+      "menuHit": true,
+      "squidTop": "190.6px",
+      "standTop": "285px"
+    }
+  },
+  {
+    "layout": "original",
+    "width": 320,
+    "height": 480,
+    "test": "settings click; portrait settings/squid separation",
+    "pass": true,
+    "geometry": {
+      "orientation": "portrait",
+      "menu": {
+        "x": 8,
+        "y": 106.11111450195312,
+        "width": 44,
+        "height": 44,
+        "top": 106.11111450195312,
+        "right": 52,
+        "bottom": 150.11111450195312,
+        "left": 8
+      },
+      "label": {
+        "x": 8,
+        "y": 138.11111450195312,
+        "width": 44,
+        "height": 12,
+        "top": 138.11111450195312,
+        "right": 52,
+        "bottom": 150.11111450195312,
+        "left": 8
+      },
+      "squid": {
+        "x": 0.53125,
+        "y": 154.3541717529297,
+        "width": 27.77777862548828,
+        "height": 42.22221374511719,
+        "top": 154.3541717529297,
+        "right": 28.30902862548828,
+        "bottom": 196.57638549804688,
+        "left": 0.53125
+      },
+      "stand": {
+        "x": 0,
+        "y": 175.33334350585938,
+        "width": 55.55555725097656,
+        "height": 23.33331298828125,
+        "top": 175.33334350585938,
+        "right": 55.55555725097656,
+        "bottom": 198.66665649414062,
+        "left": 0
+      },
+      "menuHit": true,
+      "squidTop": "190.6px",
+      "standTop": "285px"
+    }
+  },
+  {
+    "layout": "original",
+    "width": 320,
+    "height": 568,
+    "test": "settings click; portrait settings/squid separation",
+    "pass": true,
+    "geometry": {
+      "orientation": "portrait",
+      "menu": {
+        "x": 8,
+        "y": 106.11111450195312,
+        "width": 44,
+        "height": 44,
+        "top": 106.11111450195312,
+        "right": 52,
+        "bottom": 150.11111450195312,
+        "left": 8
+      },
+      "label": {
+        "x": 8,
+        "y": 138.11111450195312,
+        "width": 44,
+        "height": 12,
+        "top": 138.11111450195312,
+        "right": 52,
+        "bottom": 150.11111450195312,
+        "left": 8
+      },
+      "squid": {
+        "x": 0.53125,
+        "y": 154.3541717529297,
+        "width": 27.77777862548828,
+        "height": 42.22221374511719,
+        "top": 154.3541717529297,
+        "right": 28.30902862548828,
+        "bottom": 196.57638549804688,
+        "left": 0.53125
+      },
+      "stand": {
+        "x": 0,
+        "y": 175.33334350585938,
+        "width": 55.55555725097656,
+        "height": 23.33331298828125,
+        "top": 175.33334350585938,
+        "right": 55.55555725097656,
+        "bottom": 198.66665649414062,
+        "left": 0
+      },
+      "menuHit": true,
+      "squidTop": "190.6px",
+      "standTop": "285px"
+    }
+  },
+  {
+    "layout": "original",
+    "width": 375,
+    "height": 500,
+    "test": "settings click; portrait settings/squid separation",
+    "pass": true,
+    "geometry": {
+      "orientation": "portrait",
+      "menu": {
+        "x": 7.999674320220947,
+        "y": 104.5830078125,
+        "width": 43.998207092285156,
+        "height": 43.998199462890625,
+        "top": 104.5830078125,
+        "right": 51.9978814125061,
+        "bottom": 148.58120727539062,
+        "left": 7.999674320220947
+      },
+      "label": {
+        "x": 7.999674320220947,
+        "y": 136.5817108154297,
+        "width": 43.998207092285156,
+        "height": 11.999496459960938,
+        "top": 136.5817108154297,
+        "right": 51.9978814125061,
+        "bottom": 148.58120727539062,
+        "left": 7.999674320220947
+      },
+      "squid": {
+        "x": 0.62255859375,
+        "y": 161.63052368164062,
+        "width": 32.55208206176758,
+        "height": 49.47917175292969,
+        "top": 161.63052368164062,
+        "right": 33.17464065551758,
+        "bottom": 211.1096954345703,
+        "left": 0.62255859375
+      },
+      "stand": {
+        "x": 0,
+        "y": 186.21548461914062,
+        "width": 65.10416412353516,
+        "height": 27.34375,
+        "top": 186.21548461914062,
+        "right": 65.10416412353516,
+        "bottom": 213.55923461914062,
+        "left": 0
+      },
+      "menuHit": true,
+      "squidTop": "190.6px",
+      "standTop": "285px"
+    }
+  },
+  {
+    "layout": "original",
+    "width": 375,
+    "height": 667,
+    "test": "settings click; portrait settings/squid separation",
+    "pass": true,
+    "geometry": {
+      "orientation": "portrait",
+      "menu": {
+        "x": 7.999674320220947,
+        "y": 114.99967193603516,
+        "width": 43.998207092285156,
+        "height": 43.998207092285156,
+        "top": 114.99967193603516,
+        "right": 51.9978814125061,
+        "bottom": 158.9978790283203,
+        "left": 7.999674320220947
+      },
+      "label": {
+        "x": 7.999674320220947,
+        "y": 146.9983673095703,
+        "width": 43.998207092285156,
+        "height": 11.99951171875,
+        "top": 146.9983673095703,
+        "right": 51.9978814125061,
+        "bottom": 158.9978790283203,
+        "left": 7.999674320220947
+      },
+      "squid": {
+        "x": 0.62255859375,
+        "y": 177.25552368164062,
+        "width": 32.55208206176758,
+        "height": 49.47917175292969,
+        "top": 177.25552368164062,
+        "right": 33.17464065551758,
+        "bottom": 226.7346954345703,
+        "left": 0.62255859375
+      },
+      "stand": {
+        "x": 0,
+        "y": 201.84048461914062,
+        "width": 65.10416412353516,
+        "height": 27.34375,
+        "top": 201.84048461914062,
+        "right": 65.10416412353516,
+        "bottom": 229.18423461914062,
+        "left": 0
+      },
+      "menuHit": true,
+      "squidTop": "250.6px",
+      "standTop": "345px"
+    }
+  },
+  {
+    "layout": "original",
+    "width": 390,
+    "height": 844,
+    "test": "settings click; portrait settings/squid separation",
+    "pass": true,
+    "geometry": {
+      "orientation": "portrait",
+      "menu": {
+        "x": 7.998047351837158,
+        "y": 114.998046875,
+        "width": 43.99772262573242,
+        "height": 43.99772644042969,
+        "top": 114.998046875,
+        "right": 51.99576997756958,
+        "bottom": 158.9957733154297,
+        "left": 7.998047351837158
+      },
+      "label": {
+        "x": 7.998047351837158,
+        "y": 146.9987030029297,
+        "width": 43.99772262573242,
+        "height": 11.9970703125,
+        "top": 146.9987030029297,
+        "right": 51.99576997756958,
+        "bottom": 158.9957733154297,
+        "left": 7.998047351837158
+      },
+      "squid": {
+        "x": 0.6474609375,
+        "y": 179.8668670654297,
+        "width": 33.85416793823242,
+        "height": 51.45832824707031,
+        "top": 179.8668670654297,
+        "right": 34.50162887573242,
+        "bottom": 231.3251953125,
+        "left": 0.6474609375
+      },
+      "stand": {
+        "x": 0,
+        "y": 205.4352264404297,
+        "width": 67.70833587646484,
+        "height": 28.4375,
+        "top": 205.4352264404297,
+        "right": 67.70833587646484,
+        "bottom": 233.8727264404297,
+        "left": 0
+      },
+      "menuHit": true,
+      "squidTop": "250.6px",
+      "standTop": "345px"
+    }
+  },
+  {
+    "layout": "original",
+    "width": 768,
+    "height": 1024,
+    "test": "settings click; portrait settings/squid separation",
+    "pass": true,
+    "geometry": {
+      "orientation": "portrait",
+      "menu": {
+        "x": 8,
+        "y": 93.66666412353516,
+        "width": 44.000003814697266,
+        "height": 44.00000762939453,
+        "top": 93.66666412353516,
+        "right": 52.000003814697266,
+        "bottom": 137.6666717529297,
+        "left": 8
+      },
+      "label": {
+        "x": 8,
+        "y": 125.66667175292969,
+        "width": 44.000003814697266,
+        "height": 12,
+        "top": 125.66667175292969,
+        "right": 52.000003814697266,
+        "bottom": 137.6666717529297,
+        "left": 8
+      },
+      "squid": {
+        "x": 1.2750000953674316,
+        "y": 213.65000915527344,
+        "width": 66.66667175292969,
+        "height": 101.33332824707031,
+        "top": 213.65000915527344,
+        "right": 67.94167184829712,
+        "bottom": 314.98333740234375,
+        "left": 1.2750000953674316
+      },
+      "stand": {
+        "x": 0,
+        "y": 264,
+        "width": 133.33334350585938,
+        "height": 56,
+        "top": 264,
+        "right": 133.33334350585938,
+        "bottom": 320,
+        "left": 0
+      },
+      "menuHit": true,
+      "squidTop": "190.6px",
+      "standTop": "285px"
+    }
+  }
+]

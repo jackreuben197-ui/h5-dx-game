@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=440, height=782, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>R2: 多池保险面板 (440x782)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  body {
+    width: 440px; height: 782px; overflow: hidden;
+    background: #F9F2E7;
+    font-family: 'Fredoka', 'Noto Sans SC', 'Nunito', sans-serif;
+    color: #4A3E3D; position: relative;
+  }
+  .modal-overlay {
+    position: absolute; inset: 0; background: rgba(55, 38, 80, 0.58);
+    display: flex; align-items: center; justify-content: center; z-index: 60;
+  }
+  /* 保险曲奇卡片 */
+  .insurance-card {
+    width: 406px; height: 710px; border-radius: 28px;
+    background: #FFFDF9; border: 3px solid #EAD8C0;
+    box-shadow: 0 16px 36px rgba(108, 82, 149, 0.4), 0 4px 0 #D4BEA2;
+    display: flex; flex-direction: column; overflow: hidden; position: relative;
+  }
+
+  /* 头部与池切换 */
+  .ins-header {
+    padding: 10px 14px 8px; background: #FFFFFF; border-bottom: 2px solid #F0E6D8;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .ins-title-row {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .ins-title { font-size: 16px; font-weight: 900; color: #5D4037; display: flex; align-items: center; gap: 4px; }
+  .ins-timer-badge {
+    background: #FF4757; color: #FFF; font-size: 11px; font-weight: 900;
+    padding: 2px 8px; border-radius: 10px; box-shadow: 0 2px 4px rgba(255, 71, 87, 0.3);
+  }
+
+  /* 多池切换Tabs (主池1 / 主池2 / 边池，切池后选择状态独立保留) */
+  .pot-switch-tabs { display: flex; gap: 6px; }
+  .pot-tab-btn {
+    flex: 1; padding: 5px 0; text-align: center; border-radius: 11px;
+    background: #F5EDFA; border: 1.5px solid #EAD8C0; color: #8D6E63;
+    font-size: 11px; font-weight: 800; cursor: pointer;
+  }
+  .pot-tab-btn.active {
+    background: linear-gradient(180deg, #2ED5A8 0%, #10AC84 100%);
+    border-color: #76F5D0; color: #FFF; box-shadow: 0 2px 5px rgba(16, 172, 132, 0.3);
+  }
+
+  /* 对决手牌对比区 (本人 vs 对手) */
+  .vs-stage-box {
+    padding: 8px 14px; background: #FAF5EE; border-bottom: 1.5px solid #EEDFCF;
+    display: flex; justify-content: space-around; align-items: center;
+  }
+  .vs-player-col { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .vs-player-tag { font-size: 10px; font-weight: 900; color: #6C5295; }
+  .mini-poker-pair { display: flex; gap: 4px; }
+  .mini-card-poker {
+    width: 32px; height: 44px; border-radius: 6px; background: #FFF; border: 1.5px solid #EAD8C0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900;
+  }
+
+  /* 4张真实公共牌展示区 (转牌圈已翻开4张，严格无问号！) */
+  .board-four-strip {
+    padding: 6px 14px; background: #FFFDF9; border-bottom: 1.5px solid #F0E6D8;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .board-four-cards { display: flex; gap: 6px; }
+
+  /* Outs与排序切换 (按数字 / 按花色) */
+  .outs-ctrl-row {
+    padding: 6px 14px 2px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .outs-pill-count {
+    background: #FF9F43; color: #FFF; font-size: 10px; font-weight: 900;
+    padding: 2px 7px; border-radius: 8px;
+  }
+  .sort-toggle-box { display: flex; gap: 10px; font-size: 11px; font-weight: 800; color: #8D6E63; }
+  .sort-item { display: flex; align-items: center; gap: 3px; cursor: pointer; }
+  .sort-item.checked { color: #0C7A5E; }
+  .sort-circle { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #2ED5A8; display: flex; align-items: center; justify-content: center; }
+  .sort-circle.filled::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #2ED5A8; }
+
+  /* 危险Outs横滑卡片 */
+  .outs-scroll-cards {
+    display: flex; gap: 6px; padding: 4px 14px; overflow-x: auto;
+  }
+  .outs-card-tag {
+    width: 38px; height: 48px; border-radius: 8px; background: #FFF; border: 1.5px solid #FF7675;
+    box-shadow: 0 2px 4px rgba(255, 118, 117, 0.2);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  /* 六档投保方案 (1/8、1/5、1/3、1/2、满池、保本，数据自洽严格匹配) */
+  .ins-plans-zone {
+    padding: 6px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1;
+  }
+  .plans-info-sub {
+    font-size: 11px; font-weight: 800; color: #5D4037; display: flex; justify-content: space-between;
+  }
+  .six-plans-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px;
+  }
+  .plan-gummy-box {
+    height: 70px; border-radius: 15px; background: #FAF5EE; border: 2px solid #EAD8C0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; position: relative; box-shadow: 0 2px 0 #D4BEA2;
+  }
+  .plan-gummy-box.selected {
+    background: #E8FFF8; border-color: #2ED5A8;
+    box-shadow: 0 0 10px rgba(46, 213, 168, 0.35), 0 3px 0 #0C7A5E;
+  }
+  .plan-tag-cost {
+    position: absolute; top: -7px; background: #0C7A5E; border: 1px solid #FFF;
+    border-radius: 8px; padding: 0 6px; font-size: 9px; font-weight: 900; color: #FFF;
+  }
+  .plan-main-title { font-size: 15px; font-weight: 900; color: #5D4037; line-height: 1.2; }
+  .plan-payout-text { font-size: 10px; font-weight: 700; color: #8D6E63; }
+
+  /* 底部操作区 (加时、放弃、确认购买) */
+  .ins-footer-actions {
+    padding: 8px 14px 12px; background: #FFFFFF; border-top: 2px solid #F0E6D8;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .btn-ins-timer {
+    width: 48px; height: 50px; border-radius: 15px;
+    background: #FAF5EE; border: 2px solid #FF9FF3;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 3px 0 #D4BEA2; cursor: pointer;
+  }
+  .btn-ins-giveup {
+    flex: 1; height: 50px; border-radius: 16px;
+    background: #FFFFFF; border: 2px solid #EAD8C0;
+    color: #6C5295; font-size: 15px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 3px 0 #D4BEA2; cursor: pointer;
+  }
+  .btn-ins-confirm-buy {
+    flex: 1.5; height: 50px; border-radius: 16px;
+    background: linear-gradient(180deg, #2ED5A8 0%, #10AC84 100%);
+    border: 2px solid #76F5D0; color: #FFF;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 4px 0 #0C7A5E, 0 6px 12px rgba(16, 172, 132, 0.35); cursor: pointer;
+  }
+  .btn-ins-confirm-buy .txt { font-size: 16px; font-weight: 900; }
+  .btn-ins-confirm-buy .sub { font-size: 10px; font-weight: 700; color: #E8FFF8; }
+</style>
+</head>
+<body>
+<div class="modal-overlay">
+  <div class="insurance-card">
+    <!-- 头部与倒计时 -->
+    <div class="ins-header">
+      <div class="ins-title-row">
+        <span class="ins-title">🛡️ 多池保险投保</span>
+        <div class="ins-timer-badge">⏱ 倒计时 14s</div>
+      </div>
+      <!-- 多池切换Tabs -->
+      <div class="pot-switch-tabs">
+        <div class="pot-tab-btn active">主池 1 (1,000 BB)</div>
+        <div class="pot-tab-btn">主池 2 (600 BB)</div>
+        <div class="pot-tab-btn">边池 (200 BB)</div>
+      </div>
+    </div>
+
+    <!-- 玩家对决对比 -->
+    <div class="vs-stage-box">
+      <div class="vs-player-col">
+        <span class="vs-player-tag" style="color:#0C7A5E;">本人 (购买中)</span>
+        <div class="mini-poker-pair">
+          <div class="mini-card-poker" style="color:#FF4757;">A♥</div>
+          <div class="mini-card-poker" style="color:#2F3542;">A♠</div>
+        </div>
+      </div>
+      <div style="font-size: 13px; font-weight: 900; color: #FF9F43;">VS</div>
+      <div class="vs-player-col">
+        <span class="vs-player-tag" style="color:#D35400;">对手 (左下玩家)</span>
+        <div class="mini-poker-pair">
+          <div class="mini-card-poker" style="color:#2F3542;">K♠</div>
+          <div class="mini-card-poker" style="color:#FF4757;">K♥</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 转牌圈4张真实公共牌展示 (严格无问号) -->
+    <div class="board-four-strip">
+      <span style="font-size: 10px; color: #8D6E63; font-weight: 800;">当前公共牌 (转牌圈 · 4张已翻开)</span>
+      <div class="board-four-cards">
+        <div class="mini-card-poker" style="color:#FF4757;">3♥</div>
+        <div class="mini-card-poker" style="color:#FF4757;">5♥</div>
+        <div class="mini-card-poker" style="color:#2F3542;">6♣</div>
+        <div class="mini-card-poker" style="color:#FF4757; border-color:#FF9F43;">9♦</div>
+      </div>
+    </div>
+
+    <!-- Outs与排序切换 -->
+    <div class="outs-ctrl-row">
+      <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="font-size: 11px; font-weight: 900; color: #5D4037;">反超危险牌</span>
+        <div class="outs-pill-count">2 Outs (1:5)</div>
+      </div>
+      <div class="sort-toggle-box">
+        <div class="sort-item checked">
+          <div class="sort-circle filled"></div>
+          <span>按点数</span>
+        </div>
+        <div class="sort-item">
+          <div class="sort-circle"></div>
+          <span>按花色</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 危险Outs横滑卡片 -->
+    <div class="outs-scroll-cards">
+      <div class="outs-card-tag">
+        <span style="font-size: 13px; font-weight: 900; color: #FF4757;">K♦</span>
+        <span style="font-size: 8px; font-weight: 800; color: #FF4757;">三条</span>
+      </div>
+      <div class="outs-card-tag">
+        <span style="font-size: 13px; font-weight: 900; color: #2F3542;">K♣</span>
+        <span style="font-size: 8px; font-weight: 800; color: #2F3542;">三条</span>
+      </div>
+    </div>
+
+    <!-- 六档投保方案 (数据严格自洽: 已投100 BB · 主池1赔付额1000 BB) -->
+    <div class="ins-plans-zone">
+      <div class="plans-info-sub">
+        <span>主池1总额: 1,000 BB (已投入: 100 BB)</span>
+        <span style="color:#0C7A5E;">强制最低: 1/8</span>
+      </div>
+
+      <div class="six-plans-grid">
+        <!-- 1/8 档 -->
+        <div class="plan-gummy-box">
+          <div class="plan-tag-cost">保费 25 BB</div>
+          <div class="plan-main-title">1/8</div>
+          <div class="plan-payout-text">赔 125 BB</div>
+        </div>
+
+        <!-- 1/5 档 -->
+        <div class="plan-gummy-box">
+          <div class="plan-tag-cost">保费 40 BB</div>
+          <div class="plan-main-title">1/5</div>
+          <div class="plan-payout-text">赔 200 BB</div>
+        </div>
+
+        <!-- 1/3 档 -->
+        <div class="plan-gummy-box">
+          <div class="plan-tag-cost">保费 66.6 BB</div>
+          <div class="plan-main-title">1/3</div>
+          <div class="plan-payout-text">赔 333 BB</div>
+        </div>
+
+        <!-- 1/2 档 -->
+        <div class="plan-gummy-box">
+          <div class="plan-tag-cost">保费 100 BB</div>
+          <div class="plan-main-title">1/2</div>
+          <div class="plan-payout-text">赔 500 BB</div>
+        </div>
+
+        <!-- 满池档 (选中) -->
+        <div class="plan-gummy-box selected">
+          <div class="plan-tag-cost" style="background:#0C7A5E;">保费 200 BB</div>
+          <div class="plan-main-title" style="color:#0C7A5E;">满池</div>
+          <div class="plan-payout-text" style="color:#5D4037; font-weight:800;">赔 1,000 BB</div>
+        </div>
+
+        <!-- 保本档 -->
+        <div class="plan-gummy-box">
+          <div class="plan-tag-cost">保费 20 BB</div>
+          <div class="plan-main-title">保本</div>
+          <div class="plan-payout-text">保 100 BB</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部操作按钮 -->
+    <div class="ins-footer-actions">
+      <div class="btn-ins-timer">
+        <span style="font-size:11px; color:#E84393; font-weight:900;">💎 10</span>
+        <span style="font-size:9px; color:#5D4037; font-weight:800;">+30s</span>
+      </div>
+      <div class="btn-ins-giveup">放弃投保</div>
+      <div class="btn-ins-confirm-buy">
+        <span class="txt">确认投保 200 BB</span>
+        <span class="sub">主池1 · 满池赔付保障</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=320, height=400, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>R2: 320x400 极小屏主桌実图 (完整8人+五档快捷)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  body {
+    width: 320px; height: 400px; overflow: hidden;
+    background: #F9F2E7;
+    font-family: 'Fredoka', 'Noto Sans SC', 'Nunito', sans-serif;
+    color: #4A3E3D; position: relative;
+  }
+  .table-stage {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 35%, #FFFDF9 0%, #F6ECDD 70%, #EBDBC5 100%);
+    overflow: hidden;
+  }
+  /* 320x400超紧凑高密度毛毡台面 */
+  .poker-felt-mini {
+    position: absolute; left: 10px; top: 38px; width: 300px; height: 320px;
+    border-radius: 120px / 135px;
+    background: radial-gradient(circle at 50% 40%, #76E5C5 0%, #48CEAA 65%, #35BA96 100%);
+    box-shadow: 
+      inset 0 3px 6px rgba(255,255,255,0.65),
+      inset 0 -5px 10px rgba(18, 92, 72, 0.3),
+      0 0 0 5px #FFEAA7, 0 0 0 8px #6C5295, 0 6px 12px rgba(108, 82, 149, 0.2);
+  }
+
+  /* 顶部紧凑状态栏 */
+  .top-bar-mini {
+    position: absolute; top: 6px; left: 8px; right: 8px; height: 28px;
+    display: flex; justify-content: space-between; align-items: center; z-index: 50;
+  }
+  .btn-soft-nano {
+    width: 26px; height: 26px; border-radius: 8px;
+    background: #FFFFFF; border: 1.5px solid #EAD8C0;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 1.5px 0 #D4BEA2; color: #6C5295; font-size: 11px; font-weight: 900;
+  }
+  .chip-pill-nano {
+    height: 24px; padding: 0 6px 0 4px; border-radius: 12px;
+    background: #FFFFFF; border: 1.5px solid #EAD8C0;
+    display: flex; align-items: center; gap: 3px; color: #5D4037; font-size: 10px; font-weight: 900;
+  }
+
+  /* 双层底池 (Nano尺寸) */
+  .pot-dual-nano {
+    position: absolute; top: 98px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 2px; z-index: 20;
+  }
+  .total-pot-nano {
+    background: rgba(108, 82, 149, 0.92); border: 1px solid #FFEAA7;
+    border-radius: 9px; padding: 1px 8px; color: #FFF; font-size: 10px; font-weight: 900;
+  }
+  .main-pot-nano {
+    background: #FFF; border: 1px solid #6C5295; border-radius: 7px;
+    padding: 1px 6px; font-size: 8px; font-weight: 900; color: #D35400;
+  }
+
+  /* 公共牌 (5张 Nano高密度) */
+  .board-cards-nano {
+    position: absolute; top: 136px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 3px; z-index: 22;
+  }
+  .poker-card-nano {
+    width: 28px; height: 38px; border-radius: 5px;
+    background: #FFFFFF; border: 1px solid #F0E6D8;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 1px 2px; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .poker-card-nano .val { font-size: 10px; font-weight: 900; line-height: 1; }
+  .poker-card-nano .suit { font-size: 8px; line-height: 1; }
+  .poker-card-nano.red { color: #FF4757; }
+  .poker-card-nano.black { color: #2F3542; }
+
+  /* 7名对手超紧凑座位 (320x400) */
+  .seat-nano { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 25; }
+  .avatar-nano-wrap {
+    width: 30px; height: 30px; border-radius: 10px; background: #FFEAA7; padding: 1.5px;
+    box-shadow: 0 2px 0 #DAB968;
+  }
+  .avatar-nano-wrap img { width: 100%; height: 100%; border-radius: 8px; object-fit: cover; }
+  .seat-name-nano {
+    margin-top: -3px; max-width: 40px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    background: #6C5295; color: #FFEAA7; font-size: 7px; font-weight: 800; padding: 0 3px; border-radius: 4px;
+  }
+  .seat-chips-nano {
+    margin-top: 1px; background: #FFFFFF; color: #5D4037; font-size: 7px; font-weight: 900;
+    padding: 0 3px; border-radius: 4px; border: 1px solid #EAD8C0;
+  }
+
+  .pos-nano-top-a { top: 46px;  left: 50%; transform: translateX(-50%); }
+  .pos-nano-top-b { top: 62px;  right: 12px; }
+  .pos-nano-rt-top { top: 124px; right: 8px; }
+  .pos-nano-rt-mid { top: 190px; right: 8px; }
+  .pos-nano-lt-bot { top: 190px; left: 8px; }
+  .pos-nano-lt-mid { top: 124px; left: 8px; }
+  .pos-nano-lt-top { top: 62px;  left: 12px; }
+
+  /* 独立加时与聊天 */
+  .side-timer-nano {
+    position: absolute; bottom: 78px; left: 5px; z-index: 45;
+    background: #FFF; border: 1px solid #6C5295; border-radius: 8px;
+    padding: 1px 4px; font-size: 7px; font-weight: 900; color: #6C5295;
+  }
+  .side-chat-nano {
+    position: absolute; bottom: 42px; left: 5px; z-index: 45;
+    width: 24px; height: 24px; border-radius: 8px;
+    background: #FFF; border: 1px solid #EAD8C0;
+    display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6C5295;
+  }
+
+  /* 本人玩家组 (五档快捷完整保留！) */
+  .self-nano-group {
+    position: absolute; bottom: 34px; left: 0; right: 0;
+    display: flex; flex-direction: column; align-items: center; z-index: 40;
+  }
+  .quick-strip-nano {
+    display: flex; justify-content: center; gap: 3px; margin-bottom: 3px;
+  }
+  .btn-quick-nano {
+    min-width: 32px; height: 24px; border-radius: 7px;
+    background: #FFFFFF; border: 1px solid #EAD8C0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 1px 0 #D4BEA2; padding: 0 2px;
+  }
+  .btn-quick-nano .r { font-size: 6.5px; color: #8D6E63; font-weight: 800; line-height: 1; }
+  .btn-quick-nano .n { font-size: 7.5px; color: #5D4037; font-weight: 900; line-height: 1; }
+
+  /* 行动排：本人头像 + 弃牌 + 手牌 + 跟注 + 加注 */
+  .action-bar-nano {
+    width: 308px; display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 0 2px;
+  }
+  .btn-fold-nano {
+    width: 44px; height: 36px; border-radius: 11px;
+    background: #6C5295; border: 1.5px solid #FFEAA7; color: #FFF;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 900;
+  }
+  .btn-call-nano {
+    width: 52px; height: 36px; border-radius: 11px;
+    background: #10AC84; border: 1.5px solid #76F5D0; color: #FFF;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 900;
+  }
+  .btn-raise-nano {
+    width: 48px; height: 36px; border-radius: 11px;
+    background: #FF8A3D; border: 1.5px solid #FFE082; color: #FFF;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 900;
+  }
+
+  /* 底部固定底栏 */
+  .bottom-dock-nano {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 32px;
+    background: #FFFFFF; border-top: 1px solid #EAD8C0;
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 6px; z-index: 50;
+  }
+  .dock-nano-item { font-size: 8px; font-weight: 800; color: #6C5295; }
+</style>
+</head>
+<body>
+<div class="table-stage">
+  <!-- 超紧凑毛毡桌面 -->
+  <div class="poker-felt-mini"></div>
+
+  <!-- 顶部状态栏 -->
+  <div class="top-bar-mini">
+    <div style="display:flex; gap:4px;">
+      <div class="btn-soft-nano">◀</div>
+      <div class="btn-soft-nano">☰</div>
+    </div>
+    <div class="chip-pill-nano"><span>◈ 18.5K</span></div>
+    <div class="btn-soft-nano">🎧</div>
+  </div>
+
+  <!-- 双层底池 -->
+  <div class="pot-dual-nano">
+    <div class="total-pot-nano">总池: 20 BB</div>
+    <div class="main-pot-nano">主池 20 BB</div>
+  </div>
+
+  <!-- 公共牌五张 -->
+  <div class="board-cards-nano">
+    <div class="poker-card-nano black"><div class="val">8</div><div class="suit">♠</div></div>
+    <div class="poker-card-nano black"><div class="val">2</div><div class="suit">♠</div></div>
+    <div class="poker-card-nano red"><div class="val">Q</div><div class="suit">♦</div></div>
+    <div class="poker-card-nano black"><div class="val">8</div><div class="suit">♣</div></div>
+    <div class="poker-card-nano black"><div class="val">J</div><div class="suit">♠</div></div>
+  </div>
+
+  <!-- 7名对手超紧凑分布 (全保留) -->
+  <div class="seat-nano pos-nano-top-a">
+    <div class="avatar-nano-wrap"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-nano">顶部甲</div><div class="seat-chips-nano">1K</div>
+  </div>
+  <div class="seat-nano pos-nano-top-b">
+    <div class="avatar-nano-wrap"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-nano">顶部乙</div><div class="seat-chips-nano">1K</div>
+  </div>
+  <div class="seat-nano pos-nano-rt-top">
+    <div class="avatar-nano-wrap"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-nano">右上</div><div class="seat-chips-nano">1K</div>
+  </div>
+  <div class="seat-nano pos-nano-rt-mid">
+    <div class="avatar-nano-wrap"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-nano">右侧</div><div class="seat-chips-nano">1K</div>
+  </div>
+  <div class="seat-nano pos-nano-lt-bot">
+    <div class="avatar-nano-wrap"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-nano">左下</div><div class="seat-chips-nano">1K</div>
+  </div>
+  <div class="seat-nano pos-nano-lt-mid">
+    <div class="avatar-nano-wrap"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-nano">长昵称</div><div class="seat-chips-nano">1K</div>
+  </div>
+  <div class="seat-nano pos-nano-lt-top">
+    <div class="avatar-nano-wrap"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-nano">左上</div><div class="seat-chips-nano">1K</div>
+  </div>
+
+  <!-- 独立加时与聊天 -->
+  <div class="side-timer-nano">⏱+30s</div>
+  <div class="side-chat-nano">💬</div>
+
+  <!-- 本人控制区 (五档快捷 + 弃牌倒计时 + 手牌 + 跟注 + 加注) -->
+  <div class="self-nano-group">
+    <!-- 五档快捷全部保留！绝不自动合并或裁剪！ -->
+    <div class="quick-strip-nano">
+      <div class="btn-quick-nano"><span class="r">1/3</span><span class="n">24</span></div>
+      <div class="btn-quick-nano"><span class="r">1/2</span><span class="n">28</span></div>
+      <div class="btn-quick-nano" style="border-color:#FFA94D;"><span class="r" style="color:#D35400;">2/3</span><span class="n" style="color:#D35400;">33</span></div>
+      <div class="btn-quick-nano"><span class="r">1.0</span><span class="n">44</span></div>
+      <div class="btn-quick-nano"><span class="r">1.2</span><span class="n">50</span></div>
+    </div>
+
+    <div class="action-bar-nano">
+      <!-- 本人头像 -->
+      <div class="avatar-nano-wrap" style="width:28px; height:28px;">
+        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="self">
+      </div>
+
+      <!-- 弃牌 (倒计时12s) -->
+      <div class="btn-fold-nano">
+        <span>弃牌</span>
+        <span style="font-size:7px; color:#FFEAA7;">12s</span>
+      </div>
+
+      <!-- 手牌 -->
+      <div style="display:flex; gap:2px;">
+        <div class="poker-card-nano red" style="width:30px; height:42px;"><div class="val">A</div><div class="suit">♥</div></div>
+        <div class="poker-card-nano black" style="width:30px; height:42px;"><div class="val">10</div><div class="suit">♠</div></div>
+      </div>
+
+      <!-- 跟注 -->
+      <div class="btn-call-nano">
+        <span>跟注</span>
+        <span style="font-size:7px; color:#E8FFF8;">12</span>
+      </div>
+
+      <!-- 加注 -->
+      <div class="btn-raise-nano">
+        <span>加注</span>
+        <span style="font-size:7px; color:#FFF3BF;">23</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部底栏 -->
+  <div class="bottom-dock-nano">
+    <span class="dock-nano-item">🏆 战绩</span>
+    <span class="dock-nano-item">🎖 牌谱</span>
+    <span class="dock-nano-item">😊 表情</span>
+    <span style="font-size:7px; color:#0077B6; font-weight:900;">bmm</span>
+  </div>
+</div>
+</body>
+</html>

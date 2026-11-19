@@ -1,0 +1,936 @@
+[
+  {
+    "case": {
+      "name": "main-voice",
+      "scene": "media-voice",
+      "seats": 8,
+      "action": 1,
+      "bb": 1
+    },
+    "metrics": [
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.8125,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-fold",
+        "inside": true,
+        "w": 136.65625,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-call",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-raise",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "case": {
+      "name": "main-video",
+      "scene": "media-video",
+      "seats": 8,
+      "action": 1,
+      "bb": 1
+    },
+    "metrics": [
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.8125,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-fold",
+        "inside": true,
+        "w": 136.65625,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-call",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-raise",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "case": {
+      "name": "voice-safe34",
+      "scene": "media-voice",
+      "action": 1,
+      "safeBottom": 34
+    },
+    "metrics": [
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.8125,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-fold",
+        "inside": true,
+        "w": 136.65625,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-call",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-raise",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "case": {
+      "name": "video-safe34",
+      "scene": "media-video",
+      "action": 1,
+      "safeBottom": 34
+    },
+    "metrics": [
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.8125,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-fold",
+        "inside": true,
+        "w": 136.65625,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-call",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-raise",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "case": {
+      "name": "short-safe34",
+      "scene": "media-video",
+      "action": 1,
+      "width": 320,
+      "height": 400,
+      "safeBottom": 34
+    },
+    "metrics": [
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.796875,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.8125,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.796875,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.796875,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.796875,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-fold",
+        "inside": true,
+        "w": 96.65625,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-call",
+        "inside": true,
+        "w": 96.671875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-raise",
+        "inside": true,
+        "w": 96.671875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 48.5,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 48.5,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 48.5,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 48.5,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 48.5,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 48.5,
+        "h": 44,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "case": {
+      "name": "short-six",
+      "scene": "six",
+      "width": 320,
+      "height": 400
+    },
+    "metrics": [
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.796875,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.8125,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.796875,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.796875,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 56.796875,
+        "h": 40,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-fold",
+        "inside": true,
+        "w": 96.65625,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-call",
+        "inside": true,
+        "w": 96.671875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-raise",
+        "inside": true,
+        "w": 96.671875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 44,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "case": {
+      "name": "wide-raise",
+      "scene": "raise",
+      "width": 844,
+      "height": 440,
+      "orientation": "auto"
+    },
+    "metrics": [
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 145.1875,
+        "h": 44,
+        "aboveNav": false
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 145.203125,
+        "h": 44,
+        "aboveNav": false
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 145.203125,
+        "h": 44,
+        "aboveNav": false
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 145.203125,
+        "h": 44,
+        "aboveNav": false
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 145.203125,
+        "h": 44,
+        "aboveNav": false
+      },
+      {
+        "class": "mx-operation-button mx-operation-fold",
+        "inside": true,
+        "w": 369.5,
+        "h": 48,
+        "aboveNav": false
+      },
+      {
+        "class": "mx-operation-button mx-operation-call",
+        "inside": true,
+        "w": 369.5,
+        "h": 48,
+        "aboveNav": false
+      },
+      {
+        "class": "mx-operation-cancel",
+        "inside": true,
+        "w": 100,
+        "h": 48,
+        "aboveNav": false
+      },
+      {
+        "class": "mx-raise-confirm",
+        "inside": true,
+        "w": 100,
+        "h": 48,
+        "aboveNav": false
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 62,
+        "h": 60,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 62,
+        "h": 60,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 62,
+        "h": 60,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "case": {
+      "name": "long-en",
+      "scene": "long",
+      "locale": "en",
+      "long": 1
+    },
+    "metrics": [
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.8125,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-fold",
+        "inside": true,
+        "w": 136.65625,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-call",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-raise",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 50,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "case": {
+      "name": "short-dual",
+      "scene": "board-dual-turn",
+      "width": 375,
+      "height": 500
+    },
+    "metrics": [
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 96,
+        "h": 44,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "case": {
+      "name": "video-long",
+      "scene": "media-video",
+      "height": 956,
+      "action": 1
+    },
+    "metrics": [
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.8125,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-quick-bet",
+        "inside": true,
+        "w": 80.796875,
+        "h": 44,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-fold",
+        "inside": true,
+        "w": 136.65625,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-call",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-operation-button mx-operation-raise",
+        "inside": true,
+        "w": 136.671875,
+        "h": 48,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      },
+      {
+        "class": "mx-nav-button",
+        "inside": true,
+        "w": 68,
+        "h": 50,
+        "aboveNav": true
+      }
+    ],
+    "errors": []
+  }
+]

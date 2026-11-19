@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-19",
+  "assets": [
+    {
+      "file": "sprites.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "865b47501db3a7a615f71d2fb62fe0b610799ce0c034b6813edba8e5a94d0305",
+      "bytes": 1625260,
+      "source": "OpenAI image_gen, generated for DX style2",
+      "promptFile": "prompts.json"
+    },
+    {
+      "file": "table.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "6e55f511e79e5c26283ac7d5057131f2f962f3f7bfcc38fb73c31bd29b160fd5",
+      "bytes": 1890867,
+      "source": "OpenAI image_gen, generated for DX style2",
+      "promptFile": "prompts.json"
+    }
+  ]
+}

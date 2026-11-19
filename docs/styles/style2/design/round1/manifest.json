@@ -1,0 +1,115 @@
+{
+  "projectUrl": "https://stitch.google.com/projects/18263971623174628895",
+  "capturedAt": "2026-11-18T06:07:17.671007+00:00",
+  "source": "Google Stitch native ZIP export; local browser rendering of unchanged exported HTML",
+  "scope": "6 screens plus component specification; not production implementation",
+  "review": "rejected; R2 requested",
+  "note": "stitch_h5_dx_game_style2.zip contains uploaded reference images only. Actual generated design source is stitch-generated-round1.zip. External Google fonts and Unsplash demo avatars remain in original HTML.",
+  "files": [
+    {
+      "path": "01-main.png",
+      "bytes": 251822,
+      "sha256": "34ed3c839c149fe6de97cb5504cb8da1222e2321a54c188c16b94f56a07f5eec"
+    },
+    {
+      "path": "02-raise.png",
+      "bytes": 125854,
+      "sha256": "3ae5886d98c7484452b6a9877204b7ca17790b00433ebb441084ea5c67916781"
+    },
+    {
+      "path": "03-auto.png",
+      "bytes": 196213,
+      "sha256": "68f2853569d714c6402bdd31aaec04543e09fa55d5f50fe5290ecb730b33c60e"
+    },
+    {
+      "path": "04-dual.png",
+      "bytes": 202436,
+      "sha256": "baf5aafd563272d3d52777f4cfdda4a269cea6a7f4628744d4a05af30bc86f42"
+    },
+    {
+      "path": "05-settings.png",
+      "bytes": 75390,
+      "sha256": "03b682372eae28cf8eb2c19b9ff4bd219f44a550a93518ad5acf2e66f5cb95d2"
+    },
+    {
+      "path": "06-insurance.png",
+      "bytes": 90964,
+      "sha256": "7de06e0b0e8f9f19f531a11240f4d10ca1f706370990acbcc7439f6891a3cd2c"
+    },
+    {
+      "path": "07-spec.png",
+      "bytes": 362463,
+      "sha256": "bb796887c38864c0420f3870b495efc5feaf99e0f9369ceb359dd7058f31bfbf"
+    },
+    {
+      "path": "contact-sheet.png",
+      "bytes": 1003980,
+      "sha256": "200b8746edf23243baa977b486c13bcb9234c64edbbf261497f6ae1e387a187a"
+    },
+    {
+      "path": "generation-overview.png",
+      "bytes": 667150,
+      "sha256": "707377e2a2578d0a26ac962442d23d5cf8310d46df82d3231e11afc83f7a6651"
+    },
+    {
+      "path": "index.html",
+      "bytes": 1417,
+      "sha256": "18596b8dafa697ed2ab0885b923360e1b875599aa55346c98b9314f0615ccf4f"
+    },
+    {
+      "path": "render-results.json",
+      "bytes": 815,
+      "sha256": "381dedc49167f3f19a6a91e7e12cb962ca98c70f2ea2462cf7ad22e1bc68a390"
+    },
+    {
+      "path": "revision-request.txt",
+      "bytes": 3362,
+      "sha256": "1de5a50a7346deeb5bad32863009189f8b57cdf9ec73ee8f8da494ec6a2272d3"
+    },
+    {
+      "path": "stitch-generated-round1.zip",
+      "bytes": 31490,
+      "sha256": "67484c4d1db9977f85c0faee9fdc5b18b64ed738545e1af3afa815e03db14169"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/1._balanced/code.html",
+      "bytes": 25594,
+      "sha256": "aa84ff634d3f4b3c55b8055ac774f122fbc61eae746469db24328c8d7274f73d"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/2./code.html",
+      "bytes": 13501,
+      "sha256": "bedd4c36fe1448ba97f0301b42ea2d0bdb8796e58d1c429181bacf2d6b87a2ab"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/3./code.html",
+      "bytes": 12295,
+      "sha256": "5772aa93a744cf42c33f7f5973226645276fb69bf70e7916d5925ed4beab9928"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/4._classic/code.html",
+      "bytes": 10983,
+      "sha256": "44f659abf218d14af5293c40a45bf2feb75934d5740ffbf7c6f8918fadcb30d2"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/5./code.html",
+      "bytes": 13196,
+      "sha256": "7222f5af6bb48790668efa901d21490980ab1bc401d02f6488726bca6e1ec8cb"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/6./code.html",
+      "bytes": 13007,
+      "sha256": "1df286c984f59dab0ce108b472a3af997a83d9040e55eee55edcbe523736608c"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/code.html",
+      "bytes": 14915,
+      "sha256": "097b69d3befbb07fa8ddc52aa18f9f2a4f29d0e566642274b85c8e7d182af00a"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2.zip",
+      "bytes": 1237195,
+      "sha256": "4da2f1f736d6f464d67516335bb166566eb67a9860ca58773a3a5e9d19fe8720"
+    }
+  ]
+}

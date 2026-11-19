@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=440, height=782, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>稿4: classic经典双排公共牌变体 (440x782)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  body {
+    width: 440px; height: 782px; overflow: hidden;
+    background: #201735;
+    font-family: 'Fredoka', 'Noto Sans SC', 'Nunito', sans-serif;
+    color: #4A3E3D; position: relative;
+  }
+  .table-stage {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 45%, #3B2B5D 0%, #221838 100%);
+  }
+  /* classic风格的跑道型长圆桌 */
+  .poker-felt-classic {
+    position: absolute; left: 24px; top: 68px; width: 392px; height: 596px;
+    border-radius: 196px;
+    background: radial-gradient(circle at 50% 42%, #48C79F 0%, #2DA985 70%, #1F8265 100%);
+    box-shadow: 
+      inset 0 6px 14px rgba(255,255,255,0.35),
+      inset 0 -8px 18px rgba(8, 54, 41, 0.5),
+      0 0 0 9px #FFE8A3, 0 0 0 16px #493374, 0 14px 28px rgba(0,0,0,0.4);
+  }
+  .top-bar {
+    position: absolute; top: 12px; left: 16px; right: 16px; height: 44px;
+    display: flex; justify-content: space-between; align-items: center; z-index: 50;
+  }
+  .btn-pill-icon {
+    width: 38px; height: 38px; border-radius: 14px;
+    background: #47346E; border: 2px solid #634C94;
+    display: flex; align-items: center; justify-content: center;
+    color: #FFE8A3;
+  }
+  .chip-pill-btn {
+    height: 36px; padding: 0 10px 0 6px; border-radius: 18px;
+    background: #4A3370; border: 2px solid #674E98;
+    display: flex; align-items: center; gap: 6px;
+    color: #FFF; font-size: 13px; font-weight: 700;
+  }
+  .toy-chip-icon {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: radial-gradient(circle, #6BE7FF 40%, #009BD6 100%);
+    border: 2px dashed #FFF; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 900; color: #074766;
+  }
+
+  /* 核心：双排公共牌展示区 (Dual Board) */
+  .dual-board-container {
+    position: absolute; top: 200px; left: 50%; transform: translateX(-50%);
+    width: 300px; display: flex; flex-direction: column; align-items: center;
+    z-index: 30;
+  }
+
+  /* 标注标签 */
+  .board-row-label {
+    align-self: flex-start; margin-left: 20px; margin-bottom: 3px;
+    background: #25173F; border: 1px solid #755DA1;
+    color: #FFD15C; font-size: 10px; font-weight: 800;
+    padding: 1px 7px; border-radius: 6px;
+  }
+
+  /* 第一排：固定五槽 (Fixed 5 Slots) */
+  .board-row-first {
+    display: flex; gap: 6px; margin-bottom: -18px; /* 保留经典视觉半牌叠压透视 */
+    z-index: 2; position: relative;
+  }
+  /* 第二排：按实际张数展示 (例如此阶段为3张Flop)，带鲜明对比 */
+  .board-row-second {
+    display: flex; gap: 6px; z-index: 3; position: relative;
+    padding-top: 14px;
+  }
+
+  /* 单张可爱扑克牌样式 */
+  .poker-card {
+    width: 46px; height: 64px; border-radius: 9px;
+    background: #FFFFFF; border: 2px solid #EBE4D8;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 3px 4px; position: relative;
+  }
+  .poker-card .val { font-size: 17px; font-weight: 900; line-height: 1; }
+  .poker-card .suit { font-size: 13px; line-height: 1; }
+  .poker-card .suit-big {
+    position: absolute; right: 4px; bottom: 3px; font-size: 20px; line-height: 1; opacity: 0.9;
+  }
+  .poker-card.red { color: #FF4757; }
+  .poker-card.black { color: #2F3542; }
+
+  /* 第一排未翻开的占位槽 (Ghost / Placeholder Slots) */
+  .poker-slot-empty {
+    width: 46px; height: 64px; border-radius: 9px;
+    background: rgba(25, 16, 42, 0.45);
+    border: 2px dashed rgba(255, 232, 163, 0.4);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255, 232, 163, 0.35); font-size: 16px; font-weight: 900;
+  }
+
+  /* 双排设计说明看板 (浮动提示泡泡) */
+  .dual-spec-callout {
+    position: absolute; top: 380px; left: 24px; right: 24px;
+    background: rgba(24, 15, 40, 0.92); border: 2px solid #9C88FF;
+    border-radius: 16px; padding: 12px 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4); z-index: 40;
+  }
+  .dual-spec-title {
+    font-size: 13px; color: #FFEAA7; font-weight: 900; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .dual-spec-text {
+    font-size: 11px; color: #DCDDE1; line-height: 1.5; font-weight: 600;
+  }
+  .dual-spec-tag {
+    display: inline-block; background: #6C5CE7; color: #FFF;
+    padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; margin-right: 4px;
+  }
+
+  /* 周边经典座位 */
+  .seat-node { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 25; }
+  .avatar-wrap {
+    width: 48px; height: 48px; border-radius: 16px; background: #FFEAA7;
+    padding: 3px; box-shadow: 0 3px 0 #D3B96C;
+  }
+  .avatar-img { width: 100%; height: 100%; border-radius: 13px; object-fit: cover; }
+  .seat-name {
+    margin-top: -5px; max-width: 58px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    background: #3A2B59; color: #FFE8A3; font-size: 9px; font-weight: 700;
+    padding: 1px 6px; border-radius: 6px;
+  }
+  .seat-chips {
+    margin-top: 1px; background: rgba(22, 14, 38, 0.85); color: #FFF; font-size: 10px; font-weight: 800;
+    padding: 1px 6px; border-radius: 6px;
+  }
+
+  /* 底栏 */
+  .bottom-dock {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 52px;
+    background: linear-gradient(180deg, rgba(30, 20, 50, 0.95) 0%, #150D24 100%);
+    border-top: 2px solid #3E2B63;
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 10px; z-index: 50;
+  }
+  .dock-item { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #B8A9D9; }
+</style>
+</head>
+<body>
+<div class="table-stage">
+  <!-- classic跑道型桌面 -->
+  <div class="poker-felt-classic"></div>
+
+  <!-- 顶部状态栏 -->
+  <div class="top-bar">
+    <div class="btn-pill-icon">◀</div>
+    <div class="chip-pill-btn">
+      <div class="toy-chip-icon">◈</div>
+      <span>经典模式</span>
+    </div>
+    <div class="btn-pill-icon">⚙</div>
+  </div>
+
+  <!-- 顶部池 -->
+  <div style="position: absolute; top: 156px; left: 50%; transform: translateX(-50%); background: rgba(24,15,40,0.8); border: 1.5px solid #FFD15C; border-radius: 12px; padding: 2px 12px; color: #FFF; font-size: 13px; font-weight: 900; z-index: 25;">
+    双道总底池: 120 BB
+  </div>
+
+  <!-- 双排公共牌主体 -->
+  <div class="dual-board-container">
+    <div class="board-row-label">第一道 (固定5槽 · 已翻4张)</div>
+    <!-- 第一排：固定五槽（4张牌 + 1个虚线槽） -->
+    <div class="board-row-first">
+      <div class="poker-card black">
+        <div class="val">A</div><div class="suit">♠</div><div class="suit-big">♠</div>
+      </div>
+      <div class="poker-card red">
+        <div class="val">K</div><div class="suit">♥</div><div class="suit-big">♥</div>
+      </div>
+      <div class="poker-card black">
+        <div class="val">10</div><div class="suit">♣</div><div class="suit-big">♣</div>
+      </div>
+      <div class="poker-card red">
+        <div class="val">2</div><div class="suit">♦</div><div class="suit-big">♦</div>
+      </div>
+      <!-- 第5张河牌未发占位槽 -->
+      <div class="poker-slot-empty">?</div>
+    </div>
+
+    <div class="board-row-label" style="margin-top: 10px;">第二道 (按实发张数 · 当前3张Flop)</div>
+    <!-- 第二排：只渲染实际张数 (3张)，投影在第一排之上并保留高差辨识 -->
+    <div class="board-row-second">
+      <div class="poker-card red" style="box-shadow: 0 6px 12px rgba(0,0,0,0.45); border-color: #FFD15C;">
+        <div class="val">J</div><div class="suit">♦</div><div class="suit-big">♦</div>
+      </div>
+      <div class="poker-card black" style="box-shadow: 0 6px 12px rgba(0,0,0,0.45); border-color: #FFD15C;">
+        <div class="val">8</div><div class="suit">♠</div><div class="suit-big">♠</div>
+      </div>
+      <div class="poker-card red" style="box-shadow: 0 6px 12px rgba(0,0,0,0.45); border-color: #FFD15C;">
+        <div class="val">5</div><div class="suit">♥</div><div class="suit-big">♥</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 经典双排层级与规范说明浮层 -->
+  <div class="dual-spec-callout">
+    <div class="dual-spec-title">
+      <span>✨</span><span>classic 双排牌层级与间距规范说明</span>
+    </div>
+    <div class="dual-spec-text">
+      <div><span class="dual-spec-tag">第一排</span>固定保留5个物理牌槽（未开街显示柔和点阵圆润占位槽），保持基线水平居中稳定。</div>
+      <div style="margin-top: 4px;"><span class="dual-spec-tag">第二排</span>只渲染真实发出的牌张（如Flop仅画3张），不补假槽；利用下位负边距与立体阴影（Drop Shadow 6px）自然形成前倾高低叠落感，点数与花色完全可见不遮挡。</div>
+    </div>
+  </div>
+
+  <!-- 周边座位 -->
+  <div class="seat-node" style="top: 86px; left: 50%; transform: translateX(-50%);">
+    <div class="avatar-wrap"><img class="avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name">玩家1</div>
+    <div class="seat-chips">2.4K BB</div>
+  </div>
+  <div class="seat-node" style="top: 110px; right: 28px;">
+    <div class="avatar-wrap"><img class="avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name">玩家2</div>
+    <div class="seat-chips">1.8K BB</div>
+  </div>
+  <div class="seat-node" style="top: 110px; left: 28px;">
+    <div class="avatar-wrap"><img class="avatar-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name">玩家3</div>
+    <div class="seat-chips">950 BB</div>
+  </div>
+
+  <!-- 本人区域微缩 -->
+  <div style="position: absolute; bottom: 62px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px;">
+    <div class="poker-card black" style="width: 44px; height: 60px;"><div class="val">K</div><div>♠</div></div>
+    <div class="poker-card black" style="width: 44px; height: 60px;"><div class="val">Q</div><div>♠</div></div>
+  </div>
+
+  <!-- 底部黑胶栏 -->
+  <div class="bottom-dock">
+    <div class="dock-item"><span>🏆</span><span>战绩</span></div>
+    <div class="dock-item"><span>🎖</span><span>牌谱</span></div>
+    <div class="dock-item"><span>😊</span><span>表情</span></div>
+  </div>
+</div>
+</body>
+</html>

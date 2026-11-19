@@ -1,0 +1,153 @@
+{
+  "projectUrl": "https://stitch.google.com/projects/18263971623174628895",
+  "capturedAt": "2026-11-18T06:13:57.662280+00:00",
+  "source": "Stitch R2 native HTML export; local browser-rendered PNG",
+  "review": "awaiting user visual review; functional review failed with open issues",
+  "files": [
+    {
+      "path": "01-main.png",
+      "bytes": 260432,
+      "sha256": "036951ca70caf1a0aa45acc4fb57d9ae03950926fe9f97f68275c71074c2425d"
+    },
+    {
+      "path": "02-raise.png",
+      "bytes": 170965,
+      "sha256": "1b25dcf63bd195d3cc67c4b7fbd7331ee4581575e8d112fe2218861f841f4561"
+    },
+    {
+      "path": "03-auto.png",
+      "bytes": 232517,
+      "sha256": "07262af49a9a1a3caf643006b3f559752d46578f4ce523fbddfa9033febd5a4c"
+    },
+    {
+      "path": "04-dual.png",
+      "bytes": 224047,
+      "sha256": "c4ae623f0b6dcd3e1a57773c45f6ad1f570949d5e4386c6a77803f97053fd323"
+    },
+    {
+      "path": "05-settings.png",
+      "bytes": 73266,
+      "sha256": "d3183b1241ef15f34c3e390c2c5b4317c91a271ba7ac37de6960499841cd2aab"
+    },
+    {
+      "path": "06-insurance.png",
+      "bytes": 73851,
+      "sha256": "0fdbbdc40394799f6c1684d87c3a17ade1a3559a3c37f3c0fae2c219ac3e661e"
+    },
+    {
+      "path": "07-quick.png",
+      "bytes": 50797,
+      "sha256": "6d919d05137e7e599dac7c1f6c10ea31534c866385b84d089381f910830083b0"
+    },
+    {
+      "path": "08-system.png",
+      "bytes": 47058,
+      "sha256": "14e844ac0eedbc2d5aa8e4c2dee816ea4a3bcd4af3297f5ee2302ab1c8f5639d"
+    },
+    {
+      "path": "09-short.png",
+      "bytes": 132400,
+      "sha256": "03a9d758c6d05fec6d197914f7cc7d34bff2b35b700807b291a83ff9549bdc75"
+    },
+    {
+      "path": "10-mini.png",
+      "bytes": 95007,
+      "sha256": "8e1ddf5e9e54308a00c2fe72a313f9fcb2b2d66e97dcdaac2970f8157da1693c"
+    },
+    {
+      "path": "11-spec.png",
+      "bytes": 406424,
+      "sha256": "112ab1dc7032b52b874bd496c096d2b1a813753c66ca89a2a81945bf2c16bc2b"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 2102,
+      "sha256": "1b3cb5934759b73dd848e72434e9c9ced6174389316c7c34b2683c5ea319fa8c"
+    },
+    {
+      "path": "contact-sheet.png",
+      "bytes": 1619607,
+      "sha256": "cac23c4efdd7b57e3709b42004f322fd044f99b7334076e6e6d9f387727def2a"
+    },
+    {
+      "path": "generation-progress.png",
+      "bytes": 835169,
+      "sha256": "2617acbbd795bb663d6ecd8570a76558d452888c72170ae6801a39f2afe15d38"
+    },
+    {
+      "path": "index.html",
+      "bytes": 2005,
+      "sha256": "f64bb66a763fd0cc7ba6945c55af197db72effda5f3533798fd49e76d17403fa"
+    },
+    {
+      "path": "render-results.json",
+      "bytes": 1280,
+      "sha256": "9fe332b72f049e5f8414200d753f9692095a1a4d57640e739482b6edacf69c15"
+    },
+    {
+      "path": "stitch-generated-round2.zip",
+      "bytes": 45696,
+      "sha256": "d54df02907bdab9c1cb7d99b8f04487c1719940c847cf99da196e841363199c5"
+    },
+    {
+      "path": "stitch-overview.png",
+      "bytes": 944560,
+      "sha256": "c2a07fdbd1a2ea24835ad5f76d3fc800118a33f43e90d77b5c306b5a7e36d934"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2/code.html",
+      "bytes": 14674,
+      "sha256": "48dc39b83190118a2db3e968235191de15fad922f53437a319df81f563d4082e"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_1._balanced/code.html",
+      "bytes": 27421,
+      "sha256": "3ae9a3f4ec29d2258c7358e3392a309ed73b0c89cad9df2a1590d88ff1e77675"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_2./code.html",
+      "bytes": 15548,
+      "sha256": "ede31fdfbd3355a984b9c0d6e5d28f1446eafab781ec494c2121c7742440a87f"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_3./code.html",
+      "bytes": 16960,
+      "sha256": "3e68ea5ce8b174c5e5db09fb8c8939142a353107f595575fd3d38b72e2204dad"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_320x400/code.html",
+      "bytes": 12685,
+      "sha256": "be6c61ff700307bb667e7063dfd61e63adee8b7dde4db42fe30b1df4b8c2a89a"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_375x500/code.html",
+      "bytes": 13220,
+      "sha256": "ccfb96ced7ce06b028882b598960b9608164e0df74414eaab82b001baf33301e"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_4._classic/code.html",
+      "bytes": 13255,
+      "sha256": "5a1467e5b195eb27dcdf91bed13f4e6fc5c7540676615dfbe145af2890337361"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_5./code.html",
+      "bytes": 14418,
+      "sha256": "9653bdcd2ed80978d10cc00d031d7e3b46a0077d9199fdb92c2efe12d9ab15a9"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_5b./code.html",
+      "bytes": 7118,
+      "sha256": "54cb3042ab4ba582275c16e01a43bf166a3c008ec788295ab30cade481bd118b"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_5c./code.html",
+      "bytes": 6273,
+      "sha256": "a638de1c844e94d0c8836dbd57ea8bc738e9605ca10affb8263432467661757b"
+    },
+    {
+      "path": "stitch_h5_dx_game_style2/r2_6./code.html",
+      "bytes": 12630,
+      "sha256": "7c27b3f99cba999be5261d5e86ce183947a54f5a41cd3d8a44f45234e2295aad"
+    }
+  ]
+}

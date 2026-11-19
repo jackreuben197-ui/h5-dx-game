@@ -1,0 +1,329 @@
+{
+  "date": "2026-11-19",
+  "screenshots": [
+    {
+      "file": "edge/long-en.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "50fc852dd107c5c6ef771ac7da257d4aefdaf35d8005eda91dcd49a40fba0bcd",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/main-video.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "d22a9fb4d916fcf7fcc114e00f2b32fb6ffd260ee916bff082d395e009db0bf0",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/main-voice.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "c4339c1f14e3df852cc19985595b5de1786ebaa04a333b228dda4fb13c421946",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/short-dual.png",
+      "width": 375,
+      "height": 500,
+      "sha256": "16354fd7eb9066be7c99877ceaac2d144ec479872053274de868a1dddcde4405",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/short-safe34-scrolled.png",
+      "width": 320,
+      "height": 400,
+      "sha256": "270a9672437f6333e904f2727871867eda1c073dc138edcbed43a21ff719f19c",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/short-safe34.png",
+      "width": 320,
+      "height": 400,
+      "sha256": "d472c02c14c3306a9af0417f6f8804866833c07cdca1041fa34a2e46e9d0f3f4",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/short-six.png",
+      "width": 320,
+      "height": 400,
+      "sha256": "185cb5488b9ff6b431230337a368f33e3dcbc312fc5ee8e9874afd1b4f73d6f3",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/video-long.png",
+      "width": 440,
+      "height": 956,
+      "sha256": "70e2655952aab08be18231c6a736137f70e2e4620af20736854d4148ad638254",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/video-safe34.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "bf87f4d2d403659abbbb7dec6ca40aa10088bcb6d244202529dc7b049f8e57e5",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/voice-safe34.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "2f2c4db52caecf850fc078001e30e6f94ad951982e82b8bc7e0f9525d99eabac",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "edge/wide-raise.png",
+      "width": 844,
+      "height": 440,
+      "sha256": "aca18a0256331b1507194b52909b178bfdfcb247210fc1f9a378abe76d63ef8e",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/bring-wallet-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "895046f4bd687cd7e5c5b75b04517f6d081088284d685f5d31bda05ee3678c0b",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/chat-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "36fc52a3e25bf1750a23fdc1946e7354f8b4d9534423a92aa4063ff6b1ef9b59",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/figma-320x400.png",
+      "width": 320,
+      "height": 400,
+      "sha256": "a23ee777120c19b58cf63dbaae4ea4208e5924c01ae893e5299b51e2b075af16",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/figma-375x500.png",
+      "width": 375,
+      "height": 500,
+      "sha256": "e1eeb1b53fdbb221b5816a5cdc147e707e816f68114446b35c018da36b07c379",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/figma-440x956.png",
+      "width": 440,
+      "height": 956,
+      "sha256": "710b0135384a31fc911bc119dc6cf6f1b8e6a941df1da027f2ad948ed9c8c4b3",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/history-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "c9adaf1e04a1bdb24132c4ff2c1326a032a0d7a138cde639a8887f8822adf70c",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/insurance-multi-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "c2d06e657a01ebeac13ec0bd3b3bffd31d8d163551c19e607640d6fd0413527a",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/insurance-selection-style1.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "d99d3adc33c01d3a874ec9cb72eb10028e7efa66bed14b109428a713d181d11d",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style1"
+    },
+    {
+      "file": "screens/insurance-selection-style2.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "6204d9bd8c7c6a7e8288b46d67a2bcb92b5de9e3e8c5e235bd5f6ca0a6c56897",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/insurance-single-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "a82f8f8017f0fc2fbd3677a80161df3fc1469c22746b24ca4fbb465c5683fd59",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/media-video-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "37689cf40d30ea259d7f2a0c04809ac8b767333f817fdf7bed4f626923277062",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/media-voice-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "104b5edabf0165e1eab9a448fcc2ce20d18166c84ad5c3dddc28b5027caca4db",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/menu-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "1b4ec961db0c65117a7e2550803200973af36bcc90af519a50a84108aaf4848d",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/profile-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "40471c37b974f9868d9ffc97a3ece9d72cce1d7be92ee49d8dc5a8df51605392",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/raise-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "f845ac6e0e447e8f368b1523a153bf0fa1c748434e3826501bf62d439e62766a",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/report-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "bf4876f884cdd13e2580270b3a271f65b5efd60808d1c8fcb71fcc40df44c702",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/room-details-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "35d736a9fa9a928a41f06bde2248ede9448f6c413854da321ba889b0ef7063a7",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/settings-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "2e96883efe136274a957e9b06cca618ae823b68d841ca164c8a50392e24291c0",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/settings-quick-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "f6ea198f41dc4f024bb10d8438a07a874e377a079b7058f2522eeffa564fd453",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/settings-system-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "b86f619d1af4340a45589e10dc57850a0424b48fd8e1dcf0d21b9a077fd812a6",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "screens/squid-result-figma-440x782.png",
+      "width": 440,
+      "height": 782,
+      "sha256": "9e18c4548ffccb5c557ab7abcf75125f5dfcfb8dbfa14bcd4e4e90f598de541d",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "interactions/landscape.png",
+      "width": 844,
+      "height": 440,
+      "sha256": "ceb14d09a985010316d72f24baf9ae2379c76bd06c1dad21614bbc7512d9ee5f",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "interactions/mini-video-sixcards.png",
+      "width": 320,
+      "height": 400,
+      "sha256": "66ce1fe21e0bdfc943b1ee9fb8b5166028a195ee83eaff4347eb4644298e4ca6",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "production-portrait.png",
+      "width": 388,
+      "height": 778,
+      "sha256": "4dfb9f04240cbc9f447cd47076d18bb55e405601f2e617c6d4a77802ea4b57f1",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    },
+    {
+      "file": "production.png",
+      "width": 950,
+      "height": 824,
+      "sha256": "6eeaeb49ce9bd9766cfa3ec136bfe8fbab5567b2807b7d6a8cf528a2d4d4dcc0",
+      "kind": "runtime browser screenshot",
+      "data": "offline fixture",
+      "skin": "style2"
+    }
+  ]
+}

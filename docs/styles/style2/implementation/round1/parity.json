@@ -1,0 +1,4475 @@
+[
+  {
+    "scene": "actions",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "check",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "figma",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 8,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 8,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "allin-call",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-allin"
+        ],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-allin"
+        ],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "straddle",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-straddle"
+        ],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-straddle"
+        ],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "auto",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "raise",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "dealer-self",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "dealer-other",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "four",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "revealed",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "five",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "six",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          5
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          5
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "fold-other",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "folded",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "partial",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "status",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "waiting-0",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "waiting-2",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "waiting-3",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "keep-1",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "keep-2",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "keep-3",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "keep-4",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "reserved",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "acting-self",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "acting-other",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "countdown-expire",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "allin",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "insurance-buying",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "long",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-call",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "zero",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-0",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-1",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-2",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-3",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-4",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-5",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-6",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-7",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-8",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "handtype-9",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "settlement",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "split",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "watch",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "empty",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "observer",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "bring-wallet",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "bring-score",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "bring-insufficient",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "bring-diamond",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "post-blind",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "bring-out",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-settings-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-settings-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "board-preflop",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "board-flop",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "board-turn",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          4,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          4,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "board-river",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "board-dual-flop",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          3
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          3
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "board-dual-turn",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          4,
+          4
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          4,
+          4
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "board-dual-river",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          5
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          5
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "flow",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "reconnect",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "entry-fail",
+    "pair": [
+      {
+        "phase": "error",
+        "seats": 0,
+        "boards": [],
+        "navigation": [],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "error",
+        "seats": 0,
+        "boards": [],
+        "navigation": [],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "switch-room",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "exit",
+    "pair": [
+      {
+        "phase": "hidden",
+        "seats": 0,
+        "boards": [],
+        "navigation": [],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "hidden",
+        "seats": 0,
+        "boards": [],
+        "navigation": [],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "insurance-single",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "insurance-multi",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "insurance-force",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "second-board",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          3,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "squid-revealed",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "room-details",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "squid-result-figma",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 7,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 7,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "squid-join",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "squid-active",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "squid-result",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "mushroom",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "critical",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "jackpot",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "emoji",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "calltime",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          0,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [
+          "mx-operation-button mx-operation-fold",
+          "mx-operation-button mx-operation-check",
+          "mx-operation-button mx-operation-raise"
+        ],
+        "quick": 5,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "gift",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "throw",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "chat",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "report",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "history",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "profile",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "settings",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-settings-panel mx-personal-settings mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-settings-panel mx-personal-settings mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "rules",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "media-voice",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji",
+          "voice"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji",
+          "voice"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "media-video",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji",
+          "effect",
+          "voice",
+          "camera"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji",
+          "effect",
+          "voice",
+          "camera"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "mtt-wait",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "mtt-break",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "mtt-bubble",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "mtt-transfer",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "mtt-addon",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "insurance-rules",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "insurance-rules-ev",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "insurance-rules-standard",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "sidepots-long",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "report-departed",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "report-mushroom",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-record-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "menu",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-menu-panel mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-menu-panel mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "settings-system",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-settings-panel mx-personal-settings mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-settings-panel mx-personal-settings mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "settings-quick",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-settings-panel mx-personal-settings mx-dialog-glass"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-settings-panel mx-personal-settings mx-dialog-glass"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "intro-mushroom",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "intro-squid",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "intro-critical",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-special-panel"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "bring-deposit",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": [
+          "mx-buyin-overlay mx-dialog-overlay"
+        ]
+      }
+    ],
+    "differences": [],
+    "errors": []
+  },
+  {
+    "scene": "settlement-bets",
+    "pair": [
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      },
+      {
+        "phase": "table",
+        "seats": 9,
+        "boards": [
+          5,
+          0
+        ],
+        "navigation": [
+          "report",
+          "replay",
+          "emoji"
+        ],
+        "actions": [],
+        "quick": 0,
+        "dialogs": []
+      }
+    ],
+    "differences": [],
+    "errors": []
+  }
+]

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.test-build/
+.DS_Store
+
+# Historical visual QA screenshots
+docs/qa/
+
+# Generated only by production asset builds
+src/assets/*/resources/generated/

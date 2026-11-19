@@ -1,0 +1,62 @@
+[
+  {
+    "layout": "original",
+    "test": "clear/restart/end",
+    "pass": true
+  },
+  {
+    "layout": "original",
+    "test": "timeout",
+    "pass": true
+  },
+  {
+    "layout": "original",
+    "test": "auto landscape painted bounds",
+    "pass": true
+  },
+  {
+    "layout": "balanced",
+    "test": "clear/restart/end",
+    "pass": true
+  },
+  {
+    "layout": "balanced",
+    "test": "timeout",
+    "pass": true
+  },
+  {
+    "layout": "balanced",
+    "test": "auto landscape painted bounds",
+    "pass": true
+  },
+  {
+    "layout": "oval",
+    "test": "clear/restart/end",
+    "pass": true
+  },
+  {
+    "layout": "oval",
+    "test": "timeout",
+    "pass": true
+  },
+  {
+    "layout": "oval",
+    "test": "auto landscape painted bounds",
+    "pass": true
+  },
+  {
+    "layout": "classic",
+    "test": "clear/restart/end",
+    "pass": true
+  },
+  {
+    "layout": "classic",
+    "test": "timeout",
+    "pass": true
+  },
+  {
+    "layout": "classic",
+    "test": "auto landscape painted bounds",
+    "pass": true
+  }
+]

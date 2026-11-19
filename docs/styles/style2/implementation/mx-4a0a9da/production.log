@@ -1,0 +1,34 @@
+{
+  state: {
+    skin: 'style2',
+    layout: 'balanced',
+    seats: 9,
+    background: 'url("http://127.0.0.1:5184/assets/table-bAdXG84i.png")',
+    nav: 3
+  },
+  actionBounds: {
+    top: 769,
+    bottom: 817,
+    height: 823,
+    inside: true,
+    nearBottom: true
+  },
+  hostExports: { style1: 'function', style2: 'function', mountMxGame: 'function' },
+  artwork: [
+    {
+      url: 'http://127.0.0.1:5184/assets/table-bAdXG84i.png',
+      loaded: true,
+      width: 941,
+      height: 1672
+    },
+    {
+      url: 'http://127.0.0.1:5184/assets/sprites-DyAE5AfJ.png',
+      loaded: true,
+      width: 1254,
+      height: 1254
+    }
+  ],
+  errors: [],
+  failures: [],
+  pass: true
+}

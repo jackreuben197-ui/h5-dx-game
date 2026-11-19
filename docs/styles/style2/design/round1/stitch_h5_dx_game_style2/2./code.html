@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=440, height=782, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>稿2: 同桌加注面板 (440x782)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  body {
+    width: 440px; height: 782px; overflow: hidden;
+    background: #201735;
+    font-family: 'Fredoka', 'Noto Sans SC', 'Nunito', sans-serif;
+    color: #4A3E3D; position: relative;
+  }
+  /* 底层毛毡桌 */
+  .table-stage {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 45%, #3B2B5D 0%, #221838 100%);
+  }
+  .poker-felt {
+    position: absolute; left: 20px; top: 72px; width: 400px; height: 588px;
+    border-radius: 170px / 210px;
+    background: radial-gradient(circle at 50% 42%, #5CD6B2 0%, #35BA96 68%, #2AA281 100%);
+    box-shadow: 
+      inset 0 6px 14px rgba(255,255,255,0.4),
+      inset 0 -8px 18px rgba(12, 70, 54, 0.45),
+      0 0 0 9px #FFE8A3, 0 0 0 16px #493374, 0 14px 28px rgba(0,0,0,0.4);
+    opacity: 0.92;
+  }
+  /* 顶部状态栏 */
+  .top-bar {
+    position: absolute; top: 12px; left: 16px; right: 16px; height: 44px;
+    display: flex; justify-content: space-between; align-items: center; z-index: 50;
+  }
+  .btn-pill-icon {
+    width: 38px; height: 38px; border-radius: 14px;
+    background: #47346E; border: 2px solid #634C94;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 0 #2A1C46; color: #FFE8A3;
+  }
+  .chip-pill-btn {
+    height: 36px; padding: 0 10px 0 6px; border-radius: 18px;
+    background: #4A3370; border: 2px solid #674E98;
+    display: flex; align-items: center; gap: 6px;
+    color: #FFF; font-size: 13px; font-weight: 700;
+  }
+  .toy-chip-icon {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: radial-gradient(circle, #6BE7FF 40%, #009BD6 100%);
+    border: 2px dashed #FFF; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 900; color: #074766;
+  }
+
+  /* 底池 */
+  .pot-zone {
+    position: absolute; top: 194px; left: 50%; transform: translateX(-50%);
+    background: rgba(30, 20, 52, 0.72); border: 1.5px solid rgba(255, 232, 163, 0.6);
+    padding: 3px 14px; border-radius: 14px; color: #FFF; font-size: 14px; font-weight: 900;
+    z-index: 15;
+  }
+  .pot-zone span { color: #FFE8A3; font-weight: 700; margin-right: 4px; }
+
+  /* 公共牌 */
+  .board-cards-wrap {
+    position: absolute; top: 242px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 7px; z-index: 20; opacity: 0.85;
+  }
+  .poker-card {
+    width: 44px; height: 62px; border-radius: 9px;
+    background: #FFFFFF; border: 2px solid #EBE4D8;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.25);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 3px 4px; position: relative;
+  }
+  .poker-card .val { font-size: 16px; font-weight: 900; line-height: 1; }
+  .poker-card.red { color: #FF4757; }
+  .poker-card.black { color: #2F3542; }
+
+  /* 座位微缩展现 */
+  .seat-node { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 25; }
+  .avatar-wrap {
+    width: 50px; height: 50px; border-radius: 18px; background: #FFEAA7;
+    padding: 3px; box-shadow: 0 4px 0 #D3B96C;
+  }
+  .avatar-img { width: 100%; height: 100%; border-radius: 15px; object-fit: cover; }
+  .seat-name {
+    margin-top: -6px; max-width: 60px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    background: #3A2B59; color: #FFE8A3; font-size: 10px; font-weight: 700;
+    padding: 1px 6px; border-radius: 7px;
+  }
+  .seat-chips {
+    margin-top: 1px; background: rgba(22, 14, 38, 0.85); color: #FFF; font-size: 10px; font-weight: 800;
+    padding: 1px 6px; border-radius: 7px;
+  }
+
+  /* 加注面板遮罩与浮动控制器 (原图为贯穿竖向透明滑道与大胶囊气泡) */
+  .raise-overlay-layer {
+    position: absolute; inset: 0;
+    background: rgba(18, 10, 30, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 60;
+  }
+
+  /* 竖向加注滑轨容器 */
+  .raise-slider-track-wrap {
+    position: absolute; top: 228px; bottom: 130px; left: 50%; transform: translateX(-50%);
+    width: 68px; display: flex; flex-direction: column; align-items: center;
+  }
+  /* 卡通滑道底槽 */
+  .raise-track {
+    position: absolute; top: 0; bottom: 0; width: 18px;
+    background: #25183E; border: 3px solid #543E7E;
+    border-radius: 12px; box-shadow: inset 0 3px 6px rgba(0,0,0,0.5);
+  }
+  /* 已填充进度的薄荷绿荧光条 */
+  .raise-fill-bar {
+    position: absolute; bottom: 0; width: 100%; height: 55%;
+    background: linear-gradient(180deg, #55EFC4 0%, #00B894 100%);
+    border-radius: 9px; box-shadow: 0 0 10px rgba(85, 239, 196, 0.6);
+  }
+
+  /* 滑块手柄与悬浮金额大气泡 (原图为圆形拖动手柄 + 浮动跟随气泡) */
+  .raise-thumb-balloon {
+    position: absolute; bottom: 53%; left: 50%; transform: translate(-50%, 50%);
+    display: flex; flex-direction: column; align-items: center;
+  }
+  /* 金额气泡 */
+  .raise-balloon {
+    background: #FFFFFF; border: 3px solid #FF9F43;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4), 0 3px 0 #D35400;
+    border-radius: 20px; padding: 6px 16px;
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; white-space: nowrap; margin-bottom: 8px;
+  }
+  .raise-balloon::after {
+    content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+    border-width: 8px 7px 0 7px; border-style: solid;
+    border-color: #FF9F43 transparent transparent transparent;
+  }
+  .raise-balloon .b-label { font-size: 11px; color: #FF793F; font-weight: 800; line-height: 1; }
+  .raise-balloon .b-amount { font-size: 22px; color: #2C2C54; font-weight: 900; line-height: 1.1; }
+  .raise-balloon .b-pct { font-size: 11px; color: #706FD3; font-weight: 800; }
+
+  /* 物理拖拽大把手 (立体马卡龙曲奇质感) */
+  .raise-drag-handle {
+    width: 44px; height: 32px; border-radius: 12px;
+    background: linear-gradient(180deg, #FFEAA7 0%, #FDCB6E 100%);
+    border: 2px solid #FFF;
+    box-shadow: 0 4px 0 #D3A237, 0 6px 10px rgba(0,0,0,0.3);
+    display: flex; align-items: center; justify-content: center;
+    cursor: grab;
+  }
+  .raise-drag-handle::before, .raise-drag-handle::after {
+    content: ""; width: 14px; height: 3px; background: #C58814;
+    border-radius: 2px; margin: 1px 0;
+  }
+  .raise-drag-handle { flex-direction: column; gap: 2px; }
+
+  /* 上下极值标记：MAX / MIN */
+  .limit-mark-top {
+    position: absolute; top: -28px; left: 50%; transform: translateX(-50%);
+    background: #E84118; border: 1.5px solid #FF7675; border-radius: 10px;
+    padding: 2px 8px; color: #FFF; font-size: 11px; font-weight: 900;
+    box-shadow: 0 3px 0 #8C1D04; cursor: pointer; white-space: nowrap;
+  }
+  .limit-mark-bottom {
+    position: absolute; bottom: -28px; left: 50%; transform: translateX(-50%);
+    background: #47346E; border: 1.5px solid #7158A3; border-radius: 10px;
+    padding: 2px 8px; color: #FFE8A3; font-size: 11px; font-weight: 800;
+    cursor: pointer; white-space: nowrap;
+  }
+
+  /* 常用比例快捷侧边刻度钮: 2.2X, 3X, 5X, ALL IN */
+  .quick-step-ladder {
+    position: absolute; right: -56px; top: 10px; bottom: 10px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .btn-ladder-chip {
+    padding: 3px 8px; border-radius: 10px;
+    background: rgba(50, 36, 78, 0.85); border: 1.5px solid #6E539F;
+    color: #FFEAA7; font-size: 11px; font-weight: 800; cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25); text-align: center;
+  }
+  .btn-ladder-chip.active {
+    background: #FF9F43; border-color: #FFE082; color: #FFF;
+    box-shadow: 0 3px 0 #C95E1E;
+  }
+
+  /* 底部提交与取消控制区 */
+  .raise-bottom-actions {
+    position: absolute; bottom: 62px; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    z-index: 70;
+  }
+  /* 取消按钮 */
+  .btn-cancel-raise {
+    width: 96px; height: 54px; border-radius: 18px;
+    background: linear-gradient(180deg, #6C5CE7 0%, #4834D4 100%);
+    border: 2px solid #A29BFE; color: #FFF;
+    box-shadow: 0 4px 0 #24148C, 0 6px 12px rgba(0,0,0,0.3);
+    font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  /* 确定加注按钮 (薄荷绿高亮) */
+  .btn-confirm-raise {
+    width: 170px; height: 54px; border-radius: 18px;
+    background: linear-gradient(180deg, #1DD1A1 0%, #10AC84 100%);
+    border: 2.5px solid #55EFC4; color: #FFF;
+    box-shadow: 0 4px 0 #0B6B53, 0 8px 16px rgba(29, 209, 161, 0.45);
+    font-size: 18px; font-weight: 900; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .btn-confirm-raise .sub-txt { font-size: 11px; color: #DFF9FB; font-weight: 700; }
+
+  /* 底栏黑胶 */
+  .bottom-dock {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 52px;
+    background: linear-gradient(180deg, rgba(30, 20, 50, 0.95) 0%, #150D24 100%);
+    border-top: 2px solid #3E2B63;
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 10px; z-index: 50; opacity: 0.6; pointer-events: none;
+  }
+  .dock-item { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #B8A9D9; }
+</style>
+</head>
+<body>
+<div class="table-stage">
+  <!-- 桌面毛毡 -->
+  <div class="poker-felt"></div>
+
+  <!-- 顶部状态栏 -->
+  <div class="top-bar">
+    <div class="btn-pill-icon">◀</div>
+    <div class="chip-pill-btn">
+      <div class="toy-chip-icon">◈</div>
+      <span>18.5K</span>
+    </div>
+    <div class="btn-pill-icon">🎧</div>
+  </div>
+
+  <!-- 底池 -->
+  <div class="pot-zone">
+    <span>底池:</span> 20.40 BB
+  </div>
+
+  <!-- 公共牌 (后景) -->
+  <div class="board-cards-wrap">
+    <div class="poker-card red"><div class="val">3</div><div style="font-size:12px;">♥</div></div>
+    <div class="poker-card black"><div class="val">5</div><div style="font-size:12px;">♣</div></div>
+    <div class="poker-card red"><div class="val">7</div><div style="font-size:12px;">♦</div></div>
+    <div class="poker-card black"><div class="val">7</div><div style="font-size:12px;">♣</div></div>
+    <div class="poker-card red"><div class="val">7</div><div style="font-size:12px;">♥</div></div>
+  </div>
+
+  <!-- 部分座位 (后景淡化) -->
+  <div class="seat-node" style="top: 92px; left: 50%; transform: translateX(-50%);">
+    <div class="avatar-wrap"><img class="avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name">顶部甲</div>
+    <div class="seat-chips">205.40</div>
+  </div>
+  <div class="seat-node" style="top: 130px; left: 28px;">
+    <div class="avatar-wrap"><img class="avatar-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name">左上玩家</div>
+    <div class="seat-chips">204.10</div>
+  </div>
+  <div class="seat-node" style="top: 130px; right: 28px;">
+    <div class="avatar-wrap"><img class="avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name">顶部乙</div>
+    <div class="seat-chips">206.80</div>
+  </div>
+
+  <!-- 加注遮罩与核心面板 -->
+  <div class="raise-overlay-layer">
+    <!-- 竖向滑杆组件 -->
+    <div class="raise-slider-track-wrap">
+      <!-- 极值 MAX -->
+      <div class="limit-mark-top">🔥 ALL IN (200 BB)</div>
+
+      <!-- 滑道 -->
+      <div class="raise-track">
+        <div class="raise-fill-bar"></div>
+      </div>
+
+      <!-- 侧边快捷梯级倍率 -->
+      <div class="quick-step-ladder">
+        <div class="btn-ladder-chip">ALL IN</div>
+        <div class="btn-ladder-chip active">3.0 X</div>
+        <div class="btn-ladder-chip">2.5 X</div>
+        <div class="btn-ladder-chip">2.0 X</div>
+        <div class="btn-ladder-chip">MIN</div>
+      </div>
+
+      <!-- 滑动手柄与跟随气泡 -->
+      <div class="raise-thumb-balloon">
+        <!-- 动态金额气泡 -->
+        <div class="raise-balloon">
+          <div class="b-label">加注至</div>
+          <div class="b-amount">16.70 <span style="font-size:13px; color:#E67E22;">BB</span></div>
+          <div class="b-pct">底池 2/3 · 3.5×大盲</div>
+        </div>
+
+        <!-- 实体把手 -->
+        <div class="raise-drag-handle"></div>
+      </div>
+
+      <!-- 极值 MIN -->
+      <div class="limit-mark-bottom">MIN (4.00 BB)</div>
+    </div>
+
+    <!-- 底部操作按钮：取消 与 确定加注 -->
+    <div class="raise-bottom-actions">
+      <div class="btn-cancel-raise">取消</div>
+      <div class="btn-confirm-raise">
+        <span>确定加注</span>
+        <span class="sub-txt">16.70 BB (松手可提交)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部黑胶栏 -->
+  <div class="bottom-dock">
+    <div class="dock-item"><span>🏆</span><span>战绩</span></div>
+    <div class="dock-item"><span>🎖</span><span>牌谱</span></div>
+    <div class="dock-item"><span>😊</span><span>表情</span></div>
+  </div>
+</div>
+</body>
+</html>

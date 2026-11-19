@@ -1,0 +1,86 @@
+[
+  {
+    "layout": "original",
+    "width": 440,
+    "height": 782,
+    "old": 725,
+    "current": 725
+  },
+  {
+    "layout": "original",
+    "width": 375,
+    "height": 500,
+    "old": 443,
+    "current": 443
+  },
+  {
+    "layout": "original",
+    "width": 320,
+    "height": 400,
+    "old": 343,
+    "current": 343
+  },
+  {
+    "layout": "balanced",
+    "width": 440,
+    "height": 782,
+    "old": 725,
+    "current": 725
+  },
+  {
+    "layout": "balanced",
+    "width": 375,
+    "height": 500,
+    "old": 443,
+    "current": 443
+  },
+  {
+    "layout": "balanced",
+    "width": 320,
+    "height": 400,
+    "old": 343,
+    "current": 343
+  },
+  {
+    "layout": "classic",
+    "width": 440,
+    "height": 782,
+    "old": 725,
+    "current": 725
+  },
+  {
+    "layout": "classic",
+    "width": 375,
+    "height": 500,
+    "old": 443,
+    "current": 443
+  },
+  {
+    "layout": "classic",
+    "width": 320,
+    "height": 400,
+    "old": 343,
+    "current": 343
+  },
+  {
+    "layout": "oval",
+    "width": 440,
+    "height": 782,
+    "old": 725,
+    "current": 725
+  },
+  {
+    "layout": "oval",
+    "width": 375,
+    "height": 500,
+    "old": 443,
+    "current": 443
+  },
+  {
+    "layout": "oval",
+    "width": 320,
+    "height": 400,
+    "old": 343,
+    "current": 343
+  }
+]

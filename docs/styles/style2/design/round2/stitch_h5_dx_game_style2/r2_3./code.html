@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=440, height=782, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>R2: 等待他人行动·自动预选 (440x782)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  body {
+    width: 440px; height: 782px; overflow: hidden;
+    background: #F9F2E7;
+    font-family: 'Fredoka', 'Noto Sans SC', 'Nunito', sans-serif;
+    color: #4A3E3D; position: relative;
+  }
+  .table-stage {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 35%, #FFFDF9 0%, #F6ECDD 70%, #EBDBC5 100%);
+    overflow: hidden;
+  }
+  .poker-felt {
+    position: absolute; left: 20px; top: 68px; width: 400px; height: 590px;
+    border-radius: 175px / 215px;
+    background: radial-gradient(circle at 50% 40%, #76E5C5 0%, #48CEAA 65%, #35BA96 100%);
+    box-shadow: 
+      inset 0 6px 12px rgba(255,255,255,0.65),
+      inset 0 -8px 16px rgba(18, 92, 72, 0.3),
+      0 0 0 8px #FFEAA7, 0 0 0 14px #6C5295, 0 12px 24px rgba(108, 82, 149, 0.22);
+  }
+
+  /* 顶部状态栏 */
+  .top-bar {
+    position: absolute; top: 12px; left: 16px; right: 16px; height: 44px;
+    display: flex; justify-content: space-between; align-items: center; z-index: 50;
+  }
+  .btn-soft-pill {
+    width: 38px; height: 38px; border-radius: 13px;
+    background: #FFFFFF; border: 2px solid #EAD8C0;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 3px 0 #D4BEA2; color: #6C5295; font-size: 15px; font-weight: 900;
+  }
+  .chip-pill-btn {
+    height: 36px; padding: 0 10px 0 6px; border-radius: 18px;
+    background: #FFFFFF; border: 2px solid #EAD8C0;
+    display: flex; align-items: center; gap: 6px; color: #5D4037; font-size: 13px; font-weight: 800;
+  }
+  .toy-chip-icon {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: radial-gradient(circle, #54E1FF 20%, #00A8FF 100%);
+    border: 2px dashed #FFF; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 900; color: #004D73;
+  }
+
+  /* 底池双层 */
+  .pot-dual-zone {
+    position: absolute; top: 190px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 20;
+  }
+  .total-pot-capsule {
+    background: rgba(108, 82, 149, 0.92); border: 2px solid #FFEAA7;
+    border-radius: 16px; padding: 3px 14px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .single-main-pot {
+    background: rgba(255, 255, 255, 0.92); border: 1.5px solid #6C5295;
+    border-radius: 12px; padding: 2px 10px;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  /* 公共牌 (翻牌圈 3张) */
+  .board-cards-wrap {
+    position: absolute; top: 248px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 22;
+  }
+  .poker-card {
+    width: 44px; height: 62px; border-radius: 10px;
+    background: #FFFFFF; border: 2px solid #F0E6D8;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 3px 4px; position: relative;
+  }
+  .poker-card .val { font-size: 17px; font-weight: 900; }
+  .poker-card.red { color: #FF4757; }
+  .poker-card.black { color: #2F3542; }
+
+  /* 房间信息 */
+  .room-info-badge {
+    position: absolute; top: 406px; left: 50%; transform: translateX(-50%);
+    text-align: center; pointer-events: none; z-index: 10;
+  }
+  .room-info-badge .title { font-size: 11px; color: rgba(255, 255, 255, 0.85); font-weight: 700; }
+  .room-info-badge .meta { font-size: 11px; color: #FFF3BF; font-weight: 800; }
+
+  /* 7名对手曲奇头像与位置 (严格8人桌) */
+  .seat-node { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 25; }
+  .cookie-avatar-wrap {
+    width: 52px; height: 52px; border-radius: 19px; background: #FFEAA7; padding: 3px;
+    box-shadow: 0 4px 0 #DAB968; position: relative;
+  }
+  .cookie-avatar-img { width: 100%; height: 100%; border-radius: 16px; object-fit: cover; }
+  .seat-name-pill {
+    margin-top: -6px; max-width: 64px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    background: #6C5295; color: #FFEAA7; font-size: 10px; font-weight: 800; padding: 1px 6px; border-radius: 8px;
+  }
+  .seat-chips-pill {
+    margin-top: 1px; background: #FFFFFF; color: #5D4037; font-size: 11px; font-weight: 900;
+    padding: 1px 6px; border-radius: 8px; border: 1.5px solid #EAD8C0;
+  }
+
+  /* 对手行动中：依附头像的呼吸倒计时环 (依需求，对手依附头像，本人依附弃牌) */
+  .opponent-acting .cookie-avatar-wrap {
+    background: #FF9F43; box-shadow: 0 0 14px rgba(255, 159, 67, 0.8), 0 4px 0 #D35400;
+  }
+  .opponent-timer-halo {
+    position: absolute; inset: -4px; border-radius: 23px;
+    border: 3px solid #2ED5A8; animation: haloGlow 1.8s infinite alternate;
+  }
+  @keyframes haloGlow {
+    from { opacity: 0.6; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1.02); }
+  }
+
+  .pos-seat-top-a  { top: 88px;  left: 50%; transform: translateX(-50%); }
+  .pos-seat-top-b  { top: 118px; right: 26px; }
+  .pos-seat-rt-top { top: 224px; right: 16px; }
+  .pos-seat-rt-mid { top: 346px; right: 18px; }
+  .pos-seat-lt-bot { top: 346px; left: 18px; }
+  .pos-seat-lt-mid { top: 224px; left: 16px; }
+  .pos-seat-lt-top { top: 118px; left: 26px; }
+
+  /* 视口贴边加时与聊天 (彻底拆分) */
+  .viewport-side-timer {
+    position: absolute; bottom: 138px; left: 10px; z-index: 45;
+    background: #FFFFFF; border: 2px solid #6C5295;
+    border-radius: 15px; padding: 4px 7px;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    box-shadow: 0 3px 0 #D4BEA2; cursor: pointer;
+  }
+  .viewport-side-timer .timer-txt { font-size: 10px; color: #6C5295; font-weight: 900; }
+  .viewport-side-timer .diamond-price { display: flex; align-items: center; gap: 2px; font-size: 10px; color: #E84393; font-weight: 900; }
+
+  .btn-chat-bubble {
+    position: absolute; bottom: 82px; left: 10px; z-index: 45;
+    width: 40px; height: 40px; border-radius: 14px;
+    background: #FFFFFF; border: 2px solid #EAD8C0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 3px 0 #D4BEA2; color: #6C5295; cursor: pointer;
+  }
+  .btn-chat-bubble .icon { font-size: 16px; }
+  .btn-chat-bubble .txt { font-size: 8px; font-weight: 800; }
+
+  /* 本人玩家组 (本人等待状态：头像/手牌完整保留，下方切换为自动预选控件) */
+  .self-waiting-group {
+    position: absolute; bottom: 58px; left: 0; right: 0;
+    display: flex; flex-direction: column; align-items: center; z-index: 40;
+  }
+
+  /* 本人头像与手牌居中呈现 */
+  .self-center-status {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 6px;
+  }
+  .self-avatar-pill {
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .self-avatar-pill img {
+    width: 40px; height: 40px; border-radius: 14px; border: 2px solid #FFF;
+    background: #FFEAA7; box-shadow: 0 3px 0 #DAB968;
+  }
+  .self-avatar-pill span {
+    font-size: 9px; font-weight: 900; color: #FFEAA7; background: #6C5295;
+    padding: 1px 5px; border-radius: 6px; margin-top: -4px;
+  }
+
+  .self-cards-compact { display: flex; gap: 4px; }
+  .self-cards-compact .poker-card {
+    width: 44px; height: 60px; border-radius: 9px;
+  }
+
+  /* 提示条：等待他人行动 */
+  .waiting-status-toast {
+    background: rgba(255, 255, 255, 0.95); border: 1.5px solid #FF9F43;
+    color: #D35400; font-size: 11px; font-weight: 800;
+    padding: 3px 14px; border-radius: 12px; margin-bottom: 7px;
+    display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+  }
+  .waiting-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #FF9F43;
+    animation: blink 1s infinite alternate;
+  }
+  @keyframes blink { from { opacity: 0.3; } to { opacity: 1; } }
+
+  /* 自动预选控件排 (软糖曲奇风，含未选、选中、禁用态) */
+  .auto-operation-bar {
+    width: 416px; display: flex; justify-content: space-between; gap: 6px;
+    padding: 0 8px;
+  }
+  .auto-op-capsule {
+    flex: 1; height: 48px; border-radius: 15px;
+    background: #FFFFFF; border: 2px solid #EAD8C0;
+    display: flex; align-items: center; gap: 6px; padding: 0 8px;
+    box-shadow: 0 3px 0 #D4BEA2; cursor: pointer;
+  }
+  .auto-checkbox-soft {
+    width: 18px; height: 18px; border-radius: 6px;
+    background: #F5EDFA; border: 1.5px solid #896BB8;
+    display: flex; align-items: center; justify-content: center;
+    color: #6C5295; font-size: 11px; font-weight: 900;
+  }
+  .auto-op-txt { display: flex; flex-direction: column; justify-content: center; }
+  .auto-op-txt .main { font-size: 11px; font-weight: 900; color: #5D4037; line-height: 1.1; }
+  .auto-op-txt .sub { font-size: 8px; font-weight: 700; color: #8D6E63; }
+
+  /* 选中态 (薄荷绿高亮) */
+  .auto-op-capsule.selected {
+    background: linear-gradient(180deg, #2ED5A8 0%, #10AC84 100%);
+    border-color: #76F5D0; box-shadow: 0 3px 0 #0C7A5E, 0 4px 8px rgba(16, 172, 132, 0.25);
+  }
+  .auto-op-capsule.selected .auto-checkbox-soft {
+    background: #FFF; border-color: #FFF; color: #10AC84;
+  }
+  .auto-op-capsule.selected .auto-op-txt .main { color: #FFF; }
+  .auto-op-capsule.selected .auto-op-txt .sub { color: #E8FFF8; }
+
+  /* 禁用态 (Disabled) */
+  .auto-op-capsule.disabled {
+    opacity: 0.45; cursor: not-allowed; background: #F0ECE4; border-color: #D8D0C5;
+  }
+
+  /* 底部功能底栏 */
+  .bottom-dock {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 50px;
+    background: #FFFFFF; border-top: 2px solid #EAD8C0;
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 10px; z-index: 50;
+  }
+  .dock-item { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #6C5295; }
+</style>
+</head>
+<body>
+<div class="table-stage">
+  <div class="poker-felt"></div>
+
+  <!-- 顶部状态栏 -->
+  <div class="top-bar">
+    <div class="btn-soft-pill">◀</div>
+    <div class="chip-pill-btn"><div class="toy-chip-icon">◈</div><span>18.5K</span></div>
+    <div class="btn-soft-pill">🎧</div>
+  </div>
+
+  <!-- 双层底池 -->
+  <div class="pot-dual-zone">
+    <div class="total-pot-capsule"><span style="color:#FFEAA7; font-size:11px; font-weight:800;">总底池</span><span style="color:#FFF; font-size:15px; font-weight:900;">34.50 BB</span></div>
+    <div class="single-main-pot"><span style="color:#6C5295; font-size:10px; font-weight:800;">主池</span><span style="color:#D35400; font-size:12px; font-weight:900;">34.50 BB</span></div>
+  </div>
+
+  <!-- 公共牌 (3张) -->
+  <div class="board-cards-wrap">
+    <div class="poker-card black"><div class="val">K</div><div>♠</div></div>
+    <div class="poker-card red"><div class="val">9</div><div>♥</div></div>
+    <div class="poker-card red"><div class="val">4</div><div>♦</div></div>
+  </div>
+
+  <!-- 房间信息 -->
+  <div class="room-info-badge">
+    <div class="title">离线验收 · 909090-12</div>
+    <div class="meta">德州-普通-无限注 · 盲注 0.10/0.20</div>
+  </div>
+
+  <!-- 7名对手完整保留：右侧玩家正在行动中 (头像倒计时呼吸环) -->
+  <div class="seat-node pos-seat-rt-mid opponent-acting">
+    <div style="position: absolute; top:-12px; background:#FF9F43; color:#FFF; font-size:9px; font-weight:900; padding:1px 6px; border-radius:6px; z-index:30;">思考中 12s</div>
+    <div class="cookie-avatar-wrap">
+      <div class="opponent-timer-halo"></div>
+      <img class="cookie-avatar-img" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80">
+    </div>
+    <div class="seat-name-pill">右侧玩家</div>
+    <div class="seat-chips-pill">1.2K BB</div>
+  </div>
+
+  <div class="seat-node pos-seat-top-a">
+    <div class="cookie-avatar-wrap"><img class="cookie-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-pill">顶部甲</div>
+    <div class="seat-chips-pill">1K BB</div>
+  </div>
+  <div class="seat-node pos-seat-top-b">
+    <div class="cookie-avatar-wrap"><img class="cookie-avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-pill">顶部乙</div>
+    <div class="seat-chips-pill">1K BB</div>
+  </div>
+  <div class="seat-node pos-seat-rt-top">
+    <div class="cookie-avatar-wrap"><img class="cookie-avatar-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-pill">右上玩家</div>
+    <div class="seat-chips-pill">1K BB</div>
+  </div>
+  <div class="seat-node pos-seat-lt-bot">
+    <div class="cookie-avatar-wrap"><img class="cookie-avatar-img" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-pill">左下玩家</div>
+    <div class="seat-chips-pill">980 BB</div>
+  </div>
+  <div class="seat-node pos-seat-lt-mid">
+    <div class="cookie-avatar-wrap"><img class="cookie-avatar-img" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-pill">长昵称ABCDEFG</div>
+    <div class="seat-chips-pill">1K BB</div>
+  </div>
+  <div class="seat-node pos-seat-lt-top">
+    <div class="cookie-avatar-wrap"><img class="cookie-avatar-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80"></div>
+    <div class="seat-name-pill">左上玩家</div>
+    <div class="seat-chips-pill">1K BB</div>
+  </div>
+
+  <!-- 视口贴边加时与聊天 -->
+  <div class="viewport-side-timer">
+    <div class="timer-txt">⏱ +30s</div>
+    <div class="diamond-price">💎 10</div>
+  </div>
+  <div class="btn-chat-bubble">
+    <div class="icon">💬</div><div class="txt">聊天</div>
+  </div>
+
+  <!-- 本人玩家组 (等待态：保留本人头像、手牌、余额，切换自动预选控件) -->
+  <div class="self-waiting-group">
+    <!-- 本人信息与手牌状态 -->
+    <div class="self-center-status">
+      <div class="self-avatar-pill">
+        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="self">
+        <span>本人</span>
+      </div>
+      <div class="self-cards-compact">
+        <div class="poker-card red"><div class="val">Q</div><div>♥</div></div>
+        <div class="poker-card red"><div class="val">J</div><div>♥</div></div>
+      </div>
+      <div style="font-size: 11px; color: #5D4037; font-weight: 900; background:#FFF; border:1.5px solid #FF9F43; padding:2px 8px; border-radius:10px;">
+        余额: 1,020 BB
+      </div>
+    </div>
+
+    <!-- 状态指示条 -->
+    <div class="waiting-status-toast">
+      <div class="waiting-dot"></div>
+      <span>等待 右侧玩家 行动中... (已开启自动预选)</span>
+    </div>
+
+    <!-- 自动操作预选控件排 (4档：自动弃牌 / 让牌或弃牌 / 自动跟注 / 跟任意注) -->
+    <div class="auto-operation-bar">
+      <!-- 1. 自动弃牌 (未选) -->
+      <div class="auto-op-capsule">
+        <div class="auto-checkbox-soft"></div>
+        <div class="auto-op-txt">
+          <span class="main">自动弃牌</span>
+          <span class="sub">轮到即弃</span>
+        </div>
+      </div>
+
+      <!-- 2. 让牌/弃牌 (已选中) -->
+      <div class="auto-op-capsule selected">
+        <div class="auto-checkbox-soft">✓</div>
+        <div class="auto-op-txt">
+          <span class="main">让牌 / 弃牌</span>
+          <span class="sub">可让则让</span>
+        </div>
+      </div>
+
+      <!-- 3. 自动跟注 (未选) -->
+      <div class="auto-op-capsule">
+        <div class="auto-checkbox-soft"></div>
+        <div class="auto-op-txt">
+          <span class="main">跟注 4 BB</span>
+          <span class="sub">限额跟注</span>
+        </div>
+      </div>
+
+      <!-- 4. 跟任意注 (禁用态) -->
+      <div class="auto-op-capsule disabled">
+        <div class="auto-checkbox-soft">✕</div>
+        <div class="auto-op-txt">
+          <span class="main">跟任意注</span>
+          <span class="sub">暂不可用</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部功能底栏 -->
+  <div class="bottom-dock">
+    <div class="dock-item"><div class="dock-icon">🏆</div><div class="dock-label">战绩</div></div>
+    <div class="dock-item"><div class="dock-icon">🎖</div><div class="dock-label">牌谱</div></div>
+    <div class="dock-item"><div class="dock-icon">😊</div><div class="dock-label">表情</div></div>
+  </div>
+</div>
+</body>
+</html>

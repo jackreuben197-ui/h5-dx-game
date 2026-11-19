@@ -1,0 +1,18 @@
+[
+  {
+    "file": "art-direction-voice-v2.png",
+    "source": "/Users/magicd/.codex/generated_images/01a1ecfe-eeae-7022-94dc-e7525f55a036/exec-6a472466-d92e-44b4-a37d-dac0d55152b5.png",
+    "sha256": "c8d164f7c25b149a8d34f1a47e631643e6dc533ac8aec2080a24ba6eca31dfc7",
+    "tool": "built-in image_gen",
+    "editTarget": "art-direction.png",
+    "status": "visual microphone presence checked; not implementation acceptance"
+  },
+  {
+    "file": "art-direction-video-v2.png",
+    "source": "/Users/magicd/.codex/generated_images/01a1ecfe-eeae-7022-94dc-e7525f55a036/exec-3418ae10-6e7f-4695-8286-132b63ae49e5.png",
+    "sha256": "aeec883f4b37ed1dafc7f5ae12538ac520526ffefed60d3c9325c05402977e51",
+    "tool": "built-in image_gen",
+    "editTarget": "art-direction.png",
+    "status": "visual microphone presence checked; not implementation acceptance"
+  }
+]

@@ -1,0 +1,81 @@
+请为现有h5-dx-game移动扑克牌桌设计一套完整的全卡通可爱UI。技术为HTML DOM/TypeScript；这次仅做设计，不生成或改业务逻辑。附图是现有style1真实组件的离线八人桌，尺寸可能因截图缩放而变化，不要直接把它当精确测量图。
+
+视觉方向：柔软圆润的玩具感、奶油/薄荷/杏桃色，适量葡萄紫强调；独立可爱桌布和框架。头像保持动态真人图片能力，可爱风通过头像框/占位表现。保持扑克点数和花色、筹码金额、剩余时间及行动按钮清晰，装饰不要淹没信息。不要把它改成大厅、收集游戏或新增任务奖励系统。
+
+主稿440×782，补375×500短屏与320×400极小屏。保留original/classic/balanced/oval四个布局入口，本轮主画balanced并给classic双排变体；支持2–9座与2/4/5/6手牌。定位分清玩家局部组、公共牌、底栏和视口贴边按钮。原图有意的头像/加注按钮覆盖可重新设计，但必须写清双方点击区域。
+
+首轮交付以下6张稿及一页视觉组件规范：
+
+1. 八人balanced主桌，本人行动：返回/菜单、客服和筹码入口、座位头像/昵称/筹码/背牌/庄家/下注/行动、公共牌、总池与单池、房间信息、五档快捷下注、弃牌/跟注/加注、本人手牌/余额/牌型、加时价格、聊天、战绩/牌谱/表情底栏及认证标记都必须保留。
+2. 同桌加注面板：拉杆、金额气泡/百分比、确认与取消；不能静态放一个无法体现上下限的滑块。
+3. 等待他人行动：自动弃牌/让牌/跟注等预选及选中/禁用状态；本人无操作时不能仍画可点的正常操作按钮。
+4. classic双排公共牌：第一排固定五槽，第二排只画实际张数；说明两排的层次和间距。classic现版半牌高重叠是参考，不要误删第二排。
+5. 个性设置默认页：布局、金额显示、尺寸/牌背/牌面/桌布等实际选项，固定标题区域+内部滚动，不能删除快捷/系统页入口。
+6. 多池保险面板：池切换、玩家与公共牌、outs与排序、六档投保、价格、倒计时、购买/放弃/加时；池切换后选择仍可见。
+
+组件规范包含按钮普通/按下/选中/禁用/忙碌、头像等待/行动/留座/全下/赢家、牌正背/选中/高亮/变暗、弹窗/遮罩、金额与文字层级、素材尺寸/拉伸和响应式规则。外部H5拥有的大厅/登录/支付不重做；入口保持原行为。
+
+关键约束：业务金额/BB换算不改；用户动态头像不写死；倒计时本人在弃牌按钮、对手与留座在头像；现代竖屏加时/结算看牌按视口锚定；三/五快捷按钮均可支持；缩放档90/95/100/105/110仍可用；公共牌/手牌必须可读。不要新增购物、任务、货币或不存在的奖励按钮。
+
+这是第一批而非完整交付，后续还要补鱿鱼/蘑菇/暴击/Jackpot、带入与钱包、战绩/牌谱、聊天、资料、规则、音视频和MTT已有桌内状态。先明确未覆盖列表，禁止称整套功能已完成。
+
+请输出可审核的视觉稿与布局/组件说明，并标明原功能对应的位置和有意视觉差异。设计完成后需用户审稿，尚未获准真实style2开发。
+
+
+以下为完整功能与状态约束，第一批未覆盖的功能请标记为后续批次，不得删除。
+
+### 需求和状态契约
+
+以下每条的设计稿、实现与验收目前均待完成。CMP 编号见组件清单；功能编号保持稳定，后续补项递增。
+
+| 编号 | 功能与必须保留的行为 | 代码依据 | 参考场景 |
+| --- | --- | --- | --- |
+| UI-001 | 2–9座；观战、本人与对手、空座/坐下均有表现；4种布局选项 original/classic/balanced/oval继续可用 | RoomEntryPolicy、TableLayout、DefaultTableUi | empty、observer、figma |
+| UI-002 | 昵称、动态头像/失败占位、筹码、庄家、下注和行动气泡各自保留；长文本不盖金额与牌 | SeatView、SeatIdentityView、SeatBetView | long、zero、dealer-self、dealer-other |
+| UI-003 | 支持2/4/5/6手牌、背面、部分亮牌、弃牌、选择亮牌的眼睛标记与取消；保留真实牌型标签 | HandCardsView、CardView | four、five、six、partial、folded |
+| UI-004 | 公共牌0/3/4/5张阶段；第一排只有classic竖屏固定五槽；第二排任何阶段只渲染实际张数 | view.ts resize、PublicCardsView | board-* |
+| UI-005 | classic基线双排有半牌高重叠，不能套用所有牌禁止重叠；新稿若改变该视觉策略必须明确说明，两排牌仍可辨认 | LayoutClassic、TableLayoutProfile | board-dual-flop、figma classic |
+| UI-006 | 总底池、主池/边池与长金额可辨识，不能把总池和某个池误当重复装饰删去 | PotView | split、sidepots-long |
+| UI-007 | 弃牌、让牌、跟注、加注、全下、抓/不抓随actions变化，不永远画三个固定按钮；可让牌时弃牌确认 | action-controls、TableConfirmDialog | actions、check、allin-call、straddle |
+| UI-008 | 加注min/max/step/allIn来自原数据；金额气泡、百分比、确认/松手提交、取消、提交中禁用均保留；不得装饰性拖杆与真实金额脱节 | action-controls selection/render | raise |
+| UI-009 | 三/五快捷按钮、比例与金额保留；按钮复用，提交后清理；自定义百分比仍走原金额算法 | action-controls、PersonalSettingsView | actions、settings-quick |
+| UI-010 | 自动预选的选中状态与取消明确；金额/类型变化、跨街跨手、身份/座位/房间变化、sync及留座托管清除 | AutoOperationView及共享自动操作逻辑 | auto、flow、reconnect |
+| UI-011 | 本人行动倒计时依附弃牌按钮，对手与留座计时依附头像；结束后清理；动画造型可卡通化，时间含义不变 | SeatCountdownView、action-controls | acting-self、acting-other、countdown-expire |
+| UI-012 | 留座、补盲、等待、托管和返回游戏完整；不能把所有遮罩合并成一种状态 | SeatIdentityView、AutoOperationView | waiting-*、keep-*、post-blind |
+| UI-013 | WIN/ALLIN、自他差异、胜率、高亮/弹起/变暗和收池动画保留触发与清理时机；重连不重播历史发牌 | SeatEffectView、SpineEffects、TablePresenter | allin、settlement、handtype-*、flow |
+| UI-014 | 带入、补充、钱包选择、记分牌、钻石、押金、余额不足、安全提示/关闭续接；保留带入+押金分项，最大值与余额由业务决定 | BuyInView、WalletSelectView、BuyInController | bring-*、observer |
+| UI-015 | 带出、留座、站起与离桌确认，以及盈利留桌CallTime提示，不虚构直接成功 | BringOutView、TableMenuView | bring-out、reserved、calltime |
+| UI-016 | 个人设置的布局、金额、尺寸90/95/100/105/110、三/五快捷与提交模式、音效、语言、牌面/牌背/桌布按原可用规则保留 | PersonalSettingsView、settings.ts | settings、settings-quick、settings-system |
+| UI-017 | 初代与新版设置可见性有差异；保留两套现有牌面与现有桌布选项语义；不得启用未实现职业横屏或新增假选项 | PersonalSettingsView、appearance | settings四布局 |
+| UI-018 | 多池保险：切池保存选择、六档选择、outs/排序、金额、购买/放弃/加时、倒计时、强制最低投保；最终提交沿原逻辑 | InsuranceView、InsuranceChoices | insurance-single/multi/force |
+| UI-019 | 二道牌投票的头像、同意/拒绝、计时与双排结果保留 | AgreeSecondPcsView | second-board |
+| UI-020 | 鱿鱼加入、数量0仍有标记、剩余数、说明/不再提示、奖励与正负金额列表；结算背景可关闭且5秒自动关闭 | SquidView、SeatIdentityView | squid-*、intro-squid |
+| UI-021 | 蘑菇池/庄位移动、暴击开场、各玩法说明、Jackpot金额及H5记录入口；数据来自原逻辑 | MushroomView、MushroomBoomView、JackpotView | mushroom、critical、jackpot、intro-* |
+| UI-022 | 战绩与观众、离桌玩家、不同玩法tabs及轮次；仅鱿鱼+保险共存时隐藏保险tab，不能删掉普通保险tab | ReportView、ReportController | report、report-departed、report-mushroom |
+| UI-023 | 牌谱翻页/滑条、各街、公共牌、人数、底池、详情、Showdown、收藏与钻石余额，不用静态卡片取代功能 | HistoryView及History子组件 | history |
+| UI-024 | 玩家资料分本人/他人，备注、管理、赠钻与权限；不能所有用户都显示可用管理按钮 | PlayerInfoView | profile、gift |
+| UI-025 | 聊天、未读、长文本、内部滚动、弹幕；表情和道具目标/消耗、投掷动画保留 | TableChatView、EmojiView、DanmuView | chat、emoji、throw |
+| UI-026 | 普通/语音/视频桌导航分支；窗花、麦克风、发言状态与原权限；不能把视频槽换成永远固定插画 | NavigationView、TableMediaView | media-voice、media-video |
+| UI-027 | MTT等待、休息、泡沫、换桌、增购与托管等已有桌内状态；外壳结算仍由H5负责 | MttTableStateView、H5EntryController | mtt-* |
+| UI-028 | 房间信息点击打开桌面配置，返回/菜单、规则、客服等现有入口不能删除；外壳拥有的内容不在牌桌重做 | view.ts、TableToolsView、GameRulesView | room-details、menu、rules |
+| UI-029 | 加时/偷偷看/发发看现代竖屏以视口锚定，不随本人头像/按钮缩放漂移；价格、可用性和购买反馈不丢失 | side-buttons-layout、SettlementWatchView | actions、raise、watch |
+| UI-030 | 预加载、错误/重试、切桌、离桌、重连静态恢复；清理旧计时器、监听、动画和异步结果 | StyleClient、PreloadingView、BindingScope | entry-fail、reconnect、switch-room、exit |
+| UI-031 | 全部弹窗定义打开/关闭、遮罩、空白点击和层级；滚动内容与固定标题/底部按钮分开；关闭不得误触桌面 | DialogSurface、RecordDialogView、TableConfirmDialog | 各窗口与短屏 |
+| UI-032 | UI只消费状态和发命令；不修改金额单位、ShowBB、协议code、桥接握手、权限、服务端结果或H5外壳 | UiSkin、logic、net、host | 双风格同输入同操作验收 |
+
+### 设计尺寸与适配
+
+- 主稿采用440×782逻辑尺寸，补375×812、375×500和320×400；横屏844×390提供现有auto模式适配，不能把暂缓的职业横屏当作已实现功能。
+- 覆盖2/6/9座、本人处于不同seatID、2/4/5/6手牌、单/双公共牌、长昵称与长金额、100%与110%缩放；组合按风险抽样，不能只验一桌。
+- 布局按组件局部坐标及归一化锚点定义，不将截图像素直接硬编码为CSS；本人组、公共牌、导航和贴边按钮分别写清定位基准。
+- 保留安全区与底栏避让，弹窗在短屏内部滚动；点击热区与视觉装饰分离。组件有意覆盖必须在稿中标注，避免透明层吞掉手牌点击。
+- 多语言至少核对zh_CN和en长文案，保持原语言切换机制；不能依赖写死的中文图片表达关键金额或动态按钮文案。
+
+### Stitch 输出与审核要求
+
+1. 先给主牌桌、加注、自动操作、classic双排以及视觉规范，附真实参考图；不得只给主桌英雄图。
+2. 补设置三页、带入/钱包/不足、多池保险、鱿鱼结算、战绩/牌谱/聊天及其他状态。所有UI-编号应明确对应稿件或共用组件状态。
+3. 每个稿件交付尺寸、颜色、字体、间距、状态、层级、锚点、素材和响应式说明；动态数据使用独立文本层。
+4. 新增装饰不能新造玩法/入口；有意视觉差异列出，不以设计删减掩盖功能缺失。
+5. 审核完成后交用户确认。**未获确认不开始style2代码开发。**
+

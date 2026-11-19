@@ -1,0 +1,1745 @@
+
+> h5-dx-game@0.1.0 test
+> tsc -p tsconfig.test.json && node --test --test-concurrency=1 tests/*.test.mjs
+
+TAP version 13
+# Subtest: check acknowledges action without immediately dealing cards or changing chips/pot
+ok 1 - check acknowledges action without immediately dealing cards or changing chips/pot
+  ---
+  duration_ms: 1424.886167
+  type: 'test'
+  ...
+# Subtest: raise deducts exact selected chips; call uses authoritative amount; fold persists across streets
+ok 2 - raise deducts exact selected chips; call uses authoritative amount; fold persists across streets
+  ---
+  duration_ms: 1768.732584
+  type: 'test'
+  ...
+# Subtest: all-in commits full stack and a delayed command cannot mutate a new hand
+ok 3 - all-in commits full stack and a delayed command cannot mutate a new hand
+  ---
+  duration_ms: 1512.256583
+  type: 'test'
+  ...
+# Subtest: controller rejects invalid raise bounds, step and all-in amount before transport
+ok 4 - controller rejects invalid raise bounds, step and all-in amount before transport
+  ---
+  duration_ms: 1.848792
+  type: 'test'
+  ...
+# Subtest: CC all-in odds follow PublicCards and Showcards, then clear for the next hand
+ok 5 - CC all-in odds follow PublicCards and Showcards, then clear for the next hand
+  ---
+  duration_ms: 3.221041
+  type: 'test'
+  ...
+# Subtest: reconnect maps authoritative winCardsInfo and ignores an unavailable denominator
+ok 6 - reconnect maps authoritative winCardsInfo and ignores an unavailable denominator
+  ---
+  duration_ms: 0.580542
+  type: 'test'
+  ...
+# Subtest: CC chip formatting: wire units, truncation, K/M and fractional display
+ok 7 - CC chip formatting: wire units, truncation, K/M and fractional display
+  ---
+  duration_ms: 0.49375
+  type: 'test'
+  ...
+# Subtest: CC ShowBB uses twice smallBlind without modifying wire amounts
+ok 8 - CC ShowBB uses twice smallBlind without modifying wire amounts
+  ---
+  duration_ms: 0.102833
+  type: 'test'
+  ...
+# Subtest: buy-in and wallet use their original CC methods, not abbreviated table formatting
+ok 9 - buy-in and wallet use their original CC methods, not abbreviated table formatting
+  ---
+  duration_ms: 12.851625
+  type: 'test'
+  ...
+# Subtest: seat image hides old bitmap and ignores late load/error after replacement, leave and destroy
+ok 10 - seat image hides old bitmap and ignores late load/error after replacement, leave and destroy
+  ---
+  duration_ms: 0.490042
+  type: 'test'
+  ...
+# Subtest: two configured clips share one decoded request and use source-relative offsets
+ok 11 - two configured clips share one decoded request and use source-relative offsets
+  ---
+  duration_ms: 2.418
+  type: 'test'
+  ...
+# Subtest: mute or destruction before decode prevents late playback
+ok 12 - mute or destruction before decode prevents late playback
+  ---
+  duration_ms: 0.583291
+  type: 'test'
+  ...
+# Subtest: loop points stay inside the chosen clip, not the whole audio pack
+ok 13 - loop points stay inside the chosen clip, not the whole audio pack
+  ---
+  duration_ms: 0.858625
+  type: 'test'
+  ...
+# Subtest: independent long audio bypasses full-buffer fetch/decode and is released on stop
+ok 14 - independent long audio bypasses full-buffer fetch/decode and is released on stop
+  ---
+  duration_ms: 1.016459
+  type: 'test'
+  ...
+# Subtest: decorator binding syncs initial state, rebinds once and destroys only its own listeners
+ok 15 - decorator binding syncs initial state, rebinds once and destroys only its own listeners
+  ---
+  duration_ms: 0.787042
+  type: 'test'
+  ...
+# Subtest: binding priorities work across sources and subclass metadata does not leak to base
+ok 16 - binding priorities work across sources and subclass metadata does not leak to base
+  ---
+  duration_ms: 0.497333
+  type: 'test'
+  ...
+# Subtest: authoritative model replacement empties absent seats/cards/pot and preserves stable seat objects
+ok 17 - authoritative model replacement empties absent seats/cards/pot and preserves stable seat objects
+  ---
+  duration_ms: 0.761958
+  type: 'test'
+  ...
+# Subtest: sets CC readiness, retries an unacknowledged ready and releases business messages only after h5Ack
+ok 18 - sets CC readiness, retries an unacknowledged ready and releases business messages only after h5Ack
+  ---
+  duration_ms: 564.65975
+  type: 'test'
+  ...
+# Subtest: H5 may load after MX; h5Ready applies context and sends ccAck before queued business messages
+ok 19 - H5 may load after MX; h5Ready applies context and sends ccAck before queued business messages
+  ---
+  duration_ms: 282.079791
+  type: 'test'
+  ...
+# Subtest: destroy cancels pending readiness announcements and discards queued messages
+ok 20 - destroy cancels pending readiness announcements and discards queued messages
+  ---
+  duration_ms: 281.061167
+  type: 'test'
+  ...
+# Subtest: 9-player rotation preserves avatar-local bet anchors and clears protruding chips
+ok 21 - 9-player rotation preserves avatar-local bet anchors and clears protruding chips
+  ---
+  duration_ms: 2.137166
+  type: 'test'
+  ...
+# Subtest: 2–9-player layouts keep every seat finite and distinct before and after seating in both orientations
+ok 22 - 2–9-player layouts keep every seat finite and distinct before and after seating in both orientations
+  ---
+  duration_ms: 3.5715
+  type: 'test'
+  ...
+# Subtest: every UI component has a consumed config; every generated CSS reference resolves
+ok 23 - every UI component has a consumed config; every generated CSS reference resolves
+  ---
+  duration_ms: 146.947417
+  type: 'test'
+  ...
+# Subtest: changing a component layout config changes generated CSS without image packing
+ok 24 - changing a component layout config changes generated CSS without image packing
+  ---
+  duration_ms: 2.09025
+  type: 'test'
+  ...
+# Subtest: dev resolves font and component styles, keeping native dialog art lazy
+ok 25 - dev resolves font and component styles, keeping native dialog art lazy
+  ---
+  duration_ms: 69.062083
+  type: 'test'
+  ...
+# Subtest: explicit box uses local anchor while auto preserves responsive rules
+ok 26 - explicit box uses local anchor while auto preserves responsive rules
+  ---
+  duration_ms: 4.23175
+  type: 'test'
+  ...
+# Subtest: automatic fold and call keep their own configured selected/unselected icons
+ok 27 - automatic fold and call keep their own configured selected/unselected icons
+  ---
+  duration_ms: 7.23775
+  type: 'test'
+  ...
+# Subtest: explicit boxes preserve the former seat anchor under nested scale and translation
+ok 28 - explicit boxes preserve the former seat anchor under nested scale and translation
+  ---
+  duration_ms: 0.818917
+  type: 'test'
+  ...
+# Subtest: cross-component conversion stays explicit and rejects invisible frames
+ok 29 - cross-component conversion stays explicit and rejects invisible frames
+  ---
+  duration_ms: 0.203042
+  type: 'test'
+  ...
+# Subtest: new config paths are discovered without a manifest; duplicate paths share one atlas frame
+ok 30 - new config paths are discovered without a manifest; duplicate paths share one atlas frame
+  ---
+  duration_ms: 19.02175
+  type: 'test'
+  ...
+# Subtest: atlas overflow splits pages and an image keeps its complete original path key
+ok 31 - atlas overflow splits pages and an image keeps its complete original path key
+  ---
+  duration_ms: 7.791375
+  type: 'test'
+  ...
+# Subtest: audio packing uses exact sample offsets and splits at the decoded memory budget
+ok 32 - audio packing uses exact sample offsets and splits at the decoded memory budget
+  ---
+  duration_ms: 380.471417
+  type: 'test'
+  ...
+# Subtest: video is source-relative and explicitly rejects implicit concatenation
+ok 33 - video is source-relative and explicitly rejects implicit concatenation
+  ---
+  duration_ms: 2.694958
+  type: 'test'
+  ...
+# Subtest: development virtual modules use source files without any generated atlas dependency
+ok 34 - development virtual modules use source files without any generated atlas dependency
+  ---
+  duration_ms: 65.762334
+  type: 'test'
+  ...
+# Subtest: MP3 sprites retain sample-count timeline, clip gaps and original path keys
+ok 35 - MP3 sprites retain sample-count timeline, clip gaps and original path keys
+  ---
+  duration_ms: 291.774375
+  type: 'test'
+  ...
+# Subtest: duration threshold, loops and explicit standalone rules keep long sources out of packs
+ok 36 - duration threshold, loops and explicit standalone rules keep long sources out of packs
+  ---
+  duration_ms: 194.90625
+  type: 'test'
+  ...
+# Subtest: even short clips stay independent when their decoded footprint exceeds the group budget
+ok 37 - even short clips stay independent when their decoded footprint exceeds the group budget
+  ---
+  duration_ms: 38.676
+  type: 'test'
+  ...
+# Subtest: offline special scenarios reuse room data and clear on a new hand
+ok 38 - offline special scenarios reuse room data and clear on a new hand
+  ---
+  duration_ms: 1122.096708
+  type: 'test'
+  ...
+# Subtest: offline vote callback cannot publish into a reset hand or departed room
+ok 39 - offline vote callback cannot publish into a reset hand or departed room
+  ---
+  duration_ms: 2512.249416
+  type: 'test'
+  ...
+# Subtest: mushroom and critical-hit demos isolate delayed updates when reset
+ok 40 - mushroom and critical-hit demos isolate delayed updates when reset
+  ---
+  duration_ms: 6362.204084
+  type: 'test'
+  ...
+# Subtest: offline special operations follow a non-first local seat
+ok 41 - offline special operations follow a non-first local seat
+  ---
+  duration_ms: 4.169583
+  type: 'test'
+  ...
+# Subtest: Table 9: original animation renders two loops, including meshes / clipping / additive slots
+ok 42 - Table 9: original animation renders two loops, including meshes / clipping / additive slots
+  ---
+  duration_ms: 50.046958
+  type: 'test'
+  ...
+# Subtest: Table 10: original animation renders two loops, including meshes / clipping / additive slots
+ok 43 - Table 10: original animation renders two loops, including meshes / clipping / additive slots
+  ---
+  duration_ms: 45.581375
+  type: 'test'
+  ...
+# Subtest: Table 11: original animation renders two loops, including meshes / clipping / additive slots
+ok 44 - Table 11: original animation renders two loops, including meshes / clipping / additive slots
+  ---
+  duration_ms: 3171.519667
+  type: 'test'
+  ...
+# Subtest: Table 12: original animation renders two loops, including meshes / clipping / additive slots
+ok 45 - Table 12: original animation renders two loops, including meshes / clipping / additive slots
+  ---
+  duration_ms: 5.428375
+  type: 'test'
+  ...
+# Subtest: Table 13: original animation renders two loops, including meshes / clipping / additive slots
+ok 46 - Table 13: original animation renders two loops, including meshes / clipping / additive slots
+  ---
+  duration_ms: 170.571125
+  type: 'test'
+  ...
+# Subtest: Table 14: original animation renders two loops, including meshes / clipping / additive slots
+ok 47 - Table 14: original animation renders two loops, including meshes / clipping / additive slots
+  ---
+  duration_ms: 65.213875
+  type: 'test'
+  ...
+# Subtest: CC 132 gift broadcast reaches room animation data without rebuilding the table
+ok 48 - CC 132 gift broadcast reaches room animation data without rebuilding the table
+  ---
+  duration_ms: 1.843583
+  type: 'test'
+  ...
+# Subtest: successful local gift and its server echo play once per gift
+ok 49 - successful local gift and its server echo play once per gift
+  ---
+  duration_ms: 0.113333
+  type: 'test'
+  ...
+# Subtest: global 145 passes the room filter, deduplicates approval, refreshes funds and emits notice
+ok 50 - global 145 passes the room filter, deduplicates approval, refreshes funds and emits notice
+  ---
+  duration_ms: 3.069875
+  type: 'test'
+  ...
+# Subtest: order listeners unsubscribe and only terminal statuses are accepted
+ok 51 - order listeners unsubscribe and only terminal statuses are accepted
+  ---
+  duration_ms: 0.12125
+  type: 'test'
+  ...
+# Subtest: diamond quote preserves CC rounding before discount and excludes bonus diamonds
+ok 52 - diamond quote preserves CC rounding before discount and excludes bonus diamonds
+  ---
+  duration_ms: 2.03325
+  type: 'test'
+  ...
+# Subtest: catalog checks pending trader application only when trader eligibility expired
+ok 53 - catalog checks pending trader application only when trader eligibility expired
+  ---
+  duration_ms: 0.506084
+  type: 'test'
+  ...
+# Subtest: late purchase response after room disposal is rejected
+ok 54 - late purchase response after room disposal is rejected
+  ---
+  duration_ms: 0.453709
+  type: 'test'
+  ...
+# Subtest: preloaded catalog is reused, concurrent opens deduplicate and mutations invalidate
+ok 55 - preloaded catalog is reused, concurrent opens deduplicate and mutations invalidate
+  ---
+  duration_ms: 0.317
+  type: 'test'
+  ...
+# Subtest: CC emoji smoke: original atlas, animation and preview bounds are valid
+ok 56 - CC emoji smoke: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 49.83725
+  type: 'test'
+  ...
+# Subtest: CC emoji purpleSmoke: original atlas, animation and preview bounds are valid
+ok 57 - CC emoji purpleSmoke: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 12.612833
+  type: 'test'
+  ...
+# Subtest: CC emoji gun: original atlas, animation and preview bounds are valid
+ok 58 - CC emoji gun: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 28.674792
+  type: 'test'
+  ...
+# Subtest: CC emoji smile: original atlas, animation and preview bounds are valid
+ok 59 - CC emoji smile: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 18.346875
+  type: 'test'
+  ...
+# Subtest: CC emoji shock: original atlas, animation and preview bounds are valid
+ok 60 - CC emoji shock: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 6.71225
+  type: 'test'
+  ...
+# Subtest: CC emoji poor: original atlas, animation and preview bounds are valid
+ok 61 - CC emoji poor: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 9.973666
+  type: 'test'
+  ...
+# Subtest: CC emoji pokePanda: original atlas, animation and preview bounds are valid
+ok 62 - CC emoji pokePanda: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 8.51075
+  type: 'test'
+  ...
+# Subtest: CC emoji amazed: original atlas, animation and preview bounds are valid
+ok 63 - CC emoji amazed: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 3.115625
+  type: 'test'
+  ...
+# Subtest: CC emoji octopus: original atlas, animation and preview bounds are valid
+ok 64 - CC emoji octopus: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 94.035416
+  type: 'test'
+  ...
+# Subtest: CC emoji happyMouse: original atlas, animation and preview bounds are valid
+ok 65 - CC emoji happyMouse: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 17.363459
+  type: 'test'
+  ...
+# Subtest: CC emoji knifeMan: original atlas, animation and preview bounds are valid
+ok 66 - CC emoji knifeMan: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 18.781958
+  type: 'test'
+  ...
+# Subtest: CC emoji sadDog: original atlas, animation and preview bounds are valid
+ok 67 - CC emoji sadDog: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 12.673375
+  type: 'test'
+  ...
+# Subtest: CC emoji toothlessPanda: original atlas, animation and preview bounds are valid
+ok 68 - CC emoji toothlessPanda: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 4.981375
+  type: 'test'
+  ...
+# Subtest: CC emoji Whistle: original atlas, animation and preview bounds are valid
+ok 69 - CC emoji Whistle: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 12.472042
+  type: 'test'
+  ...
+# Subtest: CC emoji coolDog: original atlas, animation and preview bounds are valid
+ok 70 - CC emoji coolDog: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 14.121708
+  type: 'test'
+  ...
+# Subtest: CC emoji scorn: original atlas, animation and preview bounds are valid
+ok 71 - CC emoji scorn: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 14.910958
+  type: 'test'
+  ...
+# Subtest: CC emoji happy: original atlas, animation and preview bounds are valid
+ok 72 - CC emoji happy: original atlas, animation and preview bounds are valid
+  ---
+  duration_ms: 9.693333
+  type: 'test'
+  ...
+# Subtest: CC prop mapping preserves discount windows, subscriptions, inventory and category limits
+ok 73 - CC prop mapping preserves discount windows, subscriptions, inventory and category limits
+  ---
+  duration_ms: 1.197333
+  type: 'test'
+  ...
+# Subtest: Emoji uses H5 binary bridge, waits for 1019, ignores self echo and scopes 1121 by room
+ok 74 - Emoji uses H5 binary bridge, waits for 1019, ignores self echo and scopes 1121 by room
+  ---
+  duration_ms: 30.604459
+  type: 'test'
+  ...
+# Subtest: Failed, malformed and unseated emoji messages do not play or send
+ok 75 - Failed, malformed and unseated emoji messages do not play or send
+  ---
+  duration_ms: 8.456708
+  type: 'test'
+  ...
+# Subtest: CC owned prop consumes inventory once and broadcasts with CT_NONE
+ok 76 - CC owned prop consumes inventory once and broadcasts with CT_NONE
+  ---
+  duration_ms: 3.230459
+  type: 'test'
+  ...
+# Subtest: throw prop keeps CC eligibility, target and 1019/1121 deduplication
+ok 77 - throw prop keeps CC eligibility, target and 1019/1121 deduplication
+  ---
+  duration_ms: 3.479
+  type: 'test'
+  ...
+# Subtest: own action countdown moves to Fold while opponents and keep-seat data stay available
+ok 78 - own action countdown moves to Fold while opponents and keep-seat data stay available
+  ---
+  duration_ms: 0.747834
+  type: 'test'
+  ...
+# Subtest: cash entry allows Omaha4/5/6 and 6+, but still excludes encrypted cards and matches
+ok 79 - cash entry allows Omaha4/5/6 and 6+, but still excludes encrypted cards and matches
+  ---
+  duration_ms: 1.289292
+  type: 'test'
+  ...
+# Subtest: Omaha start, projection and pot-limit betting retain authoritative card count and maximum
+ok 80 - Omaha start, projection and pot-limit betting retain authoritative card count and maximum
+  ---
+  duration_ms: 3.952792
+  type: 'test'
+  ...
+# Subtest: H5 duplicate entry is deduplicated; changing identity clears old table before entering same room
+ok 81 - H5 duplicate entry is deduplicated; changing identity clears old table before entering same room
+  ---
+  duration_ms: 0.747834
+  type: 'test'
+  ...
+# Subtest: MTT uses the H5 current club as CC does, falling back to the match club
+ok 82 - MTT uses the H5 current club as CC does, falling back to the match club
+  ---
+  duration_ms: 0.170459
+  type: 'test'
+  ...
+# Subtest: refresh restores only the same seated account after H5 opens its socket
+ok 83 - refresh restores only the same seated account after H5 opens its socket
+  ---
+  duration_ms: 0.458584
+  type: 'test'
+  ...
+# Subtest: entry failure returns to its H5 source or home; obsolete failure cannot close a new session
+ok 84 - entry failure returns to its H5 source or home; obsolete failure cannot close a new session
+  ---
+  duration_ms: 0.822333
+  type: 'test'
+  ...
+# Subtest: shared CC language aliases, labels and hand types change synchronously in four languages
+ok 85 - shared CC language aliases, labels and hand types change synchronously in four languages
+  ---
+  duration_ms: 21.992458
+  type: 'test'
+  ...
+# Subtest: updating a bound value uses the newest amount after language changes
+ok 86 - updating a bound value uses the newest amount after language changes
+  ---
+  duration_ms: 0.216375
+  type: 'test'
+  ...
+# Subtest: H5 syncLanguage refreshes existing labels without entering or leaving the room
+ok 87 - H5 syncLanguage refreshes existing labels without entering or leaving the room
+  ---
+  duration_ms: 0.292167
+  type: 'test'
+  ...
+# Subtest: Jackpot wire changes preserve parent-pool fallback and reconnect does not replay opening
+ok 88 - Jackpot wire changes preserve parent-pool fallback and reconnect does not replay opening
+  ---
+  duration_ms: 3.043458
+  type: 'test'
+  ...
+# Subtest: CallTime uses own authoritative settlement, rejects stale hands and clears on standup
+ok 89 - CallTime uses own authoritative settlement, rejects stale hands and clears on standup
+  ---
+  duration_ms: 1.382334
+  type: 'test'
+  ...
+# Subtest: Jackpot preloads once, forwards CC panel props and awards; abort suppresses late UI
+ok 90 - Jackpot preloads once, forwards CC panel props and awards; abort suppresses late UI
+  ---
+  duration_ms: 0.855875
+  type: 'test'
+  ...
+# Subtest: wide 9/8/7 layouts match requested side counts with hero at bottom center
+ok 91 - wide 9/8/7 layouts match requested side counts with hero at bottom center
+  ---
+  duration_ms: 0.971583
+  type: 'test'
+  ...
+# Subtest: all supported landscape tables keep player frames inside usable viewport
+ok 92 - all supported landscape tables keep player frames inside usable viewport
+  ---
+  duration_ms: 0.958042
+  type: 'test'
+  ...
+# Subtest: spectator bottom player bets above its avatar in every portrait layout
+ok 93 - spectator bottom player bets above its avatar in every portrait layout
+  ---
+  duration_ms: 4.105958
+  type: 'test'
+  ...
+# Subtest: original compact room details preserve original public card spacing and layout identity
+ok 94 - original compact room details preserve original public card spacing and layout identity
+  ---
+  duration_ms: 0.177292
+  type: 'test'
+  ...
+# Subtest: layout content preserves classic overlapping dual boards and finite coordinates across sizes
+ok 95 - layout content preserves classic overlapping dual boards and finite coordinates across sizes
+  ---
+  duration_ms: 6.44725
+  type: 'test'
+  ...
+# Subtest: configured layout instances do not leak viewport changes between tables
+ok 96 - configured layout instances do not leak viewport changes between tables
+  ---
+  duration_ms: 0.594667
+  type: 'test'
+  ...
+# Subtest: QA action rows follow the adjusted hero rather than an absolute screen height
+ok 97 - QA action rows follow the adjusted hero rather than an absolute screen height
+  ---
+  duration_ms: 0.459417
+  type: 'test'
+  ...
+# Subtest: balanced reserves the hand/result rows while keeping the balance anchored to navigation
+ok 98 - balanced reserves the hand/result rows while keeping the balance anchored to navigation
+  ---
+  duration_ms: 0.140166
+  type: 'test'
+  ...
+# Subtest: modern layouts keep public card width at the same setting for single and dual boards
+ok 99 - modern layouts keep public card width at the same setting for single and dual boards
+  ---
+  duration_ms: 0.253375
+  type: 'test'
+  ...
+# Subtest: balanced uses the avatar bottom-right corner for opponents’ card backs
+ok 100 - balanced uses the avatar bottom-right corner for opponents’ card backs
+  ---
+  duration_ms: 0.157916
+  type: 'test'
+  ...
+# Subtest: hidden preload starts at construction; entry does not request until ready; task reused
+ok 101 - hidden preload starts at construction; entry does not request until ready; task reused
+  ---
+  duration_ms: 3.225709
+  type: 'test'
+  ...
+# Subtest: leave during preload prevents room request
+ok 102 - leave during preload prevents room request
+  ---
+  duration_ms: 0.157458
+  type: 'test'
+  ...
+# Subtest: old response cannot overwrite newer room, even if host ignores abort
+ok 103 - old response cannot overwrite newer room, even if host ignores abort
+  ---
+  duration_ms: 1.128667
+  type: 'test'
+  ...
+# Subtest: failed background resource load can retry in foreground
+ok 104 - failed background resource load can retry in foreground
+  ---
+  duration_ms: 0.818125
+  type: 'test'
+  ...
+# Subtest: initial snapshot plus queued deltas render together; stale updates rejected
+ok 105 - initial snapshot plus queued deltas render together; stale updates rejected
+  ---
+  duration_ms: 0.265
+  type: 'test'
+  ...
+# Subtest: failed entry is visible and retryable
+ok 106 - failed entry is visible and retryable
+  ---
+  duration_ms: 0.152375
+  type: 'test'
+  ...
+# Subtest: patch cannot cross hand boundary; next hand requires full snapshot
+ok 107 - patch cannot cross hand boundary; next hand requires full snapshot
+  ---
+  duration_ms: 0.139292
+  type: 'test'
+  ...
+# Subtest: rapid duplicate commands send once; no optimistic chip mutation
+ok 108 - rapid duplicate commands send once; no optimistic chip mutation
+  ---
+  duration_ms: 0.25825
+  type: 'test'
+  ...
+# Subtest: foreground preview delay also applies to cached resources and does not enter early
+ok 109 - foreground preview delay also applies to cached resources and does not enter early
+  ---
+  duration_ms: 162.844875
+  type: 'test'
+  ...
+# Subtest: leaving during the preview delay cancels entry without a delayed request
+ok 110 - leaving during the preview delay cancels entry without a delayed request
+  ---
+  duration_ms: 1.966916
+  type: 'test'
+  ...
+# Subtest: preview progress follows resource completion and 10-second preview time cannot complete resources
+ok 111 - preview progress follows resource completion and 10-second preview time cannot complete resources
+  ---
+  duration_ms: 38.842166
+  type: 'test'
+  ...
+# Subtest: original keeps fixed sizes but shares card faces and the chosen quick-bet mode
+ok 112 - original keeps fixed sizes but shares card faces and the chosen quick-bet mode
+  ---
+  duration_ms: 1.23275
+  type: 'test'
+  ...
+# Subtest: numbered desks work in every layout and original preserves the modern felt choice
+ok 113 - numbered desks work in every layout and original preserves the modern felt choice
+  ---
+  duration_ms: 0.25575
+  type: 'test'
+  ...
+# Subtest: CC shortcut pots keep all configured buttons and clamp low/high/all-in amounts
+ok 114 - CC shortcut pots keep all configured buttons and clamp low/high/all-in amounts
+  ---
+  duration_ms: 0.288625
+  type: 'test'
+  ...
+# Subtest: CC bring-out retains the minimum stack, handles a partial final step, rejects overspending
+ok 115 - CC bring-out retains the minimum stack, handles a partial final step, rejects overspending
+  ---
+  duration_ms: 0.096166
+  type: 'test'
+  ...
+# Subtest: menu actions serialize the original CC fields through wsSend
+ok 116 - menu actions serialize the original CC fields through wsSend
+  ---
+  duration_ms: 3.083166
+  type: 'test'
+  ...
+# Subtest: BringIn/StoreChips callbacks update authority, while failed responses leave data intact
+ok 117 - BringIn/StoreChips callbacks update authority, while failed responses leave data intact
+  ---
+  duration_ms: 2.737333
+  type: 'test'
+  ...
+# Subtest: personal preferences preserve CC storage keys and notify synchronously
+ok 118 - personal preferences preserve CC storage keys and notify synchronously
+  ---
+  duration_ms: 0.313458
+  type: 'test'
+  ...
+# Subtest: quick bet reset preserves table appearance and original ratio presets
+ok 119 - quick bet reset preserves table appearance and original ratio presets
+  ---
+  duration_ms: 0.310625
+  type: 'test'
+  ...
+# Subtest: account and brand preferences are isolated, migrated once and restored after reload
+ok 120 - account and brand preferences are isolated, migrated once and restored after reload
+  ---
+  duration_ms: 0.548125
+  type: 'test'
+  ...
+# Subtest: appearance rejects corrupt choices and duplicate changes do not notify
+ok 121 - appearance rejects corrupt choices and duplicate changes do not notify
+  ---
+  duration_ms: 0.214916
+  type: 'test'
+  ...
+# Subtest: custom percentage pots retain CC amount rules and isolate modes/accounts across reload
+ok 122 - custom percentage pots retain CC amount rules and isolate modes/accounts across reload
+  ---
+  duration_ms: 0.238625
+  type: 'test'
+  ...
+# Subtest: skin layout defaults apply only without a saved layout and preserve original callers
+ok 123 - skin layout defaults apply only without a saved layout and preserve original callers
+  ---
+  duration_ms: 0.111417
+  type: 'test'
+  ...
+# Subtest: CC best-five evaluator updates my visible hand type after each public street
+ok 124 - CC best-five evaluator updates my visible hand type after each public street
+  ---
+  duration_ms: 1.196625
+  type: 'test'
+  ...
+# Subtest: no hand-type badge for covered cards, preflop, folds or finished hands
+ok 125 - no hand-type badge for covered cards, preflop, folds or finished hands
+  ---
+  duration_ms: 0.089083
+  type: 'test'
+  ...
+# Subtest: Omaha must use exactly two hole cards even when the board is a royal flush
+ok 126 - Omaha must use exactly two hole cards even when the board is a royal flush
+  ---
+  duration_ms: 0.882584
+  type: 'test'
+  ...
+# Subtest: 6+ recognizes A6789 while ordinary Holdem does not
+ok 127 - 6+ recognizes A6789 while ordinary Holdem does not
+  ---
+  duration_ms: 0.102167
+  type: 'test'
+  ...
+# Subtest: seat data recomputes a pair into a straight when the river completes broadway
+ok 128 - seat data recomputes a pair into a straight when the river completes broadway
+  ---
+  duration_ms: 2.105416
+  type: 'test'
+  ...
+# Subtest: MTT assignment accepts only the same match; cash requests remain room-bound
+ok 129 - MTT assignment accepts only the same match; cash requests remain room-bound
+  ---
+  duration_ms: 5.109958
+  type: 'test'
+  ...
+# Subtest: MTT add-on follows normal and plus limits, resets per hand, prevents duplicate submissions
+ok 130 - MTT add-on follows normal and plus limits, resets per hand, prevents duplicate submissions
+  ---
+  duration_ms: 1.320375
+  type: 'test'
+  ...
+# Subtest: MTT break waits for end of hand and idle grace; clear retains occupied seats and chips
+ok 131 - MTT break waits for end of hand and idle grace; clear retains occupied seats and chips
+  ---
+  duration_ms: 0.820834
+  type: 'test'
+  ...
+# Subtest: MTT named handlers update blind and bubble state from actual protocol serialization
+ok 132 - MTT named handlers update blind and bubble state from actual protocol serialization
+  ---
+  duration_ms: 0.784834
+  type: 'test'
+  ...
+# Subtest: MTT global room-ready trusts body match and only transfers after exchange
+ok 133 - MTT global room-ready trusts body match and only transfers after exchange
+  ---
+  duration_ms: 0.669708
+  type: 'test'
+  ...
+# Subtest: MTT elimination keeps settlement props and only enables watching after authoritative observer entry
+ok 134 - MTT elimination keeps settlement props and only enables watching after authoritative observer entry
+  ---
+  duration_ms: 3.862334
+  type: 'test'
+  ...
+# [resolveTemplateTextByKey] 赛事名称模板 key 为空
+# Subtest: aborted assigned-room request drains a late response before same-match retry
+ok 135 - aborted assigned-room request drains a late response before same-match retry
+  ---
+  duration_ms: 3.71475
+  type: 'test'
+  ...
+# Subtest: MTT entrance requests detail rather than cash Rooms and retains assigned room in snapshot
+ok 136 - MTT entrance requests detail rather than cash Rooms and retains assigned room in snapshot
+  ---
+  duration_ms: 4.222417
+  type: 'test'
+  ...
+# Subtest: MTT next blind deadline counts down without resetting on presentation refresh
+ok 137 - MTT next blind deadline counts down without resetting on presentation refresh
+  ---
+  duration_ms: 0.698792
+  type: 'test'
+  ...
+# Subtest: MTT observer entry failure keeps continue-watching disabled and stale success cannot revive a disposed panel
+ok 138 - MTT observer entry failure keeps continue-watching disabled and stale success cannot revive a disposed panel
+  ---
+  duration_ms: 5.545167
+  type: 'test'
+  ...
+# Subtest: MTT return-lobby from an active eliminated observer sends leave once and ignores duplicate panel events after disposal
+ok 139 - MTT return-lobby from an active eliminated observer sends leave once and ignores duplicate panel events after disposal
+  ---
+  duration_ms: 2.056333
+  type: 'test'
+  ...
+# Subtest: mushroom reconnect restores pool, CC rounded count and dealer without movement; clear-hand retains pool
+ok 140 - mushroom reconnect restores pool, CC rounded count and dealer without movement; clear-hand retains pool
+  ---
+  duration_ms: 2.661833
+  type: 'test'
+  ...
+# Subtest: critical-hit entry animates once, rejects stale start, restores without replay, and zero pool preserves the CC previous badge
+ok 141 - critical-hit entry animates once, rejects stale start, restores without replay, and zero pool preserves the CC previous badge
+  ---
+  duration_ms: 0.854458
+  type: 'test'
+  ...
+# Subtest: boompot flop/turn/river and mushroom settlement/split keep authoritative chips and deposit
+ok 142 - boompot flop/turn/river and mushroom settlement/split keep authoritative chips and deposit
+  ---
+  duration_ms: 1.305792
+  type: 'test'
+  ...
+# Subtest: binary WS callbacks update observable data without UI calls: deal, check, fold, board, winner, clear
+ok 143 - binary WS callbacks update observable data without UI calls: deal, check, fold, board, winner, clear
+  ---
+  duration_ms: 49.813667
+  type: 'test'
+  ...
+# Subtest: seat lifecycle and user identity are replaced, and another room cannot change data
+ok 144 - seat lifecycle and user identity are replaced, and another room cannot change data
+  ---
+  duration_ms: 9.83725
+  type: 'test'
+  ...
+# Subtest: entry buffers notifications after the authoritative wire boundary; cancellation detaches the room
+ok 145 - entry buffers notifications after the authoritative wire boundary; cancellation detaches the room
+  ---
+  duration_ms: 4.711458
+  type: 'test'
+  ...
+# Subtest: out-of-order public cards trigger full sync rather than corrupting the board
+ok 146 - out-of-order public cards trigger full sync rather than corrupting the board
+  ---
+  duration_ms: 6.218
+  type: 'test'
+  ...
+# Subtest: action request uses server limits, no optimistic chips, and one send per turn
+ok 147 - action request uses server limits, no optimistic chips, and one send per turn
+  ---
+  duration_ms: 6.202375
+  type: 'test'
+  ...
+# Subtest: HTTP follows CC headers/envelope, distinguishes failures, cancels and rejects previous account responses
+ok 148 - HTTP follows CC headers/envelope, distinguishes failures, cancels and rejects previous account responses
+  ---
+  duration_ms: 6.897875
+  type: 'test'
+  ...
+# Subtest: CC throw prop 600 retains every original Spine clip
+ok 149 - CC throw prop 600 retains every original Spine clip
+  ---
+  duration_ms: 18.072
+  type: 'test'
+  ...
+# Subtest: CC throw prop 601 retains every original Spine clip
+ok 150 - CC throw prop 601 retains every original Spine clip
+  ---
+  duration_ms: 1.746375
+  type: 'test'
+  ...
+# Subtest: CC throw prop 602 retains every original Spine clip
+ok 151 - CC throw prop 602 retains every original Spine clip
+  ---
+  duration_ms: 2.439709
+  type: 'test'
+  ...
+# Subtest: CC throw prop 603 retains every original Spine clip
+ok 152 - CC throw prop 603 retains every original Spine clip
+  ---
+  duration_ms: 2.091834
+  type: 'test'
+  ...
+# Subtest: CC throw prop 604 retains every original Spine clip
+ok 153 - CC throw prop 604 retains every original Spine clip
+  ---
+  duration_ms: 31.378
+  type: 'test'
+  ...
+# Subtest: CC throw prop 605 retains every original Spine clip
+ok 154 - CC throw prop 605 retains every original Spine clip
+  ---
+  duration_ms: 2.266958
+  type: 'test'
+  ...
+# Subtest: CC throw prop 606 retains every original Spine clip
+ok 155 - CC throw prop 606 retains every original Spine clip
+  ---
+  duration_ms: 8.601167
+  type: 'test'
+  ...
+# Subtest: CC throw prop 607 retains every original Spine clip
+ok 156 - CC throw prop 607 retains every original Spine clip
+  ---
+  duration_ms: 4.417666
+  type: 'test'
+  ...
+# Subtest: CC throw prop 608 retains every original Spine clip
+ok 157 - CC throw prop 608 retains every original Spine clip
+  ---
+  duration_ms: 15.511083
+  type: 'test'
+  ...
+# Subtest: CC throw prop 609 retains every original Spine clip
+ok 158 - CC throw prop 609 retains every original Spine clip
+  ---
+  duration_ms: 6.816083
+  type: 'test'
+  ...
+# Subtest: CC throw prop 610 retains every original Spine clip
+ok 159 - CC throw prop 610 retains every original Spine clip
+  ---
+  duration_ms: 26.728459
+  type: 'test'
+  ...
+# Subtest: CC throw prop 611 retains every original Spine clip
+ok 160 - CC throw prop 611 retains every original Spine clip
+  ---
+  duration_ms: 32.950125
+  type: 'test'
+  ...
+# Subtest: fallback runtime resolves the CJS package actually shipped by CC
+ok 161 - fallback runtime resolves the CJS package actually shipped by CC
+  ---
+  duration_ms: 0.780125
+  type: 'test'
+  ...
+# Subtest: CC binary header is big endian, observes byteOffset, rejects malformed and unsafe IDs
+ok 162 - CC binary header is big endian, observes byteOffset, rejects malformed and unsafe IDs
+  ---
+  duration_ms: 2.107292
+  type: 'test'
+  ...
+# Subtest: entry sends Rooms then EnterRoom and maps authoritative seats/cards/pot with no deal animation
+ok 163 - entry sends Rooms then EnterRoom and maps authoritative seats/cards/pot with no deal animation
+  ---
+  duration_ms: 34.126625
+  type: 'test'
+  ...
+# Subtest: closed room and EnterRoom business errors reject rather than show a fake table
+ok 164 - closed room and EnterRoom business errors reject rather than show a fake table
+  ---
+  duration_ms: 2.137084
+  type: 'test'
+  ...
+# Subtest: RPC ID, code, room and match are all correlated; timeout and abort detach active waits
+ok 165 - RPC ID, code, room and match are all correlated; timeout and abort detach active waits
+  ---
+  duration_ms: 32.593375
+  type: 'test'
+  ...
+# Subtest: late aborted non-RPC reply is drained before another same-room request is allowed
+ok 166 - late aborted non-RPC reply is drained before another same-room request is allowed
+  ---
+  duration_ms: 2.480459
+  type: 'test'
+  ...
+# Subtest: SyncEnter clears hand residue, handles delay-see-card and operator own cards without replaying
+ok 167 - SyncEnter clears hand residue, handles delay-see-card and operator own cards without replaying
+  ---
+  duration_ms: 1.125375
+  type: 'test'
+  ...
+# Subtest: reconnect triggers SyncEnter and publishes a fresh static snapshot
+ok 168 - reconnect triggers SyncEnter and publishes a fresh static snapshot
+  ---
+  duration_ms: 10.043334
+  type: 'test'
+  ...
+# Subtest: 2-player room enters through Rooms and EnterRoom with server seat IDs preserved
+ok 169 - 2-player room enters through Rooms and EnterRoom with server seat IDs preserved
+  ---
+  duration_ms: 5.117292
+  type: 'test'
+  ...
+# Subtest: 3-player room enters through Rooms and EnterRoom with server seat IDs preserved
+ok 170 - 3-player room enters through Rooms and EnterRoom with server seat IDs preserved
+  ---
+  duration_ms: 3.539875
+  type: 'test'
+  ...
+# Subtest: 4-player room enters through Rooms and EnterRoom with server seat IDs preserved
+ok 171 - 4-player room enters through Rooms and EnterRoom with server seat IDs preserved
+  ---
+  duration_ms: 3.041666
+  type: 'test'
+  ...
+# Subtest: 5-player room enters through Rooms and EnterRoom with server seat IDs preserved
+ok 172 - 5-player room enters through Rooms and EnterRoom with server seat IDs preserved
+  ---
+  duration_ms: 4.411625
+  type: 'test'
+  ...
+# Subtest: 6-player room enters through Rooms and EnterRoom with server seat IDs preserved
+ok 173 - 6-player room enters through Rooms and EnterRoom with server seat IDs preserved
+  ---
+  duration_ms: 5.15
+  type: 'test'
+  ...
+# Subtest: 7-player room enters through Rooms and EnterRoom with server seat IDs preserved
+ok 174 - 7-player room enters through Rooms and EnterRoom with server seat IDs preserved
+  ---
+  duration_ms: 3.34775
+  type: 'test'
+  ...
+# Subtest: 8-player room enters through Rooms and EnterRoom with server seat IDs preserved
+ok 175 - 8-player room enters through Rooms and EnterRoom with server seat IDs preserved
+  ---
+  duration_ms: 2.8105
+  type: 'test'
+  ...
+# Subtest: 9-player room enters through Rooms and EnterRoom with server seat IDs preserved
+ok 176 - 9-player room enters through Rooms and EnterRoom with server seat IDs preserved
+  ---
+  duration_ms: 2.494167
+  type: 'test'
+  ...
+# Subtest: frozen user is rejected for sit, return and supplemental bring-in before transaction sends
+ok 177 - frozen user is rejected for sit, return and supplemental bring-in before transaction sends
+  ---
+  duration_ms: 26.643708
+  type: 'test'
+  ...
+# Subtest: normal account gets quote, a later freeze notification prevents its submission
+ok 178 - normal account gets quote, a later freeze notification prevents its submission
+  ---
+  duration_ms: 2.52225
+  type: 'test'
+  ...
+# Subtest: guest seat request opens H5 login and never queries buy-in or sends seated
+ok 179 - guest seat request opens H5 login and never queries buy-in or sends seated
+  ---
+  duration_ms: 1.708667
+  type: 'test'
+  ...
+# Subtest: guest auth preserves pending seat across token switch then resumes once; occupied/cancelled/wrong room never resume
+ok 180 - guest auth preserves pending seat across token switch then resumes once; occupied/cancelled/wrong room never resume
+  ---
+  duration_ms: 0.615
+  type: 'test'
+  ...
+# Subtest: H5 auth integration handles real token arriving in enterTable without losing pending seat
+ok 181 - H5 auth integration handles real token arriving in enterTable without losing pending seat
+  ---
+  duration_ms: 0.432208
+  type: 'test'
+  ...
+# Subtest: identity fields and diamond notifications are account scoped, equal sync is silent
+ok 182 - identity fields and diamond notifications are account scoped, equal sync is silent
+  ---
+  duration_ms: 0.092833
+  type: 'test'
+  ...
+# Subtest: new labels read camel counts, deduplicate labels, stop after three displays, no unsupported key report
+ok 183 - new labels read camel counts, deduplicate labels, stop after three displays, no unsupported key report
+  ---
+  duration_ms: 0.390583
+  type: 'test'
+  ...
+# Subtest: new labels retry failures and ignore absent tribe or disposed room
+ok 184 - new labels retry failures and ignore absent tribe or disposed room
+  ---
+  duration_ms: 0.142167
+  type: 'test'
+  ...
+# Subtest: diamond catalog cannot overwrite newer sync with an in-flight wallet result
+ok 185 - diamond catalog cannot overwrite newer sync with an in-flight wallet result
+  ---
+  duration_ms: 0.303958
+  type: 'test'
+  ...
+# Subtest: wallet popup converts viewport coordinates into its overlay under scale and opens above when needed
+ok 186 - wallet popup converts viewport coordinates into its overlay under scale and opens above when needed
+  ---
+  duration_ms: 0.54975
+  type: 'test'
+  ...
+# Subtest: wallet popup closes when its anchor scrolls outside the dialog body
+ok 187 - wallet popup closes when its anchor scrolls outside the dialog body
+  ---
+  duration_ms: 0.097791
+  type: 'test'
+  ...
+# Subtest: WIN and ALLIN share the avatar anchor, with a closer lift for ring portrait self ALLIN
+ok 188 - WIN and ALLIN share the avatar anchor, with a closer lift for ring portrait self ALLIN
+  ---
+  duration_ms: 0.996833
+  type: 'test'
+  ...
+# Subtest: vendored H5 with stale submodule pointer uses MX revision and scoped dirty status
+ok 189 - vendored H5 with stale submodule pointer uses MX revision and scoped dirty status
+  ---
+  duration_ms: 175.658208
+  type: 'test'
+  ...
+# Subtest: vendored H5 without gitfile is not misidentified as an independent repository
+ok 190 - vendored H5 without gitfile is not misidentified as an independent repository
+  ---
+  duration_ms: 113.684583
+  type: 'test'
+  ...
+# Subtest: independent H5 checkout reports its own revision and changes
+ok 191 - independent H5 checkout reports its own revision and changes
+  ---
+  duration_ms: 212.621042
+  type: 'test'
+  ...
+# Subtest: source archive has explicit unknown revision instead of adopting a parent repository
+ok 192 - source archive has explicit unknown revision instead of adopting a parent repository
+  ---
+  duration_ms: 92.250542
+  type: 'test'
+  ...
+# Subtest: report tabs interpret protocol flags and omit the insurance page
+ok 193 - report tabs interpret protocol flags and omit the insurance page
+  ---
+  duration_ms: 1.958625
+  type: 'test'
+  ...
+# Subtest: panel reads retry after failure and reject late room responses
+ok 194 - panel reads retry after failure and reject late room responses
+  ---
+  duration_ms: 0.853709
+  type: 'test'
+  ...
+# Subtest: invalidation during a request does not leave that result fresh
+ok 195 - invalidation during a request does not leave that result fresh
+  ---
+  duration_ms: 0.115417
+  type: 'test'
+  ...
+# Subtest: seat player profile uses CC combine API and keeps public info and All-in data read-only
+ok 196 - seat player profile uses CC combine API and keeps public info and All-in data read-only
+  ---
+  duration_ms: 23.314167
+  type: 'test'
+  ...
+# Subtest: player profile operations preserve CC admin, seating and gift gates
+ok 197 - player profile operations preserve CC admin, seating and gift gates
+  ---
+  duration_ms: 4.477083
+  type: 'test'
+  ...
+# Subtest: Roomers travels through H5 bridge and updates only room-scoped report events
+ok 198 - Roomers travels through H5 bridge and updates only room-scoped report events
+  ---
+  duration_ms: 4.831208
+  type: 'test'
+  ...
+# Subtest: history reads latest completed hand, decodes Chinese, reopens cached data and does not redraw table
+ok 199 - history reads latest completed hand, decodes Chinese, reopens cached data and does not redraw table
+  ---
+  duration_ms: 14.685875
+  type: 'test'
+  ...
+# Subtest: PublicReplay ignores wrong hand and safely handles malformed/empty payloads
+ok 200 - PublicReplay ignores wrong hand and safely handles malformed/empty payloads
+  ---
+  duration_ms: 0.467042
+  type: 'test'
+  ...
+# Subtest: CC report winner arithmetic includes winning fees, jackpot and insurance exactly once per callback
+ok 201 - CC report winner arithmetic includes winning fees, jackpot and insurance exactly once per callback
+  ---
+  duration_ms: 0.499
+  type: 'test'
+  ...
+# Subtest: CC dual-board model allocates fee and hand bets and preserves both max-card index sets
+ok 202 - CC dual-board model allocates fee and hand bets and preserves both max-card index sets
+  ---
+  duration_ms: 0.148083
+  type: 'test'
+  ...
+# Subtest: CC watch-card permissions use shareTable and room origin, not wallet currency
+ok 203 - CC watch-card permissions use shareTable and room origin, not wallet currency
+  ---
+  duration_ms: 0.06975
+  type: 'test'
+  ...
+# Subtest: CC private UC pricing uses type aliases, capped peek tier, raw SB and active discount
+ok 204 - CC private UC pricing uses type aliases, capped peek tier, raw SB and active discount
+  ---
+  duration_ms: 0.239
+  type: 'test'
+  ...
+# Subtest: peek/reveal merge only changes the targeted replay and emits new references
+ok 205 - peek/reveal merge only changes the targeted replay and emits new references
+  ---
+  duration_ms: 0.525208
+  type: 'test'
+  ...
+# Subtest: ALLIN selects own/other asset, does not restart on unrelated sync, clears on next hand
+ok 206 - ALLIN selects own/other asset, does not restart on unrelated sync, clears on next hand
+  ---
+  duration_ms: 1.02825
+  type: 'test'
+  ...
+# Subtest: WIN plays only for a live settlement transition, never init/reconnect or BB changes
+ok 207 - WIN plays only for a live settlement transition, never init/reconnect or BB changes
+  ---
+  duration_ms: 0.185917
+  type: 'test'
+  ...
+# Subtest: late animation load cannot hide a cleared action or a destroyed seat
+ok 208 - late animation load cannot hide a cleared action or a destroyed seat
+  ---
+  duration_ms: 0.09525
+  type: 'test'
+  ...
+# Subtest: ALLIN holds through action/BB/language refreshes and stops specifically at hand end
+ok 209 - ALLIN holds through action/BB/language refreshes and stops specifically at hand end
+  ---
+  duration_ms: 0.103541
+  type: 'test'
+  ...
+# Subtest: replacement occupant cannot inherit ALLIN even without an intermediate empty-seat render
+ok 210 - replacement occupant cannot inherit ALLIN even without an intermediate empty-seat render
+  ---
+  duration_ms: 0.159083
+  type: 'test'
+  ...
+# Subtest: 2–9 seats stay finite, distinct and inside portrait layouts
+ok 211 - 2–9 seats stay finite, distinct and inside portrait layouts
+  ---
+  duration_ms: 1.659625
+  type: 'test'
+  ...
+# Subtest: authoritative sync replaces a prior deal hint; patches do not replay it
+ok 212 - authoritative sync replaces a prior deal hint; patches do not replay it
+  ---
+  duration_ms: 0.1825
+  type: 'test'
+  ...
+# Subtest: own live seating rotates; initial entry, sync, room replacement and other players do not
+ok 213 - own live seating rotates; initial entry, sync, room replacement and other players do not
+  ---
+  duration_ms: 0.390792
+  type: 'test'
+  ...
+# Subtest: seating starts at the previous position, overshoots, fades linearly and survives unrelated updates
+ok 214 - seating starts at the previous position, overshoots, fades linearly and survives unrelated updates
+  ---
+  duration_ms: 1.459959
+  type: 'test'
+  ...
+# Subtest: reduced motion applies the final seat without making it invisible
+ok 215 - reduced motion applies the final seat without making it invisible
+  ---
+  duration_ms: 0.207875
+  type: 'test'
+  ...
+# Subtest: successful sit-down closes buy-in and keeps the live seat move without an immediate SyncEnter
+ok 216 - successful sit-down closes buy-in and keeps the live seat move without an immediate SyncEnter
+  ---
+  duration_ms: 26.568125
+  type: 'test'
+  ...
+# Subtest: positive return-table chips seat directly while zero chips opens buy-in
+ok 217 - positive return-table chips seat directly while zero chips opens buy-in
+  ---
+  duration_ms: 0.201583
+  type: 'test'
+  ...
+# Subtest: return-to-game keeps the dialog closed while deciding whether bring-in is needed
+ok 218 - return-to-game keeps the dialog closed while deciding whether bring-in is needed
+  ---
+  duration_ms: 0.223667
+  type: 'test'
+  ...
+# Subtest: CC return_table with positive chips sends Seated immediately without opening buy-in
+ok 219 - CC return_table with positive chips sends Seated immediately without opening buy-in
+  ---
+  duration_ms: 4.249084
+  type: 'test'
+  ...
+# Subtest: score tables allow wallet-free buy-in, positive-chip return and zero-chip repurchase
+ok 220 - score tables allow wallet-free buy-in, positive-chip return and zero-chip repurchase
+  ---
+  duration_ms: 11.126042
+  type: 'test'
+  ...
+# Subtest: normal alliance entry keeps server wallets; channel entry remains restricted
+ok 221 - normal alliance entry keeps server wallets; channel entry remains restricted
+  ---
+  duration_ms: 2.73725
+  type: 'test'
+  ...
+# Subtest: diamond tables allow wallet-free buy-in, positive-chip return and zero-chip repurchase
+ok 222 - diamond tables allow wallet-free buy-in, positive-chip return and zero-chip repurchase
+  ---
+  duration_ms: 13.587709
+  type: 'test'
+  ...
+# Subtest: closing informational notices continues to amount without submitting or losing the quote
+ok 223 - closing informational notices continues to amount without submitting or losing the quote
+  ---
+  duration_ms: 0.283125
+  type: 'test'
+  ...
+# Subtest: CC retention return uses a selectable buy-in below the automatic threshold and direct seating otherwise
+ok 224 - CC retention return uses a selectable buy-in below the automatic threshold and direct seating otherwise
+  ---
+  duration_ms: 8.617542
+  type: 'test'
+  ...
+# Subtest: CC bring-in min/max and retain branches preserve protocol integer units
+ok 225 - CC bring-in min/max and retain branches preserve protocol integer units
+  ---
+  duration_ms: 1.145333
+  type: 'test'
+  ...
+# Subtest: seated binary message carries all CC fields over the existing H5 transport
+ok 226 - seated binary message carries all CC fields over the existing H5 transport
+  ---
+  duration_ms: 2.161917
+  type: 'test'
+  ...
+# Subtest: standup respects server pending-hand response without optimistic removal
+ok 227 - standup respects server pending-hand response without optimistic removal
+  ---
+  duration_ms: 0.665834
+  type: 'test'
+  ...
+# Subtest: CC operator countdown uses the deadline and adds time without mutating the prior state
+ok 228 - CC operator countdown uses the deadline and adds time without mutating the prior state
+  ---
+  duration_ms: 0.139417
+  type: 'test'
+  ...
+# Subtest: unrelated snapshots do not restart legacy countdown; add-time updates its total
+ok 229 - unrelated snapshots do not restart legacy countdown; add-time updates its total
+  ---
+  duration_ms: 2.54075
+  type: 'test'
+  ...
+# Subtest: deposit is outside the playable cap and already funded deposit is not charged twice
+ok 230 - deposit is outside the playable cap and already funded deposit is not charged twice
+  ---
+  duration_ms: 0.122125
+  type: 'test'
+  ...
+# Subtest: CC settlement separates personal highlight from highest winning-type popup and gray
+ok 231 - CC settlement separates personal highlight from highest winning-type popup and gray
+  ---
+  duration_ms: 1.413917
+  type: 'test'
+  ...
+# Subtest: CC uses first max-type winner, skips stood-up results, and does not gray an unshown walkover
+ok 232 - CC uses first max-type winner, skips stood-up results, and does not gray an unshown walkover
+  ---
+  duration_ms: 0.272875
+  type: 'test'
+  ...
+# Subtest: Winner emphasis reaches both UI projections and clears on next hand, stale Winner is ignored
+ok 233 - Winner emphasis reaches both UI projections and clears on next hand, stale Winner is ignored
+  ---
+  duration_ms: 2.811541
+  type: 'test'
+  ...
+# Subtest: second-board voting preserves all participants, reject result and retry, closes on real cards
+ok 234 - second-board voting preserves all participants, reject result and retry, closes on real cards
+  ---
+  duration_ms: 3.805167
+  type: 'test'
+  ...
+# Subtest: insurance restores on reconnect, settles only the purchased seat and clears on hand boundary
+ok 235 - insurance restores on reconnect, settles only the purchased seat and clears on hand boundary
+  ---
+  duration_ms: 0.897209
+  type: 'test'
+  ...
+# Subtest: CC insurance arithmetic keeps odds buckets, split outs and forced minimum rounding
+ok 236 - CC insurance arithmetic keeps odds buckets, split outs and forced minimum rounding
+  ---
+  duration_ms: 0.335292
+  type: 'test'
+  ...
+# Subtest: insurance keeps per-pot selections and builds one complete purchase without duplicates
+ok 237 - insurance keeps per-pot selections and builds one complete purchase without duplicates
+  ---
+  duration_ms: 1.134
+  type: 'test'
+  ...
+# Subtest: insurance number and suit sorting preserve the same outs with distinct ordering
+ok 238 - insurance number and suit sorting preserve the same outs with distinct ordering
+  ---
+  duration_ms: 0.10675
+  type: 'test'
+  ...
+# Subtest: EV server limits flow through the shared insurance purchase and settlement unchanged
+ok 239 - EV server limits flow through the shared insurance purchase and settlement unchanged
+  ---
+  duration_ms: 0.741458
+  type: 'test'
+  ...
+# Subtest: insurance uses the same CC hand-card counts for Holdem and all Omaha variants
+ok 240 - insurance uses the same CC hand-card counts for Holdem and all Omaha variants
+  ---
+  duration_ms: 0.349583
+  type: 'test'
+  ...
+# Subtest: CC win: parse original asset and render every animation frame with valid mesh UVs
+ok 241 - CC win: parse original asset and render every animation frame with valid mesh UVs
+  ---
+  duration_ms: 28.921167
+  type: 'test'
+  ...
+# Subtest: CC allin-self: parse original asset and render every animation frame with valid mesh UVs
+ok 242 - CC allin-self: parse original asset and render every animation frame with valid mesh UVs
+  ---
+  duration_ms: 5.383375
+  type: 'test'
+  ...
+# Subtest: CC allin-other: parse original asset and render every animation frame with valid mesh UVs
+ok 243 - CC allin-other: parse original asset and render every animation frame with valid mesh UVs
+  ---
+  duration_ms: 3.688
+  type: 'test'
+  ...
+# Subtest: squid reconnect restores participation; wire join and next-change update only target seat
+ok 244 - squid reconnect restores participation; wire join and next-change update only target seat
+  ---
+  duration_ms: 3.599
+  type: 'test'
+  ...
+# Subtest: remaining classic/head/tail and bloody squid counts use CC rules, survive hand clear
+ok 245 - remaining classic/head/tail and bloody squid counts use CC rules, survive hand clear
+  ---
+  duration_ms: 0.785833
+  type: 'test'
+  ...
+# Subtest: squid winner projects counts, signed EHC settlement, penalties and rejects stale hands
+ok 246 - squid winner projects counts, signed EHC settlement, penalties and rejects stale hands
+  ---
+  duration_ms: 1.115291
+  type: 'test'
+  ...
+# Subtest: dealt players and waiting newcomers follow CC join-button rules without replay on sync
+ok 247 - dealt players and waiting newcomers follow CC join-button rules without replay on sync
+  ---
+  duration_ms: 0.632958
+  type: 'test'
+  ...
+# Subtest: each first-in broadcast announces joining and maps the zero-count participant mask state
+ok 248 - each first-in broadcast announces joining and maps the zero-count participant mask state
+  ---
+  duration_ms: 0.7345
+  type: 'test'
+  ...
+# Subtest: picnic layout preserves all seat IDs and leaves shared snapshots unchanged
+ok 249 - picnic layout preserves all seat IDs and leaves shared snapshots unchanged
+  ---
+  duration_ms: 3.418625
+  type: 'test'
+  ...
+# Subtest: picnic keeps classic second-board half-card pitch and other layouts separated
+ok 250 - picnic keeps classic second-board half-card pitch and other layouts separated
+  ---
+  duration_ms: 0.28875
+  type: 'test'
+  ...
+# Subtest: picnic distributes added height and reserves navigation on long screens
+ok 251 - picnic distributes added height and reserves navigation on long screens
+  ---
+  duration_ms: 0.110583
+  type: 'test'
+  ...
+# Subtest: classic avatars use the full 58px design diameter and keep the hero above the menu
+ok 252 - classic avatars use the full 58px design diameter and keep the hero above the menu
+  ---
+  duration_ms: 1.325708
+  type: 'test'
+  ...
+# Subtest: modern dealer markers clear the chip row and the bottom marker stays above the footer
+ok 253 - modern dealer markers clear the chip row and the bottom marker stays above the footer
+  ---
+  duration_ms: 0.805541
+  type: 'test'
+  ...
+# Subtest: all new layouts retain seat IDs and distinct in-bounds avatars for 2–9 seats
+ok 254 - all new layouts retain seat IDs and distinct in-bounds avatars for 2–9 seats
+  ---
+  duration_ms: 17.665083
+  type: 'test'
+  ...
+# Subtest: portrait layouts keep the hero chip label above the bottom navigation on short screens
+ok 255 - portrait layouts keep the hero chip label above the bottom navigation on short screens
+  ---
+  duration_ms: 1.164584
+  type: 'test'
+  ...
+# Subtest: release gesture rejects taps, unchanged amounts, wrong pointers, cancellation and stale turns
+ok 256 - release gesture rejects taps, unchanged amounts, wrong pointers, cancellation and stale turns
+  ---
+  duration_ms: 0.136333
+  type: 'test'
+  ...
+# Subtest: top pair bets remain separate from each other and their stack captions
+ok 257 - top pair bets remain separate from each other and their stack captions
+  ---
+  duration_ms: 0.603541
+  type: 'test'
+  ...
+# Subtest: hero card and dealer offsets stay avatar-relative across viewport and seat changes
+ok 258 - hero card and dealer offsets stay avatar-relative across viewport and seat changes
+  ---
+  duration_ms: 1.058542
+  type: 'test'
+  ...
+# Subtest: chat displays server-filtered text, deduplicates echoes and keeps danmu out of history
+ok 259 - chat displays server-filtered text, deduplicates echoes and keeps danmu out of history
+  ---
+  duration_ms: 1.696875
+  type: 'test'
+  ...
+# Subtest: history paging preserves cursor, order, overlap and abort isolation
+ok 260 - history paging preserves cursor, order, overlap and abort isolation
+  ---
+  duration_ms: 0.839541
+  type: 'test'
+  ...
+# Subtest: chat+danmu sends normal then bullet using the existing broadcast protocol
+ok 261 - chat+danmu sends normal then bullet using the existing broadcast protocol
+  ---
+  duration_ms: 0.943458
+  type: 'test'
+  ...
+# (node:6766) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: CC voice, forced, random and sequence initial capture/permission branches
+ok 262 - CC voice, forced, random and sequence initial capture/permission branches
+  ---
+  duration_ms: 0.577917
+  type: 'test'
+  ...
+# Subtest: CC optional mask and middle switches remain independent
+ok 263 - CC optional mask and middle switches remain independent
+  ---
+  duration_ms: 0.082667
+  type: 'test'
+  ...
+# Subtest: 1133 changes only current occupant and normalizes old mask ids
+ok 264 - 1133 changes only current occupant and normalizes old mask ids
+  ---
+  duration_ms: 0.561209
+  type: 'test'
+  ...
+# Subtest: remote media cannot appear on an empty or replaced seat; abort closes local tracks
+ok 265 - remote media cannot appear on an empty or replaced seat; abort closes local tracks
+  ---
+  duration_ms: 0.947208
+  type: 'test'
+  ...
+# Subtest: 902 random countdown opens capture, blocks closing during verification, then retains the open tracks
+ok 266 - 902 random countdown opens capture, blocks closing during verification, then retains the open tracks
+  ---
+  duration_ms: 0.942875
+  type: 'test'
+  ...
+# Subtest: sequence follows only ordinary own operator and closes on action completion
+ok 267 - sequence follows only ordinary own operator and closes on action completion
+  ---
+  duration_ms: 0.581375
+  type: 'test'
+  ...
+# Subtest: microphone icon follows native interruption and remote publication state
+ok 268 - microphone icon follows native interruption and remote publication state
+  ---
+  duration_ms: 0.362583
+  type: 'test'
+  ...
+# Subtest: ordinary operator clears stale away/waiting state, insurance voting does not
+ok 269 - ordinary operator clears stale away/waiting state, insurance voting does not
+  ---
+  duration_ms: 3.313541
+  type: 'test'
+  ...
+# Subtest: straddle obeys explicit room limit and defaults to a single level
+ok 270 - straddle obeys explicit room limit and defaults to a single level
+  ---
+  duration_ms: 0.406084
+  type: 'test'
+  ...
+# Subtest: turn changes and checks preserve the prior blind until the next street
+ok 271 - turn changes and checks preserve the prior blind until the next street
+  ---
+  duration_ms: 2.300709
+  type: 'test'
+  ...
+# Subtest: CC basicInfo mapping preserves 1/2 flags, live room values, and special-game config priority
+ok 272 - CC basicInfo mapping preserves 1/2 flags, live room values, and special-game config priority
+  ---
+  duration_ms: 2.662625
+  type: 'test'
+  ...
+# Subtest: CC permission-gated rows retain switches, modes, safety flags, and partial random-ante rejection
+ok 273 - CC permission-gated rows retain switches, modes, safety flags, and partial random-ante rejection
+  ---
+  duration_ms: 0.694167
+  type: 'test'
+  ...
+# Subtest: room-scoped decorator updates only changed configuration, including reconnect values and permission changes
+ok 274 - room-scoped decorator updates only changed configuration, including reconnect values and permission changes
+  ---
+  duration_ms: 1.018833
+  type: 'test'
+  ...
+# Subtest: CC room permission provider caches per room, uses club endpoint, and falls back to global config
+ok 275 - CC room permission provider caches per room, uses club endpoint, and falls back to global config
+  ---
+  duration_ms: 0.923417
+  type: 'test'
+  ...
+# Subtest: H5 club room logo and anti-cheat mode drive the table presentation
+ok 276 - H5 club room logo and anti-cheat mode drive the table presentation
+  ---
+  duration_ms: 2.720292
+  type: 'test'
+  ...
+# Subtest: normal turn maps CC straddle and sends the exact server minimum
+ok 277 - normal turn maps CC straddle and sends the exact server minimum
+  ---
+  duration_ms: 1.236416
+  type: 'test'
+  ...
+# Subtest: CC auto choices follow round bet, stack, and fold-to-check precedence
+ok 278 - CC auto choices follow round bet, stack, and fold-to-check precedence
+  ---
+  duration_ms: 0.175459
+  type: 'test'
+  ...
+# Subtest: post, trustee, keep seat and add time packets update only authoritative seat fields
+ok 279 - post, trustee, keep seat and add time packets update only authoritative seat fields
+  ---
+  duration_ms: 2.189458
+  type: 'test'
+  ...
+# Subtest: StartInfo clears waiting status only for players dealt into the new hand
+ok 280 - StartInfo clears waiting status only for players dealt into the new hand
+  ---
+  duration_ms: 1.065625
+  type: 'test'
+  ...
+# Subtest: add time, agree post and showdown requests preserve CC wire fields
+ok 281 - add time, agree post and showdown requests preserve CC wire fields
+  ---
+  duration_ms: 1.665875
+  type: 'test'
+  ...
+# Subtest: live settlement watch uses CC 1029/1026/1013 fields and clears on hand clear
+ok 282 - live settlement watch uses CC 1029/1026/1013 fields and clears on hand clear
+  ---
+  duration_ms: 2.93
+  type: 'test'
+  ...
+# Subtest: Winner quotes live watch actions and reveal merges server cards into the same hand
+ok 283 - Winner quotes live watch actions and reveal merges server cards into the same hand
+  ---
+  duration_ms: 97.939584
+  type: 'test'
+  ...
+# Subtest: paid peek reveals opponents via CC ShowViewCards 1127 without 1101
+ok 284 - paid peek reveals opponents via CC ShowViewCards 1127 without 1101
+  ---
+  duration_ms: 53.870542
+  type: 'test'
+  ...
+# Subtest: one normal hand sends own actions and handles deal, board, winner, clear
+ok 285 - one normal hand sends own actions and handles deal, board, winner, clear
+  ---
+  duration_ms: 11.852709
+  type: 'test'
+  ...
+# Subtest: NEED_POST sends one CC fire-and-forget agree request per status transition
+ok 286 - NEED_POST sends one CC fire-and-forget agree request per status transition
+  ---
+  duration_ms: 7.035417
+  type: 'test'
+  ...
+# Subtest: folded player can select and deselect end-of-hand show cards without revealing early
+ok 287 - folded player can select and deselect end-of-hand show cards without revealing early
+  ---
+  duration_ms: 5.940125
+  type: 'test'
+  ...
+# Subtest: shared application code only selects the skin through configuration entries
+ok 288 - shared application code only selects the skin through configuration entries
+  ---
+  duration_ms: 67.625791
+  type: 'test'
+  ...
+1..288
+# tests 288
+# suites 0
+# pass 288
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 59865.786292

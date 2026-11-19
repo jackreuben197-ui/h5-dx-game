@@ -1,0 +1,63 @@
+{
+  "w": "auto",
+  "h": "auto",
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "paths": {
+    "recordDetails": "raw/ui/recordDetails.png",
+    "recordDiamond": "raw/ui/recordDiamond.png",
+    "recordFavorite": "raw/ui/recordFavorite.png",
+    "recordRoom": "raw/ui/recordRoom.png",
+    "recordPeople": "raw/ui/recordPeople.png"
+  },
+  "layout": {
+    "css": {
+      "mx-record-room-min-width": "0",
+      "mx-record-tabs-gap": "6px",
+      "mx-record-tabs-border-radius": "0",
+      "mx-record-tabs-padding": "20",
+      "mx-record-tabs-padding-2": "2px",
+      "mx-record-tabs-bottom": "0",
+      "mx-record-tabs-left": "30%",
+      "mx-record-tabs-right": "30%",
+      "mx-record-tabs-height": "6",
+      "mx-record-tabs-border-radius-2": "50%",
+      "mx-record-empty-margin": "45px",
+      "mx-record-empty-margin-2": "0",
+      "mx-record-room-grid-template-columns": "0",
+      "mx-record-room-grid-template-columns-2": "1fr",
+      "mx-record-room-gap": "25",
+      "mx-history-room-count-gap": "15",
+      "mx-history-details-gap": "12",
+      "mx-history-details-margin": "25",
+      "mx-history-details-padding": "15",
+      "mx-history-details-padding-2": "22",
+      "mx-history-process-title-margin": "40",
+      "mx-history-process-title-margin-2": "35",
+      "mx-history-process-title-margin-3": "0",
+      "mx-history-footer-actions-min-width": "0",
+      "mx-history-footer-actions-max-height": "100%",
+      "mx-history-balance-value-gap": "8",
+      "mx-history-balance-line-height": "1.25",
+      "mx-history-watch-font-size": "34",
+      "mx-record-tabs-font-size": "32",
+      "mx-record-room-padding-left": "100",
+      "mx-record-room-gap-2": "4px",
+      "mx-history-balance-gap": "12px",
+      "mx-history-page-width": "1100",
+      "mx-history-page-column-gap": "45",
+      "mx-history-page-count-size": "50",
+      "mx-history-page-count-height": "60",
+      "mx-history-page-count-offset": "-20",
+      "mx-history-collect-width": "420",
+      "mx-history-collect-height": "90"
+    },
+    "dockTop": 220
+  },
+  "sizing": {
+    "mode": "composite",
+    "root": null
+  }
+}

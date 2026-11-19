@@ -1,0 +1,301 @@
+vite v7.3.7 building client environment for production...
+Scanned 67 component configs: 210 original image paths → 2 atlas pages; 9 media paths.
+transforming...
+Module "src/assets/style1/table/components/RoomInfoView/RoomInfoView.ts" tried to import "src/assets/style1/table/components/RoomInfoView/config.json" with no attributes, but it was already imported elsewhere with "type": "json" attributes. Please ensure that import attributes for the same module are always consistent.
+✓ 677 modules transformed.
+rendering chunks...
+[plugin vite:reporter] 
+(!) /Users/magicd/repos/github/h5-dx-game/src/assets/style1/effects/spine/EmojiSpineAssets.ts is dynamically imported by /Users/magicd/repos/github/h5-dx-game/src/assets/style1/table/components/SeatEmojiView/SeatEmojiView.ts but also statically imported by /Users/magicd/repos/github/h5-dx-game/src/assets/style1/effects/DiamondGiftEffect.ts, /Users/magicd/repos/github/h5-dx-game/src/assets/style1/effects/spine/EmojiSpineRenderer.ts, /Users/magicd/repos/github/h5-dx-game/src/assets/style1/effects/spine/ThrowPropSpinePlayer.ts, dynamic import will not move module into another chunk.
+
+computing gzip size...
+dist/client/assets/page_bar_normal-CL2ALG3Q.png                 0.31 kB
+dist/client/assets/classicAvatarBorder-Cb9XtA5V.svg             0.32 kB │ gzip:   0.24 kB
+dist/client/assets/touch-liHOQZzo.atlas                         0.45 kB
+dist/client/assets/page_bar_select-B5k9QoTA.png                 0.45 kB
+dist/client/assets/skeleton-Cx4ps48q.atlas                      0.46 kB
+dist/client/assets/kiss-t90bzXDN.atlas                          0.46 kB
+dist/client/assets/videoicon-BI_fvKrJ.png                       0.64 kB
+dist/client/assets/squid_bg_red-KDPaiZ-R.png                    0.96 kB
+dist/client/assets/sndicon-DD0Jq-VS.png                         1.04 kB
+dist/client/assets/pool_bg-Dbh6QVHZ.png                         1.08 kB
+dist/client/assets/panda_knife_apple-BBfy5HRK.atlas             1.14 kB
+dist/client/assets/whistle-Ba-SpGL3.atlas                       1.20 kB
+dist/client/assets/support-BxUckJ2I.png                         1.26 kB
+dist/client/assets/skeleton-D-PcsugL.skel                       1.26 kB
+dist/client/assets/skeleton-BQNRjZx3.atlas                      1.28 kB
+dist/client/assets/panda_laugh-Bbj-AsWD.atlas                   1.33 kB
+dist/client/assets/wait-D5PVMPDv.png                            1.37 kB
+dist/client/assets/gold-lE7YZojG.svg                            1.39 kB │ gzip:   0.71 kB
+dist/client/assets/green-Bq0ivo8o.svg                           1.39 kB │ gzip:   0.71 kB
+dist/client/assets/indigo-C7MFxpD0.svg                          1.39 kB │ gzip:   0.70 kB
+dist/client/assets/red-Cb4Z6sAW.svg                             1.39 kB │ gzip:   0.71 kB
+dist/client/assets/blue-BJ9ZuEns.svg                            1.39 kB │ gzip:   0.71 kB
+dist/client/assets/black-6MTKV-Ib.svg                           1.39 kB │ gzip:   0.71 kB
+dist/client/assets/panda_excited-BskChHsv.atlas                 1.45 kB
+dist/client/assets/stab-BLHqtRnm.atlas                          1.46 kB
+dist/client/assets/icon_limit_hand-DDaBOyYT.png                 1.48 kB
+dist/client/assets/show_card_eye-3gVK0XV-.png                   1.56 kB
+dist/client/assets/amazed-DbVORt3c.atlas                        1.57 kB
+dist/client/assets/plus-CgQmWiCz.png                            1.60 kB
+dist/client/assets/skeleton-CGoer5nI.atlas                      1.85 kB
+dist/client/assets/btnbg-BFwjEvTQ.png                           1.91 kB
+dist/client/assets/pinkrabbit_smoke-Bs2oHaIS.atlas              2.04 kB
+dist/client/assets/octopoda-mngNWx99.atlas                      2.07 kB
+dist/client/assets/sy3-oAmooJJE.atlas                           2.11 kB
+dist/client/assets/box_local-BcMYtmSC.atlas                     2.18 kB
+dist/client/assets/return-taec2FcQ.png                          2.24 kB
+dist/client/assets/hl-BNrWIMj4.atlas                            2.32 kB
+dist/client/assets/shark-Xc5Jw3Sd.atlas                         2.35 kB
+dist/client/assets/skeleton-DCVaNIcC.skel                       2.59 kB
+dist/client/assets/skeleton-91R5_7N7.skel                       2.68 kB
+dist/client/assets/77Background-Cn_zuMsv.skel                   2.77 kB
+dist/client/assets/chicken_spine-1DaupSl4.atlas                 2.78 kB
+dist/client/assets/diamond2-CAu7IjT9.atlas                      2.91 kB
+dist/client/assets/quick-Duw8WMjV.png                           3.07 kB
+dist/client/assets/table_icon_audio-fWRA7PPZ.png                3.18 kB
+dist/client/assets/product-ojh7tvBs.png                         3.27 kB
+dist/client/assets/attachments-B8DhQOtN.atlas                   3.32 kB
+dist/client/assets/table_icon_camera-DznNywf1.png               3.46 kB
+dist/client/assets/diamond2-DCyiaKY1.skel                       3.62 kB
+dist/client/assets/action-bg-CeX-e-6z.png                       3.76 kB
+dist/client/assets/layout-balanced-Ep-H0GI7.png                 3.87 kB
+dist/client/assets/barbg-DqxQfgKc.png                           3.88 kB
+dist/client/assets/layout-oval-BAOJHGh-.png                     3.92 kB
+dist/client/assets/table_icon_audio_disabled-B5EFWpZ2.png       3.93 kB
+dist/client/assets/result-squid-Dd1zfY8T.png                    4.21 kB
+dist/client/assets/table_icon_camera_disabled-DfKQrdbR.png      4.23 kB
+dist/client/assets/layout-classic-CwW3hmNa.png                  4.34 kB
+dist/client/assets/44paizuo-Fb96NnyW.skel                       4.50 kB
+dist/client/assets/dog_glasses-CAtbDOZC.atlas                   4.57 kB
+dist/client/assets/table_icon_effect-DK-FMh9M.png               4.79 kB
+dist/client/assets/squid_reward_bg-BCW17EwU.png                 4.79 kB
+dist/client/assets/layout-original-BtTywaVe.png                 5.10 kB
+dist/client/assets/box_full-CJ8yo8kh.atlas                      5.10 kB
+dist/client/assets/confirmCancel-Oc5sF25r.png                   5.20 kB
+dist/client/assets/usdt-DEiIfvAq.png                            5.29 kB
+dist/client/assets/table_icon_effect_disabled-C15xrGos.png      5.49 kB
+dist/client/assets/support-bg-53HgDHAk.png                      5.51 kB
+dist/client/assets/skeleton-xobf_tZM.skel                       5.63 kB
+dist/client/assets/send-CJ8lFyk9.png                            5.70 kB
+dist/client/assets/touch-esII3Ke6.png                           5.89 kB
+dist/client/assets/sy-DAbxpfbk.atlas                            6.40 kB
+dist/client/assets/dog-Ppb4v3rL.atlas                           6.64 kB
+dist/client/assets/cheers_2-B8OADubB.atlas                      6.79 kB
+dist/client/assets/sy2-CyqlmKVM.atlas                           6.88 kB
+dist/client/assets/video-B88YBVsx.png                           7.47 kB
+dist/client/assets/cheers_1-CV_W293P.atlas                      7.73 kB
+dist/client/assets/sound-BDbBP6ft.png                           8.32 kB
+dist/client/assets/mutemic-6lVdvdx1.png                         8.38 kB
+dist/client/assets/chip-D5Ipg4JW.png                            9.04 kB
+dist/client/assets/blueboy-D1teyt5B.atlas                       9.33 kB
+dist/client/assets/giftDataBg-BaMBLxnc.png                      9.47 kB
+dist/client/assets/hl-ByszrY3H.skel                             9.91 kB
+dist/client/assets/kiss-D6xfWcqy.skel                          10.46 kB
+dist/client/assets/skeleton-CY0Vv5X7.png                       10.53 kB
+dist/client/assets/speaking-eyVru6MB.png                       11.11 kB
+dist/client/assets/sfx_kiss_mus-6BkYSGuc.ogg                   11.61 kB
+dist/client/assets/table_icon_mushroom-BZrZTava.png            11.98 kB
+dist/client/assets/skeleton-CFbSn-bB.skel                      11.99 kB
+dist/client/assets/skeleton-DMtezsUe.skel                      12.32 kB
+dist/client/assets/sfx_cheers_mus-Cp5MBI_c.ogg                 12.41 kB
+dist/client/assets/table_icon_squid_sm-CrFGaNkX.png            12.65 kB
+dist/client/assets/whistle-3IDQczTV.skel                       13.01 kB
+dist/client/assets/safety-BaaRLLou.png                         13.03 kB
+dist/client/assets/panda_excited-w9NJ3AnC.skel                 13.48 kB
+dist/client/assets/33background-DR4npgNK.skel                  14.23 kB
+dist/client/assets/sfx_shark_mus-Co_DnDuX.ogg                  15.60 kB
+dist/client/assets/ballfolder1-DuI9QBq8.skel                   16.38 kB
+dist/client/assets/cert-80KF2HgO.png                           16.66 kB
+dist/client/assets/touch-XcO3f5T7.skel                         16.80 kB
+dist/client/assets/panda_laugh-C4TN64C-.skel                   17.17 kB
+dist/client/assets/backgroud99-CpCj8V1V.skel                   17.30 kB
+dist/client/assets/amazed-BsVw4kpx.skel                        17.94 kB
+dist/client/assets/skeleton-Be7URYFU.atlas                     18.10 kB
+dist/client/assets/ballfolder1-55czEAqp.atlas                  18.11 kB
+dist/client/assets/returnGame-BGFPYA9V.png                     18.48 kB
+dist/client/assets/box_local-BzIlbFy_.skel                     18.69 kB
+dist/client/assets/diamond-vX2G1GRH.png                        19.28 kB
+dist/client/assets/muteBtnBg-CbiBk0nl.png                      21.31 kB
+dist/client/assets/sfx_boxing_sender1-4SivOnEb.ogg             21.41 kB
+dist/client/assets/sfx_boxing_beaten1-CZgSQoNd.ogg             21.42 kB
+dist/client/assets/toastBg-BWtYNgz2.png                        21.76 kB
+dist/client/assets/skeleton-D5-r5mX-.skel                      24.11 kB
+dist/client/assets/sfx_like_mus-D0085SEI.ogg                   24.39 kB
+dist/client/assets/squid_mask-B-q6DULZ.png                     25.74 kB
+dist/client/assets/chicken_spine-DwVaGwGs.skel                 25.84 kB
+dist/client/assets/sfx_sad_dog_mus-BMhxWoyf.mp3                26.17 kB
+dist/client/assets/diamond-add-CUPyy10W.png                    26.50 kB
+dist/client/assets/table_icon_squid-DU-KSob0.png               26.89 kB
+dist/client/assets/sfx_zhuaji_mus-BILarSw-.ogg                 26.92 kB
+dist/client/assets/sfx_octopus_mus-a8sWMVaC.mp3                27.83 kB
+dist/client/assets/avatar-BOGtrKmJ.png                         27.86 kB
+dist/client/assets/pinkrabbit_smoke-w7M56Zof.skel              28.08 kB
+dist/client/assets/icon_right_arrow-DbDlk2ot.png               28.42 kB
+dist/client/assets/icon_lelft_arrow-CUqJvVH0.png               28.47 kB
+dist/client/assets/squid_lose-BHFg0OKS.png                     28.72 kB
+dist/client/assets/box_full-NqMp6lF5.skel                      29.19 kB
+dist/client/assets/chip-add-DgnPzz4N.png                       29.35 kB
+dist/client/assets/vm4-wt-7haIl.png                            30.02 kB
+dist/client/assets/table_bg_stand_up-9gt3zbwU.png              30.26 kB
+dist/client/assets/sfx_toothless_panda_mus-CoH1gKsV.mp3        30.34 kB
+dist/client/assets/squid_end_bg-ZIksQ7jg.png                   31.37 kB
+dist/client/assets/nature_japan88-DGuVLKtd.skel                32.15 kB
+dist/client/assets/sfx_scorn_mus-CUri6xlc.mp3                  34.09 kB
+dist/client/assets/kiss-Arv9eIjx.png                           34.70 kB
+dist/client/assets/amazed-KwaJaWYO.png                         35.93 kB
+dist/client/assets/vm2-7lUvwPCW.png                            36.06 kB
+dist/client/assets/sfx_tomato_mus-xQVP_G3l.ogg                 36.44 kB
+dist/client/assets/sfx_smile_mus-D_aPFR-J.mp3                  36.59 kB
+dist/client/assets/sfx_rose_mus-7iFkGlf8.ogg                   37.74 kB
+dist/client/assets/shark-Cdj_LrXB.skel                         38.73 kB
+dist/client/assets/stab-CtJkj5e4.skel                          42.84 kB
+dist/client/assets/treasure-DFTNhOpb.png                       43.82 kB
+dist/client/assets/criticalhit-7q58SKP1.png                    43.94 kB
+dist/client/assets/mushroom-ksZXPP3T.png                       45.27 kB
+dist/client/assets/dog-DUSy13g6.skel                           45.88 kB
+dist/client/assets/vm1-COvAr1oc.png                            45.92 kB
+dist/client/assets/waitStart--dK2-7_I.png                      47.44 kB
+dist/client/assets/sfx_fish-Belhj9YF.ogg                       47.48 kB
+dist/client/assets/sfx_knife_man_mus-Jwi01DLt.mp3              47.85 kB
+dist/client/assets/sfx_baseball-DH2-AM_p.ogg                   49.49 kB
+dist/client/assets/vm3-aEtzKOsI.png                            49.68 kB
+dist/client/assets/sfx_touch_mus-DstZygUh.ogg                  52.02 kB
+dist/client/assets/dog_glasses-AOi171Fa.skel                   52.62 kB
+dist/client/assets/skeleton-DjFEdMCP.skel                      54.18 kB
+dist/client/assets/sfx_fish2-BZxpObVW.ogg                      57.55 kB
+dist/client/assets/sfx_happy_mouse_mus-perxFfP5.mp3            57.86 kB
+dist/client/assets/dialogConfirm-DLVEpRru.png                  59.66 kB
+dist/client/assets/sfx_shock_mus-DCvhn2UV.mp3                  60.44 kB
+dist/client/assets/whistle-YZoRxWab.png                        60.84 kB
+dist/client/assets/dog_glasses2-WE5bV-r6.png                   64.38 kB
+dist/client/assets/dog3-Bj2BR_YQ.png                           67.00 kB
+dist/client/.vite/manifest.json                                69.56 kB │ gzip:   9.03 kB
+dist/client/assets/sfx_cool_dog_mus-BqI6O56I.mp3               69.95 kB
+dist/client/assets/attachments-V18ajdGg.skel                   71.01 kB
+dist/client/assets/sfx_poke_panda_mus-DD0J4BFr.mp3             71.92 kB
+dist/client/assets/sfx_whistle_mus-DrEMBD52.mp3                74.12 kB
+dist/client/assets/sfx_boxing_sender2-C_LL7AI2.ogg             78.49 kB
+dist/client/assets/octopoda-CXb966pn.skel                      78.90 kB
+dist/client/assets/sfx_happy_mus-BdxSpWet.mp3                  81.32 kB
+dist/client/assets/critical_start-D2ymnCEj.png                 84.55 kB
+dist/client/assets/sfx_beer_screen-BEjbTWA3.ogg                93.52 kB
+dist/client/assets/sfx_boxing_beaten2-BOGp6TkE.ogg             94.82 kB
+dist/client/assets/sfx_money-Cg6MK3CL.ogg                      99.96 kB
+dist/client/assets/panda_knife_apple-l5jcCVjL.png             100.38 kB
+dist/client/assets/sfx_purple_smoke_mus-B50oTgRn.mp3          109.51 kB
+dist/client/assets/sfx_smoke_mus-CieH_HzD.mp3                 113.68 kB
+dist/client/assets/dog_glasses-CYPrPGId.png                   115.85 kB
+dist/client/assets/dog-BpZbgtjD.png                           115.93 kB
+dist/client/assets/panda_knife_apple-BbsFiaR1.skel            116.00 kB
+dist/client/assets/images-1-C7QEgm84.webp                     117.13 kB
+dist/client/assets/sfx_poor_mus-Dw8wrSkQ.mp3                  117.86 kB
+dist/client/assets/desk-style-2-C0PI-f4q.webp                 118.92 kB
+dist/client/assets/desk-C8cTOeuE.webp                         121.78 kB
+dist/client/assets/sfx_amazed_mus-SvOdYU-B.mp3                126.21 kB
+dist/client/assets/desk-style-4-C1kL_5Qa.webp                 126.45 kB
+dist/client/assets/insuranceOptionSelected-DTwwK4v9.png       126.49 kB
+dist/client/assets/panda_laugh-CBAQNx2m.png                   129.49 kB
+dist/client/assets/blueboy-BdzdQJn0.skel                      136.01 kB
+dist/client/assets/insuranceOption-Ddm9NcxB.png               137.34 kB
+dist/client/assets/sfx_gun_mus-GgdzQ582.mp3                   142.91 kB
+dist/client/assets/sy-9iZm0fzm.skel                           146.03 kB
+dist/client/assets/desk-style-5-BZ-k6Guj.webp                 148.67 kB
+dist/client/assets/sy24-JsMFnhms.png                          151.55 kB
+dist/client/assets/sy3-D42gNf-k.skel                          154.70 kB
+dist/client/assets/sy2-BUk5CKAh.skel                          156.12 kB
+dist/client/assets/skeleton-BySsJgGx.png                      156.34 kB
+dist/client/assets/pinkrabbit_smoke-Dznr8Yih.png              158.38 kB
+dist/client/assets/desk-style-3-D8EExMe9.webp                 162.00 kB
+dist/client/assets/classic-felt-D1KNKCQ1.webp                 164.79 kB
+dist/client/assets/audio-table-sfx-0-CmDNn2dK.mp3             170.92 kB
+dist/client/assets/panda_excited-C_xXFIVU.png                 178.61 kB
+dist/client/assets/octopoda-C5yGnCuo.png                      187.94 kB
+dist/client/assets/dog2-C_r8NXYK.png                          194.03 kB
+dist/client/assets/squid_over-B8y-dJIm.png                    195.77 kB
+dist/client/assets/chicken_spine-DVlY0W6-.png                 202.32 kB
+dist/client/assets/skeleton-ClA4mvqW.png                      218.37 kB
+dist/client/assets/skeleton-D_ayLh_q.png                      223.40 kB
+dist/client/assets/shark-qk6mO-7Z.png                         223.45 kB
+dist/client/assets/purple-felt-CsquRNcF.png                   231.45 kB
+dist/client/assets/cheers_2-DsNsS1jE.skel                     232.35 kB
+dist/client/assets/desk-style-6-B2-DFy0E.webp                 242.56 kB
+dist/client/assets/desk-style-8-DMKo7Ijb.webp                 256.92 kB
+dist/client/assets/loadingbg-Cd1PTsW2.png                     260.35 kB
+dist/client/assets/blueboy-ju_bsOcp.png                       271.20 kB
+dist/client/assets/skeleton-DKGxSccQ.png                      280.21 kB
+dist/client/assets/stab-BiarS6DQ.png                          293.01 kB
+dist/client/assets/skeleton-BsKdTraV.png                      295.30 kB
+dist/client/assets/cheers_1-BtxS44S4.skel                     318.03 kB
+dist/client/assets/squid_start-B5npXxpM.png                   377.63 kB
+dist/client/assets/squid_dialog_page_2-CAOLmtJY.png           389.05 kB
+dist/client/assets/sy4-rV13fBsT.png                           419.93 kB
+dist/client/assets/squid_dialog_page_1-CvQ8ncY7.png           436.85 kB
+dist/client/assets/bgm-EUunTPHF.mp3                           486.14 kB
+dist/client/assets/jpt_award-pvYtSWb9.png                     503.07 kB
+dist/client/assets/panel-thbmyIBn.png                         513.19 kB
+dist/client/assets/squid_dialog_page_3-yIBnnsec.png           527.09 kB
+dist/client/assets/desk-style-13-HLTQw3uM.webp                570.82 kB
+dist/client/assets/desk-style-14-DCxY5Vaa.webp                607.26 kB
+dist/client/assets/desk-style-11-hIRX_UAG.webp                668.06 kB
+dist/client/assets/attachments-BFw2eyHX.png                   757.07 kB
+dist/client/assets/Inter-ZO3WBJgw.ttf                         803.38 kB
+dist/client/assets/desk-style-12-DrFZITaB.webp                806.74 kB
+dist/client/assets/desk-style-9-C7P-pUOC.webp                 815.44 kB
+dist/client/assets/desk-style-7-BJh3KPfo.webp                 817.26 kB
+dist/client/assets/77Background-WTy3lw8F.png                  881.95 kB
+dist/client/assets/sy3-jTGDcBgT.png                           888.26 kB
+dist/client/assets/diamond2-Dm0c9Nc7.png                      892.69 kB
+dist/client/assets/box_full3-Crx1bhrD.png                     919.12 kB
+dist/client/assets/desk-style-10-BNS8FLiy.webp                937.45 kB
+dist/client/assets/nature_japan88-SKK3NSIE.png                968.32 kB
+dist/client/assets/44paizuo-Ba0XmP7u.png                    1,032.25 kB
+dist/client/assets/backgroud99-DyMN6Szz.png                 1,065.54 kB
+dist/client/assets/box_full2-CDnRWpDK.png                   1,184.35 kB
+dist/client/assets/images-0-BfCviUfO.webp                   1,201.13 kB
+dist/client/assets/skeleton-CUVW2VVU.png                    1,289.75 kB
+dist/client/assets/sy22-D2nxUv6T.png                        1,523.76 kB
+dist/client/assets/sprites-DyAE5AfJ.png                     1,625.26 kB
+dist/client/assets/cheers_1-CLHRZp4z.png                    1,697.13 kB
+dist/client/assets/sy23-HIMvHOuo.png                        1,829.03 kB
+dist/client/assets/table-bAdXG84i.png                       1,890.87 kB
+dist/client/assets/box_full-DPCoZIJE.png                    1,893.61 kB
+dist/client/assets/box_local-CaVw-B04.png                   1,916.71 kB
+dist/client/assets/33background-Dhu8Ukvz.png                1,962.04 kB
+dist/client/assets/sy2-23GmeWF5.png                         2,081.63 kB
+dist/client/assets/desk-thumbs-9Uv-vUlK.webp                2,131.08 kB
+dist/client/assets/sy3-LeC-aEKG.png                         2,141.73 kB
+dist/client/assets/skeleton-CA51grAN.png                    2,227.43 kB
+dist/client/assets/skeleton2-DLwq5lOG.png                   2,270.48 kB
+dist/client/assets/sy2-BLA2arDy.png                         2,322.72 kB
+dist/client/assets/skeleton4-CQb1IPXl.png                   2,368.65 kB
+dist/client/assets/sy-gedxOtz0.png                          2,425.70 kB
+dist/client/assets/skeleton3-CQ7Xtgs5.png                   2,622.99 kB
+dist/client/assets/cheers_2-D-LTiIGL.png                    2,828.74 kB
+dist/client/assets/hl-zXZydNBK.png                          2,853.06 kB
+dist/client/assets/style-lT7st72a.css                         462.47 kB │ gzip:  60.46 kB
+dist/client/chunks/assets--i3J8G5d.js                           0.12 kB │ gzip:   0.13 kB
+dist/client/chunks/_commonjsHelpers-Cpj98o6Y.js                 0.24 kB │ gzip:   0.18 kB
+dist/client/chunks/canvas-surface-CNJ2OWTz.js                   0.61 kB │ gzip:   0.39 kB
+dist/client/mx-game.js                                          0.62 kB │ gzip:   0.37 kB
+dist/client/chunks/DiamondGiftEffect-DJbgQa8f.js                2.72 kB │ gzip:   1.17 kB
+dist/client/chunks/DeskSpineRenderer-CngtHCv4.js                3.77 kB │ gzip:   1.53 kB
+dist/client/chunks/SpineRenderer-4dPLAit4.js                    4.22 kB │ gzip:   1.74 kB
+dist/client/chunks/EmojiSpineRenderer-woI97CN_.js               5.54 kB │ gzip:   2.27 kB
+dist/client/chunks/DeskSpineAssets-bSdgMUQP.js                 10.55 kB │ gzip:   2.20 kB
+dist/client/chunks/SpineAssets-DG0LMJqw.js                     12.87 kB │ gzip:   2.85 kB
+dist/client/chunks/spine38-CNSxKf32.js                        222.28 kB │ gzip:  61.33 kB
+dist/client/chunks/host-entry-BHRr9O7v.js                     306.23 kB │ gzip:  89.71 kB
+dist/client/chunks/view-CD4pdrgt.js                           363.28 kB │ gzip:  97.91 kB
+dist/client/chunks/AgoraRTC_N-production-DBVcTOYb.js        1,572.49 kB │ gzip: 436.23 kB
+dist/client/chunks/runtime-BBwk9M-C.js                      1,744.46 kB │ gzip: 557.86 kB
+dist/client/chunks/runtime-BsahN5hS.js                      2,035.20 kB │ gzip: 188.58 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 15.03s
+
+> h5-dx-game@0.1.0 build:types
+> tsc -p tsconfig.types.json && node scripts/write-type-entry.mjs
+

@@ -1,0 +1,80 @@
+import TexasGameRoomDataChat from './TexasGameRoomDataChat.js';
+import type TexasGameRoomDataMtt from './TexasGameRoomDataMtt.js';
+import { JackpotData } from './JackpotData.js';
+import { CallTimeData } from './CallTimeData.js';
+import { MushroomData } from './MushroomData.js';
+import { CriticalHitData } from './CriticalHitData.js';
+import { SquidData } from './SquidData.js';
+import { SecondPcsData } from './SecondPcsData.js';
+import { InsuranceData } from './InsuranceData.js';
+import { GameplayTableSettingData } from './GameplayTableSettingData.js';
+import { TexasGameRoomDataEmoji } from './TexasGameRoomDataEmoji.js';
+import TexasGameRoomDataReport from './TexasGameRoomDataReport.js';
+import { TexasGameRoomDataReplay } from './TexasGameRoomDataReplay.js';
+import { SettlementWatchData } from './SettlementWatchData.js';
+import type { Settlement } from '../core/Settlement.js';
+import type {
+  RoomRecord,
+  ServerMessageEnterRoom,
+  ServerMessageSyncEnter,
+} from '@silenthill/agreement-web';
+/** Preserve full authority for subsequent protocol migrations; UI gets normalized data only. */
+export class ProtocolRoomData {
+  media?: import('../media/TableMedia.js').TableMedia;
+  readonly chat = new TexasGameRoomDataChat(this);
+  readonly tableSettings = new GameplayTableSettingData();
+  readonly emoji = new TexasGameRoomDataEmoji();
+  readonly report = new TexasGameRoomDataReport(this);
+  readonly replay = new TexasGameRoomDataReplay();
+  readonly jackpot = new JackpotData();
+  readonly callTime = new CallTimeData();
+  readonly squid = new SquidData();
+  readonly mushroom = new MushroomData();
+  readonly criticalHit = new CriticalHitData();
+  readonly secondPcs = new SecondPcsData();
+  readonly insurance = new InsuranceData();
+  readonly watch = new SettlementWatchData();
+  mtt?: TexasGameRoomDataMtt;
+  record?: RoomRecord.AsObject;
+  snapshot?: (ServerMessageEnterRoom.AsObject | ServerMessageSyncEnter.AsObject) & { settlement?: Settlement };
+  /** Restore only authoritative special operators after EnterRoom/SyncEnter. */
+  restoreSpecialOperations(flopRound: number, turnRound: number): void {
+    this.secondPcs.finish();
+    this.insurance.clear();
+    const s = this.snapshot;
+    if (!s) return;
+    this.jackpot.restore(this.record);
+    this.callTime.update(s.myInfo?.callTimeCount??0,!!s.myInfo?.callTimeStay);
+    this.mushroom.update(s.handInfo,this.record?.mushroomBase??0,false);
+    this.criticalHit.update(s.handInfo,false);
+    this.squid.totalLimit=s.roomInfo?.squidTotalLimit??0;
+    this.squid.restore(!!s.handInfo?.inSquid,s.playersList.find(p=>p.seatId===s.myInfo?.seatId));
+    for (const op of s.operatorList) {
+      if (!op.opDeadline && op.leftOpTime > 0) op.opDeadline = Date.now() / 1000 + op.leftOpTime;
+    }
+    const mine = s.operatorList.find(op => op.seatId === s.myInfo?.seatId);
+    if (mine?.isAgreeSecondPc)
+      this.secondPcs.start(s.operatorList.filter(op => op.isAgreeSecondPc).map(op => op.seatId), mine.opDeadline);
+    if (mine?.isInsurance)
+      this.insurance.start(mine, (s.handInfo?.publicCardsList.length ?? 0) >= 4 ? turnRound : flopRound, mine.invalidInsurancePotsList);
+  }
+  clear(): void {
+    this.media?.destroy(); this.media=undefined;
+    this.chat.resetHistory();this.chat.clear();
+    this.mtt?.clear(); this.mtt = undefined;
+    this.tableSettings.clearData();
+    this.emoji.clearData();
+    this.report.clear();
+    this.replay.clearData();
+    this.watch.clear();
+    this.squid.clear();
+    this.jackpot.clear();
+    this.callTime.clear();
+    this.mushroom.clear();
+    this.criticalHit.clear();
+    this.secondPcs.finish();
+    this.insurance.clear();
+    this.record = undefined;
+    this.snapshot = undefined;
+  }
+}

@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: CC prop mapping preserves discount windows, subscriptions, inventory and category limits
+ok 1 - CC prop mapping preserves discount windows, subscriptions, inventory and category limits
+  ---
+  duration_ms: 3.728917
+  type: 'test'
+  ...
+# Subtest: Emoji uses H5 binary bridge, waits for 1019, ignores self echo and scopes 1121 by room
+ok 2 - Emoji uses H5 binary bridge, waits for 1019, ignores self echo and scopes 1121 by room
+  ---
+  duration_ms: 103.172958
+  type: 'test'
+  ...
+# Subtest: Failed, malformed and unseated emoji messages do not play or send
+ok 3 - Failed, malformed and unseated emoji messages do not play or send
+  ---
+  duration_ms: 34.217417
+  type: 'test'
+  ...
+# Subtest: CC owned prop consumes inventory once and broadcasts with CT_NONE
+ok 4 - CC owned prop consumes inventory once and broadcasts with CT_NONE
+  ---
+  duration_ms: 7.010625
+  type: 'test'
+  ...
+# Subtest: throw prop keeps CC eligibility, target and 1019/1121 deduplication
+ok 5 - throw prop keeps CC eligibility, target and 1019/1121 deduplication
+  ---
+  duration_ms: 9.450666
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 521.782833
