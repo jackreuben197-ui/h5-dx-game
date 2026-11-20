@@ -26,7 +26,15 @@ try {
     const first = relative(shell, source).split('/')[0];
     return !['node_modules', '.git', 'dist', '.idea'].includes(first);
   } });
-  await symlink(join(shell, 'node_modules'), join(stage, 'node_modules'), 'dir');
+  // Windows 普通目录符号链接通常需要管理员权限；Junction 不需要，且不会复制整套依赖。
+  // 如果当前文件系统仍拒绝 Junction，再回退为复制，保证发布流程可完成。
+  try {
+    await symlink(join(shell, 'node_modules'), join(stage, 'node_modules'), process.platform === 'win32' ? 'junction' : 'dir');
+  } catch (error) {
+    if (process.platform !== 'win32' || !['EPERM', 'EACCES'].includes(error?.code)) throw error;
+    console.warn('Windows 无法创建 node_modules Junction，回退为复制依赖；本次发布会较慢。');
+    await cp(join(shell, 'node_modules'), join(stage, 'node_modules'), { recursive: true });
+  }
   const vite = await import(pathToFileURL(join(shell, 'node_modules/vite/dist/node/index.js')).href);
   process.chdir(stage);
   const env = vite.loadEnv(mode, stage, 'VITE_');
@@ -36,7 +44,15 @@ try {
   process.env.VITE_MX_API_BASE_URL = process.env.VITE_MX_API_BASE_URL || api;
   run(process.execPath, ['scripts/check-protocol.mjs'], stage);
   run(process.execPath, ['scripts/sync-i18n.mjs'], stage);
-  run('npm', ['run', 'check']);
+  const h5Package = JSON.parse(await readFile(join(stage, 'package.json'), 'utf8'));
+  if (h5Package.scripts?.check) {
+    run('npm', ['run', 'check'], stage);
+  } else if (await exists(join(stage, 'node_modules/vue-tsc/bin/vue-tsc.js'))) {
+    // 当前 H5 没有 check 脚本，使用其 build 同等的类型检查，避免误跑完整 H5 构建。
+    run(process.execPath, ['node_modules/vue-tsc/bin/vue-tsc.js', '-b'], stage);
+  } else {
+    throw new Error('H5 未提供 check 脚本，也未找到 vue-tsc。');
+  }
   run(process.execPath, ['node_modules/vite/bin/vite.js', 'build', '--config', 'vite.host.config.ts', '--mode', mode]);
   const pkg = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
   const h5Source = releaseSource(shell, root);
