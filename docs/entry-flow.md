@@ -29,7 +29,7 @@
 
 普通关闭/失败发生在请求链中时显示错误页；取消进房会中止请求订阅，旧异步任务不能写回新房间。无 rpcId 的同桌请求取消/超时后，保留隔离标记，直到旧回包被丢弃或 H5 确认新连接；不把下一条同 code 回包盲当作新请求成功。
 
-服务端入站包按 H5 当前转发格式读取：无前 4 字节长度，53 字节包头；出站含长度，57 字节包头，big endian，protobuf version 2。TypedArray 的 byteOffset/byteLength 被保留。64 位 roomID/matchID 超出 JS 安全整数范围会明确报错，不截断成另一个 ID。
+服务端入站包按 H5 当前转发格式读取：无前 4 字节长度，55 字节包头（code 后为 `BQMN`）；出站含长度，59 字节包头，big endian，protobuf version 2。TypedArray 的 byteOffset/byteLength 被保留。64 位 roomID/matchID 超出 JS 安全整数范围会明确报错，不截断成另一个 ID。
 
 ## Vue 容器示例
 

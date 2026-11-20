@@ -4,7 +4,14 @@ export interface Packet {
   matchID: number;
   body: Uint8Array;
 }
-/** CC PacketHead: 57-byte outbound header, 53-byte H5-forwarded inbound header; BE. */
+/**
+ * Hold'em WebSocket packet header shared with the current H5 bridge.
+ *
+ * Outbound packets include the four-byte data-length prefix (59 bytes before
+ * the protobuf body); inbound packets forwarded by H5 omit that prefix (55
+ * bytes before the protobuf body). The old YM/57-byte format is no longer
+ * compatible with the H5 bridge.
+ */
 export class PacketCodec {
   encode(
     code: number,
@@ -15,16 +22,16 @@ export class PacketCodec {
   ): Uint8Array {
     if (!token || token.length > 32 || !/^[\x20-\x7e]+$/.test(token))
       throw new Error('登录凭据无效，请重新登录');
-    const result = new Uint8Array(57 + body.byteLength),
+    const result = new Uint8Array(59 + body.byteLength),
       view = new DataView(result.buffer);
     view.setUint32(0, result.length - 4);
-    result.set([0x59, 0x4d], 4);
-    view.setUint16(6, code);
-    result.set(new TextEncoder().encode(token), 8);
-    this.writeID(view, 40, roomID);
-    this.writeID(view, 48, matchID);
-    result[56] = 2;
-    result.set(body, 57);
+    view.setUint16(4, code);
+    result.set([0x42, 0x51, 0x4d, 0x4e], 6); // BQMN
+    result.set(new TextEncoder().encode(token), 10);
+    this.writeID(view, 42, roomID);
+    this.writeID(view, 50, matchID);
+    result[58] = 2;
+    result.set(body, 59);
     return result;
   }
   decode(input: ArrayBuffer | ArrayBufferView): Packet {
@@ -32,14 +39,21 @@ export class PacketCodec {
       input instanceof ArrayBuffer
         ? new Uint8Array(input)
         : new Uint8Array(input.buffer, input.byteOffset, input.byteLength);
-    if (bytes.length < 53 || bytes[0] !== 0x59 || bytes[1] !== 0x4d || bytes[52] !== 2)
+    if (
+      bytes.length < 55 ||
+      bytes[2] !== 0x42 ||
+      bytes[3] !== 0x51 ||
+      bytes[4] !== 0x4d ||
+      bytes[5] !== 0x4e ||
+      bytes[54] !== 2
+    )
       throw new Error('房间协议包头无效');
     const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
     return {
-      code: view.getUint16(2),
-      roomID: this.readID(view, 36),
-      matchID: this.readID(view, 44),
-      body: bytes.slice(53),
+      code: view.getUint16(0),
+      roomID: this.readID(view, 38),
+      matchID: this.readID(view, 46),
+      body: bytes.slice(55),
     };
   }
   private writeID(view: DataView, offset: number, value: number): void {

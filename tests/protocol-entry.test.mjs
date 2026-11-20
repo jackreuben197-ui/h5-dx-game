@@ -46,15 +46,15 @@ test('CC binary header is big endian, observes byteOffset, rejects malformed and
     packet = outbound(wire);
   assert.equal(packet.length, wire.length - 4);
   assert.equal(packet.roomID, id);
-  assert.equal(wire[56], 2);
+  assert.equal(wire[58], 2);
   const frame = inbound(1002, id, 0, snapshot()),
     buffer = new Uint8Array(frame.length + 20);
   buffer.set(frame, 10);
   assert.equal(codec.decode(buffer.subarray(10, 10 + frame.length)).roomID, id);
-  assert.throws(() => codec.decode(new Uint8Array(52)));
+  assert.throws(() => codec.decode(new Uint8Array(54)));
   assert.throws(() => codec.encode(1, 'token', Number.MAX_SAFE_INTEGER + 1, 0, body));
   const bad = frame.slice();
-  bad[52] = 1;
+  bad[54] = 1;
   assert.throws(() => codec.decode(bad));
 });
 test('entry sends Rooms then EnterRoom and maps authoritative seats/cards/pot with no deal animation', async (t) => {

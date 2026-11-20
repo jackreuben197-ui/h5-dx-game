@@ -105,14 +105,14 @@ export class ProtocolFixtureHost {
       response = message;
     } else throw new Error(`Fixture 未注册协议 ${code}`);
     const body = response.serializeBinary(),
-      bytes = new Uint8Array(53 + body.length),
+      bytes = new Uint8Array(55 + body.length),
       header = new DataView(bytes.buffer);
-    bytes.set([89, 77]);
-    header.setUint16(2, code);
-    header.setBigUint64(36, BigInt(roomID));
-    header.setBigUint64(44, 0n);
-    bytes[52] = 2;
-    bytes.set(body, 53);
+    header.setUint16(0, code);
+    bytes.set([66, 81, 77, 78], 2);
+    header.setBigUint64(38, BigInt(roomID));
+    header.setBigUint64(46, 0n);
+    bytes[54] = 2;
+    bytes.set(body, 55);
     const timer = setTimeout(() => {
       this.timers.delete(timer);
       this.send('wsMessage', { dataType: 'binary', data: bytes });

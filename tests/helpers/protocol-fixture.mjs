@@ -2,24 +2,24 @@ import pb from '@silenthill/agreement-web/runtime';
 export { pb };
 export function inbound(code, roomID, matchID, message) {
   const body = message.serializeBinary(),
-    data = new Uint8Array(53 + body.length),
+    data = new Uint8Array(55 + body.length),
     v = new DataView(data.buffer);
-  data.set([89, 77]);
-  v.setUint16(2, code);
-  v.setBigUint64(36, BigInt(roomID));
-  v.setBigUint64(44, BigInt(matchID));
-  data[52] = 2;
-  data.set(body, 53);
+  v.setUint16(0, code);
+  data.set([66, 81, 77, 78], 2);
+  v.setBigUint64(38, BigInt(roomID));
+  v.setBigUint64(46, BigInt(matchID));
+  data[54] = 2;
+  data.set(body, 55);
   return data;
 }
 export function outbound(bytes) {
   const v = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   return {
     length: v.getUint32(0),
-    code: v.getUint16(6),
-    roomID: Number(v.getBigUint64(40)),
-    matchID: Number(v.getBigUint64(48)),
-    body: bytes.slice(57),
+    code: v.getUint16(4),
+    roomID: Number(v.getBigUint64(42)),
+    matchID: Number(v.getBigUint64(50)),
+    body: bytes.slice(59),
   };
 }
 export function record(id = 1001) {
