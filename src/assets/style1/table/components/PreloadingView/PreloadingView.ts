@@ -4,6 +4,7 @@ import { LoadingAssets } from '../../../LoadingAssets.js';
 import { i18nLabel } from '../../../../../i18n/i18nLabel.js';
 import { i18nMgr } from '../../../../../i18n/i18nMgr.js';
 import type { ClientState } from '../../../../../core/types.js';
+import type { TableUiConfig } from '../../../../../ui/TableUiConfig.js';
 import { element } from '../../dom.js';
 /** CC UIPreloading.prefab: background, 900×60 bar and labels at y=-72/-160. */
 export class PreloadingView {
@@ -17,9 +18,20 @@ export class PreloadingView {
   private error = element('div', 'mx-preloading-error');
   private message = element('p', '');
   private resize: ResizeObserver;
-  constructor(retry: () => void) {
-    this.root.style.backgroundImage = `url("${LoadingAssets.background}")`;
-    this.bar.style.backgroundImage = `url("${LoadingAssets.track}")`;
+  private applyBackground(wide: boolean): string {
+    const url = this.art ? (wide ? this.art.wide : this.art.portrait) : LoadingAssets.background;
+    this.root.style.backgroundImage = `url("${url}")`;
+    return url;
+  }
+  preloadImages(): string[] {
+    const { clientWidth, clientHeight } = this.root;
+    const background = this.applyBackground(clientWidth > clientHeight * config.layout.wideRatio);
+    return this.art ? [background, this.art.track, this.art.fill] : [background, LoadingAssets.track];
+  }
+  constructor(retry: () => void, private readonly art?: TableUiConfig['loadingArt']) {
+    if (!art) this.applyBackground(false);
+    this.bar.style.backgroundImage = `url("${art?.track ?? LoadingAssets.track}")`;
+    if (art) this.fill.style.backgroundImage = `url("${art.fill}")`;
     this.bar.setAttribute('role', 'progressbar');
     i18nLabel.bind(this.bar, () => i18nMgr.Get("MX_ResourceLoadingProgress", [], "资源加载进度"), 'aria-label');
     this.bar.setAttribute('aria-valuemin', '0');
@@ -36,6 +48,12 @@ export class PreloadingView {
     this.root.append(this.group, this.error);
     this.resize = new ResizeObserver(([entry]) => {
       const { width, height } = entry!.contentRect;
+      if (!width || !height) return;
+      if (this.art) {
+        const wide = width > height * config.layout.wideRatio;
+        this.applyBackground(wide);
+        this.root.dataset.wide = String(wide);
+      }
       this.root.style.setProperty('--loading-unit', `${(width / height > config.layout.wideRatio ? height / config.layout.designHeight : width / config.layout.designWidth)}px`);
     });
     this.resize.observe(this.root);

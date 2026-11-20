@@ -8,7 +8,8 @@ import otherAtlas from '../../resources/spine/allin-other/skeleton.atlas?raw';
 import otherBinary from '../../resources/spine/allin-other/skeleton.skel?url';
 import otherImage from '../../resources/spine/allin-other/skeleton.png?url';
 import type { SeatEffect } from '../SeatEffects.js';
-export interface SpineAsset { atlas: string; data: string | Uint8Array; image: HTMLImageElement; }
+export interface SpineAsset { atlas: string; data: string | Uint8Array; image: HTMLImageElement; scale?: number; lift?: number; loop?: boolean; }
+export type SeatEffectAssets = Map<SeatEffect | 'win-self', SpineAsset>;
 /** Original CC atlases stay intact; URL imports also work with hashed build assets. */
 export class SpineAssets {
   private static pending?: Promise<Map<SeatEffect, SpineAsset>>;

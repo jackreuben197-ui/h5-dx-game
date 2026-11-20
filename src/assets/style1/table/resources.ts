@@ -5,6 +5,7 @@ import settings from '../../../data/TexasGamePersonalSettings.js';
 import { LoadingAssets } from '../LoadingAssets.js';
 import { i18nMgr } from '../../../i18n/i18nMgr.js';
 import { resources } from 'virtual:mx-images';
+import { selectedDeskId, type StaticDeskCatalog } from '../../../ui/TableUiConfig.js';
 export { resources };
 // Retain decoded source images for the lifetime of this client module.
 const images = new Map<string, HTMLImageElement>();
@@ -45,13 +46,15 @@ export async function decodedImage(url: string): Promise<HTMLImageElement> {
 export function imageURLs(paths:readonly string[]):string[] {
   return [...new Set(paths.map(path=>resources.rawImages[path]??resources.pages[resources.frames[path]?.page??-1]?.url).filter((url):url is string=>!!url))];
 }
-export async function prepare(report: (progress: number) => void): Promise<void> {
+export async function prepare(report: (progress: number) => void, preferences = settings, catalog?: StaticDeskCatalog, effectsArt?: import('../../../ui/TableEffectArt.js').TableEffectArt, loadingImages = [LoadingAssets.background, LoadingAssets.track]): Promise<void> {
   const alternate=new Set(Object.values(cardConfig.paths.facesAlt));
-  const paths=resources.preloadPaths.filter(path=>settings.tableCardType===2||!alternate.has(path));
-  const urls=[...new Set([LoadingAssets.background,LoadingAssets.track,...imageURLs(paths),resources.desks[String(settings.deskType)]??resources.desk])];
+  const paths=resources.preloadPaths.filter(path=>preferences.tableCardType===2||!alternate.has(path));
+  const deskType = selectedDeskId(preferences.deskType, catalog);
+  const selectedDesk = catalog?.image(deskType) ?? resources.desks[String(deskType)] ?? resources.desk;
+  const urls=[...new Set([...loadingImages,...imageURLs(paths),selectedDesk])];
   let done = 0;
-  const effects = SpineEffects.preload().catch(error => console.warn('[MX Spine] Preload failed; retry when playing.', error));
-  const desk = DeskBackgroundView.preload(settings.deskType).catch(error => console.warn('[MX Spine] Desk preload failed; retry on entry.', error));
+  const effects = SpineEffects.preload(effectsArt?.seats).catch(error => console.warn('[MX Spine] Preload failed; retry when playing.', error));
+  const desk = catalog ? Promise.resolve() : DeskBackgroundView.preload(deskType).catch(error => console.warn('[MX Spine] Desk preload failed; retry on entry.', error));
   await Promise.all([desk.then(() => report(++done / (urls.length + 2))), effects.then(() => report(++done / (urls.length + 2))), ...urls.map(async (url) => {
       await imageReady(url);
       report(++done / (urls.length + 2));

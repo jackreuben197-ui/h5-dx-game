@@ -1,5 +1,5 @@
 import type { MagicEmojiDefinition } from '../../../../logic/MagicEmojiConfig.js';
-export type SpineClipConfig = Pick<MagicEmojiDefinition, 'spine' | 'animation'> & Partial<Pick<MagicEmojiDefinition, 'propCode' | 'type' | 'sound'>> & {assetGroup?: 'emoji' | 'prop' | 'diamond'};
+export type SpineClipConfig = Pick<MagicEmojiDefinition, 'spine' | 'animation'> & Partial<Pick<MagicEmojiDefinition, 'propCode' | 'type' | 'sound'>> & {assetGroup?: 'emoji' | 'prop' | 'diamond'; loopSeconds?: number; setupSeconds?: number; file?: (name: string) => string};
 export interface EmojiSpineAsset { atlas: string; binary: Uint8Array; images: Map<string, HTMLImageElement>; }
 /** Original multi-page Spine atlases, loaded per category/effect; Vite hashes URLs at build. */
 export class EmojiSpineAssets {
@@ -15,6 +15,7 @@ export class EmojiSpineAssets {
         let pending = this.pending.get(config.spine);
         if (!pending) {
             pending = this.read(config).catch(error => { this.pending.delete(config.spine); throw error; });
+            if (config.loopSeconds) pending = pending.finally(() => this.pending.delete(config.spine));
             this.pending.set(config.spine, pending);
         }
         return pending;
@@ -22,7 +23,8 @@ export class EmojiSpineAssets {
     private static async read(config: SpineClipConfig): Promise<EmojiSpineAsset> {
         const path = config.assetGroup === 'diamond' ? `spine/diamond/${config.spine.split('/').at(-1)}` : `spine/${config.assetGroup || 'emoji'}/${config.spine.split('/').slice(-2).join('/')}`;
         const read = async (suffix: string) => {
-            const response = await fetch(this.url(path + suffix), {signal: AbortSignal.timeout(15000)});
+            const url = config.file ? config.file(config.spine.split('/').at(-1)! + suffix) : this.url(path + suffix);
+            const response = await fetch(url, {signal: AbortSignal.timeout(15000)});
             if (!response.ok) throw new Error(`Emoji resource HTTP ${response.status}`);
             return response;
         };
@@ -35,7 +37,7 @@ export class EmojiSpineAssets {
                 const timer = setTimeout(() => { img.src = ''; reject(new Error('Emoji texture timeout')); }, 15000);
                 img.onload = () => { clearTimeout(timer); img.decode().then(() => resolve(img), reject); };
                 img.onerror = () => { clearTimeout(timer); reject(new Error('Emoji texture failed')); };
-                img.src = this.url(`${path.slice(0, path.lastIndexOf('/') + 1)}${name}`);
+                img.src = config.file ? config.file(name) : this.url(`${path.slice(0, path.lastIndexOf('/') + 1)}${name}`);
             });
             images.set(name, image);
         }));

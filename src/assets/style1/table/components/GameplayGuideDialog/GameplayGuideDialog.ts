@@ -30,7 +30,9 @@ export class GameplayGuideDialog {
     this.text.replaceChildren(...parts.flatMap(part=>{
       if(part.startsWith('<color=')){color=part.slice(7,-1);return [];}
       if(part==='</color>'){color='';return [];}
-      const span=element('span','',part);if(color)span.style.color=color;return [span];
+      const span=element('span','',part);
+      if(color)span.style.color=color.toLowerCase()==='#ffc706' ? 'var(--mx-rule-highlight, #ffc706)' : color;
+      return [span];
     }));
   }
   destroy():void {this.current=undefined;this.surface.destroy();}

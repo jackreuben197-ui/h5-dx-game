@@ -67,6 +67,31 @@ test('CC owned prop consumes inventory once and broadcasts with CT_NONE',async t
  const body=pb.ClientMessageBroadcastMsg.deserializeBinary(c.sent.find(p=>p.code===pb.Code.MSG_D_BROADCAST_MSG).body).toObject();assert.equal(body.consume,pb.Def.ConsumeType.CT_NONE);
  reply(c);await pending;await tick();const consumed=c.http.filter(x=>x.url.endsWith('/user_prop/used'));assert.equal(consumed.length,1);assert.equal(consumed[0].body.prop_id,88);assert.equal(consumed[0].body.quantity,1);
 });
+test('missing gun configuration sends 608 without local inventory use and respects server rejection',async t=>{
+ const c=await setup(t,[]), plays=[];
+ c.service.data.on(TexasGameRoomDataEmoji.THROW_PROP,event=>plays.push(event));
+ await assert.rejects(c.service.throwProp(105,null,999),/暂不可用/);
+ const rejected=assert.rejects(c.service.throwProp(105,null,608),/17/);
+ await tick();
+ const requests=c.sent.filter(p=>p.code===pb.Code.MSG_D_BROADCAST_MSG);
+ assert.equal(requests.length,1);
+ const body=pb.ClientMessageBroadcastMsg.deserializeBinary(requests[0].body);
+ assert.equal(body.getConsume(),pb.Def.ConsumeType.CT_NONE);
+ const envelope=JSON.parse(new TextDecoder().decode(body.getExtra_asU8()));
+ assert.equal(JSON.parse(envelope.data).type,608);
+ reply(c,17);await rejected;
+ assert.equal(plays.length,0);
+ assert.equal(c.http.filter(p=>p.url.endsWith('/user_prop/used')).length,0);
+ const retry=c.service.throwProp(105,null,608);await tick();reply(c);await retry;
+ assert.deepEqual(plays,[{userID:104,targetUserID:105,type:608}]);
+});
+test('a configured gun uses its server currency even when the UI opened before the list loaded',async t=>{
+ const c=await setup(t,[prop({prop_type:4,prop_code:'boxing_Button',price_id:1})]);
+ const send=c.service.throwProp(105,null,608);await tick();
+ const packet=c.sent.find(p=>p.code===pb.Code.MSG_D_BROADCAST_MSG);
+ assert.equal(pb.ClientMessageBroadcastMsg.deserializeBinary(packet.body).getConsume(),1);
+ reply(c);await send;
+});
 test('throw prop keeps CC eligibility, target and 1019/1121 deduplication',async t=>{
  const c=await setup(t,[prop({prop_id:7,prop_type:4,prop_code:'tomato_Button',prop_amount:1,game_prop_id:88})]);
  const events=[];c.service.data.on(TexasGameRoomDataEmoji.THROW_PROP,e=>events.push(e));

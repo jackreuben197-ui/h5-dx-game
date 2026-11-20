@@ -8,20 +8,20 @@ import { EmojiPropRules } from '../../logic/EmojiPropRules.js';
 /** CC TexasTableEvent.SendEmoji / _sendExpressionBroadcast, through H5 bridge. */
 export class BroadcastMsgRequest {
     constructor(private client: ProtocolClient, private pb: HoldemRuntime) {}
-    execute(target: RoomTarget, signal: AbortSignal, session: HostSessionData, prop: UserPropData, type: number) {
+    execute(target: RoomTarget, signal: AbortSignal, session: HostSessionData, prop: UserPropData | null, type: number) {
         const msgType = this.pb.Def.BroadcastMsgType.BC_MSG_EMOJI;
         const inner = JSON.stringify({ name: session.nickname, type, user_id: session.userRID, target_user_id: 0, message: '', msgType, time: Date.now(), sex: session.sex, headUrl: session.avatar });
         const room = new this.pb.Room(); room.setRoomId(target.roomID); room.setMatchId(target.matchID);
         const body = new this.pb.ClientMessageBroadcastMsg(); body.setRoom(room);
-        body.setConsume(EmojiPropRules.isPropFree(prop) ? this.pb.Def.ConsumeType.CT_NONE : prop.priceID as Parameters<typeof body.setConsume>[0]);
+        body.setConsume(!prop || EmojiPropRules.isPropFree(prop) ? this.pb.Def.ConsumeType.CT_NONE : prop.priceID as Parameters<typeof body.setConsume>[0]);
         body.setMessage(''); body.setExtra(new TextEncoder().encode(JSON.stringify({code: BroadcastCode.BroadcastMsg, data: inner}))); body.setMsgType(msgType);
         return this.client.request(this.pb.Code.MSG_D_BROADCAST_MSG, target.roomID, target.matchID, body, this.pb.ServerMessageBroadcastMsg, signal);
     }
-    executeThrow(target: RoomTarget, signal: AbortSignal, session: HostSessionData, prop: UserPropData, type: number, targetUserRID: number) {
+    executeThrow(target: RoomTarget, signal: AbortSignal, session: HostSessionData, prop: UserPropData | null, type: number, targetUserRID: number) {
         const inner = JSON.stringify({name: session.nickname, target_user_id: targetUserRID, user_id: session.userRID, type});
         const room = new this.pb.Room(); room.setRoomId(target.roomID); room.setMatchId(target.matchID);
         const body = new this.pb.ClientMessageBroadcastMsg(); body.setRoom(room);
-        body.setConsume(EmojiPropRules.isPropFree(prop) ? this.pb.Def.ConsumeType.CT_NONE : prop.priceID as Parameters<typeof body.setConsume>[0]);
+        body.setConsume(!prop || EmojiPropRules.isPropFree(prop) ? this.pb.Def.ConsumeType.CT_NONE : prop.priceID as Parameters<typeof body.setConsume>[0]);
         body.setMessage(''); body.setExtra(new TextEncoder().encode(JSON.stringify({code: BroadcastCode.BroadcastMsg, data: inner})));
         body.setMsgType(this.pb.Def.BroadcastMsgType.BC_MSG_THROW);
         return this.client.request(this.pb.Code.MSG_D_BROADCAST_MSG, target.roomID, target.matchID, body, this.pb.ServerMessageBroadcastMsg, signal);

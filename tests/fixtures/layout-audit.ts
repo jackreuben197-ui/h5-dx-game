@@ -1,5 +1,6 @@
 /** DEV-only acceptance workbench. Real views, isolated host, no game backend. */
 import {GameClient} from '../../src/GameClient.js';
+import {fishbase} from '../../src/assets/fishbase/index.js';
 import {style1} from '../../src/assets/style1/index.js';
 import {style2} from '../../src/assets/style2/index.js';
 import {TexasGamePersonalSettings,type TableLayoutId} from '../../src/data/TexasGamePersonalSettings.js';
@@ -19,13 +20,13 @@ const info=document.createElement('div'),logNode=document.createElement('ol');in
 const metadata=auditScenarios.find(s=>s.id===scene);info.textContent=`离线合成数据 · ${metadata?.label??scene}｜${metadata?.steps??''}｜覆盖：${metadata?.covers.join('、')??''}`;
 function log(text:string){const li=document.createElement('li');li.textContent=text;logNode.prepend(li);while(logNode.children.length>40)logNode.lastChild?.remove();}
 function select(key:string,label:string,values:readonly (string|number|{value:string;text:string})[],value:string){const wrap=document.createElement('label'),node=document.createElement('select');wrap.textContent=label;node.setAttribute('aria-label',key);for(const v of values){const option=document.createElement('option');option.value=typeof v==='object'?v.value:String(v);option.textContent=typeof v==='object'?v.text:String(v);node.append(option);}node.value=value;node.onchange=()=>{q.set(key,node.value);location.search=q.toString();};wrap.append(node);bar.append(wrap);}
-select('skin','风格',['style1','style2'],q.get('skin')??'style1');
+select('skin','风格',['fishbase','style1','style2'],q.get('skin')??'fishbase');
 select('layout','布局',['original','balanced','oval','classic'],layout);select('scene','场景',auditScenarios.map(s=>({value:s.id,text:`${s.group} · ${s.label}`})),scene);
 for(const [key,label,val]of [['seats','人数',options.seats],['hero','本人座位',options.hero],['actor','状态作用座位',options.actor],['dealer','庄家座位',options.dealer]] as const)select(key,label,Array.from({length:key==='seats'?8:options.seats},(_,i)=>i+(key==='seats'?2:1)),String(val));
 select('cards','手牌',[2,4,5,6],String(options.cards));select('scale','尺寸',[90,95,100,105,110],String(scale));select('locale','语言',['zh_CN','zh_TW','en','pt'],q.get('locale')??'zh_CN');select('quick','快捷',[3,5],q.get('quick')??'5');select('submit','滑杆',['confirm','release'],q.get('submit')??'confirm');
 const host=new AuditHost(options,log);await i18nMgr.initLanguage();i18nMgr.setLanguage(q.get('locale')??'zh_CN');
 const target={roomID:909090,matchID:scene.startsWith('mtt-')?900001:0,roomType:0};
-const game=new GameClient(stage,{host,skin:q.get('skin')==='style2'?style2:style1,preferences:prefs,layout:q.get('orientation')==='auto'?'auto':'portrait',minimumLoadingMs:0,onState:s=>{stage.dataset.phase=s.phase;stage.dataset.hand=String(s.table?.handNum??0);if(s.phase==='error'){stage.dataset.ready='true';log(s.error??'');}},onLeave:()=>log('已离桌；点击重新进入可恢复。')});
+const game=new GameClient(stage,{host,skin:q.get('skin')==='style2'?style2:q.get('skin')==='style1'?style1:fishbase,preferences:prefs,layout:q.get('orientation')==='auto'?'auto':'portrait',minimumLoadingMs:0,onState:s=>{stage.dataset.phase=s.phase;stage.dataset.hand=String(s.table?.handNum??0);if(s.phase==='error'){stage.dataset.ready='true';log(s.error??'');}},onLeave:()=>log('已离桌；点击重新进入可恢复。')});
 function button(label:string,run:()=>unknown){const b=document.createElement('button');b.textContent=label;b.onclick=()=>{Promise.resolve(run()).catch(e=>log(String(e)));};bar.append(b);}
 button('下一步',()=>host.next());button('播放',()=>host.play());button('暂停',()=>host.stop());button('重置发牌',()=>host.reset());button('重连快照',()=>host.publish({},'sync'));button('下一位庄家',()=>host.publish({dealerSeat:(host.state.dealerSeat??0)%host.state.seatCount+1}));button('站起',()=>host.standup());button('离桌',()=>game.leave());button('重新进入',async()=>{await game.enter(target);await host.activate();});button('切桌',async()=>{target.roomID++;await game.enter({...target});});
 if(scene.startsWith('squid-'))button('模拟他人中途加入',()=>host.squidPlayerJoin(host.state.players.find(p=>p.seat!==host.state.mySeat)!.seat));

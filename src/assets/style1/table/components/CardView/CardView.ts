@@ -28,6 +28,7 @@ export class CardView {
     root.dataset.cardValue = String(value);
     if (value === 0) {
       const back=preferences.tableAppearance.cardBack;
+      root.dataset.cardBack = back;
       if(back==='original')SpriteAtlas.paint(root, smallBack ? config.paths.smallBack : config.paths.back);
       else {root.style.backgroundImage=`url("${cardBacks[back]}")`;root.style.backgroundSize='100% 100%';root.style.backgroundPosition='center';}
       i18nLabel.bind(root, () => i18nMgr.Get("MX_CardBack", [], "牌背"), 'aria-label');
@@ -38,6 +39,9 @@ export class CardView {
     const faces: Record<string,string> = type === 2 ? config.paths.facesAlt : config.paths.faces;
     const path = faces[String(id)];
     if (!path) return;
+    if (id >= 0 && id < 52) {
+      root.style.setProperty('--card-face-position', `${(id % 13) * 100 / 12}% ${Math.floor(id / 13) * 100 / 3}%`);
+    }
     SpriteAtlas.paint(root, path);
     i18nLabel.bind(root, () => value === 0 ? i18nMgr.Get("MX_CardBack", [], "牌背") : `${[i18nMgr.Get("UIIcon_Text", [], "黑桃"), i18nMgr.Get("MX_Hearts", [], "红桃"), i18nMgr.Get("UIIcon_Text3", [], "梅花"), i18nMgr.Get("MX_Diamonds", [], "方块")][Math.floor(value / 15)]}${rank}`, 'aria-label');
   }

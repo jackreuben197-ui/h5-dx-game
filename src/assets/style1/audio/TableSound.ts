@@ -3,6 +3,7 @@ import type { MediaRule } from './MediaRule.js';
 import config from './TableSound/config.json';
 import { AudioSpritePlayer } from './AudioSpritePlayer.js';
 import type { TableSnapshot } from '../../../core/types.js';
+import type { TableUiConfig } from '../../../ui/TableUiConfig.js';
 /** Native audio only. Sound stays outside protocol/data and never blocks entry. */
 export class TableSound {
   readonly root = document.createElement('div');
@@ -19,7 +20,10 @@ export class TableSound {
   private timerKey='';
   private lastRemaining=Infinity;
   private visibility = () => { if (document.hidden) this.stop(); else if (this.enabled) void this.music(); };
-  constructor() { this.root.hidden = true; document.addEventListener('visibilitychange', this.visibility); }
+  constructor(private readonly tableSounds?: TableUiConfig['tableSounds']) {
+    this.root.hidden = true;
+    document.addEventListener('visibilitychange', this.visibility);
+  }
   async setEnabled(value: boolean): Promise<void> {
     this.enabled = value; this.generation++;
     if (!value) { this.stop(); return; }
@@ -35,8 +39,14 @@ export class TableSound {
     }
     try { await this.bgm.play(); } catch { /* A later user gesture can retry. */ }
   }
-  private async effect(key: 'deal' | 'fold' | 'check' | 'chips' | 'allin' | 'turn' | 'alert' | 'three'): Promise<void> {
+  private effect(key: Exclude<keyof typeof config.paths, 'bgm'> | keyof NonNullable<TableUiConfig['tableSounds']>): void {
     if (!this.enabled || document.hidden) return;
+    if (key === 'call' || key === 'raise' || key === 'smallBlind' || key === 'bigBlind' || key === 'myWin') {
+      const url = this.tableSounds?.[key];
+      if (url) { this.clips.playFile(url); return; }
+      if (key !== 'call' && key !== 'raise') return;
+      key = 'chips';
+    }
     this.clips.play(config.paths[key],config.media[key]);
   }
   /** Room effects use the same mute/visibility lifecycle as table sound. */
@@ -72,11 +82,22 @@ export class TableSound {
     if (state.community.length > old.community.length) void this.effect('deal');
     for (const p of state.players) {
       const before = old.players.find(v => v.seat === p.seat);
-      if (!before || before.action === p.action) continue;
-      if (p.action === '弃牌') void this.effect('fold');
-      else if (p.action === '过牌') void this.effect('check');
-      else if (p.action === '全下') void this.effect('allin');
-      else if (['下注','跟注','加注'].includes(p.action)) void this.effect('chips');
+      if (!before || before.userRid !== p.userRid) continue;
+      if (p.seat === state.mySeat && p.settlement?.win && !before.settlement?.win) this.effect('myWin');
+      const action = p.action.split(' ', 1)[0];
+      const repeatedBet = old.handNum === state.handNum && old.community.length === state.community.length
+        && (action === '跟注' || action === '加注') && (p.roundBet ?? 0) > (before.roundBet ?? 0);
+      if (before.action === p.action && !repeatedBet) continue;
+      switch (action) {
+        case '弃牌': this.effect('fold'); break;
+        case '过牌': this.effect('check'); break;
+        case '全下': this.effect('allin'); break;
+        case '下注': this.effect('chips'); break;
+        case '跟注': this.effect('call'); break;
+        case '加注': this.effect('raise'); break;
+        case '小盲': this.effect('smallBlind'); break;
+        case '大盲': this.effect('bigBlind'); break;
+      }
     }
     if (state.betting && state.betting.id !== old.betting?.id) void this.effect('turn');
   }

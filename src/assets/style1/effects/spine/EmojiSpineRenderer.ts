@@ -1,8 +1,9 @@
 import spine from '../../../../effects/spine/vendor/spine38.js';
 import { EmojiSpineAssets, type SpineClipConfig } from './EmojiSpineAssets.js';
-export interface EmojiAnchor { x: number; y: number; scale: number; maxSize?: number; clip?: DOMRectReadOnly; }
+export interface EmojiAnchor { x: number; y: number; scale: number; rotation?: number; maxSize?: number; clip?: DOMRectReadOnly; }
+export type EffectAnchor = (elapsed: number, duration: number) => EmojiAnchor | null;
 interface Bounds { x: number; y: number; size: number; }
-interface Playing { skeleton: spine.Skeleton; state: spine.AnimationState; duration: number; elapsed: number; loop: boolean; anchor: () => EmojiAnchor | null; bounds?: Bounds; complete?: (finished: boolean) => void; }
+interface Playing { skeleton: spine.Skeleton; state: spine.AnimationState; duration: number; elapsed: number; loop: boolean; limit?: number; anchor: EffectAnchor; bounds?: Bounds; complete?: (finished: boolean) => void; }
 /** One transparent context for all previews or all seat emojis; no game engine dependencies. */
 export class EmojiSpineRenderer {
     private canvas = document.createElement('canvas');
@@ -42,32 +43,51 @@ export class EmojiSpineRenderer {
         this.canvas.addEventListener('webglcontextrestored', this.contextRestored);
         document.addEventListener('visibilitychange', this.visibility);
     }
+    private async decode(config: SpineClipConfig, textures: spine.webgl.GLTexture[]): Promise<spine.SkeletonData> {
+        const asset = await EmojiSpineAssets.load(config);
+        if (this.dead) throw new DOMException('Disposed', 'AbortError');
+        const atlas = new spine.TextureAtlas(asset.atlas, name => {
+            const image = asset.images.get(name);
+            if (!image) throw new Error('Missing emoji texture ' + name);
+            const texture = new spine.webgl.GLTexture(this.context, image);
+            textures.push(texture);
+            return texture;
+        });
+        return new spine.SkeletonBinary(new spine.AtlasAttachmentLoader(atlas)).readSkeletonData(asset.binary);
+    }
     private load(config: SpineClipConfig): Promise<spine.SkeletonData> {
         let task = this.data.get(config.spine);
         if (!task) {
-            task = EmojiSpineAssets.load(config).then(asset => {
-                if (this.dead) throw new DOMException('Disposed', 'AbortError');
-                const atlas = new spine.TextureAtlas(asset.atlas, name => {
-                    const image = asset.images.get(name); if (!image) throw new Error(`Missing emoji texture ${name}`);
-                    const texture = new spine.webgl.GLTexture(this.context, image); this.textures.push(texture); return texture;
-                });
-                return new spine.SkeletonBinary(new spine.AtlasAttachmentLoader(atlas)).readSkeletonData(asset.binary);
-            }).catch(error => { this.data.delete(config.spine); throw error; });
+            task = this.decode(config, this.textures).catch(error => { this.data.delete(config.spine); throw error; });
             this.data.set(config.spine, task);
         }
         return task;
     }
-    async play(key: string, config: SpineClipConfig, anchor: () => EmojiAnchor | null, loop = false, fit = false, complete?: (finished: boolean) => void): Promise<boolean> {
+    async play(key: string, config: SpineClipConfig, anchor: EffectAnchor, loop = false, fit = false, complete?: (finished: boolean) => void): Promise<boolean> {
         this.stop(key);
         const token = {}; this.tokens.set(key, token);
-        const data = await this.load(config);
-        if (this.dead || this.tokens.get(key) !== token) return false;
-        const skeleton = new spine.Skeleton(data), state = new spine.AnimationState(new spine.AnimationStateData(data));
-        const animation = data.findAnimation(config.animation);
-        if (!animation) throw new Error(`Missing emoji animation ${config.animation}`);
-        state.setAnimation(0, config.animation, loop); state.apply(skeleton);
-        this.playing.set(key, {skeleton, state, duration: animation.duration, elapsed: 0, loop, anchor, bounds: fit ? this.measure(data, config) : undefined, complete});
-        this.wake(); return true;
+        // Release large picker textures when this avatar finishes or is replaced.
+        const owned = config.loopSeconds ? [] as spine.webgl.GLTexture[] : undefined;
+        const release = () => owned?.splice(0).forEach(texture => texture.dispose());
+        try {
+            const data = await (owned ? this.decode(config, owned) : this.load(config));
+            if (this.dead || this.tokens.get(key) !== token) { release(); return false; }
+            const skeleton = new spine.Skeleton(data), state = new spine.AnimationState(new spine.AnimationStateData(data));
+            const animation = config.animation ? data.findAnimation(config.animation) : data.animations[0];
+            if (!animation) throw new Error('Missing emoji animation ' + config.animation);
+            if (!config.setupSeconds) {
+                state.setAnimation(0, animation.name, loop);
+                state.apply(skeleton);
+            }
+            const bounds = fit ? this.measure(data, {...config, animation: animation.name}) : undefined;
+            this.playing.set(key, {skeleton, state, duration: config.setupSeconds ?? animation.duration, limit: config.loopSeconds, elapsed: 0, loop, anchor, bounds,
+                complete: finished => { release(); complete?.(finished); }});
+            this.wake(); return true;
+        } catch (error) {
+            release();
+            if (this.tokens.get(key) === token) this.tokens.delete(key);
+            throw error;
+        }
     }
     private measure(data: spine.SkeletonData, config: SpineClipConfig): Bounds {
         const key = config.spine + ':' + config.animation, cached = this.bounds.get(key); if (cached) return cached;
@@ -97,15 +117,24 @@ export class EmojiSpineRenderer {
             this.projection.ortho(0, rect.width, 0, rect.height, -1, 1);
             this.shader.bind(); this.shader.setUniformi(spine.webgl.Shader.SAMPLER, 0); this.shader.setUniform4x4f(spine.webgl.Shader.MVP_MATRIX, this.projection.values);
             for (const [key, item] of this.playing) {
-                const anchor = item.anchor();
                 item.elapsed += dt;
-                if (!anchor || (!item.loop && item.elapsed >= item.duration)) { this.stop(key, !!anchor && item.elapsed >= item.duration); continue; }
+                const anchor = item.anchor(item.elapsed, item.duration);
+                if (!anchor || (item.elapsed >= (item.limit ?? (item.loop ? Infinity : item.duration)))) { this.stop(key, !!anchor); continue; }
                 item.state.update(dt); item.state.apply(item.skeleton);
                 const scale = item.bounds ? (anchor.maxSize ?? 130) / item.bounds.size : anchor.scale;
                 item.skeleton.scaleX = item.skeleton.scaleY = scale;
                 item.skeleton.x = anchor.x - rect.left - (item.bounds?.x ?? 0) * scale;
                 item.skeleton.y = rect.height - (anchor.y - rect.top) - (item.bounds?.y ?? 0) * scale;
                 item.skeleton.updateWorldTransform();
+                if (anchor.rotation) {
+                    const cosine = Math.cos(anchor.rotation), sine = Math.sin(anchor.rotation);
+                    for (const bone of item.skeleton.bones) {
+                        const x = bone.worldX - item.skeleton.x, y = bone.worldY - item.skeleton.y;
+                        bone.rotateWorld(anchor.rotation * 180 / Math.PI);
+                        bone.worldX = item.skeleton.x + x * cosine - y * sine;
+                        bone.worldY = item.skeleton.y + x * sine + y * cosine;
+                    }
+                }
                 if (anchor.clip) {
                     const left = Math.max(rect.left, anchor.clip.left), top = Math.max(rect.top, anchor.clip.top), right = Math.min(rect.right, anchor.clip.right), bottom = Math.min(rect.bottom, anchor.clip.bottom);
                     if (right <= left || bottom <= top) continue;

@@ -14,6 +14,7 @@ import { dialogConfirmButton } from '../DialogConfirmButton/DialogConfirmButton.
 import { DialogSurface } from '../DialogSurface/DialogSurface.js';
 import { RoundCheckbox } from '../RoundCheckbox/RoundCheckbox.js';
 import { TableConfirmDialog } from '../TableConfirmDialog/TableConfirmDialog.js';
+import type { TableUiConfig } from '../../../../../ui/TableUiConfig.js';
 const url=(name:string)=>resourceURL((viewConfig.paths as Record<string,string>)[name]!);
 export class SquidView {
  readonly root=componentBox(element('div','mx-squid'),viewConfig);
@@ -27,7 +28,7 @@ export class SquidView {
  private started=0;private resultSerial=0;private noticeSerial=0;
  private closeTimer?:ReturnType<typeof setTimeout>;private loop?:ReturnType<typeof setInterval>;
  private animation?:Animation;private pending=false;
- constructor(private records:SpecialOperations,private actions:SeatingActions,private confirm:TableConfirmDialog,private failed:(error:unknown)=>void){
+ constructor(private records:SpecialOperations,private actions:SeatingActions,private confirm:TableConfirmDialog,private failed:(error:unknown)=>void,private opening?: import('../../../effects/OpeningSpineEffect.js').OpeningSpineEffect, private guideArt?: TableUiConfig['guideArt']){
   for(const name of ['squid_bg_red','squid_end_bg','squid_reward_bg']){this.root.style.setProperty(`--${name}`,`url("${url(name)}")`);this.result.root.style.setProperty(`--${name}`,`url("${url(name)}")`);}
   this.result.panel.classList.add('mx-dialog-glass');
   this.count.style.backgroundImage=`url("${url('table_icon_squid')}")`;
@@ -49,9 +50,9 @@ export class SquidView {
   this.count.hidden=!s.enabled;this.count.textContent=String(s.remaining);this.count.dataset.count=String(s.remaining);this.count.setAttribute('aria-label',`${i18nMgr.Get('UISquid')} ${s.remaining}`);
   this.join.hidden=!s.showJoin;this.stand.hidden=!s.enabled||!s.seat;
   if(s.notice&&s.noticeSerial!==this.noticeSerial)this.failed(i18nMgr.Get(s.notice));this.noticeSerial=s.noticeSerial;
-  if(s.start!==this.started){this.started=s.start;if(s.start){this.animation?.cancel();this.start.hidden=false;this.animation=this.start.animate(viewConfig.layout.startAnimation.frames,{duration:viewConfig.layout.startAnimation.duration});this.animation.onfinish=()=>{this.start.hidden=true;};}}
+  if(s.start!==this.started){this.started=s.start;if(this.opening){if(s.start)this.opening.play('squid');else this.opening.stop('squid');}else if(s.start){this.animation?.cancel();this.start.hidden=false;this.animation=this.start.animate(viewConfig.layout.startAnimation.frames,{duration:viewConfig.layout.startAnimation.duration});this.animation.onfinish=()=>{this.start.hidden=true;};}}
   if(s.resultSerial!==this.resultSerial){this.resultSerial=s.resultSerial;clearTimeout(this.closeTimer);this.result.content.replaceChildren();
-   if(s.results.length){this.result.content.append(element('h2','mx-squid-result-title',()=>i18nMgr.Get('MX_SquidRoundEnded')));const card=element('div','mx-squid-result-card'),header=element('div','mx-squid-result-header'),title=element('img','mx-squid-over');title.src=url('resultSquid');header.append(title);const list=element('div','mx-squid-result-list');card.append(header,list);this.result.content.append(card);
+   if(s.results.length){this.result.content.append(element('h2','mx-squid-result-title',()=>i18nMgr.Get('MX_SquidRoundEnded')));const card=element('div','mx-squid-result-card'),header=element('div','mx-squid-result-header'),title=element('img','mx-squid-over');title.src=this.guideArt?.squidResult ?? url('resultSquid');header.append(title);const list=element('div','mx-squid-result-list');card.append(header,list);this.result.content.append(card);
     s.results.forEach((v,index)=>{const row=element('div','mx-squid-result-row'),avatar=element('img',''),identity=element('div',''),score=element('strong','');
      avatar.src=v.avatar;const id=element('small','');id.append(element('span','mx-squid-id-label','ID'),document.createTextNode(String(v.userID)));identity.append(element('div','',()=>StringHelper.LengthNick(v.nick||'-')),id);score.textContent=StringHelper.GetSignedLongString(v.money);score.dataset.sign=v.money>0?'positive':v.money<0?'negative':'zero';row.append(avatar,identity,score);
      if(!v.isPunish&&v.rate>0)row.append(element('span','mx-squid-reward',()=>`${v.rate}X ${i18nMgr.Get('UISquidEndReward')}`));
@@ -91,8 +92,8 @@ export class SquidView {
   left.type=right.type='button';
   i18nLabel.bind(left,()=>i18nMgr.Get('MX_PreviousPage'),'aria-label');
   i18nLabel.bind(right,()=>i18nMgr.Get('UITableSetting_nextPage'),'aria-label');
-  left.style.backgroundImage=`url("${url('icon_lelft_arrow')}")`;
-  right.style.backgroundImage=`url("${url('icon_right_arrow')}")`;
+  left.style.backgroundImage=`url("${this.guideArt?.previous ?? url('icon_lelft_arrow')}")`;
+  right.style.backgroundImage=`url("${this.guideArt?.next ?? url('icon_right_arrow')}")`;
   const toggle=new RoundCheckbox(()=>i18nMgr.Get('UIGuild_NoticeNoShow'),true);
   const footer=element('div','mx-squid-intro-footer');
   const commit=dialogConfirmButton(()=>i18nMgr.Get('adaptation10012'),()=>{
@@ -101,7 +102,7 @@ export class SquidView {
    this.intro.show(false);
   });
   footer.append(commit);
-  const render=()=>{picture.src=url(`squid_dialog_page_${page+1}`);i18nLabel.bind(text,()=>i18nMgr.Get(page===0?(mode===1?'UIDialogSquid_BloodyPage1':'UIDialogSquid_NormalPage1'):page===1?(mode===1?'UIDialogSquid_Tips1':'UIDialogSquid_Tips2'):'UIDialogSquid_BloodyPage3'));bar.replaceChildren(...[0,1,2].map(i=>{const dot=element('span','');dot.classList.toggle('selected',i===page);return dot;}));};
+  const render=()=>{picture.src=this.guideArt?.squidPages[page] ?? url(`squid_dialog_page_${page+1}`);i18nLabel.bind(text,()=>i18nMgr.Get(page===0?(mode===1?'UIDialogSquid_BloodyPage1':'UIDialogSquid_NormalPage1'):page===1?(mode===1?'UIDialogSquid_Tips1':'UIDialogSquid_Tips2'):'UIDialogSquid_BloodyPage3'));bar.replaceChildren(...[0,1,2].map(i=>{const dot=element('span','');dot.classList.toggle('selected',i===page);return dot;}));};
   left.onclick=()=>{clearInterval(this.loop);page=(page+2)%3;render();};right.onclick=()=>{clearInterval(this.loop);page=(page+1)%3;render();};
   this.intro.content.replaceChildren(title,bar,picture,text,left,right,toggle.root,footer);render();this.intro.show(true);this.loop=setInterval(()=>{page=(page+1)%3;render();},2000);
  }

@@ -5,10 +5,13 @@ import type { ThrowPropBroadcastData } from '../../../../data/TexasGameRoomDataE
 import type { MagicEmojiDefinition } from '../../../../logic/MagicEmojiConfig.js';
 
 import { THROW_PROP_EFFECTS } from './ThrowPropConfig.js';
+import { SkinPropPlayer } from './SkinPropPlayer.js';
+import type { TableEffectArt } from '../../../../ui/TableEffectArt.js';
 type Place = 'sender' | 'receiver' | 'screen';
 
 /** Plays CC's exported skeletons on the table's existing transparent WebGL layer. */
 export class ThrowPropSpinePlayer {
+  private skinPlayer?: SkinPropPlayer;
   private serial = 0;
   private keys = new Set<string>();
   private timers = new Set<ReturnType<typeof setTimeout>>();
@@ -16,9 +19,11 @@ export class ThrowPropSpinePlayer {
   private dead = false;
   constructor(private renderer: EmojiSpineRenderer, private sound: TableSound,
     private anchor: (userRID: number) => EmojiAnchor | null, private screen: () => EmojiAnchor | null,
-    private ownRID: number, private fail: (error: unknown) => void) {}
+    private ownRID: number, private fail: (error: unknown) => void, art?: TableEffectArt['throwProps']) {
+    if (art) this.skinPlayer = new SkinPropPlayer(renderer, sound, anchor, art, fail);
+  }
 
-  play(data: ThrowPropBroadcastData): void { void this.preloadAndPlay(data); }
+  play(data: ThrowPropBroadcastData): void { if (!this.skinPlayer?.play(data)) void this.preloadAndPlay(data); }
   private async preloadAndPlay(data: ThrowPropBroadcastData): Promise<void> {
     const c = THROW_PROP_EFFECTS[data.type]; if (!c || this.dead) return;
     try {
@@ -84,6 +89,7 @@ export class ThrowPropSpinePlayer {
     this.timers.add(timer);
   }
   destroy(): void {
+    this.skinPlayer?.destroy();
     this.dead = true; this.timers.forEach(clearTimeout); this.timers.clear();
     this.keys.forEach(key => this.renderer.stop(key)); this.keys.clear();
     this.sounds.forEach(stop => stop()); this.sounds.clear();

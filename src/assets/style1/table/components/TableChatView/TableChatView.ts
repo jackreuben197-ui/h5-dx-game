@@ -29,7 +29,7 @@ export class TableChatView {
   private bindings=new BindingScope(this);
   private rows=new Map<TexasChatMessage,HTMLElement>();
   private dead=false;private quickData:unknown=[];
-  constructor(private records:RoomRecords,private error:(e:unknown)=>void){
+  constructor(private records:RoomRecords,private error:(e:unknown)=>void, private art?: import('../../../../../ui/TableEffectArt.js').TableEffectArt){
     const data=records.data;
     window.visualViewport?.addEventListener('resize',this.fitKeyboard);
     window.visualViewport?.addEventListener('scroll',this.fitKeyboard);
@@ -95,7 +95,9 @@ export class TableChatView {
     const row=element('article','mx-chat-message'),avatar=element('img','mx-chat-avatar');avatar.alt='';avatar.src=m.headUrl;avatar.onerror=()=>{avatar.hidden=true;};
     const content=element('div','mx-chat-content'),meta=element('div','mx-chat-meta');meta.append(element('span','',m.name),element('time','',m.time));
     const bubble=element('div','mx-chat-bubble',m.emojiType===undefined?m.content:i18nMgr.Get('UITexas_mainmenu_emoji'));
-    if(m.emojiType!==undefined&&MagicEmojiConfig.getByType(m.emojiType)){bubble.className='mx-chat-emoji-slot';bubble.textContent='';bubble.dataset.chatEmoji=String(m.emojiType);}
+    const picker=m.emojiType!==undefined && this.art?.emoji(m.emojiType);
+    if(picker){const image=element('img','mx-picker-thumb');image.src=picker.thumbnail;image.alt=bubble.textContent??'';bubble.className='mx-chat-emoji-slot';bubble.replaceChildren(image);}
+    else if(m.emojiType!==undefined&&MagicEmojiConfig.getByType(m.emojiType)){bubble.className='mx-chat-emoji-slot';bubble.textContent='';bubble.dataset.chatEmoji=String(m.emojiType);}
     content.append(meta,bubble);row.append(avatar,content);return row;
   }
   private scrollBottom():void{this.dialog.body.scrollTop=this.dialog.body.scrollHeight;}

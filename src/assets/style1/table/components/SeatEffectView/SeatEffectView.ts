@@ -45,7 +45,7 @@ export class SeatEffectView {
     if (!win) this.effects.stop(`${this.id}:win`);
     // CC WINNER initIgnore: reconnect / ShowBB / resize must not replay settlement.
     else if (old && state.presentation !== 'sync' && !old.player?.settlement?.win)
-      void this.effects.play(`${this.id}:win`, 'win', () => seatEffectAnchor(this.root,'win'));
+      void this.effects.play(`${this.id}:win`, 'win', () => seatEffectAnchor(this.root,'win'), state.mine);
   }
   cancel(): void {
     ++this.generation; this.allin = false;

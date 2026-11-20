@@ -6,6 +6,6 @@ export interface EffectAnchor {
   lift?: number;
 }
 export interface SeatEffects {
-  play(key: string, effect: SeatEffect, anchor: () => EffectAnchor): Promise<boolean>;
+  play(key: string, effect: SeatEffect, anchor: () => EffectAnchor, mine?: boolean): Promise<boolean>;
   stop(key: string): void;
 }

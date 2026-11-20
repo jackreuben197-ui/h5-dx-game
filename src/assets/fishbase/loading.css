@@ -1,0 +1,33 @@
+.mx-game[data-skin-family="fishbase"] .mx-preloading {
+  container-type: size;
+  background-color: #0b1021;
+  background-size: cover;
+}
+
+.mx-game[data-skin-family="fishbase"] .mx-preloading-group {
+  top: 67%;
+  width: min(72.5cqw, 50cqh);
+  --loading-unit: min(calc(100cqw / 1242), calc(100cqh / 1800));
+}
+
+.mx-game[data-skin-family="fishbase"] .mx-preloading[data-wide="true"] .mx-preloading-group {
+  top: 78%;
+  width: min(80cqw, 97.2cqh);
+  --loading-unit: min(calc(100cqw / 1600), calc(100cqh / 1440));
+}
+
+.mx-game[data-skin-family="fishbase"] .mx-preloading-bar {
+  top: 0;
+  height: max(3px, calc(12 * var(--loading-unit)));
+  border: 0;
+}
+
+.mx-game[data-skin-family="fishbase"] .mx-preloading-inner {
+  inset: 0;
+}
+
+.mx-game[data-skin-family="fishbase"] .mx-preloading-fill {
+  background-color: transparent;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

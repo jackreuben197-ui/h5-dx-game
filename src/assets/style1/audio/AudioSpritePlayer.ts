@@ -31,16 +31,22 @@ export class AudioSpritePlayer {
     if(this.disposed)return ()=>{};
     const clip=media[path];if(!clip||clip.type!=='audio')return ()=>{};
     if(clip.playback==='stream')return this.stream(clip.url,rule);
+    return this.playBuffer(clip.url, clip.start, clip.duration, rule);
+  }
+  playFile(url: string): void {
+    if (!this.disposed) this.playBuffer(url, 0, undefined, {});
+  }
+  private playBuffer(url: string, start: number, duration: number | undefined, rule: MediaRule): () => void {
     this.unlock();let cancelled=false,source:AudioBufferSourceNode|undefined,gain:GainNode|undefined;
     const stop=()=>{cancelled=true;source?.stop();source?.disconnect();gain?.disconnect();source=undefined;gain=undefined;this.voices.delete(stop);};
     this.voices.add(stop);
-    void this.buffer(clip.url).then(buffer=>{
+    void this.buffer(url).then(buffer=>{
       if(cancelled||this.disposed)return;
-      const segment=mediaRange(clip.duration??buffer.duration,rule.start,rule.duration);
+      const segment=mediaRange(duration??buffer.duration,rule.start,rule.duration);
       source=this.context!.createBufferSource();source.buffer=buffer;
       gain=this.context!.createGain();gain.gain.value=Math.max(0,Math.min(1,rule.volume??1));source.connect(gain);gain.connect(this.context!.destination);
       source.onended=()=>{source?.disconnect();gain?.disconnect();source=undefined;gain=undefined;this.voices.delete(stop);};
-      const offset=clip.start+segment.start;
+      const offset=start+segment.start;
       if(rule.loop){source.loop=true;source.loopStart=offset;source.loopEnd=offset+segment.duration!;source.start(0,offset);}
       else source.start(0,offset,segment.duration);
     }).catch(()=>stop());

@@ -1,5 +1,6 @@
 import { componentBox } from '../../ComponentBox.js';
 import config from './config.json';
+import type { TableEffectArt } from '../../../../../ui/TableEffectArt.js';
 import { EmojiController } from '../../../../../logic/EmojiController.js';
 import { BindingScope } from '../../../../../binding/BindingScope.js';
 import { bindEvent } from '../../../../../binding/bindEvent.js';
@@ -23,7 +24,7 @@ export class EmojiView {
     private rendered = '';
     private dead = false;
     private previousFocus?: HTMLElement;
-    constructor(readonly controller: EmojiController) {
+    constructor(readonly controller: EmojiController, private art?: TableEffectArt) {
         this.root.hidden = true; this.panel.setAttribute('role', 'dialog'); this.panel.setAttribute('aria-modal', 'true');
         this.status.setAttribute('role', 'status'); this.categories.setAttribute('role', 'tablist');
         this.retry.type = 'button'; this.retry.onclick = () => void controller.refresh();
@@ -62,7 +63,7 @@ export class EmojiView {
             this.root.hidden = false;
             this.animation = this.panel.animate([{transform: 'translateY(100%)', opacity: .5}, {transform: 'translateY(0)', opacity: 1}], {duration: config.layout.slideMs, easing: 'cubic-bezier(.25,.46,.45,.94)'});
         }
-        const categories = this.controller.categories;
+        const categories = this.art?.groups ?? this.controller.categories;
         this.status.textContent = state.error || (state.loading && !categories.length ? i18nMgr.Get('MX_Loading', [], '加载中…') : !categories.length ? i18nMgr.Get('MX_EmojiEmpty', [], '暂无可用表情') : '');
         this.items.forEach(item => item.setBusy(state.sending));
         const key = JSON.stringify([categories, state.category, service.config.isChannelDiamondFreeMode, i18nMgr.getCurrentLocale()]);
@@ -76,8 +77,11 @@ export class EmojiView {
         this.items.forEach(item => item.destroy()); this.items = []; this.grid.replaceChildren(); this.grid.scrollTop = 0;
         const category = categories.find(c => c.id === state.category);
         if (category?.items.length) {
-            const renderer = this.engine();
-            this.items = category.items.map(item => new EmojiItemView(item, service.config.isChannelDiamondFreeMode, renderer, this.grid, () => void this.controller.send(item.data)));
+            this.items = category.items.map(item => {
+                const picker = 'thumbnail' in item;
+                return new EmojiItemView(item, service.config.isChannelDiamondFreeMode, picker ? undefined : this.engine(), this.grid,
+                    () => void this.controller.send(picker ? item.type : item.data));
+            });
             this.items.forEach(item => { this.grid.append(item.root); item.setBusy(state.sending); });
         }
         if (!this.panel.contains(document.activeElement)) this.categories.querySelector<HTMLButtonElement>('[aria-selected=true]')?.focus({preventScroll: true});

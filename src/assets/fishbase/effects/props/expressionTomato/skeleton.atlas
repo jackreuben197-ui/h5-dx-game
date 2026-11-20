@@ -1,0 +1,41 @@
+
+skeleton.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/fly 1
+  rotate: false
+  xy: 847, 857
+  size: 39, 29
+  orig: 39, 30
+  offset: 0, 1
+  index: -1
+images/fly 3
+  rotate: false
+  xy: 847, 857
+  size: 39, 29
+  orig: 39, 30
+  offset: 0, 1
+  index: -1
+images/sh-1
+  rotate: false
+  xy: 541, 411
+  size: 259, 228
+  orig: 259, 228
+  offset: 0, 0
+  index: -1
+images/splash
+  rotate: false
+  xy: 2, 405
+  size: 537, 481
+  orig: 573, 510
+  offset: 36, 0
+  index: -1
+images/splash-2
+  rotate: false
+  xy: 541, 641
+  size: 304, 245
+  orig: 334, 246
+  offset: 8, 0
+  index: -1

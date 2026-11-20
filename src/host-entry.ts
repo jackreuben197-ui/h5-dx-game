@@ -35,4 +35,6 @@ export { LayoutOval } from './config/UiConfig.js';
 export type { SeatPlacement } from './ui/TableLayout.js';
 export type { UiSkin, GameSurface } from './ui/UiSkin.js';
 
-export { style1, style2 } from './config/UiConfig.js';
+export { fishbase, style1, style2 } from './config/UiConfig.js';
+export { createFishbaseSkin } from './assets/fishbase/index.js';
+export type { FishbaseDeskOverrides } from './assets/fishbase/desks.js';

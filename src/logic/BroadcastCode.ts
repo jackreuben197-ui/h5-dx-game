@@ -109,6 +109,10 @@ export const THROW_PROP_IDS: PropsID[] = [
     PropsID.PROPSBASEBALL
 ];
 
+export function pickerEmojiType(index: number): number { return PropsID.FREEAUDIENCE + index - 1; }
+export function isPickerEmojiType(type: number): boolean {
+    return Number.isInteger(type) && type >= pickerEmojiType(16) && type <= pickerEmojiType(65);
+}
 export function getFreeEmojiTypeBase(): number {
     return PropsID.FREEAUDIENCE;
 }

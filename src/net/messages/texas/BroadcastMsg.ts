@@ -1,6 +1,6 @@
 import type { ServerMessageBroadcastMsg } from '@silenthill/agreement-web';
 import type { MessageContext } from '../MessageContext.js';
-import { BroadcastCode, getMagicEmojiTypeBase, getThrowPropTypeBase, PropsID } from '../../../logic/BroadcastCode.js';
+import { BroadcastCode, isPickerEmojiType, getMagicEmojiTypeBase, getThrowPropTypeBase, PropsID } from '../../../logic/BroadcastCode.js';
 /** CC 1019 confirms the pending self animation; never play optimistically. */
 export function BroadcastMsg(data: ServerMessageBroadcastMsg.AsObject, context: MessageContext): false {
     context.data.chat.confirmPendingMessage(data.status);
@@ -13,7 +13,7 @@ export function handleBroadcastExtra(extra: Uint8Array | string, context: Messag
     const inner = parseBroadcastInner(extra); if (!inner) return;
     const userID = Number(inner.user_id || 0), type = Number(inner.type || 0);
     if (!userID || userID === context.session.userRID || userID === context.session.userID) return;
-    if (type >= getMagicEmojiTypeBase()) context.data.emoji.emojiEvent({type, userID});
+    if (isPickerEmojiType(type) || type >= getMagicEmojiTypeBase()) context.data.emoji.emojiEvent({type, userID});
     else if (type >= getThrowPropTypeBase() && type <= PropsID.PROPSBASEBALL) {
         const targetUserID = Number(inner.target_user_id || 0);
         if (targetUserID) context.data.emoji.throwPropEvent({type, userID, targetUserID});

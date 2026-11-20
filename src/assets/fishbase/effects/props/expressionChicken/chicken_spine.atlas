@@ -1,0 +1,104 @@
+
+chicken_spine.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Eyes out
+  rotate: false
+  xy: 456, 205
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+images/Feather 1
+  rotate: true
+  xy: 456, 160
+  size: 43, 53
+  orig: 45, 54
+  offset: 2, 0
+  index: -1
+images/Feather 2
+  rotate: true
+  xy: 478, 441
+  size: 68, 23
+  orig: 69, 23
+  offset: 1, 0
+  index: -1
+images/Feather 3
+  rotate: true
+  xy: 478, 319
+  size: 67, 22
+  orig: 68, 23
+  offset: 1, 0
+  index: -1
+images/Feather 4
+  rotate: true
+  xy: 471, 255
+  size: 62, 33
+  orig: 62, 34
+  offset: 0, 1
+  index: -1
+images/beak bottom
+  rotate: true
+  xy: 456, 303
+  size: 37, 13
+  orig: 37, 13
+  offset: 0, 0
+  index: -1
+images/beak-top
+  rotate: true
+  xy: 478, 388
+  size: 51, 30
+  orig: 51, 31
+  offset: 0, 1
+  index: -1
+images/body
+  rotate: false
+  xy: 2, 275
+  size: 267, 234
+  orig: 268, 234
+  offset: 1, 0
+  index: -1
+images/eyes-pupil
+  rotate: false
+  xy: 456, 292
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+images/hand
+  rotate: false
+  xy: 2, 145
+  size: 182, 128
+  orig: 213, 153
+  offset: 17, 13
+  index: -1
+images/leg 1
+  rotate: false
+  xy: 186, 183
+  size: 73, 90
+  orig: 74, 91
+  offset: 1, 0
+  index: -1
+images/leg 2
+  rotate: false
+  xy: 261, 92
+  size: 73, 90
+  orig: 74, 90
+  offset: 1, 0
+  index: -1
+images/tail
+  rotate: true
+  xy: 271, 342
+  size: 167, 205
+  orig: 191, 225
+  offset: 13, 12
+  index: -1
+images/wings
+  rotate: false
+  xy: 271, 184
+  size: 183, 156
+  orig: 219, 180
+  offset: 26, 24
+  index: -1

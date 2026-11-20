@@ -274,7 +274,8 @@ export class TexasGamePersonalSettings extends EventSource {
         this.showBB = this.read<unknown>(StorageKey.SHOW_BB, false) === true;
         //初始化DeskType
         const desk = +this.read(StorageKey.TEXAS_DESKTYPE, 1);
-        this.deskType = Number.isInteger(desk) && desk >= 1 && desk <= 14 ? desk : 1;
+        // Each skin resolves the saved ID against its own desk catalog.
+        this.deskType = Number.isSafeInteger(desk) && desk >= 1 ? desk : 1;
         //初始化pokerCardType
         this.pokerCardType = this.read<number>(StorageKey.TEXAS_POKERCARDTYPE, 1) === 2 ? 2 : 1;
         //初始化声音

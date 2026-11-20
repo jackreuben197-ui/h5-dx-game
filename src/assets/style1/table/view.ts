@@ -39,6 +39,7 @@ import './components/GameRulesView/layout.css';
 import './player-info.css';
 import { DeskBackgroundView } from './components/DeskBackgroundView/DeskBackgroundView.js';
 import { AllInTestView } from './components/AllInTestView/AllInTestView.js';
+import { OpeningSpineEffect } from '../effects/OpeningSpineEffect.js';
 import { SpineEffects } from '../effects/SpineEffects.js';
 import { SeatPositionMotion } from './SeatPositionMotion.js';
 import defaultSettings, { TexasGamePersonalSettings as Settings } from '../../../data/TexasGamePersonalSettings.js';
@@ -61,7 +62,7 @@ import { TablePresenter } from '../../../logic/TablePresenter.js';
 import { BindingScope } from '../../../binding/BindingScope.js';
 import { bindEvent } from '../../../binding/bindEvent.js';
 import type { TableLayout } from '../../../ui/TableLayout.js';
-import type { TableUiConfig } from '../../../ui/TableUiConfig.js';
+import { selectedDeskId, type TableUiConfig } from '../../../ui/TableUiConfig.js';
 import { defaultTableUi } from './layouts/DefaultTableUi.js';
 import { SeatView, type SeatComponent } from './components/SeatView/SeatView.js';
 import { PublicCardsView } from './components/PublicCardsView/PublicCardsView.js';
@@ -86,7 +87,8 @@ export class TableView {
   readonly root = element('section', 'mx-table');
   readonly below = element('div', 'mx-effects mx-effects-below');
   readonly above = element('div', 'mx-effects mx-effects-above');
-  private effects = new SpineEffects(this.above);
+  private effects: SpineEffects;
+  private opening?: OpeningSpineEffect;
   readonly data = new TableData();
   private presenter = new TablePresenter(this.data);
   private bindings = new BindingScope(this);
@@ -133,7 +135,7 @@ export class TableView {
   private chat?:TableChatView;
   private tableTools?:TableToolsView;
   private mushroomBoom?:MushroomBoomView;
-  private sound = new TableSound();
+  private readonly sound: TableSound;
   private soundControl: SoundControlView;
   private board: ReturnType<NonNullable<TableComponents['publicCards']>>;
   private secondBoard = new PublicCardsView(this.data.secondPublicCards);
@@ -152,12 +154,15 @@ export class TableView {
     navigate?: (action: 'report' | 'replay' | 'emoji' | 'effect' | 'voice' | 'camera') => void,
     private options: { ui?: TableUiConfig; preferences?: Settings; specialOperations?: SpecialOperations; emojis?: RoomEmojis; records?: RoomRecords; testControls?: HTMLElement; layout?: 'portrait' | 'auto'; components?: TableComponents; seating?: SeatingActions } = {},
   ) {
+    this.sound = new TableSound(options.ui?.tableSounds);
+    this.effects = new SpineEffects(this.above, options.ui?.effects?.seats);
+    if (options.ui?.effects) this.opening = new OpeningSpineEffect(this.above, options.ui.effects.opening);
     this.settings=options.preferences??defaultSettings;
     this.layout=(options.ui??defaultTableUi).createLayout(this.settings.tableAppearance.layout);
     this.showBB=this.settings.showBB;
     bindTableAppearance(this.root,this.settings);
     this.root.style.setProperty('--mx-accent',getBrand(this.settings.brandID).accent);
-    this.personalSettings=new PersonalSettingsView(this.settings);
+    this.personalSettings=new PersonalSettingsView(this.settings, options.ui);
     const repaint=(root:HTMLElement)=>{
       const paint=(card:HTMLElement)=>CardView.paint(card,Number(card.dataset.cardValue),card.dataset.smallBack==='true');
       if(root.matches('.mx-card[data-card-value]'))paint(root);
@@ -186,7 +191,7 @@ export class TableView {
         const state = data.state;
         if (state.player?.userRid === userRID && !state.mine) data.state = {...state, player: {...state.player, name: remark || nickname}};
       }
-    }, this.confirmDialog);
+    }, this.confirmDialog, options.ui?.profilePropIcons, options.ui?.profileProps);
     this.seats.onclick = event => {
       const returnButton=(event.target as HTMLElement).closest<HTMLElement>('.mx-return-game');
       if(returnButton){
@@ -229,8 +234,8 @@ export class TableView {
       this.history = new HistoryView(new HistoryController(options.records));
     }
     if (options.emojis) {
-      this.emoji = new EmojiView(new EmojiController(options.emojis));
-      this.seatEmoji = new SeatEmojiView(options.emojis, new TableEffectAnchors(this.root,id=>options.emojis!.seatForUser(id)).avatar, this.sound);
+      this.emoji = new EmojiView(new EmojiController(options.emojis, options.ui?.effects?.groups[0]?.id), options.ui?.effects);
+      this.seatEmoji = new SeatEmojiView(options.emojis, new TableEffectAnchors(this.root,id=>options.emojis!.seatForUser(id)).avatar, this.sound, options.ui?.effects);
     }
     const onNavigate = (action: 'report' | 'replay' | 'emoji' | 'effect' | 'voice' | 'camera') => {
       if(action==='report'&&options.records?.data.mtt){options.records.openMttRecord?.();return;}
@@ -244,7 +249,10 @@ export class TableView {
     };
     this.navigation = components.navigation?.(onNavigate) ?? new NavigationView(onNavigate);
     if(options.records?.media){this.media=new TableMediaView(options.records.media,this.root,error=>this.toast.show(error));this.root.append(this.media.root);}
-    this.root.style.backgroundImage = `url("${resources.desk}")`;
+    const catalog = options.ui?.staticDesks;
+    const currentDeskId = () => selectedDeskId(this.settings.deskType, catalog);
+    let skinDesk = catalog?.image(currentDeskId());
+    this.root.style.backgroundImage = `url("${skinDesk ?? resources.desk}")`;
     const exit=()=>{try{options.records?.leaveTable?.();leave();}catch(error){this.toast.show(error);}};
     const requestLeave=()=>{
       const d=(options.specialOperations??options.records)?.data,r=d?.record;
@@ -284,14 +292,17 @@ export class TableView {
         const appearance=this.settings.tableAppearance;
         const solid=appearance.style==='solid';
         const felt=appearance.feltColor==='#57427f'?purpleFelt:classicFelt;
-        const [url]=await Promise.all([solid?imageReady(felt).then(()=>felt):AppearanceResources.desk(this.settings.deskType),AppearanceResources.cards(this.settings.tableCardType),appearance.cardBack==='original'?Promise.resolve():imageReady(cardBacks[appearance.cardBack]!)]);
+        const deskId = currentDeskId();
+        skinDesk = solid ? undefined : catalog?.image(deskId);
+        const [url]=await Promise.all([solid?imageReady(felt).then(()=>felt):AppearanceResources.desk(deskId, skinDesk),AppearanceResources.cards(this.settings.tableCardType),appearance.cardBack==='original'?Promise.resolve():imageReady(cardBacks[appearance.cardBack]!)]);
         if(generation!==this.appearanceGeneration)return;
+        this.root.toggleAttribute('data-skin-desk', !!skinDesk);
         this.root.dataset.felt=solid?'solid':'legacy';
         this.root.dataset.feltTone=solid&&appearance.feltColor==='#57427f'?'flat-purple':'shaded';
         this.root.style.backgroundColor=solid?appearance.feltColor:'';
         this.root.style.backgroundImage=solid?'none':`url("${url}")`;
         this.root.style.setProperty('--mx-felt-image',`url("${url}")`);
-        void this.deskBackground.show(solid?0:this.settings.deskType, url);
+        if (!catalog) void this.deskBackground.show(solid ? 0 : deskId, url);
         this.root.querySelectorAll<HTMLElement>('.mx-card[data-card-value]').forEach(card=>CardView.paint(card,Number(card.dataset.cardValue),card.dataset.smallBack==='true'));
       }catch(error){if(generation===this.appearanceGeneration)this.toast.show(error);}
     };
@@ -331,13 +342,13 @@ export class TableView {
     if (specialOperations && options.seating) {
       this.secondPcs = new AgreeSecondPcsView(specialOperations, options.seating, error => this.toast.show(error));
       this.insurance = new InsuranceView(specialOperations, options.seating, error => this.toast.show(error));
-      this.squid=new SquidView(specialOperations,options.seating,this.confirmDialog,error=>this.toast.show(error));
+      this.squid=new SquidView(specialOperations,options.seating,this.confirmDialog,error=>this.toast.show(error),this.opening,options.ui?.guideArt);
       this.stage.append(this.squid.root);
       this.jackpot=new JackpotView(specialOperations.data,()=>options.records?.openJackpot?.(),()=>queueMicrotask(()=>{if(this.root.isConnected)this.resizeTable();}));
       this.stage.append(this.jackpot.root);
-      if(options.records){this.chat=new TableChatView(options.records,e=>this.toast.show(e));this.root.append(this.chat.button,this.chat.support,this.chat.dialog.root,this.chat.danmu.root);}
+      if(options.records){this.chat=new TableChatView(options.records,e=>this.toast.show(e),options.ui?.effects);this.root.append(this.chat.button,this.chat.support,this.chat.dialog.root,this.chat.danmu.root);}
       if(options.records?.data.mtt){this.mtt=new MttTableStateView(options.records,e=>this.toast.show(e),()=>this.refreshRoomInfo());this.stage.append(this.mtt.root);}
-      this.mushroomBoom=new MushroomBoomView(specialOperations.data,this.stage);
+      this.mushroomBoom=new MushroomBoomView(specialOperations.data,this.stage,this.opening,options.ui?.guideArt);
       this.root.append(this.mushroomBoom.guide.surface.root);
       this.root.append(this.secondPcs.root, this.insurance.root,this.squid.result.root,this.squid.intro.root);
     }
@@ -347,6 +358,9 @@ export class TableView {
     }
     this.bindings.bind({ table: this.data.info });
     this.resize = new ResizeObserver(() => {
+      if (this.settings.tableAppearance.style !== 'solid' && catalog?.image(currentDeskId()) !== skinDesk) {
+        void appearance();
+      }
       this.resizeTable();
       this.presenter.restore();
     });
@@ -516,6 +530,7 @@ export class TableView {
     this.bindings.destroy();
     this.allInTest?.destroy();
     this.seatViews.forEach((v) => v.destroy());
+    this.opening?.destroy();
     this.effects.destroy();
     this.board.destroy();
     this.secondBoard.destroy();

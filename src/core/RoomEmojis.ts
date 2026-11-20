@@ -8,6 +8,7 @@ export interface RoomEmojis {
     canSend(): boolean;
     seatForUser(userID: number): number | undefined;
     refresh(): Promise<void>;
+    sendPicker?(type: number): Promise<void>;
     send(prop: UserPropData): Promise<void>;
-    throwProp(targetUserRID: number, prop: UserPropData, type: number): Promise<void>;
+    throwProp(targetUserRID: number, prop: UserPropData | null, type: number): Promise<void>;
 }

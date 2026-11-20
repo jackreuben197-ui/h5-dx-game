@@ -1,0 +1,70 @@
+/* The history panel keeps the shared DX glass surface and record layout. */
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay [data-sprite="raw/ui/recordPeople.png"] {
+  background: url('./dialogs/history/icon_player.png') center / contain no-repeat !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay [data-sprite="raw/ui/chip.png"] {
+  background: url('./dialogs/history/icon_coin.png') center / contain no-repeat !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-history-handtype {
+  background: url('./dialogs/diamonds/btn_bg_buy_red.png') center / 100% 100% no-repeat !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-history-position {
+  position: relative;
+  isolation: isolate;
+  background: none !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-history-position::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--fish-red);
+  -webkit-mask: url('../style1/resources/raw/ui/recordPosition.png') center / 100% 100% no-repeat;
+  mask: url('../style1/resources/raw/ui/recordPosition.png') center / 100% 100% no-repeat;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-history-details {
+  background: url('./dialogs/history/detailBtn.png') center / 100% 100% no-repeat;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-history-empty-cards > span {
+  border: 0;
+  background: url('./dialogs/history/card_border.png') center / 100% 100% no-repeat;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-record-footer {
+  background: url('./dialogs/history/bottombg.png') center / 100% 100% no-repeat;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-record-page-slider {
+  --record-page-track: linear-gradient(to right, var(--fish-red) var(--progress, 0%), #7f7f7f var(--progress, 0%));
+  --record-page-thumb: url('./dialogs/history/barBtn.png') center / contain no-repeat;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-history-collect-actions > button {
+  background: url('./dialogs/history/btn_black_bg.png') center / 100% 100% no-repeat;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-history-watch {
+  justify-content: flex-end;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-history-watch > button {
+  flex: 0 1 auto;
+  box-sizing: border-box;
+  min-width: min(100%, calc(224 * var(--record-unit)));
+  max-width: 100%;
+  min-height: calc(94 * var(--record-unit));
+  padding-inline: calc(14 * var(--record-unit));
+  background: none;
+  border: 0 solid transparent;
+  border-image: url('./dialogs/history/btn_black_bg.png') 0 59 0 53 fill /
+    0 calc(59 * var(--record-unit)) 0 calc(53 * var(--record-unit)) stretch;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay .mx-history-watch > button::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-inline-end: .25em;
+  vertical-align: middle;
+  background: url('./dialogs/history/eye.png') center / contain no-repeat;
+}
+.mx-game[data-skin-family="fishbase"] .mx-history-overlay[data-short="true"] .mx-history-watch > button {
+  min-height: calc(var(--mx-RecordDialogView-mx-record-footer-short-top-row-height) * var(--record-unit));
+  padding-block: 0;
+}

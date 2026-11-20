@@ -1,0 +1,132 @@
+
+box_local.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/fire-ball 1
+  rotate: false
+  xy: 2, 246
+  size: 15, 208
+  orig: 16, 208
+  offset: 1, 0
+  index: -1
+images/fire-ball 2
+  rotate: false
+  xy: 40, 299
+  size: 20, 155
+  orig: 20, 156
+  offset: 0, 1
+  index: -1
+images/fire-ball 3
+  rotate: false
+  xy: 2, 48
+  size: 17, 196
+  orig: 17, 197
+  offset: 0, 1
+  index: -1
+images/fire-ball 5
+  rotate: false
+  xy: 2, 48
+  size: 17, 196
+  orig: 17, 197
+  offset: 0, 1
+  index: -1
+images/fire-ball 6
+  rotate: false
+  xy: 2, 48
+  size: 17, 196
+  orig: 17, 197
+  offset: 0, 1
+  index: -1
+images/fire-ball 7
+  rotate: false
+  xy: 2, 48
+  size: 17, 196
+  orig: 17, 197
+  offset: 0, 1
+  index: -1
+images/fire-ball 4
+  rotate: false
+  xy: 19, 298
+  size: 19, 156
+  orig: 20, 156
+  offset: 1, 0
+  index: -1
+images/gun 1
+  rotate: false
+  xy: 2, 740
+  size: 100, 282
+  orig: 145, 297
+  offset: 30, 12
+  index: -1
+images/gun 2
+  rotate: false
+  xy: 2, 456
+  size: 100, 282
+  orig: 145, 297
+  offset: 30, 12
+  index: -1
+images/gunshot 1
+  rotate: false
+  xy: 2, 2
+  size: 44, 44
+  orig: 52, 52
+  offset: 4, 4
+  index: -1
+images/gunshot 2
+  rotate: false
+  xy: 2, 2
+  size: 44, 44
+  orig: 52, 52
+  offset: 4, 4
+  index: -1
+images/gunshot 3
+  rotate: false
+  xy: 19, 252
+  size: 44, 44
+  orig: 52, 52
+  offset: 4, 4
+  index: -1
+images/gunshot 4
+  rotate: false
+  xy: 19, 252
+  size: 44, 44
+  orig: 52, 52
+  offset: 4, 4
+  index: -1
+images/gunshot 5
+  rotate: false
+  xy: 19, 252
+  size: 44, 44
+  orig: 52, 52
+  offset: 4, 4
+  index: -1
+images/gunshot 6
+  rotate: false
+  xy: 62, 342
+  size: 35, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+images/gunshot 9
+  rotate: false
+  xy: 62, 342
+  size: 35, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+images/gunshot 7
+  rotate: false
+  xy: 62, 418
+  size: 36, 36
+  orig: 37, 36
+  offset: 1, 0
+  index: -1
+images/gunshot 8
+  rotate: false
+  xy: 62, 380
+  size: 36, 36
+  orig: 37, 36
+  offset: 1, 0
+  index: -1

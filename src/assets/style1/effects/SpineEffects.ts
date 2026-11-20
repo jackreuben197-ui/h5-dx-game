@@ -1,4 +1,5 @@
 import type { SeatEffect, SeatEffects, EffectAnchor } from './SeatEffects.js';
+import type { SeatEffectAssets } from './spine/SpineAssets.js';
 import type { SpineRenderer } from './spine/SpineRenderer.js';
 /** Table-scoped adapter; the rest of the UI never imports Spine runtime types. */
 export class SpineEffects implements SeatEffects {
@@ -7,22 +8,25 @@ export class SpineEffects implements SeatEffects {
   private requests = new Map<string, object>();
   private dead = false;
   private failed = false;
-  constructor(private layer: HTMLElement) {}
-  static async preload(): Promise<void> {
-    await Promise.all([import('./spine/SpineRenderer.js'), import('./spine/SpineAssets.js').then(module => module.SpineAssets.load())]);
+  constructor(private layer: HTMLElement, private load = SpineEffects.defaultAssets) {}
+  private static defaultAssets(): Promise<SeatEffectAssets> {
+    return import('./spine/SpineAssets.js').then(module => module.SpineAssets.load());
   }
-  async play(key: string, effect: SeatEffect, anchor: () => EffectAnchor): Promise<boolean> {
+  static async preload(load = SpineEffects.defaultAssets): Promise<void> {
+    await Promise.all([import('./spine/SpineRenderer.js'), load()]);
+  }
+  async play(key: string, effect: SeatEffect, anchor: () => EffectAnchor, mine = false): Promise<boolean> {
     const request = {};
     this.requests.set(key, request);
     const renderer = await this.ready();
     if (!renderer || this.dead || this.requests.get(key) !== request) return false;
-    renderer.play(key, effect, anchor);
+    renderer.play(key, effect, anchor, mine);
     return true;
   }
   stop(key: string): void { this.requests.delete(key); this.renderer?.stop(key); }
   private ready(): Promise<SpineRenderer | undefined> {
     if (this.failed || this.dead) return Promise.resolve(undefined);
-    return this.pending ??= Promise.all([import('./spine/SpineRenderer.js'), import('./spine/SpineAssets.js').then(module => module.SpineAssets.load())])
+    return this.pending ??= Promise.all([import('./spine/SpineRenderer.js'), this.load()])
       .then(([module, assets]) => {
         if (this.dead) return undefined;
         return this.renderer = new module.SpineRenderer(this.layer, assets, error => this.fail(error));

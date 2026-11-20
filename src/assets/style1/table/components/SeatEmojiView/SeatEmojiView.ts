@@ -1,5 +1,6 @@
 import { componentBox } from '../../ComponentBox.js';
 import viewConfig from './config.json';
+import type { TableEffectArt } from '../../../../../ui/TableEffectArt.js';
 import type { RoomEmojis } from '../../../../../core/RoomEmojis.js';
 import type { EmojiSpineRenderer } from '../../../effects/spine/EmojiSpineRenderer.js';
 import type { DiamondGiftEffect } from '../../../effects/DiamondGiftEffect.js';
@@ -22,7 +23,7 @@ export class SeatEmojiView {
     private propPlayer?: ThrowPropSpinePlayer;
     private diamond?: DiamondGiftEffect;
     private diamondPending?: Promise<DiamondGiftEffect>;
-    constructor(private service: RoomEmojis, private avatar: (userRID:number)=>HTMLElement|null, private sound: TableSound) {
+    constructor(private service: RoomEmojis, private avatar: (userRID:number)=>HTMLElement|null, private sound: TableSound, private art?: TableEffectArt) {
         this.bindings.bind({emoji: service.data});
         if(!service.config.isChannelDiamondFreeMode)
             void import('../../../effects/DiamondGiftEffect.js').then(({DiamondGiftEffect})=>DiamondGiftEffect.preload()).catch(()=>undefined);
@@ -58,12 +59,14 @@ export class SeatEmojiView {
                 const r = avatar.getBoundingClientRect(), frame = this.root.getBoundingClientRect();
                 const scale = frame.width / frame.height > viewConfig.layout.wideRatio ? frame.height / viewConfig.layout.screenHeight : frame.width / viewConfig.layout.screenWidth;
                 return {x:r.left+r.width/2,y:r.top+r.height/2,scale};
-            },() => {const r = this.root.getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2,scale:r.width/r.height > viewConfig.layout.wideRatio ? r.height/viewConfig.layout.screenHeight : r.width/viewConfig.layout.screenWidth};},this.service.userRID,error => console.warn('[MX prop]',error));
+            },() => {const r = this.root.getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2,scale:r.width/r.height > viewConfig.layout.wideRatio ? r.height/viewConfig.layout.screenHeight : r.width/viewConfig.layout.screenWidth};},this.service.userRID,error => console.warn('[MX prop]',error),this.art?.throwProps);
             this.propPlayer.play(data);
         } catch (error) {if (!this.dead) console.warn('[MX prop] load failed',error);}
     }
     private async play(data: EmojiBroadcastData): Promise<void> {
-        const config = MagicEmojiConfig.getByType(data.type); if (!config) return;
+        const picker = this.art?.emoji(data.type);
+        const legacy = picker ? null : MagicEmojiConfig.getByType(data.type);
+        const config = picker?.clip ?? legacy; if (!config) return;
         const token = {}; this.active.set(data.userID, token);
         this.sounds.get(data.userID)?.(); this.sounds.delete(data.userID);
         try {
@@ -75,14 +78,15 @@ export class SeatEmojiView {
                 const avatar = this.avatar(data.userID);
                 if (!avatar) return null;
                 const r = avatar.getBoundingClientRect();
-                return {x: r.left + r.width / 2, y: r.top + r.height / 4, scale: r.width / viewConfig.layout.avatarSize};
-            }, false, false, () => {
+                return {x: r.left + r.width / 2, y: r.top + r.height / 4, scale: r.width / viewConfig.layout.avatarSize, maxSize: r.width * 220 / viewConfig.layout.avatarSize};
+            }, !!picker, !!picker, () => {
                 if (this.active.get(data.userID) !== token) return;
                 this.active.delete(data.userID); this.sounds.get(data.userID)?.(); this.sounds.delete(data.userID);
             });
             if (played && this.active.get(data.userID) === token) {
                 const {EmojiSpineAssets} = await import('../../../effects/spine/EmojiSpineAssets.js');
-                if (!this.dead && this.active.get(data.userID) === token) this.sounds.set(data.userID, this.sound.playExternalEffect(EmojiSpineAssets.sound(config)));
+                const url = picker?.sound ?? (legacy && EmojiSpineAssets.sound(legacy));
+                if (url && !this.dead && this.active.get(data.userID) === token) this.sounds.set(data.userID, this.sound.playExternalEffect(url));
             }
         } catch (error) { if (!this.dead) console.warn('[MX emoji] animation load failed', error); }
     }

@@ -9,6 +9,7 @@ import { element } from '../../dom.js';
 import { CardView } from '../CardView/CardView.js';
 import { SpriteAtlas } from '../../SpriteAtlas.js';
 import { DeskPreview } from '../DeskPreview/DeskPreview.js';
+import { legacyDeskIds, selectedDeskId, type TableUiConfig } from '../../../../../ui/TableUiConfig.js';
 import { AppearanceResources } from '../../AppearanceResources.js';
 /** 牌桌个性设置。标题和标签页固定，选项在各自的内容区滚动。 */
 export class PersonalSettingsView {
@@ -36,7 +37,7 @@ export class PersonalSettingsView {
   private generation = 0;
   private off: (() => void)[] = [];
   private focus?: HTMLElement;
-  constructor(private settings: Settings = defaultSettings) {
+  constructor(private settings: Settings = defaultSettings, private readonly ui?: TableUiConfig) {
     this.root.hidden = true;
     this.panel.setAttribute('role','dialog'); this.panel.setAttribute('aria-modal','true');
     i18nLabel.bind(this.panel,()=>i18nMgr.Get('UIGameplaySetting_CardTableSetting'),'aria-label');
@@ -98,14 +99,19 @@ export class PersonalSettingsView {
     for(const color of TABLE_FELT_COLORS){const b=element('button','');b.type='button';b.style.backgroundColor=color;b.setAttribute('aria-label',color);b.onclick=()=>this.settings.updateAppearance({feltColor:color});this.appearanceRefresh.push(()=>b.setAttribute('aria-pressed',String(this.settings.appearance.feltColor===color)));colors.append(b);}
     const pictures=element('div','mx-settings-pictures');
     const desks=element('div','mx-settings-desks');
-    for(let i=1;i<=14;i++){
-      const b=element('button','mx-settings-desk');b.type='button';b.setAttribute('aria-label',String(i));
+    const catalog = ui?.staticDesks;
+    for(const i of catalog?.ids ?? legacyDeskIds){
+      const b=element('button','mx-settings-desk');b.type='button';
+      const nameKey = catalog?.nameKey?.(i);
+      const name = () => nameKey ? i18nMgr.Get(nameKey) : `Table ${i}`;
+      i18nLabel.bind(b, name, 'aria-label');
       SpriteAtlas.paint(b,config.paths.settingsDeskOption);
       const selected=element('span','mx-settings-desk-selected');SpriteAtlas.paint(selected,config.paths.settingsDeskSelected);
-      b.append(selected,new DeskPreview(i).root,element('span','mx-settings-desk-name',`Table ${i}`));
+      b.dataset.deskId = String(i);
+      b.append(selected,new DeskPreview(i, catalog?.thumbnail(i)).root,element('span','mx-settings-desk-name',name));
       b.onclick=()=>{
         void this.choose(async()=>{
-          await AppearanceResources.desk(i);
+          await AppearanceResources.desk(i, catalog?.image(i));
           return()=>{this.settings.setDeskTypeToStorage(i);this.settings.updateAppearance({style:'legacy'});};
         });
       };
@@ -188,7 +194,8 @@ export class PersonalSettingsView {
     this.tabs[1]!.hidden=false;
     this.submitModes.forEach((b,i)=>b.setAttribute('aria-pressed',String(this.settings.tableSliderSubmit===(i===0?'release':'confirm'))));
     const numbered=this.settings.tableAppearance.style==='legacy';
-    this.desks.forEach((b,i)=>b.setAttribute('aria-pressed',String(numbered&&i+1===this.settings.deskType)));
+    const selected = selectedDeskId(this.settings.deskType, this.ui?.staticDesks);
+    this.desks.forEach(b=>b.setAttribute('aria-pressed',String(numbered && Number(b.dataset.deskId) === selected)));
     this.cards.forEach((b,i)=>b.setAttribute('aria-pressed',String(i+1===this.settings.pokerCardType)));
     this.modes.forEach((b,i)=>b.setAttribute('aria-pressed',String(i+1===this.settings.shortCutMode)));
     this.switches[0]!.setAttribute('aria-checked',String(this.settings.soundOn));

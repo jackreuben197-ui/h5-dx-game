@@ -33,6 +33,8 @@ export class SpriteAtlas {
   }
   static paint(node: HTMLElement, key: Sprite): void {
     const path=SpriteAtlas.sourcePath(key);
+    // Expose the logical sprite independently of its production atlas coordinates.
+    if (node.dataset.sprite !== path) node.dataset.sprite = path;
     if(path===legacy.paths.dialogConfirm){
       node.classList.add('mx-confirm-texture');
       SpriteAtlas.paintButton(node,resources.rawImages[path]!);return;

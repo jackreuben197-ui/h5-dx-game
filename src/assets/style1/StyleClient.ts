@@ -30,7 +30,7 @@ export class GameClient {
     root.hidden = true;
     this.loading = new PreloadingView(() => {
       if (this.controller.current.target) void this.enter(this.controller.current.target);
-    });
+    }, options.ui?.loadingArt);
     const notice = document.createElement('p');
     notice.className = 'mx-error';
     notice.setAttribute('role', 'alert');
@@ -52,7 +52,7 @@ export class GameClient {
     const preload = new Preloader(async (report) => {
       await Promise.all([i18nMgr.initLanguage(), LoadingAssets.prepareFont()]);
       const loaded = await import('./table/view.js');
-      await loaded.prepare(report);
+      await loaded.prepare(report, options.preferences, options.ui?.staticDesks, options.ui?.effects, this.loading.preloadImages());
       module = loaded;
       return loaded;
     });

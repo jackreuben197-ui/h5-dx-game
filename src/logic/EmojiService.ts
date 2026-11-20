@@ -12,7 +12,8 @@ import { EmojiPropRules } from './EmojiPropRules.js';
 import MagicEmojiConfig from './MagicEmojiConfig.js';
 import { i18nMgr } from '../i18n/i18nMgr.js';
 import { GameplayChatPropType } from './GameplayChatPropType.js';
-import { PropsID } from './BroadcastCode.js';
+import TexasGameRoomDataChat from '../data/TexasGameRoomDataChat.js';
+import { PropsID, isPickerEmojiType } from './BroadcastCode.js';
 const throwCodes: Record<number, string> = {602:'kiss_Button',609:'money_Button',608:'boxing_Button',605:'touch_Button',600:'tomato_Button',610:'fish_Button',611:'baseball_Button',603:'good_Button',604:'cheers_Button',607:'chicken_Button',601:'flower_Button',606:'shark_Button'};
 export class EmojiService implements RoomEmojis {
     readonly data;
@@ -34,6 +35,22 @@ export class EmojiService implements RoomEmojis {
         this.signal.throwIfAborted();
         this.data.propList = EmojiPropRules.map(result?.get_chat_shop_prop_list_resp?.list ?? []);
     }
+    async sendPicker(type: number): Promise<void> {
+        if (!isPickerEmojiType(type) || !this.canSend()) throw new Error(i18nMgr.Get('MX_EmojiSitFirst', [], '请先坐下再发送表情'));
+        if (this.sending) throw new Error(i18nMgr.Get('MX_Loading', [], '加载中…'));
+        this.sending = true;
+        const timestamp = Date.now();
+        try {
+            const result = await new BroadcastMsgRequest(this.client, this.pb).execute(this.target, this.signal, this.session, null, type);
+            this.signal.throwIfAborted();
+            if (result.status !== 0) throw new Error(i18nMgr.Get('MX_EmojiSendFailed', [], '表情发送失败') + ' (' + result.status + ')');
+            if (!this.canSend()) return;
+            const userID = this.session.userRID;
+            this.data.emojiEvent({type, userID});
+            this.room.chat.addMessage({userID, name: this.session.nickname, headUrl: this.session.avatar, sex: this.session.sex,
+                content: '', emojiType: type, timestamp, time: TexasGameRoomDataChat.formatTimestamp(timestamp)});
+        } finally { this.sending = false; }
+    }
     async send(prop: UserPropData): Promise<void> {
         if (!this.canSend()) throw new Error(i18nMgr.Get('MX_EmojiSitFirst', [], '请先坐下再发送表情'));
         if (this.sending) return;
@@ -52,16 +69,22 @@ export class EmojiService implements RoomEmojis {
         } catch (error) { this.data.cancelPendingEmoji(); throw error; }
         finally { this.sending = false; }
     }
-    async throwProp(targetUserRID: number, prop: UserPropData, type: number): Promise<void> {
+    async throwProp(targetUserRID: number, prop: UserPropData | null, type: number): Promise<void> {
         if (!this.canSend() || !this.seatForUser(targetUserRID) || targetUserRID === this.session.userRID || !this.ready()) throw new Error('当前不能扔道具');
         if (this.sending) return;
-        const current = this.data.propList.find(p => p.propID === prop.propID && p.propCode === prop.propCode);
-        if (!current || current.propType !== GameplayChatPropType.THROW_PROP || throwCodes[type] !== current.propCode || type < PropsID.PROPSTOMATO || type > PropsID.PROPSBASEBALL) throw new Error('该道具暂不可用');
+        // Resolve the price from the latest successful shop response before sending.
+        await this.refresh();
+        if (!this.canSend() || !this.seatForUser(targetUserRID)) throw new Error('当前不能扔道具');
+        if (this.sending) return;
+        const code = throwCodes[type];
+        if (!code || !Number.isInteger(type) || type < PropsID.PROPSTOMATO || type > PropsID.PROPSBASEBALL) throw new Error('该道具暂不可用');
+        const current = this.data.propList.find(p => p.propType === GameplayChatPropType.THROW_PROP && p.propCode === code) ?? null;
+        if (prop && (prop.propCode !== code || current?.propID !== prop.propID)) throw new Error('该道具暂不可用');
         this.sending = true;
         this.data.setPendingThrowProp({type, userID: this.session.userRID, targetUserID: targetUserRID});
         try {
             const task = new BroadcastMsgRequest(this.client, this.pb).executeThrow(this.target, this.signal, this.session, current, type, targetUserRID);
-            if (current.propAmount > 0) void this.consume(current.gamePropID).catch(() => undefined);
+            if (current && current.propAmount > 0) void this.consume(current.gamePropID).catch(() => undefined);
             const result = await task;
             this.signal.throwIfAborted();
             if (result.status !== 0) throw new Error(`道具发送失败（${result.status}）`);

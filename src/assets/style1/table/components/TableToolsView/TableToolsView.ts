@@ -13,6 +13,7 @@ export class TableToolsView {
   private safety=element('button','mx-table-safety');
   constructor(records:RoomRecords,bringIn:()=>void){
     const diamond=records.data.record?.goldType===4&&!records.config.global.isChannelDiamondFreeMode;
+    this.add.dataset.currency = diamond ? 'diamond' : 'chip';
     this.add.type=this.safety.type='button';
     this.add.style.setProperty('--mx-tool-background',`url("${resourceURL(config.paths.toolBackground)}")`);
     const background=element('span','mx-table-tool-background');background.setAttribute('aria-hidden','true');

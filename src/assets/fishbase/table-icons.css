@@ -1,0 +1,164 @@
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/setting.png"] {
+  --fish-image: url('./table/table_icon_setting.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/chat.png"] {
+  --fish-image: url('./table/chatbg.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/report.png"] {
+  --fish-image: url('./table/table_icon_report.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/replay.png"] {
+  --fish-image: url('./table/table_icon_replay.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/emoji.png"] {
+  --fish-image: url('./table/table_icon_emoji.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/dealer.png"] {
+  --fish-image: url('./table/table_icon_dealer.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/chip.png"] {
+  --fish-image: url('./table/table_icon_chips.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/fold.png"] {
+  --fish-image: url('./table/table_bg_action_fold.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/call.png"] {
+  --fish-image: url('./table/table_bg_action_call.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/raise.png"] {
+  --fish-image: url('./table/table_bg_action_raise.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/autoFoldOn.png"] {
+  --fish-image: url('./table/autofold.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/autoCallOn.png"] {
+  --fish-image: url('./table/autocall.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/autoOn.png"] {
+  --fish-image: url('./table/auto.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/raiseThumb.png"] {
+  --fish-image: url('./table/table_sprite_slide_button.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/raiseBubble.png"] {
+  --fish-image: url('./table/bubble.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/addTimeClock.png"] {
+  --fish-image: url('./table/add_time_clock.png');
+}
+
+.mx-game[data-skin-family="fishbase"] :is(
+  [data-sprite="raw/ui/setting.png"],
+  [data-sprite="raw/ui/chat.png"],
+  [data-sprite="raw/ui/report.png"],
+  [data-sprite="raw/ui/replay.png"],
+  [data-sprite="raw/ui/emoji.png"],
+  [data-sprite="raw/ui/dealer.png"],
+  [data-sprite="raw/ui/chip.png"],
+  [data-sprite="raw/ui/fold.png"],
+  [data-sprite="raw/ui/call.png"],
+  [data-sprite="raw/ui/raise.png"],
+  [data-sprite="raw/ui/autoFoldOn.png"],
+  [data-sprite="raw/ui/autoCallOn.png"],
+  [data-sprite="raw/ui/autoOn.png"],
+  [data-sprite="raw/ui/raiseThumb.png"],
+  [data-sprite="raw/ui/raiseBubble.png"],
+  [data-sprite="raw/ui/addTimeClock.png"]
+) {
+  /* SpriteAtlas normally writes inline atlas coordinates; these PNGs occupy a whole frame. */
+  background-image: var(--fish-image) !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat;
+}
+
+.mx-game[data-skin-family="fishbase"] .mx-navigation .mx-nav-icon {
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat;
+}
+.mx-game[data-skin-family="fishbase"] .mx-nav-button:disabled .mx-nav-icon {
+  filter: none;
+  opacity: 1;
+}
+.mx-game[data-skin-family="fishbase"] .mx-nav-button[data-action="voice"] .mx-nav-icon {
+  background-image: url('./table/table_icon_audio_disabled.png') !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-nav-button[data-action="voice"][aria-pressed="true"]:enabled .mx-nav-icon {
+  background-image: url('./table/table_icon_audio.png') !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-nav-button[data-action="voice"][aria-pressed="false"]:enabled .mx-nav-icon {
+  background-image: url('./table/table_icon_audio_off.png') !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-nav-button[data-action="camera"] .mx-nav-icon {
+  background-image: url('./table/table_icon_camera_disabled.png') !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-nav-button[data-action="camera"][aria-pressed="true"]:enabled .mx-nav-icon {
+  background-image: url('./table/table_icon_camera.png') !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-nav-button[data-action="camera"][aria-pressed="false"]:enabled .mx-nav-icon {
+  background-image: url('./table/table_icon_camera_off.png') !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-nav-button[data-action="effect"] .mx-nav-icon {
+  background-image: url('./table/table_icon_effect_disabled.png') !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-nav-button[data-action="effect"][aria-pressed="true"]:enabled .mx-nav-icon {
+  background-image: url('./table/table_icon_effect.png') !important;
+}
+
+/* UIRoomTexas uses 58×58 and 54×60 glyphs in the same bottom-bar hit areas. */
+.mx-game[data-skin-family="fishbase"] .mx-table:not([data-orientation="landscape"]) .mx-nav-button:is([data-action="report"], [data-action="emoji"]) .mx-nav-icon {
+  width: calc(58 * var(--mx-chat-unit));
+  height: calc(58 * var(--mx-chat-unit));
+}
+.mx-game[data-skin-family="fishbase"] .mx-table:not([data-orientation="landscape"]) .mx-nav-button[data-action="replay"] .mx-nav-icon {
+  width: calc(54 * var(--mx-chat-unit));
+  height: calc(60 * var(--mx-chat-unit));
+}
+
+.mx-game[data-skin-family="fishbase"] :is(.mx-support-button, .mx-table-add-chips) {
+  box-sizing: border-box;
+  width: calc(185 * var(--mx-chat-unit));
+  height: calc(100 * var(--mx-chat-unit));
+  min-width: 0;
+}
+.mx-game[data-skin-family="fishbase"] .mx-support-button {
+  --mx-tool-background: url('./table/table_bg_im.png') !important;
+  padding-inline: calc(7 * var(--mx-chat-unit));
+  gap: calc(3 * var(--mx-chat-unit));
+}
+.mx-game[data-skin-family="fishbase"] .mx-support-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mx-game[data-skin-family="fishbase"] .mx-support-button .mx-table-tool-background {
+  width: 100%;
+  height: 100%;
+  background: none;
+  box-shadow: none;
+}
+.mx-game[data-skin-family="fishbase"] .mx-support-button .mx-table-tool-background::after {
+  /* Cocos sprite-frame caps on the 101 × 93 support capsule. */
+  inset: 0;
+  border-width: 0;
+  border-image: var(--mx-tool-background) 46 50 fill / calc(46 * var(--mx-chat-unit)) calc(50 * var(--mx-chat-unit)) stretch;
+}
+.mx-game[data-skin-family="fishbase"] .mx-support-icon {
+  content: url('./table/table_icon_im.png');
+}
+.mx-game[data-skin-family="fishbase"] .mx-table-add-chips {
+  background: url('./table/table_node_add_chip.png') center / contain no-repeat;
+}
+.mx-game[data-skin-family="fishbase"] .mx-table-add-chips[data-currency="diamond"] {
+  background-image: url('./table/table_node_add_diamond.png');
+}
+.mx-game[data-skin-family="fishbase"] .mx-table-add-chips > :is(.mx-table-tool-background, .mx-table-tool-icon) {
+  visibility: hidden;
+}
+.mx-game[data-skin-family="fishbase"] .mx-table-tools .mx-table-safety {
+  background: url('./table/table_icon_safety_guard.png') center / contain no-repeat !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-chat-button.mx-chat-unread::after {
+  background: url('./table/alert.png') center / contain no-repeat;
+}

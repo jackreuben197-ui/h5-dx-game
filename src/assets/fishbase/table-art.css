@@ -1,0 +1,51 @@
+/* The Cocos atlases contain four suits in rows, with A to K across each row. */
+.mx-game[data-skin-family="fishbase"] .mx-card[data-sprite^="raw/cards/"] {
+  --fish-faces: url('./cards/deck-0.png');
+}
+.mx-game[data-skin-family="fishbase"] .mx-card[data-sprite^="raw/cards1/"] {
+  --fish-faces: url('./cards/deck-1.png');
+}
+.mx-game[data-skin-family="fishbase"] .mx-card:not([data-card-value="0"]):is([data-sprite^="raw/cards/"], [data-sprite^="raw/cards1/"]):not([data-sprite$="/88.png"]) {
+  background: var(--fish-faces) var(--card-face-position) / 1300% 400% no-repeat !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-card[data-card-value="0"][data-card-back="original"] {
+  background: url('./cards/back.png') center / 100% 100% no-repeat !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-card[data-card-value="0"][data-card-back="original"][data-small-back="true"] {
+  background-image: url('./cards/small-back.png') !important;
+}
+
+.mx-game[data-skin-family="fishbase"] .mx-avatar-fallback:is([data-sprite="raw/ui/avatar.png"], [data-sprite="raw/ui/avatarAlt.png"]) {
+  background: url('./seats/avatar-placeholder.png') center / contain no-repeat !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-player-action:is([data-seat-action="加注"], [data-seat-action="下注"], [data-seat-action="前注"]) {
+  background-color: #ffc34f !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-player-action[data-seat-action="过牌"] {
+  background-color: #3fcb4a !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-player-action[data-seat-action="跟注"] {
+  background-color: #b670ee !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-player-action[data-seat-action="全下"] {
+  background-color: #ff465d !important;
+}
+
+.mx-game[data-skin-family="fishbase"] .mx-squid-pages span {
+  background: transparent url('./dialogs/guides/page_bar_normal.png') center / 100% 100% no-repeat !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-squid-pages span.selected {
+  background-image: url('./dialogs/guides/page_bar_select.png') !important;
+}
+.mx-game[data-skin-family="fishbase"] .mx-squid-result-header {
+  background-color: transparent;
+}
+.mx-game[data-skin-family="fishbase"] .mx-squid-reward {
+  background: url('./dialogs/guides/squid_reward_bg.png') center / 100% 100% no-repeat;
+  border: 0;
+}
+.mx-game[data-skin-family="fishbase"] .mx-gameplay-guide-image[data-kind] {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}

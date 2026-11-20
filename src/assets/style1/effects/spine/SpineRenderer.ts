@@ -1,8 +1,8 @@
 import spine from '../../../../effects/spine/vendor/spine38.js';
-import type { SpineAsset } from './SpineAssets.js';
+import type { SeatEffectAssets, SpineAsset } from './SpineAssets.js';
 import type { SeatEffect, EffectAnchor } from '../SeatEffects.js';
 interface Playing {
-  kind: SeatEffect; skeleton: spine.Skeleton; state: spine.AnimationState;
+  kind: SeatEffect; art: SpineAsset; skeleton: spine.Skeleton; state: spine.AnimationState;
   anchor: () => EffectAnchor; elapsed: number; duration: number;
 }
 /** One transparent WebGL context per table, independent of messages and table data. */
@@ -13,7 +13,7 @@ export class SpineRenderer {
   private batch: spine.webgl.PolygonBatcher;
   private renderer: spine.webgl.SkeletonRenderer;
   private projection = new spine.webgl.Matrix4();
-  private data = new Map<SeatEffect, spine.SkeletonData>();
+  private data = new Map<SeatEffect | 'win-self', spine.SkeletonData>();
   private textures: spine.webgl.GLTexture[] = [];
   private playing = new Map<string, Playing>();
   private frame = 0;
@@ -27,7 +27,7 @@ export class SpineRenderer {
     try { this.context.restorables.slice().forEach(resource => resource.restore()); this.lost = false; this.wake(); }
     catch (error) { this.fail(error); }
   };
-  constructor(private layer: HTMLElement, assets: Map<SeatEffect, SpineAsset>, private fail: (error: unknown) => void) {
+  constructor(private layer: HTMLElement, private assets: SeatEffectAssets, private fail: (error: unknown) => void) {
     this.canvas.setAttribute('aria-hidden', 'true');
     this.canvas.dataset.effect = 'spine';
     const gl = this.canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false, depth: false, stencil: false });
@@ -57,13 +57,14 @@ export class SpineRenderer {
     this.observer.observe(layer);
     document.addEventListener('visibilitychange', this.visibility);
   }
-  play(key: string, kind: SeatEffect, anchor: () => EffectAnchor): void {
-    const data = this.data.get(kind)!;
+  play(key: string, kind: SeatEffect, anchor: () => EffectAnchor, mine = false): void {
+    const variant = kind === 'win' && mine && this.data.has('win-self') ? 'win-self' : kind;
+    const data = this.data.get(variant)!, art = this.assets.get(variant)!;
     const skeleton = new spine.Skeleton(data);
     const state = new spine.AnimationState(new spine.AnimationStateData(data));
-    const track = state.setAnimation(0, 'animation', false);
+    const track = state.setAnimation(0, 'animation', art.loop ?? false);
     state.apply(skeleton);
-    this.playing.set(key, { kind, skeleton, state, anchor, elapsed: 0, duration: track.animation.duration });
+    this.playing.set(key, { kind, art, skeleton, state, anchor, elapsed: 0, duration: track.animation.duration });
     this.wake();
   }
   stop(key: string): void { if (this.playing.delete(key)) this.wake(); }
@@ -97,14 +98,15 @@ export class SpineRenderer {
         // Design units: multiply by anchor.scale below so this follows table/seat resizing.
         const winOffsetY = 96.776 + 10;
         const offsetY = item.kind === 'win' ? winOffsetY : item.kind === 'allin-self' ? 400.678 : 142.776;
-        const lift = anchor.lift ?? offsetY * anchor.scale;
-        const scale = anchor.scale * (item.kind === 'win' ? 0.5 : 1);
+        const lift = item.art.lift !== undefined ? item.art.lift * anchor.scale : anchor.lift ?? offsetY * anchor.scale;
+        const scale = anchor.scale * (item.art.scale ?? (item.kind === 'win' ? 0.5 : 1));
         item.skeleton.x = anchor.x - rect.left;
         item.skeleton.y = rect.height - (anchor.y - rect.top) + lift;
         item.skeleton.scaleX = item.skeleton.scaleY = scale;
         item.skeleton.color.a = anchor.opacity;
         // ALLIN keeps its final pose until the seat action clears, just like CC.
-        if (item.elapsed - dt < item.duration) item.state.update(Math.min(dt, item.duration - (item.elapsed - dt)));
+        if (item.art.loop) item.state.update(dt);
+        else if (item.elapsed - dt < item.duration) item.state.update(Math.min(dt, item.duration - (item.elapsed - dt)));
         item.state.apply(item.skeleton);
         item.skeleton.updateWorldTransform();
         this.renderer.draw(this.batch, item.skeleton);

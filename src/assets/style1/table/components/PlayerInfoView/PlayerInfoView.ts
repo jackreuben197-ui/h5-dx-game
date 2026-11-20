@@ -4,6 +4,7 @@ import type { Player } from '../../../../../core/types.js';
 import type { PlayerProfile } from '../../../../../core/PlayerProfile.js';
 import type { RoomRecords } from '../../../../../core/RoomRecords.js';
 import type { RoomEmojis } from '../../../../../core/RoomEmojis.js';
+import type { TableUiConfig } from '../../../../../ui/TableUiConfig.js';
 import { GameplayChatPropType } from '../../../../../logic/GameplayChatPropType.js';
 import { EmojiPropRules } from '../../../../../logic/EmojiPropRules.js';
 import { i18nMgr } from '../../../../../i18n/i18nMgr.js';
@@ -38,7 +39,7 @@ export class PlayerInfoView {
   get currentSeat(): number { return this.root.hidden ? 0 : this.player?.seat ?? 0; }
   get currentUserRID(): number | undefined { return this.player?.userRid; }
 
-  constructor(private records?: RoomRecords, private emojis?: RoomEmojis, private onRemark?: (userRID: number, remark: string, nickname: string) => void, private confirmDialog?: TableConfirmDialog) {
+  constructor(private records?: RoomRecords, private emojis?: RoomEmojis, private onRemark?: (userRID: number, remark: string, nickname: string) => void, private confirmDialog?: TableConfirmDialog, private propIcons?: TableUiConfig['profilePropIcons'], private propOrder?: TableUiConfig['profileProps']) {
     this.root.classList.add('mx-player-profile-overlay');
     this.dialog.panel.setAttribute('aria-label', t('MX_PlayerStats', '玩家资料'));
     i18nMgr.register(this);
@@ -260,24 +261,36 @@ export class PlayerInfoView {
     const actions = element('div','mx-player-profile-actions');
     if (this.canUseProps()) {
       const list = element('div','mx-player-profile-props');
-      for (const [index,[code,type,label]] of props.entries()) {
+      const items = this.propOrder ?? props.map(([,type,label]) => [type,label] as const);
+      for (const [type,label] of items) {
+        const index = props.findIndex(item => item[1] === type);
+        const entry = props[index];
+        if (!entry) continue;
+        const [code] = entry;
         const prop = this.emojis?.data.propList.find(item => item.propType === GameplayChatPropType.THROW_PROP && item.propCode === code);
-        if (!prop) continue;
-        const price = Number(prop.payPrice) || 0;
-        const cost = EmojiPropRules.isPropFree(prop) || price <= 0 ? '' : this.records?.config.global.isChannelDiamondFreeMode ? StringHelper.GetLongString(price) : String(price);
-        const button = element('button','mx-player-profile-prop'); button.type = 'button'; button.setAttribute('aria-label',`${label}${cost}`);
-        const icon = element('span','mx-player-profile-prop-icon');
-        // Figma orders the hand (money) before the head (touch).
-        const spriteNumber = index + 1;
-        SpriteAtlas.paint(icon, (config.paths as Record<string,string>)[`playerProp${spriteNumber}`]!);
-        button.append(icon);
+        if (!prop && !this.propOrder) continue;
+        const price = Number(prop?.payPrice) || 0;
+        const cost = !prop || EmojiPropRules.isPropFree(prop) || price <= 0 ? '' : this.records?.config.global.isChannelDiamondFreeMode ? StringHelper.GetLongString(price) : String(price);
+        const button = element('button','mx-player-profile-prop'); button.type = 'button'; button.dataset.propType = String(type); button.setAttribute('aria-label',`${label}${cost}`);
+        const artwork = this.propIcons?.[code];
+        if (artwork) {
+          const icon = element('img', 'mx-player-profile-prop-icon');
+          icon.alt = '';
+          icon.src = artwork;
+          icon.style.objectFit = 'contain';
+          button.append(icon);
+        } else {
+          const icon = element('span', 'mx-player-profile-prop-icon');
+          SpriteAtlas.paint(icon, (config.paths as Record<string,string>)[`playerProp${index + 1}`]!);
+          button.append(icon);
+        }
         if (cost) {
           const badge = element('span','mx-player-profile-prop-cost');
           const currency = element('span','mx-player-profile-prop-currency');
           SpriteAtlas.paint(currency, this.records?.config.global.isChannelDiamondFreeMode ? config.paths.emojiUc : config.paths.emojiDiamond);
           badge.append(document.createTextNode(cost), currency); button.append(badge);
         }
-        button.onclick = () => void this.run(() => this.emojis!.throwProp(this.player!.userRid!,prop,type));
+        button.onclick = () => void this.run(() => this.emojis!.throwProp(this.player!.userRid!,prop ?? null,type));
         list.append(button);
       }
       if (list.childElementCount) actions.append(list);

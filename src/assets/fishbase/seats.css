@@ -1,0 +1,25 @@
+/* Occupied seats share the existing Cocos head, border, stack plate and mic badge.
+   The three vendor layouts retain their own empty-seat artwork in both orientations. */
+.mx-game[data-skin-family="fishbase"] .mx-table[data-table-layout="original"] .mx-empty-seat .mx-avatar-fallback {
+  background: url('./seats/table_bg_empty_seat.png') center / contain no-repeat !important;
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/actionBubble.png"] {
+  --fish-image: url('./seats/action.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/winBoard.png"] {
+  --fish-image: url('./seats/check.png');
+}
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/returnGame.png"] {
+  --fish-image: url('./seats/table_bg_jkp_pool.png');
+}
+.mx-game[data-skin-family="fishbase"] :is(
+  [data-sprite="raw/ui/actionBubble.png"],
+  [data-sprite="raw/ui/winBoard.png"],
+  [data-sprite="raw/ui/returnGame.png"]
+) {
+  /* SpriteAtlas normally writes inline atlas coordinates; these PNGs occupy a whole frame. */
+  background-image: var(--fish-image) !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat;
+}

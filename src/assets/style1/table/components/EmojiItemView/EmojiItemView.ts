@@ -1,6 +1,7 @@
 import { componentBox } from '../../ComponentBox.js';
 import config from './config.json';
 import { uniqueId } from '../../../../../core/uniqueId.js';
+import type { PickerEmoji } from '../../../../../ui/TableEffectArt.js';
 import type { EmojiItemData } from '../../../../../logic/EmojiPropRules.js';
 import { EmojiPropRules } from '../../../../../logic/EmojiPropRules.js';
 import { StringHelper } from '../../../../../logic/StringHelper.js';
@@ -17,18 +18,28 @@ export class EmojiItemView {
     private busy = false;
     private renderer?: EmojiSpineRenderer;
     private key = `emoji-preview-${uniqueId()}`;
-    constructor(item: EmojiItemData, privateUc: boolean, renderer: Promise<EmojiSpineRenderer>, clip: HTMLElement, send: () => void) {
+    constructor(item: EmojiItemData | PickerEmoji, privateUc: boolean, renderer: Promise<EmojiSpineRenderer> | undefined, clip: HTMLElement, send: () => void) {
         this.root.type = 'button'; this.root.disabled = true;
-        this.root.setAttribute('aria-label', i18nMgr.Get(`MX_Emoji_${item.config.propCode}`, [], item.config.propCode));
+        const picker = 'thumbnail' in item;
+        this.root.setAttribute('aria-label', picker ? i18nMgr.Get('UITexas_mainmenu_emoji') + ' ' + (item.type - 499) : i18nMgr.Get(`MX_Emoji_${item.config.propCode}`, [], item.config.propCode));
         this.preview.append(this.spinner); this.root.append(this.preview);
-        const amount = Number(item.data.payPrice) || 0;
-        if (!EmojiPropRules.isPropFree(item.data) && amount > 0) {
+        const amount = picker ? 10 : Number(item.data.payPrice) || 0;
+        if ((picker ? !privateUc : !EmojiPropRules.isPropFree(item.data)) && amount > 0) {
             const cost = element('span', 'mx-emoji-cost');
             const icon = element('span', ''); SpriteAtlas.paint(icon, privateUc ? config.paths.emojiUc : config.paths.emojiDiamond);
             cost.append(icon, element('span', '', privateUc ? StringHelper.GetLongString(amount) : String(amount))); this.root.append(cost);
         }
         this.root.onclick = () => { if (!this.ready || this.busy) return; this.root.classList.add('mx-emoji-selected'); send(); };
-        void renderer.then(async engine => {
+        if (picker) {
+            const image = element('img', 'mx-picker-thumb');
+            image.src = item.thumbnail;
+            image.alt = '';
+            this.preview.replaceChildren(image);
+            this.ready = true;
+            this.setBusy(false);
+            return;
+        }
+        void renderer?.then(async engine => {
             if (this.dead) return;
             this.renderer = engine;
             const played = await engine.play(this.key, item.config, () => {
