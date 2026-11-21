@@ -13,6 +13,7 @@
   "media": {
     "bgm": {
       "type": "audio",
+      "enabled": false,
       "pack": false,
       "preload": "metadata",
       "loop": true,

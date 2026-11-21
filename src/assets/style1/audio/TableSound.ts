@@ -32,6 +32,7 @@ export class TableSound {
     await this.music();
   }
   private async music(): Promise<void> {
+    if (!config.media.bgm.enabled) return;
     const urls = this.urls ??= await import('./assets.js');
     if (this.disposed || !this.enabled || document.hidden) return;
     if (!this.bgm) {
