@@ -12,7 +12,7 @@
 
 ## DX 当前交接（2026-11-19，以此节覆盖下方来源历史）
 
-最新同步基线为 MX reorg-qa 的 4a0a9da931e567013ec1f1de97631002f949c747，已集成到 DX 工作树。下次风格开发从这个 SHA 比较增量。初始 a4303a1 用于原截图和创建历史。style2 最新收尾以 docs/styles/style2/implementation/mx-4a0a9da/README.md 为准。
+最新同步基线为 MX dev_refactor_11121 的 08560c31be172f7ef1175cb9b42e3f291b2f42c2。下次从这个 SHA 核对增量；本轮范围、适配和 H5 边界见 docs/styles/style2/DESIGN.md 的 2026-11-21 记录。4a0a9da 为上次同步的终点，初始 a4303a1 用于原截图和创建历史。
 
 最新用户容量反馈已修正，见docs/styles/style2/implementation/content-capacity/README.md。竖屏底栏必须64px加安全区，认证与3/4/6按钮同排，旧认证独占一行方案作废。边池始终左到右；昵称/余额在最终缩放后保留约3–4px间距；本人身份、快捷、鱿鱼加入入口和相邻侧座避让。此轮只新增style2内部几何/CSS修改，无业务/H5改动。20容量、15间距遮挡、17交互、3布局契约及类型/完整构建/生产预览通过；不是全量实服/真机验收。后续脚本用MX_OUTPUT_DIR单独存各轮报告。
 

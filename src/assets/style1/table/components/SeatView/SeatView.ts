@@ -19,21 +19,29 @@ export class SeatView implements SeatComponent {
   readonly root = element('article', 'mx-seat');
   readonly frame=localFrame(this.root,config.w,config.h,config.anchor.x,config.anchor.y);
   private position = new SeatPositionMotion(this.root);
+  private actionRoot=element('div','mx-seat-action');
+  private actionPosition=new SeatPositionMotion(this.actionRoot);
+  private actionUnit=0;
   private identity: SeatIdentityView;
   private cards: HandCardsView;
   private bet = new SeatBetView();
+  private betRoot = element('div', 'mx-seat-bets');
+  private betPosition = new SeatPositionMotion(this.betRoot);
   private dealer = element('span', 'mx-dealer');
   private bindings = new BindingScope(this);
   private previous?: SeatState;
   private effects: SeatEffectView;
   constructor(data: SeatData, originDelta: (group: HTMLElement) => { x: number; y: number }, effects?: SeatEffects) {
     this.root.dataset.seat = String(data.id);
+    this.betRoot.dataset.seat = String(data.id);
+    localFrame(this.betRoot,config.w,config.h,config.anchor.x,config.anchor.y);
+    this.actionRoot.dataset.seat=String(data.id);
     this.identity = new SeatIdentityView(data.id);
     place(this.identity.root,config.identity.x,config.identity.y);
     this.cards = new HandCardsView(originDelta);
     SpriteAtlas.paint(this.dealer, config.paths.dealer);
     this.root.append(this.identity.root, this.cards.root, this.bet.root, this.dealer);
-    this.effects = new SeatEffectView(data.id, this.root, effects);
+    this.effects = new SeatEffectView(data.id, this.root, effects,this.actionRoot);
     this.bindings.bind({ seat: data });
   }
   @bindEvent(SeatData.CHANGE, 'seat')
@@ -68,7 +76,16 @@ export class SeatView implements SeatComponent {
   }
   place(p: SeatPlacement, mode: SeatPositionMode = 'static'): void {
     this.position.place(p, mode);
+    if(this.betRoot.parentElement)this.betPosition.place(p,mode);
+    if(this.actionUnit)this.actionPosition.place({
+      x:(p.x+(config.identity.x-config.w*config.anchor.x)*p.scale)*this.actionUnit,
+      y:(p.y+(config.identity.y-config.h*config.anchor.y)*p.scale)*this.actionUnit,
+      scale:p.scale*this.actionUnit,
+    },mode);
     this.root.dataset.scale = String(p.scale);
+    this.root.style.setProperty('--mx-seat-world-x',`${p.x}px`);
+    this.root.style.setProperty('--mx-seat-world-y',`${p.y}px`);
+    this.root.style.setProperty('--mx-seat-local-scale',String(p.scale));
     this.root.dataset.edge = p.edge;
     this.root.dataset.microphoneSide = p.microphoneSide ?? (p.edge==='left'?'left':'right');
     this.root.style.setProperty('--mx-hero-avatar-drop',`${(p.y-(p.controlsY??p.y))/p.scale}px`);
@@ -76,16 +93,46 @@ export class SeatView implements SeatComponent {
     this.cards.setSpread(p.handSpread,p.backHandSpread);
     this.cards.root.style.setProperty('--card-scale', String(p.cardScale));
     place(this.dealer, config.identity.x+p.dealerX, config.identity.y+p.dealerY);
-    this.bet.place(config.identity.x+p.betX, config.identity.y+p.betY, p.betIconX);
+    this.bet.place(config.identity.x+p.betX, config.identity.y+p.betY, p.betIconX, p.betAnchor);
+    this.identity.refreshInfoLayout();
+  }
+  entryActionsBounds():{avatarTop:number;returnVisible:boolean;scale:number} {
+    return {avatarTop:this.identity.getAvatarBounds().top,returnVisible:!this.identity.returnButton.hidden,scale:Number(this.root.dataset.scale??1)};
+  }
+  setActionLayer(layer:HTMLElement|null,unit:number):void {
+    this.actionUnit=layer?unit:0;
+    this.identity.setActionLayer(layer?this.actionRoot:null);
+    if(layer){
+      if(this.actionRoot.parentElement!==layer)layer.append(this.actionRoot);
+    }else{
+      this.actionPosition.cancel();
+      this.actionRoot.remove();
+    }
+  }
+  setBetLayer(layer:HTMLElement|null):void {
+    if(layer){
+      if(this.betRoot.parentElement!==layer)layer.append(this.betRoot);
+      if(this.bet.root.parentElement!==this.betRoot)this.betRoot.append(this.bet.root);
+    }else{
+      if(this.bet.root.parentElement!==this.root)this.root.append(this.bet.root);
+      this.betPosition.cancel();
+      this.betRoot.remove();
+    }
   }
   cancel(): void {
     this.effects.cancel();
     this.position.cancel();
+    this.betPosition.cancel();
+    this.actionPosition.cancel();
     this.cards.cancel();
   }
   destroy(): void {
     this.effects.destroy();
     this.position.cancel();
+    this.betPosition.cancel();
+    this.betRoot.remove();
+    this.actionPosition.cancel();
+    this.actionRoot.remove();
     this.bindings.destroy();
     this.cards.destroy();
     this.identity.destroy();

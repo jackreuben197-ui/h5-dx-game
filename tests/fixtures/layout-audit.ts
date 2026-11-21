@@ -3,7 +3,7 @@ import {GameClient} from '../../src/GameClient.js';
 import {fishbase} from '../../src/assets/fishbase/index.js';
 import {style1} from '../../src/assets/style1/index.js';
 import {style2} from '../../src/assets/style2/index.js';
-import {TexasGamePersonalSettings,type TableLayoutId} from '../../src/data/TexasGamePersonalSettings.js';
+import {TexasGamePersonalSettings,type TableAppearance,type TableLayoutId} from '../../src/data/TexasGamePersonalSettings.js';
 import {i18nMgr} from '../../src/i18n/i18nMgr.js';
 import {installAuditInspector} from './AuditInspector.js';
 import {AuditHost} from './AuditHost.js';
@@ -12,19 +12,29 @@ if(!import.meta.env.DEV)throw Error('Development-only audit');
 const q=new URLSearchParams(location.search),scene=q.get('scene')??'figma',layout=q.get('layout')??'balanced';
 const width=Number(q.get('width')??440),height=Number(q.get('height')??782),scale=Number(q.get('scale')??100);
 const options:AuditOptions={layout,scene,seats:Number(q.get('seats')??(scene==='figma'?8:scene==='squid-result-figma'?7:9)),hero:Number(q.get('hero')??1),actor:Number(q.get('actor')??1),dealer:Number(q.get('dealer')??1),cards:Number(q.get('cards')??2),long:q.get('long')==='1',scale};
-const prefs=new TexasGamePersonalSettings();prefs.setSoundOnToStorage(false);prefs.updateAppearance({layout:layout as TableLayoutId,style:layout==='original'?'legacy':'solid',feltColor:q.get('felt')??(layout==='balanced'?'#57427f':layout==='classic'?'#079d80':'#3296d2'),cardBack:'red',publicCardSize:scale,tableTextSize:scale,betButtonSize:scale});prefs.shortCutMode=q.get('quick')==='3'?1:2;prefs.sliderSubmit=q.get('submit')==='release'?'release':'confirm';prefs.setShowBBToStorage(scene==='figma'||q.get('bb')==='1');
+const prefs=new TexasGamePersonalSettings();prefs.setSoundOnToStorage(false);prefs.updateAppearance({layout:layout as TableLayoutId,style:layout==='original'?'legacy':'solid',feltColor:q.get('felt')??(layout==='balanced'?'#57427f':layout==='classic'?'#079d80':'#3296d2'),cardBack:(q.get('back')??'red') as TableAppearance['cardBack'],publicCardSize:scale,tableTextSize:scale,betButtonSize:scale});prefs.shortCutMode=q.get('quick')==='3'?1:2;prefs.sliderSubmit=q.get('submit')==='release'?'release':'confirm';prefs.setShowBBToStorage(scene==='figma'||q.get('bb')==='1');
 const style=document.createElement('style');style.textContent=`html,body{margin:0;background:#101419;color:#eee;font:13px system-ui}#audit-controls{padding:10px;display:flex;gap:7px;flex-wrap:wrap;max-width:1100px}#audit-controls label{display:flex;align-items:center;gap:4px}#audit-stage{position:relative;width:${width}px;height:${height}px;overflow:hidden}.mx-test-menu{display:none!important}#audit-info,#audit-log{max-width:1000px;padding:8px}#audit-log{max-height:150px;overflow:auto}button,select{font:inherit}#audit-controls button{padding:4px 9px}`;document.head.append(style);
 const bar=document.querySelector<HTMLElement>('#audit-controls')!,stage=document.querySelector<HTMLElement>('#audit-stage')!;
 stage.style.setProperty('--dx-safe-bottom-override',`${Math.min(100,Math.max(0,Number(q.get('safeBottom'))||0))}px`);
 const info=document.createElement('div'),logNode=document.createElement('ol');info.id='audit-info';logNode.id='audit-log';stage.before(info);stage.after(logNode);
 const metadata=auditScenarios.find(s=>s.id===scene);info.textContent=`离线合成数据 · ${metadata?.label??scene}｜${metadata?.steps??''}｜覆盖：${metadata?.covers.join('、')??''}`;
 function log(text:string){const li=document.createElement('li');li.textContent=text;logNode.prepend(li);while(logNode.children.length>40)logNode.lastChild?.remove();}
-function select(key:string,label:string,values:readonly (string|number|{value:string;text:string})[],value:string){const wrap=document.createElement('label'),node=document.createElement('select');wrap.textContent=label;node.setAttribute('aria-label',key);for(const v of values){const option=document.createElement('option');option.value=typeof v==='object'?v.value:String(v);option.textContent=typeof v==='object'?v.text:String(v);node.append(option);}node.value=value;node.onchange=()=>{q.set(key,node.value);location.search=q.toString();};wrap.append(node);bar.append(wrap);}
+function select(key:string,label:string,values:readonly (string|number|{value:string;text:string})[],value:string){const wrap=document.createElement('label'),node=document.createElement('select');wrap.textContent=label;node.setAttribute('aria-label',key);for(const v of values){const option=document.createElement('option');option.value=typeof v==='object'?v.value:String(v);option.textContent=typeof v==='object'?v.text:String(v);node.append(option);}node.value=value;node.onchange=()=>{q.set(key,node.value);if(key==='locale')i18nMgr.setLanguage(node.value);else location.search=q.toString();};wrap.append(node);bar.append(wrap);}
 select('skin','风格',['fishbase','style1','style2'],q.get('skin')??'fishbase');
 select('layout','布局',['original','balanced','oval','classic'],layout);select('scene','场景',auditScenarios.map(s=>({value:s.id,text:`${s.group} · ${s.label}`})),scene);
 for(const [key,label,val]of [['seats','人数',options.seats],['hero','本人座位',options.hero],['actor','状态作用座位',options.actor],['dealer','庄家座位',options.dealer]] as const)select(key,label,Array.from({length:key==='seats'?8:options.seats},(_,i)=>i+(key==='seats'?2:1)),String(val));
 select('cards','手牌',[2,4,5,6],String(options.cards));select('scale','尺寸',[90,95,100,105,110],String(scale));select('locale','语言',['zh_CN','zh_TW','en','pt'],q.get('locale')??'zh_CN');select('quick','快捷',[3,5],q.get('quick')??'5');select('submit','滑杆',['confirm','release'],q.get('submit')??'confirm');
 const host=new AuditHost(options,log);await i18nMgr.initLanguage();i18nMgr.setLanguage(q.get('locale')??'zh_CN');
+// Standalone audit can load the same served font files as H5; production declares them in H5 once.
+if(q.get('fontHost'))for(const [family,file]of [['HONOR Sans CN','HONORSansCN-Regular.woff2'],['Keania One','KeaniaOne-Regular.woff2']]){
+ const font=new FontFace(family!,`url("${new URL('/assets/fonts/'+file,q.get('fontHost')!).href}")`);document.fonts.add(await font.load());
+}
+if(scene.startsWith('mtt-report'))await new Promise<void>((resolve,reject)=>{
+ const request=indexedDB.open('public_cache');
+ request.onupgradeneeded=()=>request.result.createObjectStore('multi_language_template',{keyPath:'template_id'});
+ request.onerror=()=>reject(request.error);
+ request.onsuccess=()=>{const db=request.result,tx=db.transaction('multi_language_template','readwrite');tx.objectStore('multi_language_template').put({template_id:'MX_AUDIT_MTT',cn_name:'测试锦标赛',us_name:'Test tournament',br_name:'Torneio de teste'});tx.oncomplete=()=>{db.close();resolve();};tx.onerror=()=>{db.close();reject(tx.error);};};
+});
 const target={roomID:909090,matchID:scene.startsWith('mtt-')?900001:0,roomType:0};
 const game=new GameClient(stage,{host,skin:q.get('skin')==='style2'?style2:q.get('skin')==='style1'?style1:fishbase,preferences:prefs,layout:q.get('orientation')==='auto'?'auto':'portrait',minimumLoadingMs:0,onState:s=>{stage.dataset.phase=s.phase;stage.dataset.hand=String(s.table?.handNum??0);if(s.phase==='error'){stage.dataset.ready='true';log(s.error??'');}},onLeave:()=>log('已离桌；点击重新进入可恢复。')});
 function button(label:string,run:()=>unknown){const b=document.createElement('button');b.textContent=label;b.onclick=()=>{Promise.resolve(run()).catch(e=>log(String(e)));};bar.append(b);}
@@ -38,9 +48,9 @@ if(game.getState().phase==='table'){
  await new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())));
  const click=(selector:string)=>stage.querySelector<HTMLElement>(selector)?.click();
  if(scene==='raise')click('.mx-operation-raise');
- if(scene.startsWith('report'))click('.mx-nav-button[data-action="report"]');
+ if(scene.startsWith('report')||scene.startsWith('mtt-report'))click('.mx-nav-button[data-action="report"]');
  if(scene==='history')click('.mx-nav-button[data-action="replay"]');
- if(scene.startsWith('profile'))click(`.mx-seat[data-seat="${options.actor}"] .mx-avatar-hit`);
+ if(scene.startsWith('profile')||scene==='mtt-profile')click(`.mx-seat[data-seat="${options.actor}"] .mx-avatar-hit`);
  if(scene.startsWith('settings')){click('.mx-menu');click('.mx-menu-item[data-menu-action="UITexas_Setting"]');}
  if(scene==='settings-quick')click('.mx-settings-tabs button:nth-child(2)');
  if(scene==='settings-system')click('.mx-settings-tabs button:nth-child(3)');

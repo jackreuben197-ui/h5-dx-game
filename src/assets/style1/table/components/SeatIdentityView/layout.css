@@ -1,0 +1,22 @@
+.mx-seat-info-text {
+  position: relative;
+  display: inline-block;
+  min-width: 100%;
+  width: max-content;
+  vertical-align: top;
+  white-space: nowrap;
+  text-align: center;
+}
+.mx-seat-info-repeat {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+.mx-table .mx-stack {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: clip;
+}
+.mx-table .mx-player-name {
+  text-overflow: clip;
+}

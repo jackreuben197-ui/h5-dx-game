@@ -3,11 +3,15 @@ import legacy from './sharedSprites/config.json';
 import { resources } from './resources.js';
 export type Sprite = string;
 export class SpriteAtlas {
-  /** CC infowarn uses a cutout glyph. Back only its center with white, keeping the outer corners transparent. */
+  /** Keep the original icon round even when a device changes the host's aspect ratio. */
   static paintWarning(node: HTMLElement, path: string = legacy.paths.infoTip): void {
-    this.paint(node, path);
-    node.style.backgroundImage += ', radial-gradient(circle, #fff 55%, transparent 57%)';
-    node.style.backgroundSize += ', 100% 100%';
+    const source = this.sourcePath(path);
+    // Use the registered sprite in both standalone and atlas builds. Requiring a raw URL
+    // here can throw while a settings row is constructed, leaving the list incomplete.
+    this.paint(node, source);
+    // The glyph is a cutout: a white circle backs its center without filling the corners.
+    node.style.backgroundImage += ', radial-gradient(circle closest-side, #fff 78%, transparent 80%)';
+    node.style.backgroundSize = `${resources.rawImages[source] ? 'contain' : node.style.backgroundSize}, 100% 100%`;
     node.style.backgroundPosition += ', center';
     node.style.backgroundRepeat = 'no-repeat';
     node.style.backgroundColor = 'transparent';

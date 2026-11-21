@@ -15,13 +15,15 @@ export interface SeatPlacement {
   betX: number;
   betY: number;
   betIconX: number;
+  /** Side rows grow toward the felt, keeping their avatar-facing edge fixed. */
+  betAnchor?: 'left' | 'right' | 'center';
   dealerX: number;
   dealerY: number;
   /** Table half, independent of whether this seat belongs to the top/bottom edge. */
   microphoneSide?: 'left' | 'right';
 }
 export interface LayoutPoint { x: number; y: number; scale?: number; }
-export interface LayoutContentOptions { dual: boolean; boardSize: number; jackpotHeight: number; }
+export interface LayoutContentOptions { dual: boolean; boardSize: number; jackpotHeight: number; textSize?: number; }
 export interface LayoutContent {
   board: LayoutPoint; secondBoard: LayoutPoint; total: LayoutPoint; pool: LayoutPoint; info: LayoutPoint;
   styles: Record<string, string>;
@@ -33,6 +35,10 @@ export interface LayoutControls { scale?: number; styles: Record<string, string>
 export interface TableLayout {
   readonly id: string;
   readonly compactRoomInfo: boolean;
+  /** Render action bubbles above table controls while keeping their seat coordinates. */
+  readonly elevatedActionBubbles?: boolean;
+  /** Render bets above the board without raising the rest of each seat. */
+  readonly elevatedBets?: boolean;
   readonly unit: number;
   readonly width: number;
   readonly height: number;

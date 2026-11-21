@@ -13,6 +13,8 @@ import { StringHelper } from '../../../../../logic/StringHelper.js';
 import { element } from '../../dom.js';
 import { SpriteAtlas } from '../../SpriteAtlas.js';
 import type { SeatState } from '../../../../../data/SeatData.js';
+import { SeatInfoTicker } from './SeatInfoTicker.js';
+import './layout.css';
 export class SeatIdentityView {
   readonly root = element('div', 'mx-seat-identity');
   readonly frame=localFrame(this.root,config.w,config.h,config.anchor.x,config.anchor.y);
@@ -33,9 +35,13 @@ export class SeatIdentityView {
   private name = element('span', 'mx-player-name');
   private line = element('span', 'mx-player-line');
   private chips = element('strong', 'mx-stack');
+  private nameTicker = new SeatInfoTicker(this.name);
+  private chipsTicker = new SeatInfoTicker(this.chips);
   private fold = element('div', 'mx-fold-cover', () => i18nMgr.Get("UITexas_fold", [], "弃牌"));
   private win = element('div','mx-seat-win');
   private winHandType = element('span','mx-seat-win-hand-type');
+  private winHandTypeText = element('span','mx-seat-win-hand-type-text');
+  private winHandTypeResize = new ResizeObserver(() => this.fitWinHandType());
   private winAmount = element('span','mx-seat-win-amount');
   private winPercent = element('div','mx-seat-win-percent');
   private winPercentTitle = element('span','mx-seat-win-percent-title');
@@ -61,7 +67,10 @@ export class SeatIdentityView {
     SpriteAtlas.paint(this.action, config.paths.actionBubble);
     SpriteAtlas.paint(this.win, config.paths.winBoard);
     this.win.hidden = true;
+    this.winHandType.append(this.winHandTypeText);
     this.win.append(this.winHandType, this.winAmount);
+    this.winHandTypeResize.observe(this.winHandType);
+    this.winHandTypeResize.observe(this.winHandTypeText);
     SpriteAtlas.paint(this.winPercentTitle, config.paths.winPercentTitle);
     SpriteAtlas.paint(this.winPercentValue, config.paths.winPercentValue);
     this.winPercent.append(this.winPercentTitle, this.winPercentValue);
@@ -74,7 +83,20 @@ export class SeatIdentityView {
     // CC prefab order: Head/Bubble precedes Head/Nick_Coin.
     this.root.append(this.squid,this.squidMask,this.fallback, this.avatar, this.border, this.countdown.root, this.fold, this.avatarButton, this.action, this.info,this.winPercent,this.handType,this.playStatus,this.autoStatus,this.returnButton);
   }
-  destroy(): void { this.avatarImage.destroy(); clearInterval(this.insuranceTimer); this.countdown.destroy(); }
+  getAvatarBounds():DOMRect { return this.fallback.getBoundingClientRect(); }
+  setActionLayer(layer:HTMLElement|null):void {
+    const parent=layer??this.root;
+    if(layer)layer.classList.toggle('mx-insurance-buying',this.root.classList.contains('mx-insurance-buying'));
+    if(this.action.parentElement!==parent)parent.append(this.action);
+  }
+  refreshInfoLayout(): void { this.nameTicker.refresh(); this.chipsTicker.refresh(); }
+  destroy(): void { this.nameTicker.destroy(); this.chipsTicker.destroy(); this.winHandTypeResize.disconnect(); this.avatarImage.destroy(); clearInterval(this.insuranceTimer); this.countdown.destroy(); }
+  private fitWinHandType(): void {
+    const width = this.winHandType.clientWidth;
+    const textWidth = this.winHandTypeText.scrollWidth;
+    // Measure in local units so every seat scale and live language change fits the same row.
+    if (width > 0 && textWidth > 0) this.winHandTypeText.style.transform = `scale(${Math.min(1, width / textWidth)})`;
+  }
   render(state: SeatState): void {
     const p = state.player;
     this.squid.hidden=!(p?.squidIn||p?.squidCount);this.squid.replaceChildren(element('span','',String(p?.squidCount??0)));
@@ -91,8 +113,9 @@ export class SeatIdentityView {
     this.avatarButton.setAttribute('aria-label', p ? `${i18nMgr.Get('MX_PlayerStats', [], '玩家资料')}: ${p.name}` : '');
     this.name.hidden = state.mine;
     this.line.hidden = state.mine;
-    this.name.textContent = p?.name ?? '';
-    chipLabel(this.chips,p ? new ChipFormatter(state.smallBlind, state.showBB,state.isMtt).showPlayerBalanceWithShowBB(p.chips) : '');
+    const owner = String(p?.userRid ?? '');
+    this.nameTicker.render(p?.name ?? '', owner);
+    this.chipsTicker.render(p ? new ChipFormatter(state.smallBlind, state.showBB,state.isMtt).showPlayerBalanceWithShowBB(p.chips) : '', owner, chipLabel);
     this.avatarImage.set(p?.avatar ?? '', String(p?.userRid ?? ''));
     const win = p?.settlement?.win;
     const winPercent100=p?.winPercent100;
@@ -107,9 +130,9 @@ export class SeatIdentityView {
     if (win) {
       this.winHandType.hidden = !win.handValueType;
       if (!this.winHandType.hidden) {
-        i18nLabel.bind(this.winHandType, () => handValueTypeToString(win.handValueType as HandValueType) ?? '');
+        i18nLabel.bind(this.winHandTypeText, () => handValueTypeToString(win.handValueType as HandValueType) ?? '');
       }
-      chipLabel(this.winAmount, `+${ChipFormatter.format(win.collectedChips, state.smallBlind, state.showBB)}`);
+      chipLabel(this.winAmount, `+${ChipFormatter.tableAmount(win.collectedChips, state.smallBlind, state.showBB)}`);
     }
     this.fold.hidden = !p?.folded;
     i18nLabel.bind(this.action, () => p?.folded ? '' : ccActionText(p?.action ?? ''));
@@ -120,6 +143,7 @@ export class SeatIdentityView {
       const left = Math.max(0, Math.ceil(this.insuranceDeadline - Date.now() / 1000));
       this.root.classList.toggle('mx-insurance-buying', left > 0);
       this.action.dataset.seatAction = left ? 'insurance' : p?.action ?? '';
+      if(this.action.parentElement!==this.root)this.action.parentElement?.classList.toggle('mx-insurance-buying',left>0);
       this.action.style.backgroundColor = left ? '#00B88B' : p?.action === '全下' ? '#FA2B4B' : ['加注','下注'].includes(p?.action ?? '') ? '#78E4E4' : 'var(--mx-passive-action-color, #F9CA9F)';
       this.action.textContent = left ? i18nMgr.Get('adaptation20062').replace('##', String(left)) : this.actionText;
       this.action.hidden = !this.action.textContent;
