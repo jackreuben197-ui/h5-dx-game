@@ -48,6 +48,7 @@ export class PlayerInfoView {
     const generation = ++this.generation;
     this.busy = false;
     this.player = player;
+    this.root.dataset.game = this.records?.target.matchID || this.records?.data.mtt ? 'mtt' : 'cash';
     this.profile = this.records?.peekPlayerProfile?.(player.userRid ?? 0);
     this.tab = 'data';
     this.muted = false; this.balance = undefined;
@@ -189,7 +190,14 @@ export class PlayerInfoView {
     }
     if (this.tab === 'data') {
       const room = stats?.room_data;
-      const values: Array<[string, string]> = [
+      const podium = stats?.mtt_room_data;
+      const values: Array<[string, string]> = this.root.dataset.game === 'mtt' ? [
+        [t('UIData_YGvXd5iXr_006','冠军'), podium ? String(podium.frist_times ?? 0) : '—'],
+        [t('UIData_YGvXd5iXr_007','亚军'), podium ? String(podium.second_times ?? 0) : '—'],
+        [t('UIData_YGvXd5iXr_008','季军'), podium ? String(podium.third_times ?? 0) : '—'],
+        [t('UIData_YGvXd5iXr_005','参赛次数'), podium ? String(podium.play_times ?? 0) : '—'],
+        [t('UITexasInfo_wincount','获奖次数'), podium ? String(podium.win_times ?? 0) : '—'],
+      ] : [
         [t('UITexasInfo_games', '总局数'), room ? String(room.total_game_cnt || 0) : '—'],
         [t('UITexasInfo_allhands', '总手数'), room ? String(room.total_hand || 0) : '—'],
         [t('UITexasInfo_poolwin', '入池胜率'), room ? `${room.wins || 0}%` : '—'],
@@ -286,8 +294,8 @@ export class PlayerInfoView {
       const controls = element('div','mx-player-profile-controls');
       const add = (label: string, click: () => void) => {const button = element('button','',label); button.type='button'; button.onclick=click; controls.append(button);};
       const admin = this.records!.data.record!.roomAdmin!;
-      if (admin.userStandUp === 1) add(t('MX_AdminStand','站起玩家'), () => this.confirm(() => t('UITexasRoomManagerOpTips7','确认让该玩家站起？'), () => void this.run(() => this.records!.managePlayer(this.player!.userRid!,'stand'), () => this.close())));
-      if (admin.userLeave === 1) add(t('MX_AdminLeave','踢出玩家'), () => this.confirm(() => t('UITexasRoomManagerOpTips8','确认踢出该玩家？'), () => void this.run(() => this.records!.managePlayer(this.player!.userRid!,'leave'), () => this.close())));
+      if (admin.userStandUp === 1) add(t('MX_AdminStand','站起玩家'), () => this.confirm(() => i18nMgr.Get('UITexasRoomManagerOpTips7',[this.profile?.basic?.nick_name || this.player!.name],'确定将{0}从当前牌桌站起吗？'), () => void this.run(() => this.records!.managePlayer(this.player!.userRid!,'stand'), () => this.close())));
+      if (admin.userLeave === 1) add(t('MX_AdminLeave','踢出玩家'), () => this.confirm(() => i18nMgr.Get('UITexasRoomManagerOpTips8',[this.profile?.basic?.nick_name || this.player!.name],'确定将{0}踢出当前牌桌吗？'), () => void this.run(() => this.records!.managePlayer(this.player!.userRid!,'leave'), () => this.close())));
       add(this.muted ? t('MX_Unmute','取消禁言') : t('MX_Mute','禁言'), () => void this.run(() => this.records!.setPlayerMuted(this.player!.userRid!,!this.muted), () => {this.muted = !this.muted; this.renderActions();}));
       actions.append(controls);
     }
@@ -312,7 +320,7 @@ export class PlayerInfoView {
   onFrameResize(width: number, height: number): void {
     // The admin controls and two rows of props share this frame with the stats.
     // Fit the complete CC-style dialog, rather than clipping its last row.
-    const scale = Math.min(width / config.layout.fitWidth, (height - 16) / config.layout.fitHeight);
+    const scale = Math.min(config.layout.maxScale, width / config.layout.fitWidth, (height - 16) / config.layout.fitHeight);
     this.root.style.setProperty('--player-profile-unit', `${scale}px`);
   }
   close(): void { this.offBalance?.();this.offBalance=undefined; ++this.generation; this.dialog.show(false); this.player = undefined; this.profile = undefined; this.confirmDialog?.close('player-admin'); this.dialog.panel.querySelector('.mx-player-profile-actions')?.remove(); this.dialog.status.textContent = ''; }

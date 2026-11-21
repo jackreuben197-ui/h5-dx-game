@@ -1,6 +1,8 @@
 import { LayoutOriginal } from './LayoutOriginal.js';
 import { portraitSideButtons } from './side-buttons-layout.js';
-import roomInfoConfig from '../components/RoomInfoView/config.json' with { type: 'json' };
+import { sideBetAnchor, profileBalanceBottom, betHalfHeight, betGap, betEdges } from './seat-bet-layout.js';
+import handCardsConfig from '../components/HandCardsView/config.json' with { type: 'json' };
+import actionButtonConfig from '../components/ActionButton/config.json' with { type: 'json' };
 import type { TableLayoutProfile } from './TableLayoutProfile.js';
 import type { TableSnapshot } from '../../../../core/types.js';
 import type { LayoutContentOptions, LayoutContent, LayoutControls } from '../../../../ui/TableLayout.js';
@@ -69,14 +71,18 @@ export class LayoutProfile extends LayoutOriginal {
         // Both top seats bet below their own stack, rather than towards each other.
         const bottomSeat=!mine && slot===0;
         const topSeat=!mine && !bottomSeat && x>30 && x<410;
-        // Balanced chips extend 80 + 33 - 8 - 1 local units toward the avatar.
-        // Keep one screen pixel clear after the seat and stage have both scaled.
-        const sideBetX=profile.id==='classic'?64:profile.id==='balanced'
-          ? profile.avatar/2+104/local+1/(unit*this.unit):60;
-        p.betX=(mine?(profile.id==='classic'?68:60):topSeat?0:x<220?sideBetX:x>220?-sideBetX:0)*local;
+        const sideSeat=!mine&&!bottomSeat&&!topSeat;
+        const classicBottomSpectator=profile.id==='classic'&&bottomSeat;
+        // Fix the avatar-facing edge; long amounts grow toward the felt.
+        p.betAnchor=mine&&profile.id!=='classic'?'left':sideSeat?(x<220?'left':'right'):'center';
+        p.betX=p.betAnchor==='center'?(mine?60:0)*local:(p.betAnchor==='left'?1:-1)*sideBetAnchor(p.scale,this.unit);
+        // Center the full visible group, including the chip protruding from the frame.
+        if(classicBottomSpectator){const [left,right]=betEdges(p);p.betX-=(left+right)/2;}
         // Classic side bets share the balance card's center: 30 + 20.4 / 2.
-        p.betY=(mine?(profile.id==='classic'?-120:-2):bottomSeat?-62:topSeat?(profile.id==='classic'?66:60):profile.id==='classic'?classicSideBetY:0)*local;
+        // The classic bottom spectator seat bets above its avatar and nickname, clear of navigation.
+        p.betY=(mine?(profile.id==='classic'?-128:-2):bottomSeat?(classicBottomSpectator?-60:-62):topSeat?(profile.id==='classic'?66:60):profile.id==='classic'?classicSideBetY:0)*local;
         if(profile.id==='oval'&&!mine)p.betY-=4*local;
+        if(topSeat)p.betY=Math.max(p.betY,profileBalanceBottom(profile.id,local)+betHalfHeight+betGap(p.scale,this.unit));
         // Keep bets in the avatar coordinate system, outside either board's occupied band.
         const revealedCards=Math.max(state.community?.length??0,state.secondCommunity?.length??0);
         if(!mine&&revealedCards){
@@ -92,15 +98,16 @@ export class LayoutProfile extends LayoutOriginal {
           const boardTop=classicContent?classicContent.board.y-88/120*cardWidth:top;
           const boardBottom=classicContent?(dual?classicContent.secondBoard.y:classicContent.board.y)+88/120*cardWidth:bottom;
           const clearance=(profile.id==='classic'&&!topSeat?2:6)*unit;
-          const bx=p.x+p.betX*p.scale,by=p.y+p.betY*p.scale,halfBet=35*p.scale;
-          if(bx+120*p.scale>this.width/2-halfWidth&&bx-120*p.scale<this.width/2+halfWidth&&by+halfBet>boardTop-clearance&&by-halfBet<boardBottom+clearance){
+          const bx=p.x+p.betX*p.scale,by=p.y+p.betY*p.scale,halfBet=betHalfHeight*p.scale;
+          const [left,right]=betEdges(p);
+          if(bx+right*p.scale>this.width/2-halfWidth&&bx+left*p.scale<this.width/2+halfWidth&&by+halfBet>boardTop-clearance&&by-halfBet<boardBottom+clearance){
             const above=boardTop-halfBet-clearance,below=boardBottom+halfBet+clearance;
             p.betY=((Math.abs(by-above)<Math.abs(by-below)?above:below)-p.y)/p.scale;
           }
         }
         p.dealerX=(mine?profile.heroDealer[0]:profile.id==='classic'?profile.otherDealerX:(x<220?1:-1)*profile.otherDealerX)*local;
         p.dealerY=(mine?profile.heroDealer[1]:profile.otherDealerY)*local;
-        if(profile.id==='classic'&&!mine&&!topSeat){p.dealerX=0;p.dealerY=(player?.settlement?.win?80:66)*local;}
+        if(profile.id==='classic'&&sideSeat){p.dealerX=0;p.dealerY=(player?.settlement?.win?80:66)*local;}
       }
       this.origin={x:this.width/2,y:profile.boardY/profile.height*height};
     return result;
@@ -119,17 +126,16 @@ export class LayoutProfile extends LayoutOriginal {
       infoY:(infoTop-y)/scale,typeY:(typeTop+30*scale-y)/scale};
   }
   override content(options: LayoutContentOptions): LayoutContent {
-    if(this.landscape){
-      const content=super.content(options);
-      content.styles['--mx-room-info-width']=`${roomInfoConfig.layout.landscapeWidth}px`;
-      return content;
+    if (this.landscape) {
+      const content = super.content(options);
+      return { ...content, styles: { ...content.styles, '--mx-wide-avatar-scale': String(this.profile.avatar / 60) } };
     }
     const {dual,boardSize}=options, l=this, profile=this.profile, m=this.metrics;
     const u=Math.min(l.width/440,l.height/782);
     const scale=m.boardWidth/120*u*boardSize;
     const gap=profile.id==='classic'?88*scale:(71.02/50.59*120)*scale+10*u;
     // Keep the dual board below the upper side-row bets instead of breaking their alignment.
-    const sideBetBottom=163/782*l.height+(classicSideBetY+35*profile.avatar/199+3)*u;
+    const sideBetBottom=163/782*l.height+(classicSideBetY+betHalfHeight*profile.avatar/199+3)*u;
     const y=profile.id==='classic'&&dual
       ? Math.max(profile.boardY/782*l.height,sideBetBottom+gap/2+88*scale)
       : profile.boardY/782*l.height;
@@ -145,7 +151,7 @@ export class LayoutProfile extends LayoutOriginal {
     return {
       board:{x:l.width/2,y:y-(dual?gap/2:0),scale}, secondBoard:{x:l.width/2,y:y+gap/2,scale},
       total:{x:l.width/2,y:potY},pool:{x:l.width/2,y:potY+22*u},info:{x:l.width/2,y:infoY},
-      styles:{...portraitSideButtons(l.width*l.unit,this.viewportHeight,this.viewportBottom),...(Number.isFinite(infoMaxFont)?{'--mx-room-info-max-font':`${infoMaxFont}px`}:{}),'--mx-room-info-width':`${roomInfoConfig.layout.portraitWidth*u}px`,'--mx-layout-unit':`${u}px`,'--mx-profile-avatar':String(profile.avatar),'--mx-jackpot-y':`${(profile.id==='classic'?18:58)*u}px`,'--mx-calltime-y':`${(profile.id==='classic'?48:95)*u}px`,'--mx-felt-bottom':`${208*u*l.unit}px`,
+      styles:{...portraitSideButtons(l.width*l.unit,this.viewportHeight,this.viewportBottom),...(Number.isFinite(infoMaxFont)?{'--mx-room-info-max-font':`${infoMaxFont}px`}:{}),'--mx-room-info-width':`${this.roomInfoWidth}px`,'--mx-layout-unit':`${u}px`,'--mx-profile-avatar':String(profile.avatar),'--mx-jackpot-y':`${(profile.id==='classic'?18:58)*u}px`,'--mx-calltime-y':`${(profile.id==='classic'?48:95)*u}px`,'--mx-felt-bottom':`${208*u*l.unit}px`,
         '--mx-hero-card-height':`${120*profile.heroCardHeight/profile.heroCardWidth}px`,
         '--mx-hero-info-y':`${profile.heroInfoY*199/profile.avatar}px`},
     };
@@ -155,22 +161,36 @@ export class LayoutProfile extends LayoutOriginal {
     const own=this.positions(state).get(state.mySeat);
     if(!own)return super.controls(state,buttonSize);
     const u=Math.min(this.width/440,this.height/782)*this.unit,profile=this.profile;
+    const buttons=actionButtonConfig.layout.portrait;
+    const buttonUnit=Math.min(this.width*this.unit/buttons.referenceWidth,this.viewportHeight/buttons.referenceHeight)*buttonSize;
+    const scale=buttons.sideSize/actionButtonConfig.w*buttonUnit;
+    const cardWidth=Number.parseFloat(handCardsConfig.layout.css['mx-card-slot-width']);
+    const spread=own.handSpread??handCardsConfig.layout.faceStripWidth;
+    const handHalf=(cardWidth+spread/2)*own.cardScale*own.scale*this.unit/2+this.handButtonOutset(state,own);
+    // Anchor the button edges near the hand, with the original layout's compact clearance.
+    const sideGap=Math.max(6,10*u);
+    const handEdge=handHalf+sideGap;
     const rowY=(own.controlsY??own.y)*this.unit+profile.heroOperationY*u;
-    // Oval's raise face starts below the avatar-top bubble, including the 110% size.
-    let upperY=(profile.id==='oval'?48:profile.heroRaiseLift)*u;
-    const styles:Record<string,string>={};
+    let upperY=profile.heroRaiseLift*u;
+    const styles:Record<string,string>={'--mx-op-raise-size':`${buttons.raiseSize*buttonUnit}px`};
     if(profile.id==='classic'){
       const handTop=(own.y+own.cardsY*own.scale)*this.unit-35.5*u;
-      upperY=Math.max(65*u,rowY-handTop+(6+41.25*buttonSize/2)*u);
+      // Lower the raise button and its 3/5 quick buttons by the same design distance.
+      upperY=Math.max(profile.heroRaiseLift*u,rowY-handTop+6*u+buttons.raiseSize*buttonUnit/2)-6*u;
       styles['--mx-quick-lift']=`${upperY-53*u}px`;
+      styles['--mx-quick-5-0-x']=`${-325*scale}px`;
+      styles['--mx-quick-5-4-x']=`${325*scale}px`;
+      styles['--mx-quick-5-2-y']=`${380*scale}px`;
     }else if(profile.id==='balanced'||profile.id==='oval'){
       styles['--mx-quick-lift']=`${16*u}px`;
     }
-    return {scale:41.25/137*u*buttonSize,styles:{...styles,
+    return {scale,styles:{...styles,
       left:`calc(${own.x*this.unit}px - 35%)`,right:`calc(65% - ${own.x*this.unit}px)`,
       top:`${rowY-28}px`,'--mx-operation-row-y':`${rowY-28}px`,
       '--mx-raise-center-y':`${Math.max(160*u,rowY-180*u)}px`,
-      '--mx-op-upper-y':`${upperY}px`,'--mx-op-fold-x':`${-103*u}px`,'--mx-op-main-x':`${103*u}px`,
+      '--mx-op-upper-y':`${upperY}px`,
+      '--mx-op-fold-x':`calc(-${handEdge}px - var(--mx-op-fold-size,34px) / 2)`,
+      '--mx-op-main-x':`calc(${handEdge}px + var(--mx-op-button-size,32px) / 2)`,
     }};
   }
 }

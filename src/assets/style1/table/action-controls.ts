@@ -48,18 +48,14 @@ export class ActionControls {
     private addTimeCommand?:()=>Promise<void>,
     private settings: TexasGamePersonalSettings = defaultSettings,
   ) {
-    this.auto=new AutoOperationView(command);
+    this.auto=new AutoOperationView((action,amount)=>this.submit(action,amount));
     this.offAccount=this.settings.on(TexasGamePersonalSettings.ACCOUNT_CHANGE,()=>{this.accountGeneration++;this.gesture.cancel();this.mode='actions';this.state=undefined;this.busy=false;this.submitted=undefined;this.refresh();});
-    const updateSubmitMode = () => {
-      this.gesture.cancel();
-      this.confirm.hidden = this.settings.tableSliderSubmit === 'release';
-    };
-    this.offSubmit = this.settings.on(TexasGamePersonalSettings.SLIDER_SUBMIT_CHANGE, updateSubmitMode);
+    const cancelSliderGesture = () => this.gesture.cancel();
+    this.offSubmit = this.settings.on(TexasGamePersonalSettings.SLIDER_SUBMIT_CHANGE, cancelSliderGesture);
     this.offAppearance = this.settings.on(TexasGamePersonalSettings.APPEARANCE_CHANGE, () => {
-      updateSubmitMode();
+      cancelSliderGesture();
       this.refresh();
     });
-    updateSubmitMode();
     this.offSettings=this.settings.on(TexasGamePersonalSettings.SHORTCUTS_CHANGGE,()=>this.refresh());
     i18nLabel.bind(this.root, () => i18nMgr.Get("MX_TableActions", [], "牌桌操作"), 'aria-label');
     for (const [action, label] of [
@@ -122,7 +118,6 @@ export class ActionControls {
       if (selection) void this.submit(selection.action, selection.amount);
     };
     this.range.onblur=()=>this.gesture.cancel();
-    this.range.onkeydown=e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Home','End'].includes(e.key))this.confirm.hidden=false;};
     this.range.oninput = () => { this.amount.hidden = false; this.updateAmount(); };
     const thumb=node('span','mx-raise-thumb');SpriteAtlas.paint(thumb,'raiseThumb');track.append(thumb);
     this.confirm.type = 'button';
@@ -236,7 +231,7 @@ export class ActionControls {
     css.setProperty('--mx-raise-thumb-height', `${50*scale}px`);
     css.setProperty('--mx-raise-confirm-offset', `${521*scale}px`);
     css.setProperty('--mx-raise-confirm-font', `${40*scale}px`);
-    css.setProperty('--mx-op-fold-size', `${147 * scale}px`);
+    css.setProperty('--mx-op-fold-size', `${ActionButton.config.foldTimerSize * scale}px`);
     css.setProperty('--mx-op-fold-x', `${-267.53 * scale}px`);
     css.setProperty('--mx-op-main-x', `${275.647 * scale}px`);
     css.setProperty('--mx-op-upper-y', `${200 * scale}px`);
@@ -271,7 +266,10 @@ export class ActionControls {
       chipLabel(value,()=>ChipFormatter.format(item.amount,this.state?.smallBlind,this.state?.showBB));
       button.append(bg,title,ratio,valueBg,value);
       const point=layout[items.length]?.[index];
-      if(point){button.style.left=`calc(50% + ${point[0]*this.opScale}px)`;button.style.top=`calc(50% - ${point[1]*this.opScale}px)`;}
+      if(point){
+        button.style.left=`calc(50% + var(--mx-quick-${items.length}-${index}-x, ${point[0]*this.opScale}px))`;
+        button.style.top=`calc(50% - var(--mx-quick-${items.length}-${index}-y, ${point[1]*this.opScale}px))`;
+      }
       button.onclick=()=>void this.submit(item.action,item.amount);this.quick.append(button);
     }
     }

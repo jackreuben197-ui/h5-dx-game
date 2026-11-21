@@ -95,7 +95,7 @@
 .mx-seat-play-status{top:var(--mx-SeatIdentityView-mx-seat-play-status-top);width:var(--mx-SeatIdentityView-mx-seat-play-status-width);height:var(--mx-SeatIdentityView-mx-seat-play-status-height);transform:translate(var(--mx-SeatIdentityView-mx-seat-play-status-transform),var(--mx-SeatIdentityView-mx-seat-play-status-transform-2));display:flex;align-items:center;justify-content:center;border-radius:var(--mx-SeatIdentityView-mx-seat-play-status-border-radius);background:#0008;padding:var(--mx-SeatIdentityView-mx-seat-play-status-padding);pointer-events:none}
 .mx-seat-auto-status{top:var(--mx-SeatIdentityView-mx-seat-auto-status-top-2);background:#161d42cc}
 .mx-return-game{position:absolute;left:var(--mx-SeatIdentityView-mx-return-game-left);top:var(--mx-SeatIdentityView-mx-return-game-top);transform:translate(var(--mx-SeatIdentityView-mx-return-game-transform),var(--mx-SeatIdentityView-mx-return-game-transform-2));z-index:6;pointer-events:auto;width:var(--mx-SeatIdentityView-mx-return-game-width);height:var(--mx-SeatIdentityView-mx-return-game-height);border:0;border-radius:var(--mx-SeatIdentityView-mx-return-game-border-radius);background-color:transparent;color:white;padding:var(--mx-SeatIdentityView-mx-return-game-padding);white-space:nowrap;font-size:var(--mx-SeatIdentityView-mx-return-game-font-size)!important;background-repeat:no-repeat}
-.mx-return-game:active{filter:brightness(.83);scale:1.2}
+.mx-return-game:active{filter:brightness(.83)}
 .mx-seat-mine .mx-card-slot{pointer-events:auto;cursor:pointer}
 .mx-card-selected::after{content:"";position:absolute;left:var(--mx-HandCardsView-mx-card-selected-left);top:calc(var(--mx-HandCardsView-mx-card-selected-top) + var(--mx-HandCardsView-mx-card-selected-top-2));width:var(--mx-HandCardsView-mx-card-selected-width);height:var(--mx-HandCardsView-mx-card-selected-height);transform:translate(var(--mx-HandCardsView-mx-card-selected-transform),var(--mx-HandCardsView-mx-card-selected-transform-2));background:var(--mx-show-card-eye) center/contain no-repeat;pointer-events:none;z-index:3}
 .mx-auto-operation{position:absolute;bottom:var(--mx-AutoOperationView-mx-auto-operation-bottom);left:var(--mx-AutoOperationView-mx-auto-operation-left);right:var(--mx-AutoOperationView-mx-auto-operation-right);display:flex;justify-content:center;gap:var(--mx-AutoOperationView-mx-auto-operation-gap);padding-bottom:var(--mx-AutoOperationView-mx-auto-operation-padding-bottom);pointer-events:auto}
@@ -140,8 +140,6 @@
 
 /* UIRoomTexas btn_menu icon is 70 below its top anchor. */
 .mx-table-menu{--mx-menu-left:61px;--mx-menu-top:70px;--mx-menu-size:108px}
-/* Short original stages lift settings clear of the squid without moving it into the seats. */
-.mx-table[data-table-layout=original]:not([data-orientation=landscape]) .mx-table-menu{translate:0 calc(var(--mx-menu-short-stage,0) * var(--mx-TableMenuView-original-short-top-offset))}
 .mx-menu{left:var(--mx-menu-left);top:var(--mx-menu-top);width:var(--mx-menu-size);height:var(--mx-menu-size)}
 
 /* UIBringIn / WalletItem: CC assets, measured against the 398x724 reference. */
@@ -323,7 +321,7 @@
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:var(--mx-SeatIdentityView-mx-seat-win-width);min-height:var(--mx-SeatIdentityView-mx-seat-win-min-height);
   border-radius:var(--mx-SeatIdentityView-mx-seat-win-border-radius);background-color:transparent;color:white;
-  display:grid;align-content:center;white-space:nowrap;text-align:center;
+  display:grid;grid-template-columns:minmax(0,1fr);align-content:center;white-space:nowrap;text-align:center;
   row-gap:var(--mx-SeatIdentityView-mx-seat-win-row-gap);
   font-size:var(--mx-SeatIdentityView-mx-seat-win-font-size);line-height:var(--mx-SeatIdentityView-mx-seat-win-line-height);
   padding:var(--mx-SeatIdentityView-mx-seat-win-padding) var(--mx-SeatIdentityView-mx-seat-win-padding-2);z-index:3
@@ -334,7 +332,8 @@
   top:auto;bottom:0;transform:translateX(-50%);width:100%;height:100%;
   min-height:var(--mx-SeatIdentityView-mx-player-info-min-height-3)
 }
-.mx-seat-win-hand-type{font-size:var(--mx-SeatIdentityView-mx-seat-win-hand-type-font-size)}
+.mx-seat-win-hand-type{display:flex;justify-content:center;min-width:0;overflow:hidden;font-size:var(--mx-SeatIdentityView-mx-seat-win-hand-type-font-size);font-weight:var(--mx-SeatIdentityView-mx-seat-win-hand-type-font-weight)}
+.mx-seat-win-hand-type-text{flex:none}
 
 /* Clear glass: light background blur, transparent surfaces and rim highlights. */
 .mx-buyin-amount-section{background:rgba(208,208,208,.14);border-radius:var(--mx-BuyInView-mx-buyin-amount-section-border-radius-2)}
@@ -359,7 +358,8 @@
 .mx-buyin-auto-description{overflow-wrap:anywhere}
 
 /* CC left side menu: 720-wide glass panel, 553×168 rows, padding 80 / gap 20. */
-.mx-menu-overlay{position:absolute;inset:var(--mx-TableMenuView-mx-menu-overlay-inset);z-index:15;--menu-unit:.277px;visibility:hidden;pointer-events:none;transition:visibility 0s .25s}
+/* Above table action bubbles (16), below modal panels (20+). */
+.mx-menu-overlay{position:absolute;inset:var(--mx-TableMenuView-mx-menu-overlay-inset);z-index:17;--menu-unit:.277px;visibility:hidden;pointer-events:none;transition:visibility 0s .25s}
 .mx-menu-overlay[data-open=true]{visibility:visible;pointer-events:auto;transition-delay:0s}
 .mx-menu-shade{position:absolute;inset:var(--mx-TableMenuView-mx-menu-shade-inset);width:var(--mx-TableMenuView-mx-menu-shade-width);height:var(--mx-TableMenuView-mx-menu-shade-height);border:0;opacity:0;transition:opacity .25s linear}
 .mx-menu-overlay[data-open=true] .mx-menu-shade{opacity:1}
@@ -382,7 +382,7 @@
 
 /* CC ALLIN Spine replaces its text bubble; folded / buy-ins remain DOM. */
 .mx-spine-allin .mx-player-action{visibility:hidden}
-.mx-spine-allin .mx-insurance-buying .mx-player-action{visibility:visible}
+.mx-spine-allin .mx-insurance-buying .mx-player-action,.mx-spine-allin.mx-insurance-buying .mx-player-action{visibility:visible}
 
 /* One floating DEV menu; its children stay in normal document flow. */
 .mx-test-menu{position:fixed;right:var(--mx-TestMenuView-mx-test-menu-right);top:var(--mx-TestMenuView-mx-test-menu-top-3);z-index:10000;pointer-events:auto;color:#fff;font:14px Arial,sans-serif}
@@ -429,19 +429,18 @@
 .mx-operation[data-mode=actions] button:not(:disabled){pointer-events:auto}
 
 .mx-chip-unit{font-size:.65em;line-height:1;font-weight:400;margin-left:.12em}
-.mx-seat-bet{display:flex;align-items:center;gap:8px;width:max-content;min-width:var(--mx-SeatBetView-mx-seat-bet-width);padding-inline:8px;margin-left:0;translate:-50% 0}
-.mx-seat-bet[data-chip-side=right]{flex-direction:row-reverse}
-.mx-seat-bet-chip{position:static;margin:0;flex-shrink:0}
-.mx-seat-bet-value{position:static;width:auto;flex:1;text-align:center}
+/* Reserve four digits plus the chip overlap, and let longer amounts grow naturally. */
+.mx-seat-bet{--mx-bet-stroke:0px;--mx-bet-chip-padding:calc(var(--mx-SeatBetView-mx-seat-bet-chip-width) / 2 - var(--mx-SeatBetView-mx-seat-bet-chip-outset) + var(--mx-SeatBetView-mx-seat-bet-chip-gap));display:flex;align-items:center;font-size:calc(var(--mx-SeatBetView-mx-seat-bet-value-font-size) * var(--mx-table-text-scale,1));width:max-content;min-width:calc(var(--mx-SeatBetView-mx-seat-bet-value-min-digits) * 1ch + var(--mx-bet-chip-padding) + var(--mx-SeatBetView-mx-seat-bet-padding-end) + 2 * var(--mx-bet-stroke));padding-left:var(--mx-bet-chip-padding);padding-right:var(--mx-SeatBetView-mx-seat-bet-padding-end);margin-left:0;translate:-50% 0;overflow:visible}
+.mx-seat-bet[data-anchor=left]{translate:0 0}
+.mx-seat-bet[data-anchor=right]{translate:-100% 0}
+.mx-seat-bet[data-chip-side=right]{padding-left:var(--mx-SeatBetView-mx-seat-bet-padding-end);padding-right:var(--mx-bet-chip-padding)}
+.mx-seat-bet-chip{position:absolute;left:calc(-1 * (var(--mx-bet-stroke) + var(--mx-SeatBetView-mx-seat-bet-chip-outset)));top:50%;margin:0;transform:translate(-50%,-50%);overflow:hidden;z-index:1}
+.mx-seat-bet[data-chip-side=right] .mx-seat-bet-chip{left:auto;right:calc(-1 * (var(--mx-bet-stroke) + var(--mx-SeatBetView-mx-seat-bet-chip-outset)));transform:translate(50%,-50%)}
+.mx-seat-bet-chip-image{position:absolute;display:block;background-repeat:no-repeat;pointer-events:none}
+.mx-seat-bet-value{position:static;width:auto;flex:1;text-align:center;white-space:nowrap}
 /* The native range is an input hit target; the visible rail/thumb own its outline. */
 .mx-table:not([data-orientation=landscape]) .mx-raise-range{outline:none}
 .mx-table:not([data-orientation=landscape]) .mx-raise-track:has(.mx-raise-range:focus-visible){filter:drop-shadow(0 0 2px #ffffff80)}
 
 .mx-room-info{background:none;border:0;padding:0;cursor:pointer}
 .mx-room-details{--su:var(--record-unit)}
-.mx-seat-bet[data-chip-side=left] .mx-seat-bet-chip{margin-left:calc(-.5 * var(--mx-SeatBetView-mx-seat-bet-chip-width))}
-.mx-seat-bet[data-chip-side=right] .mx-seat-bet-chip{margin-right:calc(-.5 * var(--mx-SeatBetView-mx-seat-bet-chip-width))}
-
-/* Long amounts grow toward the table center, never back over the avatar. */
-.mx-seat[data-edge=left] .mx-seat-bet{translate:0 0;margin-left:-80px}
-.mx-seat[data-edge=right] .mx-seat-bet{translate:-100% 0;margin-left:80px}

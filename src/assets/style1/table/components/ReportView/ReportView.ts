@@ -11,6 +11,8 @@ import { i18nMgr } from '../../../../../i18n/i18nMgr.js';
 import { RecordDialogView } from '../RecordDialogView/RecordDialogView.js';
 import { RecordPaginationView } from '../RecordPaginationView/RecordPaginationView.js';
 import { element, profitAmount } from '../../dom.js';
+import { ReportValueFitter } from './ReportValueFitter.js';
+import './layout.css';
 const t = (key: string, fallback: string) => i18nMgr.Get(key, [], fallback);
 export class ReportView {
     readonly dialog: RecordDialogView;
@@ -27,8 +29,9 @@ export class ReportView {
     private observers = element('div', 'mx-report-observers');
     private pagination: RecordPaginationView;
     private playerInfo: ReportPlayerInfoView;
+    private values = new ReportValueFitter();
     private tick?: ReturnType<typeof setInterval>;
-    constructor(readonly controller: ReportController) {
+    constructor(readonly controller: ReportController, private readonly showBB = () => false) {
         this.dialog = new RecordDialogView(() => t('UIMine_RecordList', '战绩'), () => controller.close(), 'left', config.layout.dockTop);
         this.root = this.dialog.root;
         this.root.classList.add('mx-report-overlay');
@@ -62,6 +65,7 @@ export class ReportView {
     private onRounds(): void { this.render(); }
     private render(): void {
         const { state, records } = this.controller;
+        this.values.clear();
         this.dialog.show(state.open);
         if (!state.open) {
             this.playerInfo.close();
@@ -95,6 +99,9 @@ export class ReportView {
         this.dialog.footer.hidden=tabs.length<=1&&state.tab==='battle';
         this.tabs.replaceChildren(...tabs.map(([key, label]) => { const b = element('button', '', label); b.type = 'button'; b.setAttribute('aria-pressed', String(state.tab === key)); b.onclick = () => void this.controller.select(key); return b; }));
         const report = records.data.report;
+        const blind = records.data.snapshot?.roomInfo?.smallBlind ?? 0;
+        const useBB = blind > 0 && this.showBB();
+        const amount = (wire: number) => `${StringHelper.GetLongString(wire, useBB ? blind * 2 : 100)}${useBB ? 'BB' : ''}`;
         const tableUsers = new Set(records.data.snapshot?.playersList.map(p => p.userRid) ?? []);
         this.list.replaceChildren();
         if (state.tab === 'battle') {
@@ -106,11 +113,12 @@ export class ReportView {
                 const bringIn = element('span', 'mx-report-bringin', StringHelper.GetLongString(p.bringInTotal));
                 if (p.storeChips)
                     bringIn.append(element('small', 'mx-report-stored-chips', StringHelper.GetLongString(p.storeChips)));
+                const score = TexasReportPresentation.getPlayerScore(p);
                 const cells = [
                     StringHelper.LengthNick(p.name),
-                    `${p.handNum} (${(p.poolRate / 10).toFixed(1)}%)`,
+                    `${p.handNum} (${p.poolRate < 10 ? p.poolRate / 10 : Math.trunc(p.poolRate / 10)}%)`,
                     bringIn,
-                    profitAmount('span', TexasReportPresentation.getPlayerScore(p)),
+                    profitAmount('span', score, (score > 0 ? '+' : '') + amount(score)),
                 ];
                 if (mode === 'mush') {
                     const mushroom = p.mushroomAmount > 0
@@ -160,18 +168,18 @@ export class ReportView {
                 })));
         }
         const s = report.summary;
-        const avg = s.totalHand ? s.totalPot / s.totalHand / 100 : 0;
+        const avg = s.totalHand ? Math.trunc(s.totalPot / s.totalHand) : 0;
         const summary = [
-            [t('UISituationTotalPot', '总底池'), StringHelper.GetLongString(s.totalPot)],
+            [t('UISituationTotalPot', '总底池'), amount(s.totalPot)],
             [t('UISituationTotalBringIn', '总带入'), StringHelper.GetLongString(s.totalBringin)],
             [t('UISituationCurHandNum', '总手数'), String(s.totalHand)],
-            [t('UISituationVerBottom', '场均底池'), Number.isInteger(avg) ? String(avg) : avg.toFixed(2)],
-            [t('UISituationCurTime', '已用时间'), this.duration(s.startTime ? Date.now() / 1000 - s.startTime : 0)],
+            [t('UISituationVerBottom', '场均底池'), amount(avg)],
+            [t('UISituationCurTime', '已用时间'), this.durationInHours(s.startTime ? Date.now() / 1000 - s.startTime : 0)],
             [t('UITexasHistory_insurance', '保险池'), profitAmount('strong', s.insurance, StringHelper.GetLongString(s.insurance))],
         ] as const;
         this.summary.replaceChildren(...summary.map(([label, value]) => {
             const cell = element('div', '');
-            cell.append(element('span', '', label), typeof value === 'string' ? element('strong', '', value) : value);
+            cell.append(element('span', '', label), this.values.wrap(typeof value === 'string' ? element('strong', '', value) : value));
             return cell;
         }));
         const rail = element('div', 'mx-report-observer-rail');
@@ -216,6 +224,8 @@ export class ReportView {
                     button.onclick = () => void this.playerInfo.open(player);
                     button.append(value);
                     td.append(button);
+                } else if (index > 0 && !(this.controller.state.tab === 'jackpot' && index === 3)) {
+                    td.append(this.values.wrap(value));
                 } else {
                     td.append(value);
                 }
@@ -235,13 +245,19 @@ export class ReportView {
         this.remaining.textContent = `${t('UISituationRemainTime', '剩余时间')}　 ${remain}`;
     }
     private duration(value: number): string { const seconds = Math.max(0, Math.floor(value)); return [Math.floor(seconds / 3600), Math.floor(seconds / 60) % 60, seconds % 60].map(v => String(v).padStart(2, '0')).join(':'); }
+    private durationInHours(value: number): string {
+        const hours = Number((Math.max(0, value) / 3600).toFixed(2));
+        return `${hours}${t('UITimeHourTip', '小时')}`;
+    }
     open(): void { this.controller.open(); }
     onFrameResize(w: number, h: number): void {
         this.dialog.onFrameResize(w, h);
         // The report uses the full 1252-wide design canvas, independent of screen height.
-        const designWidth = Math.min(w, config.layout.maxPanelWidth / config.layout.panelWidthRatio);
+        const maxWidth=w>h?config.layout.desktopPanelWidth:config.layout.maxPanelWidth;
+        const designWidth = Math.min(w, maxWidth / config.layout.panelWidthRatio);
+        this.root.style.setProperty('--mx-report-panel-max-width', `${maxWidth}px`);
         this.root.style.setProperty('--record-unit', `${designWidth / config.layout.designWidth}px`);
         this.playerInfo.onFrameResize(w, h);
     }
-    destroy(): void { clearInterval(this.tick); this.bindings.destroy(); this.controller.destroy(); this.playerInfo.destroy(); this.dialog.destroy(); }
+    destroy(): void { clearInterval(this.tick); this.bindings.destroy(); this.controller.destroy(); this.values.clear(); this.playerInfo.destroy(); this.dialog.destroy(); }
 }

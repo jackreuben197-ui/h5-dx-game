@@ -94,7 +94,7 @@
 /* Report: scale the 1252-wide canvas by width; the complete body scrolls together. */
 .mx-report-overlay{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}
 .mx-report-overlay>.mx-record-panel{
-  width:min(var(--mx-ReportView-mx-report-panel-width),var(--mx-ReportView-mx-report-panel-max-width));
+  width:min(var(--mx-ReportView-mx-report-panel-width),var(--mx-report-panel-max-width,var(--mx-ReportView-mx-report-panel-max-width)));
   font-size:calc(var(--mx-ReportView-mx-report-font-size) * var(--record-unit));
   line-height:calc(var(--mx-ReportView-mx-report-line-height) * var(--record-unit));
 }
@@ -278,3 +278,23 @@
 .mx-history-overlay .mx-record-own :is(.mx-history-name,.mx-history-overview-actions,.mx-history-last-action){color:#05e7ae}
 
 .mx-history-street-heading>.mx-history-public-cards>.mx-card:nth-child(n+4){margin-left:calc(var(--mx-HistoryCardsView-mx-history-cards-gap) * var(--record-unit))}
+
+.mx-history-identity { position: relative; }
+.mx-history-role {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  padding: 0 .35em;
+  border-radius: .4em;
+  background: #266a83;
+  color: white;
+  font: bold .65em/1.1 Arial,sans-serif;
+}
+.mx-report-overlay [data-tab=battle] th:first-child,
+.mx-report-overlay [data-tab=battle] td:first-child { text-align:left; padding-inline-start:0; }
+.mx-report-overlay [data-tab=battle] th:last-child { text-align:right; padding-inline-end:0; }
+.mx-report-overlay [data-tab=battle] td:last-child .mx-report-value,
+.mx-report-summary .mx-report-value { justify-content:flex-end; }
+.mx-report-summary .mx-report-value { flex:1; }
+.mx-report-overlay [data-tab=battle] td:last-child .mx-report-value-text,
+.mx-report-summary .mx-report-value-text { transform-origin:right center; }

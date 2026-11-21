@@ -1,10 +1,12 @@
 import { GameplayTableSettingView } from './components/GameplayTableSettingView/GameplayTableSettingView.js';
 import { RecordDialogView } from './components/RecordDialogView/RecordDialogView.js';
+import desktop from './layouts/desktop.json';
+import {desktopScale} from './layouts/landscape-layout.js';
 import { InsuranceRulesView } from './components/InsuranceRulesView/InsuranceRulesView.js';
 import { GameRulesView } from './components/GameRulesView/GameRulesView.js';
 import { TableEffectAnchors } from '../effects/TableEffectAnchors.js';
-import { bindTableAppearance } from './appearance/TableAppearanceContext.js';
-import { classicFelt, purpleFelt, cardBacks } from './appearance/TableSkin.js';
+import { bindTableAppearance, renderedTableAppearance } from './appearance/TableAppearanceContext.js';
+import { classicFelt, cardBacks } from './appearance/TableSkin.js';
 import { imageReady } from './resources.js';
 import { getBrand } from './appearance/BrandManifest.js';
 import { TableMediaView } from './components/TableMediaView/TableMediaView.js';
@@ -12,6 +14,7 @@ import './media.css';
 import { TableToolsView } from './components/TableToolsView/TableToolsView.js';
 import { TableChatView } from './components/TableChatView/TableChatView.js';
 import './mtt.css';
+import { MttReportView } from './components/MttReportView/MttReportView.js';
 import { MttTableStateView } from './components/MttTableStateView/MttTableStateView.js';
 import './jackpot.css';
 import { JackpotView } from './components/JackpotView/JackpotView.js';
@@ -71,6 +74,7 @@ import { SettlementWatchView } from './components/SettlementWatchView/Settlement
 import { TableMenuView } from './components/TableMenuView/TableMenuView.js';
 import { TableToastView } from './components/TableToastView/TableToastView.js';
 import { RoomInfoView } from './components/RoomInfoView/RoomInfoView.js';
+import { entryButtonsLayout } from './layouts/entry-buttons-layout.js';
 import { TableConfirmDialog } from './components/TableConfirmDialog/TableConfirmDialog.js';
 import { ActionControls } from './action-controls.js';
 import { SpriteAtlas } from './SpriteAtlas.js';
@@ -81,6 +85,7 @@ import './table.css';
 import './settings.css';
 import './dialog-glass.css';
 import './appearance/appearance.css';
+import './layouts/desktop.css';
 export { prepare } from './resources.js';
 export class TableView {
   readonly root = element('section', 'mx-table');
@@ -93,6 +98,8 @@ export class TableView {
   private viewport = element('div', 'mx-viewport');
   private stage = element('div', 'mx-stage');
   private seats = element('div', 'mx-seats');
+  private bets = element('div', 'mx-bets');
+  private actionBubbles=element('div','mx-action-bubbles');
   private roomInfo = new RoomInfoView();
   private info = this.roomInfo.root;
   private roomSettings?:GameplayTableSettingView;
@@ -101,6 +108,7 @@ export class TableView {
   private seatViews = new Map<number, SeatComponent>();
   private remarkNames = new Map<number,string>();
   private allInTest?: AllInTestView;
+  private mttReport?: MttReportView;
   private report?: ReportView;
   private history?: HistoryView;
   private gameRules = new GameRulesView();
@@ -122,6 +130,8 @@ export class TableView {
   private personalSettings: PersonalSettingsView;
   private settingsOff: (() => void)[] = [];
   private appearanceGeneration = 0;
+  private refreshAppearance:()=>Promise<void>=async()=>{};
+  private get tableAppearance() { return renderedTableAppearance(this.root,this.settings); }
   private menu: TableMenuView;
   private toast = new TableToastView();
   private confirmDialog = new TableConfirmDialog();
@@ -143,6 +153,8 @@ export class TableView {
   private navigation: ReturnType<NonNullable<TableComponents['navigation']>>;
   private settlementWatch: SettlementWatchView;
   private resize: ResizeObserver;
+  private entryFrame=0;
+  private entryObserver=new ResizeObserver(()=>this.queueEntryButtons());
   private onVisible = () => {
     if (!document.hidden) this.presenter.restore();
   };
@@ -153,7 +165,7 @@ export class TableView {
     private options: { ui?: TableUiConfig; preferences?: Settings; specialOperations?: SpecialOperations; emojis?: RoomEmojis; records?: RoomRecords; testControls?: HTMLElement; layout?: 'portrait' | 'auto'; components?: TableComponents; seating?: SeatingActions } = {},
   ) {
     this.settings=options.preferences??defaultSettings;
-    this.layout=(options.ui??defaultTableUi).createLayout(this.settings.tableAppearance.layout);
+    this.layout=(options.ui??defaultTableUi).createLayout(this.tableAppearance.layout);
     this.showBB=this.settings.showBB;
     bindTableAppearance(this.root,this.settings);
     this.root.style.setProperty('--mx-accent',getBrand(this.settings.brandID).accent);
@@ -165,8 +177,8 @@ export class TableView {
     };
     this.appearanceObserver=new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{if(node instanceof HTMLElement)repaint(node);})));
     this.appearanceObserver.observe(this.root,{subtree:true,childList:true});
-    // Preview starts muted without overwriting the CC production preference.
-    if (import.meta.env.DEV) this.settings.soundOn = false;
+    // New previews start muted; an explicitly saved sound choice takes priority.
+    if (import.meta.env.DEV && !this.settings.hasSavedSoundPreference) this.settings.soundOn = false;
     this.soundControl = new SoundControlView(this.sound,this.settings);
     // CC keeps the sound switch in personal settings, not as a table overlay.
     this.soundControl.root.hidden = true;
@@ -225,15 +237,16 @@ export class TableView {
     const ruleData = (options.records ?? options.specialOperations)?.data;
     this.insuranceRules = new InsuranceRulesView(ruleData);
     if (options.records) {
-      this.report = new ReportView(new ReportController(options.records));
-      this.history = new HistoryView(new HistoryController(options.records));
+      this.mttReport = new MttReportView(options.records);
+      this.report = new ReportView(new ReportController(options.records), () => this.showBB);
+      this.history = new HistoryView(new HistoryController(options.records), () => this.showBB);
     }
     if (options.emojis) {
       this.emoji = new EmojiView(new EmojiController(options.emojis));
       this.seatEmoji = new SeatEmojiView(options.emojis, new TableEffectAnchors(this.root,id=>options.emojis!.seatForUser(id)).avatar, this.sound);
     }
     const onNavigate = (action: 'report' | 'replay' | 'emoji' | 'effect' | 'voice' | 'camera') => {
-      if(action==='report'&&options.records?.data.mtt){options.records.openMttRecord?.();return;}
+      if(action==='report'&&options.records?.data.mtt){this.mttReport?.open();return;}
       if (action === 'report' && this.report) { this.emoji?.controller.close(); this.history?.controller.close(); this.report.open(); }
       else if (action === 'replay' && this.history) { this.emoji?.controller.close(); this.report?.controller.close(); this.history.open(); }
       else if (action === 'emoji' && this.emoji) {
@@ -278,16 +291,15 @@ export class TableView {
       this.showBB=this.settings.showBB;const snapshot=this.data.info.snapshot;
       if(snapshot)this.presenter.present({...snapshot,showBB:this.showBB,presentation:'sync'});
     }));
-    const appearance=async()=>{
+    const appearance=this.refreshAppearance=async()=>{
       const generation=++this.appearanceGeneration;
       try {
-        const appearance=this.settings.tableAppearance;
+        const appearance=this.tableAppearance;
         const solid=appearance.style==='solid';
-        const felt=appearance.feltColor==='#57427f'?purpleFelt:classicFelt;
+        const felt=classicFelt;
         const [url]=await Promise.all([solid?imageReady(felt).then(()=>felt):AppearanceResources.desk(this.settings.deskType),AppearanceResources.cards(this.settings.tableCardType),appearance.cardBack==='original'?Promise.resolve():imageReady(cardBacks[appearance.cardBack]!)]);
         if(generation!==this.appearanceGeneration)return;
         this.root.dataset.felt=solid?'solid':'legacy';
-        this.root.dataset.feltTone=solid&&appearance.feltColor==='#57427f'?'flat-purple':'shaded';
         this.root.style.backgroundColor=solid?appearance.feltColor:'';
         this.root.style.backgroundImage=solid?'none':`url("${url}")`;
         this.root.style.setProperty('--mx-felt-image',`url("${url}")`);
@@ -297,7 +309,7 @@ export class TableView {
     };
     this.settingsOff.push(this.settings.on(Settings.DESK_TYPE_CHANGE,()=>void appearance()),this.settings.on(Settings.POKER_CARD_TYPE_CHANGE,()=>void appearance()));
     const applyLayout=()=>{
-      const a=this.settings.tableAppearance;
+      const a=this.tableAppearance;
       this.layout=(options.ui??defaultTableUi).createLayout(a.layout);
       this.root.dataset.tableLayout=this.layout.id;
       this.root.style.setProperty('--mx-table-text-scale',String(a.tableTextSize/100));
@@ -306,7 +318,7 @@ export class TableView {
     };
     this.settingsOff.push(this.settings.on(Settings.APPEARANCE_CHANGE,()=>{applyLayout();void appearance();}),this.settings.on(Settings.ACCOUNT_CHANGE,()=>{this.personalSettings.close();applyLayout();void appearance();}));
     this.root.dataset.tableLayout=this.layout.id;
-    this.root.style.setProperty('--mx-table-text-scale',String(this.settings.tableAppearance.tableTextSize/100));
+    this.root.style.setProperty('--mx-table-text-scale',String(this.tableAppearance.tableTextSize/100));
     void appearance();
     this.stage.append(
       this.below,
@@ -316,11 +328,13 @@ export class TableView {
       this.info,
       this.board.root,
       this.secondBoard.root,
+      this.bets,
       this.above,
       this.menu.root,
     );
     this.viewport.append(this.stage);
-    this.root.append(this.deskBackground.root, this.viewport, this.controls.root, this.settlementWatch.root, this.navigation.root, this.soundControl.root, this.menu.overlay, this.toast.root, this.buyInView.root, this.personalSettings.root, this.bringOut.root, this.sound.root);
+    this.root.append(this.deskBackground.root, this.viewport, this.controls.root, this.actionBubbles, this.settlementWatch.root, this.navigation.root, this.soundControl.root, this.menu.overlay, this.toast.root, this.buyInView.root, this.personalSettings.root, this.bringOut.root, this.sound.root);
+    if (this.mttReport) this.root.append(this.mttReport.dialog.root);
     if (this.report && this.history) this.root.append(this.report.root, this.history.root);
     this.root.append(this.gameRules.root, this.insuranceRules.root);
     if (this.emoji && this.seatEmoji) this.root.append(this.emoji.root, this.seatEmoji.root);
@@ -331,7 +345,7 @@ export class TableView {
     if (specialOperations && options.seating) {
       this.secondPcs = new AgreeSecondPcsView(specialOperations, options.seating, error => this.toast.show(error));
       this.insurance = new InsuranceView(specialOperations, options.seating, error => this.toast.show(error));
-      this.squid=new SquidView(specialOperations,options.seating,this.confirmDialog,error=>this.toast.show(error));
+      this.squid=new SquidView(specialOperations,options.seating,this.confirmDialog,error=>this.toast.show(error),()=>this.queueEntryButtons());
       this.stage.append(this.squid.root);
       this.jackpot=new JackpotView(specialOperations.data,()=>options.records?.openJackpot?.(),()=>queueMicrotask(()=>{if(this.root.isConnected)this.resizeTable();}));
       this.stage.append(this.jackpot.root);
@@ -339,7 +353,9 @@ export class TableView {
       if(options.records?.data.mtt){this.mtt=new MttTableStateView(options.records,e=>this.toast.show(e),()=>this.refreshRoomInfo());this.stage.append(this.mtt.root);}
       this.mushroomBoom=new MushroomBoomView(specialOperations.data,this.stage);
       this.root.append(this.mushroomBoom.guide.surface.root);
-      this.root.append(this.secondPcs.root, this.insurance.root,this.squid.result.root,this.squid.intro.root);
+      // Match the lower settlement layer so the shared mask stays on the upper dialog.
+      this.root.prepend(this.squid.result.root);
+      this.root.append(this.secondPcs.root, this.insurance.root,this.squid.intro.root);
     }
     if (import.meta.env.DEV && options.testControls) {
       this.allInTest = new AllInTestView(this.effects, this.seatViews);
@@ -352,6 +368,7 @@ export class TableView {
     });
     this.resize.observe(this.root);
     this.resize.observe(this.viewport);
+    this.entryObserver.observe(this.info);
     document.addEventListener('visibilitychange', this.onVisible);
   }
   render(state: TableSnapshot): void {
@@ -379,10 +396,14 @@ export class TableView {
         this.seatViews.set(id, view);
         this.seats.append(view.root);
       }
-    for (const [id, position] of this.layout.positions(state,this.settings.tableAppearance.publicCardSize/100))
-      this.seatViews.get(id)?.place(position, positionMode);
+    for (const [id, position] of this.layout.positions(state,this.tableAppearance.publicCardSize/100)){
+      const seat=this.seatViews.get(id);
+      seat?.setActionLayer?.(this.layout.elevatedActionBubbles?this.actionBubbles:null,this.layout.unit);
+      seat?.setBetLayer?.(this.layout.elevatedBets?this.bets:null);
+      seat?.place(position, positionMode);
+    }
     this.refreshRoomInfo();
-    const controls=this.layout.controls(state,this.settings.tableAppearance.betButtonSize/100);
+    const controls=this.layout.controls(state,this.tableAppearance.betButtonSize/100);
     if(controls.scale!==undefined)this.controls.setScale?.(controls.scale);
     // Layout coordinates override the component's scaled default positions.
     this.applyLayoutStyles(this.controls.root,controls.styles,this.controlStyles);
@@ -394,39 +415,46 @@ export class TableView {
     this.menu.render(state);
     this.tableTools?.render(state);
     this.allInTest?.update(state);
+    this.queueEntryButtons();
   }
   private resizeTable(): void {
     const box = this.root.getBoundingClientRect();
     if (box.width <= 0 || box.height <= 0) return;
+    const landscape = this.options.layout === 'auto' && box.width > box.height;
+    const orientation=landscape?'landscape':'portrait';
+    const orientationChanged=this.root.dataset.orientation!==orientation;
+    this.root.dataset.orientation=orientation;
+    this.root.style.setProperty('--mx-pc-scale',String(landscape?desktopScale(box.width,box.height):1));
+    this.root.style.setProperty('--mx-table-text-scale',String(this.tableAppearance.tableTextSize/100));
+    if(orientationChanged)void this.refreshAppearance();
     this.chat?.resize(box.width,box.height);
-    this.root.style.setProperty('--mx-chat-unit',`${box.width/1440}px`);
+    this.root.style.setProperty('--mx-chat-unit',`${landscape?desktop.avatarSize/desktop.avatarDesignSize*desktopScale(box.width,box.height):1/3}px`);
     this.personalSettings.onFrameResize(box.width,box.height);
     this.roomSettingsDialog?.onFrameResize(box.width,box.height);
+    this.mttReport?.onFrameResize(box.width,box.height);
     this.report?.onFrameResize(box.width,box.height);
     this.history?.onFrameResize(box.width,box.height);
     this.playerInfo.onFrameResize(box.width,box.height);
     this.emoji?.onFrameResize(box.width,box.height);
     this.bringOut.onFrameResize(box.width,box.height);
     this.buyInView.onFrameResize(box.width,box.height);
-    const landscape = this.options.layout === 'auto' && box.width > box.height;
-    this.root.dataset.orientation = landscape ? 'landscape' : 'portrait';
     const { width, height } = this.viewport.getBoundingClientRect();
     if (width <= 0 || height <= 0) return;
     const navigationBox=this.navigation.root.getBoundingClientRect();
-    // Fixed actions reserve the root navigation edge, even when a skin scrolls a shorter table viewport.
-    const contentBottom=landscape||!navigationBox.height?height:Math.min(box.height,navigationBox.top-box.top);
-    this.root.style.setProperty('--mx-navigation-inset',`${box.height-contentBottom}px`);
+    // The portrait skin can scroll a shorter viewport while actions remain fixed to the root.
+    const contentBottom=!navigationBox.height?height:Math.min(landscape?height:box.height,navigationBox.top-box.top);
+    const navigationInset=landscape&&navigationBox.height?box.bottom-navigationBox.top:box.height-contentBottom;
+    this.root.style.setProperty('--mx-navigation-inset',`${navigationInset}px`);
     this.layout.resize(width, landscape ? height : box.height, landscape, contentBottom);
     const l = this.layout;
+    this.root.style.setProperty('--mx-pc-stage-unit',String(l.unit));
     const fixedBoardSlots = l.id === 'classic' && !landscape;
     if (this.board instanceof PublicCardsView) this.board.setFixedSlots(fixedBoardSlots);
     // Only the first board has placeholder slots; the optional second run renders actual cards.
     this.secondBoard.setFixedSlots(false);
-    const bubbleWidth = landscape ? Math.min(width, box.height) : width;
-    const bubbleDesignWidth = landscape || l.id === 'original' ? 1242 : 440;
-    this.root.style.setProperty('--mx-side-bubble-unit', `${bubbleWidth / bubbleDesignWidth}px`);
+    this.root.style.setProperty('--mx-side-bubble-unit', `${landscape?desktop.avatarSize/desktop.avatarDesignSize*desktopScale(box.width,box.height):l.id==='original'?1/3:1}px`);
     this.settlementWatch.resize(l.unit,landscape ? 0 : box.height - contentBottom);
-    this.menu.resize(l.unit, l.height, l.suggest);
+    this.menu.resize(l.unit, l.height, l.suggest, landscape);
     this.menu.root.style.setProperty('--mx-menu-scale',String(l.menuScale));
     this.squid?.resize(l.suggest);
     this.jackpot?.resize(l.width,l.height,l.suggest);
@@ -441,13 +469,32 @@ export class TableView {
       transform: `scale(${l.unit})`,
     });
     const content=l.content({dual:!!this.data.info.snapshot?.secondCommunity?.length,
-      boardSize:this.settings.tableAppearance.publicCardSize/100,jackpotHeight:this.jackpot?.extraHeight??0});
+      boardSize:this.tableAppearance.publicCardSize/100,jackpotHeight:this.jackpot?.extraHeight??0,textSize:this.tableAppearance.tableTextSize/100});
     for(const [node,point] of [[this.board.root,content.board],[this.secondBoard.root,content.secondBoard],
       [this.pot.total,content.total],[this.pot.pool,content.pool],[this.info,content.info]] as const){
       place(node,point.x,point.y);
       node.style.transform=point.scale===undefined?'':`scale(${point.scale})`;
     }
     this.applyLayoutStyles(this.root,content.styles,this.layoutStyles);
+    this.queueEntryButtons();
+  }
+  private queueEntryButtons():void {
+    if(this.entryFrame)return;
+    this.entryFrame=requestAnimationFrame(()=>{
+      this.entryFrame=0;
+      const state=this.data.info.snapshot;
+      if(!state||!this.root.isConnected)return;
+      const bounds=this.seatViews.get(state.mySeat||1)?.entryActionsBounds?.();
+      const info=this.info.getBoundingClientRect(),stage=this.stage.getBoundingClientRect();
+      if(!bounds||!info.height||!this.layout.unit)return;
+      const mtt=!!this.mtt?.returnVisible;
+      const obstacles=[...(this.board instanceof PublicCardsView?this.board.cardBounds():[]),...this.secondBoard.cardBounds(),
+        this.pot.total.getBoundingClientRect(),this.pot.pool.getBoundingClientRect(),...(this.layout.landscape?(this.jackpot?.bounds()??[]):[])];
+      const styles=entryButtonsLayout({info,stage,avatarTop:bounds.avatarTop,unit:this.layout.unit,seatScale:bounds.scale,
+        join:!!this.squid?.joinVisible,returning:mtt||bounds.returnVisible,mtt,mttScale:this.layout.suggest,obstacles});
+      for(const [name,value]of Object.entries(styles))this.root.style.setProperty(name,value);
+      this.root.dataset.entryActions='true';
+    });
   }
   private applyLayoutStyles(node: HTMLElement, values: Record<string,string>, previous: Set<string>): void {
     for(const name of previous)if(!(name in values))node.style.removeProperty(name);
@@ -476,6 +523,7 @@ export class TableView {
         game: i18nMgr.Get((state.pokerType ?? 0) === 2 ? 'PokerType_2' : (state.gameType ?? 0) > 0 ? 'UITexasInfo_Omaha' : 'GameType_0'),
         id: lines[2]!, details: details.concat(extra), legacy: lines.concat(extra) };
     });
+    this.queueEntryButtons();
   }
   private deltaToOrigin(group: HTMLElement): { x: number; y: number } {
     const rect = group.getBoundingClientRect(),
@@ -488,6 +536,8 @@ export class TableView {
     };
   }
   destroy(): void {
+    this.entryObserver.disconnect();
+    cancelAnimationFrame(this.entryFrame);
     this.roomInfo.destroy();
     this.media?.destroy();
     this.secondPcs?.destroy();
@@ -503,6 +553,7 @@ export class TableView {
     this.appearanceObserver?.disconnect();
     this.settingsOff.forEach(off=>off());
     this.personalSettings.destroy();
+    this.mttReport?.destroy();
     this.report?.destroy();
     this.history?.destroy();
     this.gameRules.destroy();

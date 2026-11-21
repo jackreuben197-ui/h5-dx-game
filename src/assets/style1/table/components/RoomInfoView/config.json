@@ -4,10 +4,11 @@
   "anchor": { "x": 0.5, "y": 0.5 },
   "paths": {},
   "layout": {
-    "portraitWidth": 180,
+    "portraitWidth": 140,
     "landscapeWidth": 360,
     "scrollSpeed": 90,
     "scrollDelayMs": 1200,
+    "entryGap": 4,
     "css": {
       "line-height": "1.15em",
       "game-gap": "0.5em",

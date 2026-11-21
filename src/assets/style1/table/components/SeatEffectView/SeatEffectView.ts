@@ -7,9 +7,11 @@ export function seatEffectAnchor(seat: HTMLElement, effect: SeatEffect): EffectA
   const {x,y}=viewportAnchor(seat);
   // 头像的实测宽度包含牌桌缩放和座位移动时的缩放。
   const avatar=seat.querySelector<HTMLElement>('.mx-avatar-fallback');
-  const scale=(avatar?.getBoundingClientRect().width??config.layout.avatarSize)/config.layout.avatarSize;
   const table=seat.closest<HTMLElement>('.mx-table');
+  const desktop=table?.dataset.orientation==='landscape';
+  const scale=desktop?Number(table.style.getPropertyValue('--mx-pc-stage-unit'))||1:(avatar?.getBoundingClientRect().width??config.layout.avatarSize)/config.layout.avatarSize;
   const anchor:EffectAnchor={x,y,scale,opacity:Number(getComputedStyle(seat).opacity)};
+  if(desktop&&effect==='allin-other')anchor.lift=config.layout.desktopOtherAllInLift*scale;
   if(effect==='allin-self'&&['balanced','oval'].includes(table?.dataset.tableLayout??'')&&table?.dataset.orientation!=='landscape')
     anchor.lift=config.layout.ringSelfAllInLift*scale;
   if(effect==='allin-other'&&table?.dataset.tableLayout==='oval'&&table.dataset.orientation!=='landscape')anchor.lift=config.layout.ovalOtherAllInLift*scale;
@@ -20,7 +22,11 @@ export class SeatEffectView {
   private previous?: SeatState;
   private generation = 0;
   private allin = false;
-  constructor(private id: number, private root: HTMLElement, private effects?: SeatEffects) {}
+  constructor(private id: number, private root: HTMLElement, private effects?: SeatEffects,private actionLayer?:HTMLElement) {}
+  private showAllIn(visible:boolean):void {
+    this.root.classList.toggle('mx-spine-allin',visible);
+    this.actionLayer?.classList.toggle('mx-spine-allin',visible);
+  }
   render(state: SeatState): void {
     const old = this.previous;
     this.previous = state;
@@ -34,12 +40,12 @@ export class SeatEffectView {
       const generation = ++this.generation;
       const effect = state.mine ? 'allin-self' : 'allin-other';
       void this.effects.play(`${this.id}:allin`, effect, () => seatEffectAnchor(this.root,effect)).then(played => {
-        if (generation === this.generation) this.root.classList.toggle('mx-spine-allin', played);
+        if (generation === this.generation) this.showAllIn(played);
       });
     } else if (!allin && this.allin) {
       this.allin = false; ++this.generation;
       this.effects.stop(`${this.id}:allin`);
-      this.root.classList.remove('mx-spine-allin');
+      this.showAllIn(false);
     }
     const win = state.player?.settlement?.win;
     if (!win) this.effects.stop(`${this.id}:win`);
@@ -50,7 +56,7 @@ export class SeatEffectView {
   cancel(): void {
     ++this.generation; this.allin = false;
     this.effects?.stop(`${this.id}:allin`); this.effects?.stop(`${this.id}:win`);
-    this.root.classList.remove('mx-spine-allin');
+    this.showAllIn(false);
   }
   destroy(): void { this.cancel(); }
 }
