@@ -1,5 +1,5 @@
 import type { MagicEmojiDefinition } from '../../../../logic/MagicEmojiConfig.js';
-export type SpineClipConfig = Pick<MagicEmojiDefinition, 'spine' | 'animation'> & Partial<Pick<MagicEmojiDefinition, 'propCode' | 'type' | 'sound'>> & {assetGroup?: 'emoji' | 'prop' | 'diamond'; loopSeconds?: number; setupSeconds?: number; file?: (name: string) => string};
+export type SpineClipConfig = Pick<MagicEmojiDefinition, 'spine' | 'animation'> & Partial<Pick<MagicEmojiDefinition, 'propCode' | 'type' | 'sound'>> & {assetGroup?: 'emoji' | 'prop' | 'diamond'; loopSeconds?: number; setupSeconds?: number; importScale?: number; file?: (name: string) => string};
 export interface EmojiSpineAsset { atlas: string; binary: Uint8Array; images: Map<string, HTMLImageElement>; }
 /** Original multi-page Spine atlases, loaded per category/effect; Vite hashes URLs at build. */
 export class EmojiSpineAssets {

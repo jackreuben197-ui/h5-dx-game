@@ -53,7 +53,9 @@ export class EmojiSpineRenderer {
             textures.push(texture);
             return texture;
         });
-        return new spine.SkeletonBinary(new spine.AtlasAttachmentLoader(atlas)).readSkeletonData(asset.binary);
+        const reader = new spine.SkeletonBinary(new spine.AtlasAttachmentLoader(atlas));
+        reader.scale = config.importScale ?? 1;
+        return reader.readSkeletonData(asset.binary);
     }
     private load(config: SpineClipConfig): Promise<spine.SkeletonData> {
         let task = this.data.get(config.spine);

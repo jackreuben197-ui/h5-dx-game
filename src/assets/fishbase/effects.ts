@@ -55,5 +55,9 @@ export const fishEffects: TableEffectArt = {
     608: {mode: 'gun', hit: clip('props/expressionBox', 'box_local', 'bullet_shots'), sender: clip('props/expressionBox', 'box_local', 'gun'), trail: clip('props/expressionBox', 'box_local', 'bullets-fireballs')},
     611: {mode: 'fly', hit: clip('props/expressionBaseballSender', 'skeleton', 'blast'), intro: clip('props/expressionBaseballSender', 'skeleton', 'bomb_flying'), sound: 'sfx_baseball'},
   },
-  opening: {squid: clip('squid', 'SquidGame'), critical: clip('critical', 'quanji')},
+  opening: {
+    // Matches the Cocos SkeletonData import scale in SquidGame.skel.meta.
+    squid: {...clip('squid', 'SquidGame'), importScale: 0.1},
+    critical: clip('critical', 'quanji'),
+  },
 };
