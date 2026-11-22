@@ -18,6 +18,21 @@
 .mx-game[data-skin-family="fishbase"] .mx-avatar-fallback:is([data-sprite="raw/ui/avatar.png"], [data-sprite="raw/ui/avatarAlt.png"]) {
   background: url('./seats/avatar-placeholder.png') center / contain no-repeat !important;
 }
+.mx-game[data-skin-family="fishbase"] .mx-table[data-table-layout="balanced"] .mx-seat:not(.mx-empty-seat) > .mx-seat-identity::before {
+  content: "";
+  position: absolute;
+  left: var(--mx-SeatIdentityView-mx-fold-cover-left);
+  top: var(--mx-SeatIdentityView-mx-fold-cover-top);
+  width: var(--mx-SeatIdentityView-mx-fold-cover-width);
+  height: var(--mx-SeatIdentityView-mx-fold-cover-height);
+  translate: var(--identity-origin-x) var(--identity-origin-y);
+  scale: var(--mx-wide-avatar-scale, 1);
+  border-radius: var(--mx-avatar-radius);
+  background-color: #17191C;
+  /* Squid markers already sit behind the portrait at -1. */
+  z-index: -2;
+  pointer-events: none;
+}
 .mx-game[data-skin-family="fishbase"] .mx-player-action:is([data-seat-action="加注"], [data-seat-action="下注"], [data-seat-action="前注"]) {
   background-color: #ffc34f !important;
 }
