@@ -2,6 +2,7 @@ import { existsSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createServer as createMxServer } from 'vite';
+import { runtimeHttpSetup } from './h5-http-options.mjs';
 
 const mxRoot = fileURLToPath(new URL('..', import.meta.url));
 const siblingH5 = resolve(mxRoot, '../h5-game');
@@ -86,7 +87,9 @@ try {
           import { useLoginModalStore } from '/src/stores/loginModal.ts';
 
           const { mountMxGame } = await import(/* @vite-ignore */ ${JSON.stringify(mxEntry)});
-          const game = mountMxGame(document.getElementById('mx-table-host'), { layout: 'auto' });
+          const options = { layout: 'auto' };
+          ${runtimeHttpSetup(h5Root)}
+          const game = mountMxGame(document.getElementById('mx-table-host'), options);
           window.addEventListener('pagehide', event => {
             if (!event.persisted) game.destroy();
           });

@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { releaseSource } from './release-source.mjs';
+import { runtimeHttpSetup } from './h5-http-options.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const run = (file, args, cwd = root) => execFileSync(file, args, { cwd, stdio: 'inherit', env: process.env });
@@ -40,8 +41,11 @@ try {
   const env = vite.loadEnv(mode, stage, 'VITE_');
   // MX 与 H5 使用同一服务环境，WS 仍完全由 H5 管理。
   const api = process.env.VITE_API_BASE_URL || env.VITE_API_BASE_URL;
-  if (!api) throw new Error('H5 未配置 VITE_API_BASE_URL。');
-  process.env.VITE_MX_API_BASE_URL = process.env.VITE_MX_API_BASE_URL || api;
+  const httpSetup = runtimeHttpSetup(stage);
+  if (!httpSetup) {
+    if (!api) throw new Error('H5 未配置 VITE_API_BASE_URL。');
+    process.env.VITE_MX_API_BASE_URL = process.env.VITE_MX_API_BASE_URL || api;
+  }
   run(process.execPath, ['scripts/check-protocol.mjs'], stage);
   run(process.execPath, ['scripts/sync-i18n.mjs'], stage);
   const h5Package = JSON.parse(await readFile(join(stage, 'package.json'), 'utf8'));
@@ -94,7 +98,9 @@ try {
             })));
             const url = new URL(${JSON.stringify(clientDir + '/' + entry.file)}, document.baseURI).href;
             const { mountMxGame } = await import(/* @vite-ignore */ url);
-            const game = mountMxGame(document.getElementById('mx-table-host'), {layout:'auto'});
+            const options = { layout: 'auto' };
+            ${httpSetup}
+            const game = mountMxGame(document.getElementById('mx-table-host'), options);
             window.addEventListener('pagehide', event => { if (!event.persisted) game.destroy(); });
             await router.isReady();
             if (new URLSearchParams(location.search).get('login') === '1') useLoginModalStore(pinia).open();
@@ -107,7 +113,7 @@ try {
   await mkdir(dirname(output), { recursive: true });
   await rm(output, { recursive: true, force: true });
   await cp(stagedOutput, output, { recursive: true });
-  console.log(`\n静态发布目录: ${output}\n版本: ${version.buildId}\nH5 来源: ${shell}\nAPI: ${api}`);
+  console.log(`\n静态发布目录: ${output}\n版本: ${version.buildId}\nH5 来源: ${shell}\n牌桌 API: ${httpSetup ? '运行时跟随 H5 配置' : process.env.VITE_MX_API_BASE_URL}`);
 } finally {
   process.chdir(previousCwd);
   await rm(workspace, { recursive: true, force: true });
