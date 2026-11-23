@@ -28,7 +28,7 @@
   translate: var(--identity-origin-x) var(--identity-origin-y);
   scale: var(--mx-wide-avatar-scale, 1);
   border-radius: var(--mx-avatar-radius);
-  background-color: #17191C;
+  background-color: #000000;
   /* Squid markers already sit behind the portrait at -1. */
   z-index: -2;
   pointer-events: none;
