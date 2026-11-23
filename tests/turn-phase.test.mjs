@@ -44,10 +44,12 @@ test('normal turn maps CC straddle and sends the exact server minimum',()=>{
 test('CC auto choices follow round bet, stack, and fold-to-check precedence',()=>{
   const player={seat:4,name:'me',chips:100,cards:[14,29],action:'',roundBet:20,roundActioned:false};
   assert.deepEqual(validAutoRight(20,player),{choice:'check',amount:0});
+  assert.deepEqual(validAutoRight(20,{...player,roundActioned:true}),{choice:'check',amount:0});
   assert.deepEqual(validAutoRight(50,player),{choice:'call',amount:30});
   assert.deepEqual(validAutoRight(120,player),{choice:'allin',amount:100});
   assert.deepEqual(resolveAutoChoice('fold',{actions:['fold','check']}),{action:'check',amount:undefined});
-  assert.deepEqual(resolveAutoChoice('allin',{actions:['allin'],betting:{allIn:100}}),{action:'allin',amount:100});
+  assert.deepEqual(resolveAutoChoice('allin',{actions:['allin'],betting:{allIn:100}},100),{action:'allin',amount:100});
+  assert.equal(resolveAutoChoice('allin',{actions:['allin'],betting:{allIn:100}},90),undefined);
   assert.equal(resolveAutoChoice('call',{actions:['fold']}),undefined);
 });
 

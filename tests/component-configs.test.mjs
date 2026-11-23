@@ -89,6 +89,7 @@ test('automatic fold and call keep their own configured selected/unselected icon
  const choose=()=>v.root.children[2].onclick();
  const turn=(s,id='turn')=>({...s,actions:['call','fold'],betting:{id,call:s.roundBet}});
  v.render(state);choose();v.render(turn({...state,roundBet:20}));assert.equal(sent.length,0,'changed call amount cancels');
+ v.render(state);choose();v.render({...turn(state,'expensive'),betting:{id:'expensive',call:20}});v.render(turn(state,'later'));assert.equal(sent.length,0,'operator price invalidates selection even when round total lags');
  v.render(state);choose();v.render(turn(state));v.render(turn(state));assert.equal(sent.length,1,'unchanged call submits once');
  for(const changes of [{handNum:2},{community:[1,2,3]},{mySeat:2},{matchID:2},{presentation:'sync'},{handEnded:true},{willStandup:true},{players:[{...state.players[0],userRid:11}]},{players:[{...state.players[0],isAutoop:true}]}]){
   v.render(state);choose();v.render({...state,...changes});v.render(turn(state,'later'));assert.equal(sent.length,1,JSON.stringify(changes));
@@ -97,8 +98,8 @@ test('automatic fold and call keep their own configured selected/unselected icon
  const pendingSent=[],pending=new AutoOperationView(async(...args)=>{pendingSent.push(args)});
  const raising={...state,roundBet:0,actions:['fold','check','raise'],betting:{id:'raising'}};
  pending.render(raising,'raise');
- assert.equal(pending.root.hidden,false);assert.equal(pending.root.children[1].hidden,true);assert.equal(pending.root.children[2].hidden,false);
- pending.root.children[2].onclick();pending.render(raising,'raise');
+ assert.equal(pending.root.hidden,false);assert.equal(pending.root.children[1].hidden,false);assert.equal(pending.root.children[2].hidden,true);
+ pending.root.children[1].onclick();pending.render(raising,'raise');
  assert.equal(pendingSent.length,0,'preselection after submitting cannot act on the submitted turn');
  pending.render(turn(state,'next'));assert.equal(pendingSent.length,0,'a later nonzero call cancels the zero-amount preselection');
  pending.render(raising,'raise');pending.root.children[0].onclick();pending.render(raising,'raise');

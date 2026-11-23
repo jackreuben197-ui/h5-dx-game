@@ -123,6 +123,7 @@ export class ActionControls {
     this.confirm.type = 'button';
     SpriteAtlas.paint(this.confirm,'raise');
     this.confirm.onclick = () => {
+      if(this.mode!=='raise')return;
       const selection = this.selection();
       if (selection) void this.submit(selection.action, selection.amount);
     };
@@ -199,6 +200,7 @@ export class ActionControls {
     const key = `${state.roomID}:${state.matchID}:${state.handNum}:${state.betting?.id ?? state.actions.join(',')}`;
     if(state.presentation==='sync'&&state.revision!==this.state?.revision)this.submitted=undefined;
     if (key !== this.key) {
+      this.confirmDialog.close('fold');
       this.gesture.cancel();
       this.mode = 'actions';
       this.range.value = '0';
@@ -252,7 +254,7 @@ export class ActionControls {
       4:[[-300,240],[-120,370],[120,370],[300,240]],
       5:[[-350,240],[-190,370],[0,395],[190,370],[350,240]],
     };
-    const signature=JSON.stringify([items,this.opScale,this.state?.smallBlind,this.state?.showBB]);
+    const signature=JSON.stringify([this.key,this.accountGeneration,items,this.opScale,this.state?.smallBlind,this.state?.showBB]);
     if(signature!==this.quickSignature){
     this.quickSignature=signature;this.quick.replaceChildren();
     for(const [index,item] of items.entries()){
@@ -270,7 +272,11 @@ export class ActionControls {
         button.style.left=`calc(50% + var(--mx-quick-${items.length}-${index}-x, ${point[0]*this.opScale}px))`;
         button.style.top=`calc(50% - var(--mx-quick-${items.length}-${index}-y, ${point[1]*this.opScale}px))`;
       }
-      button.onclick=()=>void this.submit(item.action,item.amount);this.quick.append(button);
+      button.onclick=()=>{
+        if(button.parentElement!==this.quick||this.quick.hidden||this.mode!=='actions')return;
+        void this.submit(item.action,item.amount);
+      };
+      this.quick.append(button);
     }
     }
     this.quick.hidden=!this.quick.childElementCount||this.busy||!!submittedAction;

@@ -61,6 +61,7 @@ interface RoomContext {
   syncTask?: Promise<void>;
   resyncRequested?: boolean;
   pendingTurn?: string;
+  resolvingBetWallet?: boolean;
   walletClubID?: number;
   quote?: BuyInQuote;
   panelFunds?: RoomPanelCache<{wallet:BuyInWallet;diamondBalance?:number}>;
@@ -519,20 +520,30 @@ export class MxRoomHost implements RoomHost {
       throw new Error('房间正在同步，请稍后操作');
     const mapper = new BettingMapper(this.pb!);
     const turn = mapper.map(this.roomData).betting?.id;
-    if (!turn || context.pendingTurn) return; // CC ignores a stale/double click while awaiting authority.
+    if (!turn || context.pendingTurn || context.resolvingBetWallet) return;
     const request = mapper.resolve(this.roomData, action, amount);
     // Do not confuse the lobby's selected club with the wallet actually bound to this table.
     if (this.roomData.record?.goldType === 1 && context.walletClubID === undefined) {
-      const wallet = await new RoomWalletRequest(this.http).execute(target.roomID, signal);
+      context.resolvingBetWallet = true;
+      let wallet;
+      try {
+        wallet = await new RoomWalletRequest(this.http).execute(target.roomID, signal);
+      } finally {
+        context.resolvingBetWallet = false;
+      }
       if (!Number.isSafeInteger(wallet.club_id) || wallet.club_id < 0)
         throw new Error('带入钱包信息无效');
       if (
         this.current !== context ||
+        signal.aborted || context.signal.aborted ||
         !context.ready ||
         mapper.map(this.roomData).betting?.id !== turn
       )
         throw new Error('操作时机已改变');
       context.walletClubID = wallet.club_id;
+      const latest = mapper.resolve(this.roomData, action, amount);
+      if (latest.action !== request.action || latest.amount !== request.amount)
+        throw new Error('操作金额已改变');
     }
     context.pendingTurn = turn;
     try {

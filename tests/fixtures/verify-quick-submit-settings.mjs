@@ -5,7 +5,7 @@ const {chromium}=await import(process.env.MX_PLAYWRIGHT_MODULE||'playwright-core
 const out = process.env.MX_OUTPUT_DIR || '/tmp';
 await mkdir(out,{recursive:true});
 const base=process.env.MX_AUDIT_URL||'http://127.0.0.1:5173';
-const browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',args:['--mute-audio']});
+const browser=await chromium.launch({headless:true,executablePath:process.env.MX_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',args:['--mute-audio']});
 const results=[];
 try {
  const page=await browser.newPage({viewport:{width:1100,height:1300},isMobile:true,hasTouch:true});
@@ -34,10 +34,16 @@ try {
    controls.render(state);window.submitAudit={controls,prefs,state,sent,pending};
   },{layout,quick});
   assert.equal((await status()).quick,quick);
+  await page.evaluate(()=>{
+   const a=window.submitAudit,old=document.querySelector('.mx-quick-bet');
+   a.state={...a.state,handNum:a.state.handNum+1};a.controls.render(a.state);
+   old.click();
+  });
+  assert.equal((await status()).sent,0,'previous hand shortcut cannot submit at the new price');
   await page.locator('.mx-quick-bet').first().click();
   const verifySubmitted=async()=>{
    const s=await status();assert.equal(s.manual,0);assert.equal(s.quick,0);assert.equal(s.extra,0);assert.equal(s.sent,1);
-   assert.deepEqual(s.auto.map(b=>b.class),['mx-auto-fold','mx-auto-call']);assert.ok(s.auto.every(b=>!b.disabled));
+   assert.deepEqual(s.auto.map(b=>b.class),['mx-auto-fold','mx-auto-check']);assert.ok(s.auto.every(b=>!b.disabled));
   };
   await verifySubmitted();
   for(let frame=0;frame<3;frame++){
@@ -47,8 +53,8 @@ try {
    const a=window.submitAudit;a.controls.render({...a.state,pot:a.state.pot+1});
    document.querySelector('.mx-quick-bet').click();
   });await verifySubmitted();
-  await page.locator('.mx-auto-call').click();assert.equal(await page.locator('.mx-auto-call').getAttribute('aria-pressed'),'true');
-  await page.locator('.mx-auto-call').click();assert.equal((await status()).sent,1);
+  await page.locator('.mx-auto-check').click();assert.equal(await page.locator('.mx-auto-check').getAttribute('aria-pressed'),'true');
+  await page.locator('.mx-auto-check').click();assert.equal((await status()).sent,1);
   await page.evaluate(async()=>{window.submitAudit.pending[0].resolve();await Promise.resolve();});await verifySubmitted();
   await page.evaluate(()=>{
    const a=window.submitAudit;a.state={...a.state,actions:[],betting:undefined,roundBet:1000,

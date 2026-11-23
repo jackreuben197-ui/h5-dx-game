@@ -45,20 +45,20 @@ export class AutoOperationView {
 
     }
     // A preselection authorizes only the quoted amount, never a later raise.
-    if(this.selected&&this.selected!=='fold'&&(this.selected!==right||amount!==this.selectedAmount))this.selected=undefined;
+    if(this.selected&&this.selected!=='fold'&&(this.selected!==right||this.selectedAmount===undefined||amount>this.selectedAmount))this.selected=undefined;
     this.paint();
     const turn=s.betting?.id;
     if(submittedAction||!turn||!s.actions.length||!this.selected||this.attemptedTurn===turn)return;
-    const selected=resolveAutoChoice(this.selected,s);
-    if(!selected)return;
+    const selected=resolveAutoChoice(this.selected,s,this.selectedAmount);
     this.attemptedTurn=turn;
     this.selected=undefined;
     this.paint();
+    if(!selected)return;
     void this.command(selected.action,selected.amount);
   }
   private right():ReturnType<typeof validAutoRight>{
     // A submitted raise/call has no further amount due until authority updates the turn.
-    if(this.submittedAction==='raise'||this.submittedAction==='call')return {choice:'call',amount:0};
+    if(this.submittedAction==='raise'||this.submittedAction==='call')return {choice:'check',amount:0};
     const s=this.state,mine=s?.players.find(p=>p.seat===s.mySeat);
     return s&&mine?validAutoRight(s.roundBet??0,mine):{choice:'check',amount:0};
   }
