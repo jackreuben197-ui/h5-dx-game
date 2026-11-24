@@ -18,6 +18,12 @@
 .mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) .mx-player-action{top:var(--mx-SeatIdentityView-mx-player-action-top)}
 .mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) .mx-seat-mine .mx-card-slot{height:var(--mx-hero-card-height);margin-top:calc(var(--mx-hero-card-height) / var(--mx-HandCardsView-mx-card-slot-margin-top))}
 .mx-table:is([data-table-layout=balanced],[data-table-layout=oval]):not([data-orientation=landscape]) .mx-seat-mine .mx-seat-hand-type{left:var(--mx-SeatIdentityView-mx-seat-hand-type-left);top:var(--mx-ring-hand-type-y)}
+.mx-table:is([data-table-layout=balanced],[data-table-layout=oval])[data-orientation=portrait] .mx-small-cards .mx-card-slot{
+  --mx-ring-back-slot-height:calc(var(--mx-HandCardsView-mx-card-slot-width-2) * var(--mx-HandCardsView-ring-back-card-height) / var(--mx-HandCardsView-ring-back-card-width));
+  height:var(--mx-ring-back-slot-height);
+  /* Resize from the lower edge where the concealed strip meets the avatar. */
+  margin-top:calc(-1 * (var(--mx-HandCardsView-mx-card-slot-margin-top-4) + var(--mx-ring-back-slot-height)));
+}
 /* Results share the balance card's top edge rather than growing over the avatar. */
 .mx-table:is([data-table-layout=classic],[data-table-layout=balanced],[data-table-layout=oval]) .mx-stack-slot{position:static}
 .mx-table:is([data-table-layout=classic],[data-table-layout=balanced],[data-table-layout=oval]) .mx-seat .mx-seat-win{top:0;bottom:auto;transform:translateX(-50%);margin-top:0}
@@ -98,10 +104,17 @@
 .mx-game:has(.mx-settings-overlay:not([hidden]))~.mx-test-menu{visibility:hidden}
 /* Keep the exported foreground in its original bottom slice; the source art removes the inner arc. */
 .mx-table[data-felt=solid]::before{content:'';position:absolute;inset:0;pointer-events:none;border-image-source:var(--mx-felt-image);border-image-slice:0 0 416 0 fill;border-image-width:0 0 var(--mx-felt-bottom,208px) 0;border-image-repeat:stretch}
-.mx-table[data-table-layout=balanced] .mx-seat .mx-seat-timer-texture{mask-image:none!important;-webkit-mask-image:none!important;background:transparent!important;border:10px solid var(--mx-countdown-color,#14fd00);border-radius:var(--mx-avatar-radius);box-shadow:0 0 5px var(--mx-countdown-color,#14fd00)}
+.mx-table[data-table-layout=balanced] .mx-seat .mx-seat-timer-texture{mask-image:none!important;-webkit-mask-image:none!important;background:transparent!important;border:var(--mx-SeatCountdownView-balanced-ring-stroke) solid var(--mx-countdown-color,#14fd00);border-radius:var(--mx-avatar-radius);box-shadow:0 0 5px var(--mx-countdown-color,#14fd00)}
 .mx-table[data-table-layout=balanced] .mx-seat .mx-seat-timer[data-kind=action]{--mx-action-countdown-color:#81f18d}
 .mx-table:is([data-table-layout=original],[data-table-layout=balanced]) .mx-seat .mx-seat-timer[data-kind=action]::before{content:none}
-.mx-table[data-table-layout=balanced] .mx-seat .mx-seat-timer[data-kind=action] .mx-seat-timer-texture{border-width:10px;box-shadow:0 0 8px 1px rgb(129 241 141 / .5)}
+.mx-table[data-table-layout=balanced] .mx-seat .mx-seat-timer[data-kind=action] .mx-seat-timer-texture{box-shadow:0 0 8px 1px rgb(129 241 141 / .5)}
+.mx-table[data-table-layout=balanced][data-orientation=portrait] .mx-seat .mx-seat-timer-ring{
+  inset:calc(-1 * var(--mx-SeatCountdownView-balanced-ring-outset));
+}
+.mx-table[data-table-layout=balanced][data-orientation=portrait] .mx-seat .mx-seat-timer-ring .mx-seat-timer-texture{
+  border-radius:calc(var(--mx-SeatCountdownView-mx-seat-timer-width) * var(--mx-SeatCountdownView-ring-corner-ratio) + var(--mx-SeatCountdownView-balanced-ring-outset));
+  box-shadow:none;
+}
 .mx-table .mx-seat-timer[data-kind=keep]::before{border-radius:var(--mx-avatar-radius)}
 /* Keep confirmation on the raise entry; the track ends above that button. */
 .mx-table[data-table-layout=original]:not([data-orientation=landscape]) .mx-operation[data-mode=raise] .mx-raise-track{--mx-raise-height:var(--mx-original-raise-height);--mx-raise-info-offset:var(--mx-original-raise-info-offset)}
@@ -123,7 +136,6 @@
 /* Button countdown owns its rounded perimeter; the avatar halo must not leak in. */
 .mx-operation-fold>.mx-seat-timer[data-kind=action]::before{content:none}
 .mx-seat-timer-rounded .mx-seat-timer-texture{mask-image:none!important;-webkit-mask-image:none!important;background:transparent!important;border:10px solid var(--mx-countdown-color,#14fd00);border-radius:var(--mx-SeatCountdownView-mx-seat-timer-texture-border-radius);box-shadow:0 0 5px var(--mx-countdown-color,#14fd00)}
-.mx-table[data-orientation=landscape] .mx-operation-row .mx-operation-fold{position:relative;--mx-fold-timer-scale:calc(var(--mx-op-scale) * var(--mx-SeatCountdownView-mx-seat-timer-transform-5) / var(--mx-SeatCountdownView-mx-seat-timer-transform-6))}
 
 /* Layout-specific card rhythm; initial table keeps CC/Figma fixed five-slot spacing. */
 .mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) .mx-public-slot{left:var(--mx-card-centered-x)!important;--mx-public-spread-x:var(--mx-public-centered-spread)}
@@ -160,17 +172,18 @@
 .mx-table:not([data-orientation=landscape]) .mx-navigation .mx-nav-icon{width:var(--mx-NavigationView-mx-nav-icon-width);height:var(--mx-NavigationView-mx-nav-icon-height)}
 .mx-table:not([data-orientation=landscape]) .mx-navigation .mx-nav-logo{width:clamp(var(--mx-NavigationView-mx-nav-logo-width),var(--mx-NavigationView-mx-nav-logo-width-2),var(--mx-NavigationView-mx-nav-logo-width-3));margin-inline:var(--mx-NavigationView-mx-nav-logo-margin-inline)}
 
-/* Classic values below are in the 58 px avatar's design units. The seat shares
-   its transform with the avatar, click target, cards, chips and timer. */
-.mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat{
-  --mx-classic-seat-unit:calc(199px / 58);
-  --mx-seat-chip-top:calc(30 * var(--mx-classic-seat-unit));
-  --mx-seat-name-clearance:calc(36 * var(--mx-classic-seat-unit));
+.mx-table:is([data-table-layout=classic],[data-table-layout=balanced]):not([data-orientation=landscape]) .mx-seat .mx-player-name{
+  max-width:calc(2 * min(var(--mx-seat-world-x),var(--mx-stage-local-width) - var(--mx-seat-world-x)) / var(--mx-seat-local-scale));
 }
 .mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-avatar-border{
   width:calc(var(--mx-SeatIdentityView-mx-avatar-border-width) * var(--mx-classic-seat-unit));height:calc(var(--mx-SeatIdentityView-mx-avatar-border-height) * var(--mx-classic-seat-unit));
   left:calc(var(--mx-SeatIdentityView-mx-avatar-border-left) * var(--mx-classic-seat-unit));top:calc(var(--mx-SeatIdentityView-mx-avatar-border-top) * var(--mx-classic-seat-unit));
   background:var(--mx-classic-avatar-border) center / contain no-repeat!important;border:0;
+}
+.mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat-mine .mx-avatar-border{
+  left:var(--mx-SeatIdentityView-mx-fold-cover-left);top:var(--mx-SeatIdentityView-mx-fold-cover-top);
+  width:var(--mx-SeatIdentityView-mx-fold-cover-width);height:var(--mx-SeatIdentityView-mx-fold-cover-height);
+  background:none!important;border:calc(1.35 * var(--mx-classic-seat-unit)) solid #d3b773;
 }
 .mx-table[data-table-layout=classic]:not([data-orientation=landscape]) :is(.mx-avatar,.mx-avatar-fallback,.mx-avatar-video,.mx-avatar-video-mask){z-index:1}
 .mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat .mx-player-info{
@@ -194,11 +207,6 @@
 }
 .mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat-mine .mx-card-slot{height:var(--mx-hero-card-height);margin-top:calc(var(--mx-hero-card-height) / var(--mx-HandCardsView-mx-card-slot-margin-top-2))}
 .mx-table:is([data-table-layout=classic],[data-table-layout=balanced],[data-table-layout=oval]):not([data-orientation=landscape]) .mx-quick-bet{translate:0 calc(-1 * var(--mx-quick-lift,0px))}
-.mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-avatar-mic{
-  left:calc(var(--mx-TableMediaView-mx-avatar-mic-left) * var(--mx-classic-seat-unit));top:calc(var(--mx-TableMediaView-mx-avatar-mic-top) * var(--mx-classic-seat-unit));
-  width:calc(var(--mx-TableMediaView-mx-avatar-mic-width) * var(--mx-classic-seat-unit));height:calc(var(--mx-TableMediaView-mx-avatar-mic-height) * var(--mx-classic-seat-unit));
-}
-.mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat[data-microphone-side=left] .mx-avatar-mic{left:calc(var(--mx-TableMediaView-mx-avatar-mic-left-2) * var(--mx-classic-seat-unit))}
 .mx-table:is([data-table-layout=classic],[data-table-layout=oval]):not([data-orientation=landscape]) .mx-seat .mx-seat-timer[data-kind=action]{
   --mx-gold-countdown-inset:calc(-1.1 * 199px / 58);
   --mx-gold-countdown-stroke:calc(3.2 * 199px / 58);
@@ -248,6 +256,10 @@
  --mx-seat-chip-top:calc(var(--mx-SeatIdentityView-qa-chip-top) * var(--mx-classic-seat-unit));
 }
 .mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) .mx-seat-mine{--mx-seat-chip-top:var(--mx-hero-info-y)}
+.mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat{
+ --mx-seat-name-clearance:calc(99.5px + var(--mx-SeatIdentityView-classic-name-gap) * var(--mx-classic-seat-unit));
+ --mx-classic-chip-width:calc(var(--mx-SeatIdentityView-classic-chip-width) * var(--mx-classic-seat-unit));
+}
 .mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat:not(.mx-seat-mine){--mx-seat-chip-top:calc(var(--mx-SeatIdentityView-classic-chip-top) * var(--mx-classic-seat-unit))}
 /* Empty hands share the avatar-bottom balance/result anchor in both ring layouts. */
 .mx-table:is([data-table-layout=balanced],[data-table-layout=oval]):not([data-orientation=landscape]) .mx-seat-mine:not(.mx-seat-has-cards){
@@ -270,31 +282,49 @@
 .mx-table[data-table-layout=oval]:not([data-orientation=landscape]) .mx-player-action{z-index:11}
 .mx-seat-win-amount{font-weight:var(--mx-SeatIdentityView-qa-win-weight)}
 .mx-table .mx-seat-play-status{font-size:calc(var(--mx-SeatIdentityView-qa-wait-font) * var(--mx-table-text-scale))}
-/* Keep the original frame with a faint dark tint and a gentle backdrop blur. */
+/* A translucent face lets each table finish show through the stack frame. */
 .mx-table .mx-player-info{
- background-color:rgb(0 0 0 / .08);
+ background-image:none!important;
+ background-color:rgba(58,56,56,.22);
+ box-shadow:inset .7px .7px 1.4px #f2f2f233, 2px 2.5px 4px #0004;
+ outline:2px solid #f2f2f266;outline-offset:-2px;
  border-radius:var(--mx-SeatIdentityView-mx-player-info-border-radius);
- backdrop-filter:blur(var(--mx-SeatIdentityView-qa-glass-blur));
- -webkit-backdrop-filter:blur(var(--mx-SeatIdentityView-qa-glass-blur));
+
 }
-.mx-seat .mx-seat-timer[data-kind=action]{z-index:7}
+.mx-table :is(.mx-stack,.mx-seat-bet-value){font-weight:700}
+/* The hand follows the identity in the seat, so its backs paint over the timer at the same level. */
+.mx-seat .mx-seat-timer[data-kind=action],
+.mx-seat .mx-hole-cards:has(.mx-card[data-card-value="0"]){z-index:7}
 
 .mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) .mx-seat :is(.mx-avatar-fallback,.mx-avatar,.mx-avatar-border){box-shadow:none;filter:none}
-.mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) .mx-avatar-border{background:none!important;border:1px solid #ffffff70}
-.mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) :is(.mx-seat-bet,.mx-pool-item){background-image:none!important;background-color:#ffffff20;border:1px solid #ffffff60;border-radius:20px;box-shadow:none;backdrop-filter:blur(4px)}
-.mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) .mx-seat-bet{--mx-bet-stroke:var(--mx-SeatBetView-mx-seat-bet-border-width)}
+.mx-table:is([data-table-layout=balanced],[data-table-layout=oval]):not([data-orientation=landscape]) .mx-avatar-border{background:none!important;border:0;z-index:4;box-shadow:0 0 1px 5.6px #f2f2f24d,0 3px 6px .6px #00000024!important}
+.mx-table[data-table-layout=balanced][data-orientation=portrait] .mx-avatar{background-color:#345c59}
+.mx-table[data-table-layout=balanced][data-orientation=portrait] .mx-avatar-border{
+  /* Join the two antialiased edges under the translucent frame. */
+  box-shadow:0 0 0 4.2px var(--mx-balanced-frame-color,#f2f2f24d),0 0 1.5px 4.2px var(--mx-balanced-frame-highlight,transparent),inset 0 0 0 1px #f2f2f24d,0 3px 6px .6px #00000024!important;
+}
+.mx-table[data-table-layout=balanced][data-orientation=portrait] .mx-seat-identity:has(> .mx-seat-timer:not([hidden]) > .mx-seat-timer-ring:not([hidden])) > .mx-avatar-border{
+  /* Keep the exposed quarter legible after the frame scales to handset size. */
+  --mx-balanced-frame-color:#f2f2f2d9;
+  --mx-balanced-frame-highlight:#fff8;
+}
+.mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) .mx-pool-item{background-image:none!important;background-color:rgba(58,56,56,.22);border:1px solid #ffffff60;border-radius:20px;box-shadow:none;backdrop-filter:blur(4px)}
+.mx-table .mx-seat-bet{--mx-bet-stroke:var(--mx-SeatBetView-mx-seat-bet-border-width);background-image:none!important;background-color:rgba(58,56,56,.22);border:var(--mx-bet-stroke) solid #ffffff66;border-radius:999px;box-shadow:inset 1px 1px 2px #ffffff30,1px 2px 4px #0003}
 
 
 .mx-layout-preview{display:block;flex:none;width:calc(var(--mx-PersonalSettingsView-preview-width) * var(--settings-unit));height:calc(var(--mx-PersonalSettingsView-preview-height) * var(--settings-unit));object-fit:contain}
 
 /* 108: settlement occupies two compact lines, not the original tall nameplate. */
 .mx-table:is([data-table-layout=balanced],[data-table-layout=oval]):not([data-orientation=landscape]) .mx-seat:not(.mx-seat-mine) .mx-seat-win{min-height:113px;line-height:40px;row-gap:4px;padding:8px 4px}
-.mx-table[data-table-layout=balanced]:not([data-orientation=landscape]) .mx-seat:not(.mx-seat-mine){--mx-seat-chip-top:calc(32.5 * var(--mx-classic-seat-unit))}
 /* Keep the extra rise only for visible win cards; ordinary balances use their original spacing. */
 .mx-table:is([data-table-layout=balanced],[data-table-layout=oval]):not([data-orientation=landscape]) .mx-seat:has(.mx-seat-win:not([hidden])){--mx-seat-info-rise:calc(var(--mx-SeatIdentityView-ring-info-rise) * var(--mx-classic-seat-unit))}
 /* The result can cross the menu; normal seats retain their established stacking. */
 .mx-table[data-table-layout=classic] .mx-viewport:has(.mx-seat-mine .mx-seat-win:not([hidden])){z-index:8;overflow:visible;pointer-events:none}
-.mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat .mx-player-info{left:calc(-31 * var(--mx-classic-seat-unit));width:calc(62 * var(--mx-classic-seat-unit));min-height:calc(22 * var(--mx-classic-seat-unit));padding-block:calc(2 * var(--mx-classic-seat-unit))}
+.mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat .mx-player-info{
+ left:clamp(calc(-1 * var(--mx-seat-world-x) / var(--mx-seat-local-scale)),calc(-.5 * var(--mx-classic-chip-width)),calc((var(--mx-stage-local-width) - var(--mx-seat-world-x)) / var(--mx-seat-local-scale) - var(--mx-classic-chip-width)));
+ width:var(--mx-classic-chip-width);
+ min-height:calc(var(--mx-SeatIdentityView-classic-chip-height) * var(--mx-classic-seat-unit));padding-block:calc(2 * var(--mx-classic-seat-unit));
+}
 .mx-table[data-table-layout=classic]:not([data-orientation=landscape]) .mx-seat-mine .mx-player-info{min-height:calc(18 * var(--mx-classic-seat-unit));padding:0}
 
 .mx-table:is([data-table-layout=balanced],[data-table-layout=oval]):not([data-orientation=landscape]) .mx-room-info{font-size:min(calc(38px * var(--mx-table-text-scale)),var(--mx-room-info-max-font,100px))}
@@ -325,3 +355,18 @@
 .mx-table[data-orientation=landscape]:not([data-table-layout=original]) .mx-seat :is(.mx-avatar,.mx-avatar-fallback,.mx-avatar-border,.mx-avatar-hit,.mx-avatar-video,.mx-avatar-video-mask,.mx-fold-cover,.mx-seat-play-status,.mx-seat-timer) {
   scale: var(--mx-wide-avatar-scale, 1);
 }
+
+.mx-table[data-table-layout=balanced]:not([data-orientation=landscape]) .mx-player-name{
+ width:calc(var(--mx-SeatIdentityView-balanced-name-width) * var(--mx-classic-seat-unit));
+ font-size:calc(var(--mx-SeatIdentityView-balanced-name-font-size) * var(--mx-classic-seat-unit) * var(--mx-table-text-scale));
+ line-height:calc(var(--mx-SeatIdentityView-balanced-name-line-height) * var(--mx-classic-seat-unit) * var(--mx-table-text-scale));
+ font-family:"Noto Sans SC","PingFang SC",sans-serif;
+ font-weight:700;
+}
+.mx-table:not([data-table-layout=original]):not([data-orientation=landscape]) .mx-seat:not(.mx-seat-mine){--mx-classic-seat-unit:calc(199px / var(--mx-opponent-avatar))}
+.mx-table[data-table-layout=balanced]:not([data-orientation=landscape]) .mx-seat:not(.mx-seat-mine) :is(.mx-avatar,.mx-avatar-fallback,.mx-avatar-border,.mx-avatar-hit,.mx-avatar-video,.mx-avatar-video-mask,.mx-fold-cover,.mx-seat-play-status,.mx-seat-timer){
+ scale:1 calc(var(--mx-SeatIdentityView-balanced-opponent-avatar-height) / var(--mx-opponent-avatar));
+}
+.mx-table[data-orientation=portrait] > :is(.mx-operation,.mx-action-bubbles,.mx-support-button,.mx-table-tools){margin-top:var(--mx-safe-top,env(safe-area-inset-top,0px))}
+
+.mx-table[data-table-layout=oval][data-orientation=portrait] .mx-seat:not(.mx-seat-mine) .mx-player-info{width:calc(58 * var(--mx-classic-seat-unit));left:calc(-29 * var(--mx-classic-seat-unit))}

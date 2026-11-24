@@ -15,6 +15,7 @@ export const supplement: Record<string, Record<string, string>> = {
   Fishbase_Desk_CrimsonVelvet: {cn:'绛红丝绒', zh:'絳紅絲絨', en:'Crimson Velvet', pt:'Veludo Carmesim'},
   Fishbase_Desk_JadeOnyx: {cn:'墨边翡翠', zh:'墨邊翡翠', en:'Onyx Jade', pt:'Jade e Ônix'},
   Fishbase_Desk_MeadowGreen: {cn:'春野新绿', zh:'春野新綠', en:'Spring Meadow', pt:'Prado de Primavera'},
+  MX_TotalDuration:{cn:'总时长',zh:'總時長',en:'Total duration',pt:'Duração total'},
   MX_BBAmount:{cn:'BB',zh:'BB',en:'BB',pt:'BB'},
   MX_SquidRoundEnded:{cn:'本轮鱼游戏结束',zh:'本輪魚遊戲結束',en:'Squid round finished',pt:'Rodada de lula encerrada'},
   MX_SquidStand:{cn:'站起',zh:'站起',en:'Stand up',pt:'Levantar'},
