@@ -438,22 +438,26 @@ export class TableView {
     this.emoji?.onFrameResize(box.width,box.height);
     this.bringOut.onFrameResize(box.width,box.height);
     this.buyInView.onFrameResize(box.width,box.height);
-    const { width, height } = this.viewport.getBoundingClientRect();
+    const viewportBox=this.viewport.getBoundingClientRect();
+    const { width, height } = viewportBox;
     if (width <= 0 || height <= 0) return;
     const navigationBox=this.navigation.root.getBoundingClientRect();
-    // The portrait skin can scroll a shorter viewport while actions remain fixed to the root.
-    const contentBottom=!navigationBox.height?height:Math.min(landscape?height:box.height,navigationBox.top-box.top);
-    const navigationInset=landscape&&navigationBox.height?box.bottom-navigationBox.top:box.height-contentBottom;
+    const portraitHeight=box.height-(viewportBox.top-box.top)-parseFloat(getComputedStyle(this.root).paddingBottom);
+    // Portrait controls stay anchored to the navigation even when the table viewport scrolls.
+    const contentBottom=!navigationBox.height?height:Math.min(landscape?height:portraitHeight,navigationBox.top-viewportBox.top);
+    const navigationInset=navigationBox.height ? box.bottom-navigationBox.top : 0;
     this.root.style.setProperty('--mx-navigation-inset',`${navigationInset}px`);
-    this.layout.resize(width, landscape ? height : box.height, landscape, contentBottom);
+    this.layout.resize(width, landscape ? height : portraitHeight, landscape, contentBottom);
+    this.root.style.setProperty('--mx-mic-reference-scale',String(Math.min(width/440,portraitHeight/782)/this.layout.unit));
     const l = this.layout;
+    this.root.style.setProperty('--mx-stage-local-width', `${l.width}px`);
     this.root.style.setProperty('--mx-pc-stage-unit',String(l.unit));
     const fixedBoardSlots = l.id === 'classic' && !landscape;
     if (this.board instanceof PublicCardsView) this.board.setFixedSlots(fixedBoardSlots);
     // Only the first board has placeholder slots; the optional second run renders actual cards.
     this.secondBoard.setFixedSlots(false);
     this.root.style.setProperty('--mx-side-bubble-unit', `${landscape?desktop.avatarSize/desktop.avatarDesignSize*desktopScale(box.width,box.height):l.id==='original'?1/3:1}px`);
-    this.settlementWatch.resize(l.unit,landscape ? 0 : box.height - contentBottom);
+    this.settlementWatch.resize(l.unit,landscape ? 0 : navigationInset);
     this.menu.resize(l.unit, l.height, l.suggest, landscape);
     this.menu.root.style.setProperty('--mx-menu-scale',String(l.menuScale));
     this.squid?.resize(l.suggest);
@@ -484,6 +488,7 @@ export class TableView {
       this.entryFrame=0;
       const state=this.data.info.snapshot;
       if(!state||!this.root.isConnected)return;
+      this.tableTools?.avoidNicknames(this.root);
       const bounds=this.seatViews.get(state.mySeat||1)?.entryActionsBounds?.();
       const info=this.info.getBoundingClientRect(),stage=this.stage.getBoundingClientRect();
       if(!bounds||!info.height||!this.layout.unit)return;

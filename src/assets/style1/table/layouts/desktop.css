@@ -4,6 +4,8 @@
 .mx-table[data-orientation=landscape] > .mx-viewport{position:absolute;inset:0;grid-area:auto;overflow:hidden}
 .mx-table[data-orientation=landscape] > .mx-navigation[data-layout]{position:absolute;left:50%;bottom:0;translate:-50% 0;grid-area:auto}
 .mx-table[data-orientation=landscape] > .mx-operation{position:absolute;inset:0;grid-area:auto;width:100%;height:100%;padding:0;display:block;background:none;pointer-events:none}
+/* Use the avatar's local box so independent profile scaling keeps the mask aligned. */
+.mx-table[data-orientation=landscape] .mx-seat-play-status{left:var(--mx-SeatIdentityView-mx-fold-cover-left);top:var(--mx-SeatIdentityView-mx-fold-cover-top);transform:none}
 .mx-table[data-orientation=landscape] .mx-operation-row,
 .mx-table[data-orientation=landscape] .mx-operation-quick,
 .mx-table[data-orientation=landscape] .mx-auto-operation{
@@ -63,6 +65,7 @@
 .mx-table[data-orientation=landscape]:not([data-table-layout=original]) .mx-empty-seat .mx-avatar-fallback{background-image:none!important;background-color:#0002;border:1px solid #ffffff70}
 .mx-table[data-orientation=landscape]:not([data-table-layout=original]) .mx-empty-seat .mx-avatar-fallback::before{content:'+';position:absolute;inset:0;display:grid;place-items:center;font-size:70px;color:#ffffff90}
 /* The old circular frame must not show through rounded profile avatars. */
-.mx-table:not([data-table-layout=original]) .mx-seat .mx-avatar-border{display:none}
+.mx-table[data-table-layout=classic] .mx-seat .mx-avatar-border,
+.mx-table[data-orientation=landscape]:not([data-table-layout=original]) .mx-seat .mx-avatar-border{display:none}
 .mx-table:not([data-table-layout=original]) .mx-seat :is(.mx-avatar,.mx-avatar-fallback){box-shadow:none;filter:none}
 .mx-table:not([data-table-layout=original]) .mx-seat-identity:has(> .mx-avatar:not([hidden])) > .mx-avatar-fallback{background-image:none!important;background-color:transparent!important}
