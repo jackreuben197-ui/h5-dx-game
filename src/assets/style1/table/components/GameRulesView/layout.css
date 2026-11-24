@@ -49,4 +49,4 @@
   background: #0003;
 }
 .mx-game-rules-cards { display: flex; flex: none; gap: var(--mx-GameRulesView-card-gap); }
-.mx-game-rules-cards .mx-card { width: var(--mx-GameRulesView-card-width); height: auto; }
+.mx-game-rules-cards .mx-card { flex: none; width: var(--mx-GameRulesView-card-width); height: auto; }

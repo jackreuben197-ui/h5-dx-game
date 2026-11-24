@@ -118,9 +118,20 @@
 
 .mx-game[data-skin-family="fishbase"] :is(.mx-support-button, .mx-table-add-chips) {
   box-sizing: border-box;
-  width: calc(185 * var(--mx-chat-unit));
-  height: calc(100 * var(--mx-chat-unit));
+  width: calc(var(--mx-TableToolsView-mx-table-add-chips-width) * var(--mx-chat-unit));
+  height: calc(var(--mx-TableToolsView-mx-table-add-chips-height) * var(--mx-chat-unit));
   min-width: 0;
+}
+.mx-game[data-skin-family="fishbase"] .mx-table:not([data-orientation="landscape"]) .mx-support-button {
+  right: calc(var(--mx-TableToolsView-mx-table-tools-right) + var(--mx-TableToolsView-mx-table-tools-right-2) * var(--mx-chat-unit));
+}
+.mx-game[data-skin-family="fishbase"] .mx-table[data-orientation="landscape"] :is(.mx-support-button, .mx-table-add-chips) {
+  width: calc(var(--mx-TableToolsView-desktop-add-width) * var(--mx-pc-scale, 1));
+  height: calc(var(--mx-TableToolsView-desktop-add-height) * var(--mx-pc-scale, 1));
+}
+.mx-game[data-skin-family="fishbase"] .mx-table[data-orientation="landscape"] .mx-support-button {
+  /* The add-chips button is centered within the wider tools column. */
+  right: calc((var(--mx-TableToolsView-desktop-right) + (var(--mx-TableToolsView-desktop-width) - var(--mx-TableToolsView-desktop-add-width)) / 2) * var(--mx-pc-scale, 1));
 }
 .mx-game[data-skin-family="fishbase"] .mx-support-button {
   --mx-tool-background: url('./table/table_bg_im.png') !important;
