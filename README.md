@@ -183,9 +183,9 @@ npm run release:web-mobile
 MX_H5_ROOT=/absolute/path/to/h5-game npm run release:web-mobile
 ```
 
-脚本在临时副本中生成入口、同步词库并构建，不修改外壳源码/环境文件。H5 的协议检查失败会停止发布，不能用缺少协议字段的依赖生成部署包。默认 mode 为 `production`，可通过 `MX_RELEASE_MODE` 选择已配置的发布环境；不允许 `development`/`h5` 开发代理模式。API 默认沿用外壳环境，MX 同步使用同一地址；也可通过 `VITE_MX_API_BASE_URL` 显式覆盖 MX HTTP 地址。WS 保持外壳原有配置和 bridge 通路。
+脚本在临时副本中生成入口、同步词库并构建，不修改外壳源码/环境文件。H5 的协议检查失败会停止发布，不能用缺少协议字段的依赖生成部署包。默认 mode 为 `production`，可通过 `MX_RELEASE_MODE` 选择已配置的发布环境；不允许 `development`/`h5` 开发代理模式。使用独立 h5-game 时，牌桌在启动时等待大厅读取部署的 `config.json`，复用大厅选定的 HTTP 地址。测试服和正式服可以部署同一份包，分别配置自己的 `baseApi`。WS 仍走外壳原有的 bridge 通路。
 
-**当前仓库默认仍连接测试服务**。正式上线前应通过 H5 原有的 `VITE_API_BASE_URL`、`VITE_WS_URL_TEMPLATE` 等环境配置指向目标服务，不会自动把测试地址换成生产地址。若使用 `/api` 等相对地址或 WS 代理，服务器必须已有相应反向代理；静态目录本身不提供代理。部署域名需被后端允许，语音/视频需要 HTTPS。
+旧内置外壳使用构建环境中的 `VITE_API_BASE_URL`，牌桌可通过 `VITE_MX_API_BASE_URL` 覆盖。若使用 `/api` 等相对地址或 WS 代理，服务器必须已有相应反向代理。部署域名需被后端允许，语音/视频需要 HTTPS。
 
 `version.json` 记录包版本、MX Git 提交、H5 来源、未提交状态、构建时间和 buildId。`h5Source.kind` 区分独立仓库 repository、MX 内副本 vendored 和无 Git 目录 directory。独立仓库才填写 `h5Commit`；副本在 `h5Source` 记录所属 MX 提交及相对路径，dirty 只检查 H5 子目录；无 Git 目录的 commit/dirty 为 null，不伪造版本信息。MX 位于 `mx-client/<buildId>/`，H5 JS/CSS 带 hash；入口和 `version.json` 建议设置 `Cache-Control: no-cache`，版本资源可长期缓存。发布时优先切换完整目录并保留上一版本供回滚，不要边覆盖边删除正在使用的旧资源。已有 Service Worker 的站点需在部署流程中处理旧缓存。
 
