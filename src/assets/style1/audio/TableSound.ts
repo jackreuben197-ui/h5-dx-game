@@ -10,6 +10,7 @@ export class TableSound {
   enabled = false;
   private clips=new AudioSpritePlayer();
   private previous?: TableSnapshot;
+  private settlementSoundHandled = false;
   private bgm?: HTMLAudioElement;
   private bgmSegment?: MediaElementSegment;
   private effects = new Set<HTMLAudioElement>();
@@ -42,14 +43,18 @@ export class TableSound {
   }
   private effect(key: Exclude<keyof typeof config.paths, 'bgm'> | keyof NonNullable<TableUiConfig['tableSounds']>): void {
     if (!this.enabled || document.hidden) return;
-    if (key === 'call' || key === 'raise' || key === 'smallBlind' || key === 'bigBlind' || key === 'myWin') {
-      const url = this.tableSounds?.[key];
-      if (url) { this.clips.playFile(url); return; }
-      if (key !== 'call' && key !== 'raise') return;
-      key = 'chips';
+    const sounds: Readonly<Partial<Record<typeof key, string>>> = this.tableSounds ?? {};
+    const url = sounds[key];
+    if (url) { this.clips.playFile(url); return; }
+    switch (key) {
+      case 'boardDeal': key = 'deal'; break;
+      case 'call': case 'raise': key = 'chips'; break;
+      case 'smallBlind': case 'bigBlind': case 'myWin': case 'otherWin': case 'collectPot': return;
     }
     this.clips.play(config.paths[key],config.media[key]);
   }
+  playPotCollection(): void { this.effect('collectPot'); }
+
   /** Room effects use the same mute/visibility lifecycle as table sound. */
   playExternalEffect(url: string): () => void {
     if (this.disposed || !this.enabled || document.hidden) return () => {};
@@ -78,13 +83,22 @@ export class TableSound {
         tick();this.turnTimer=setInterval(tick,250);
       }
     }
+    const sameHand = old?.roomID === state.roomID && old.matchID === state.matchID && old.handNum === state.handNum;
+    if (!sameHand) this.settlementSoundHandled = false;
+    if (!this.settlementSoundHandled && state.players.some(player => player.settlement?.win)) {
+      this.settlementSoundHandled = true;
+      if (sameHand && state.presentation !== 'sync') {
+        const iWon = state.players.some(player => player.seat === state.mySeat && player.settlement?.win);
+        this.effect(iWon ? 'myWin' : 'otherWin');
+      }
+    }
     if (!old || state.presentation === 'sync') return;
     if (state.presentation === 'deal' && old.handNum !== state.handNum) void this.effect('deal');
-    if (state.community.length > old.community.length) void this.effect('deal');
+    const boardDealt = state.community.length > old.community.length;
+    if (boardDealt) void this.effect('boardDeal');
     for (const p of state.players) {
       const before = old.players.find(v => v.seat === p.seat);
       if (!before || before.userRid !== p.userRid) continue;
-      if (p.seat === state.mySeat && p.settlement?.win && !before.settlement?.win) this.effect('myWin');
       const action = p.action.split(' ', 1)[0];
       const repeatedBet = old.handNum === state.handNum && old.community.length === state.community.length
         && (action === '跟注' || action === '加注') && (p.roundBet ?? 0) > (before.roundBet ?? 0);

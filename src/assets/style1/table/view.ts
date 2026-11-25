@@ -70,6 +70,7 @@ import { defaultTableUi } from './layouts/DefaultTableUi.js';
 import { SeatView, type SeatComponent } from './components/SeatView/SeatView.js';
 import { PublicCardsView } from './components/PublicCardsView/PublicCardsView.js';
 import { PotView } from './components/PotView/PotView.js';
+import { animatePotCollection } from './components/PotView/PotCollection.js';
 import { NavigationView } from './components/NavigationView/NavigationView.js';
 import { SettlementWatchView } from './components/SettlementWatchView/SettlementWatchView.js';
 import { TableMenuView } from './components/TableMenuView/TableMenuView.js';
@@ -393,6 +394,7 @@ export class TableView {
   @bindEvent(TableInfoData.CHANGE, 'table')
   private onTable(state: TableSnapshot | null): void {
     if (!state) return;
+    this.updatePotCollection(state);
     if (this.playerInfo.currentSeat && !state.players.some(player => player.seat === this.playerInfo.currentSeat && player.userRid === this.playerInfo.currentUserRID)) this.playerInfo.close();
     if (!!state.secondCommunity?.length !== !!this.previousTable?.secondCommunity?.length) this.resizeTable();
     const positionMode = SeatPositionMotion.mode(this.previousTable, state);
@@ -430,6 +432,27 @@ export class TableView {
     this.tableTools?.render(state);
     this.allInTest?.update(state);
     this.queueEntryButtons();
+  }
+  private updatePotCollection(state: TableSnapshot): void {
+    const previous = this.previousTable;
+    if (!previous || state.presentation === 'sync' || document.hidden || previous.roomID !== state.roomID
+        || previous.matchID !== state.matchID || previous.handNum !== state.handNum) {
+      this.clearPotCollection();
+      return;
+    }
+    if (previous.handEnded || (!state.handEnded && state.community.length <= previous.community.length)
+        || !previous.players.some(player => (player.roundBet ?? 0) > 0)) return;
+    this.sound.playPotCollection();
+    if (this.options.ui?.animatePotCollection) {
+      const mainChip = this.pot.pool.querySelector<HTMLElement>('.mx-pool-main .mx-pot-chip');
+      animatePotCollection(this.stage, this.bets, mainChip?.getClientRects().length ? mainChip : this.pot.total);
+    }
+  }
+  private clearPotCollection(): void {
+    this.bets.querySelectorAll('.mx-collecting-chip').forEach(chip => {
+      chip.getAnimations().forEach(flight => flight.cancel());
+      chip.remove();
+    });
   }
   private resizeTable(): void {
     const box = this.root.getBoundingClientRect();
@@ -555,6 +578,7 @@ export class TableView {
     };
   }
   destroy(): void {
+    this.clearPotCollection();
     this.entryObserver.disconnect();
     cancelAnimationFrame(this.entryFrame);
     this.roomInfo.destroy();

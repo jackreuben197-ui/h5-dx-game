@@ -18,6 +18,8 @@ const profilePropIcons = Object.fromEntries(Object.entries(import.meta.glob<stri
   './dialogs/player-props/*.png', { eager: true, import: 'default', query: '?url' },
 )).map(([path, url]) => [path.slice(path.lastIndexOf('/') + 1, -4), url]));
 
+const chipThrow = new URL('./audio/sfx_desk_throw_chips.mp3', import.meta.url).href;
+
 /** A derived skin inherits every numbered desk except its explicit replacements. */
 export function createFishbaseSkin(name: string, overrides: FishbaseDeskOverrides = {}): UiSkin {
   return {
@@ -28,12 +30,18 @@ export function createFishbaseSkin(name: string, overrides: FishbaseDeskOverride
         ui: {
           ...defaultTableUi,
           effects: fishEffects,
+          animatePotCollection: true,
           tableSounds: {
-            call: new URL('./audio/sfx_desk_post_call_p.mp3', import.meta.url).href,
-            raise: new URL('./audio/sfx_desk_post_raise_p.mp3', import.meta.url).href,
-            smallBlind: new URL('./audio/sfx_desk_bet_first.mp3', import.meta.url).href,
-            bigBlind: new URL('./audio/sfx_desk_bet_second.mp3', import.meta.url).href,
+            deal: new URL('./audio/sfx_desk_deal_hand.mp3', import.meta.url).href,
+            boardDeal: new URL('./audio/sfx_desk_deal_board.mp3', import.meta.url).href,
+            collectPot: new URL('./audio/sfx_desk_collect_pot.mp3', import.meta.url).href,
+            chips: chipThrow,
+            call: chipThrow,
+            raise: chipThrow,
+            smallBlind: chipThrow,
+            bigBlind: chipThrow,
             myWin: new URL('./audio/sfx_desk_mywin.mp3', import.meta.url).href,
+            otherWin: new URL('./audio/sfx_desk_other_win.mp3', import.meta.url).href,
           },
           profilePropIcons,
           profileProps: [[606,'鲨鱼'],[608,'机枪'],[604,'干杯'],[600,'便便'],[607,'抓鸡'],

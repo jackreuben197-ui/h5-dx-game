@@ -23,7 +23,8 @@ export function selectedDeskId(saved: number, catalog?: StaticDeskCatalog): numb
 /** Product UI implementations consume the shared MX layout preference. */
 export interface TableUiConfig {
   createLayout(preference: TableLayoutId): TableLayout;
-  tableSounds?: Readonly<Record<'call' | 'raise' | 'smallBlind' | 'bigBlind' | 'myWin', string>>;
+  animatePotCollection?: boolean;
+  tableSounds?: Readonly<Partial<Record<'deal' | 'boardDeal' | 'chips' | 'call' | 'raise' | 'smallBlind' | 'bigBlind' | 'myWin' | 'otherWin' | 'collectPot', string>>>;
   profileProps?: ReadonlyArray<readonly [number, string]>;
   profilePropIcons?: Readonly<Partial<Record<string, string>>>;
   loadingArt?: { portrait: string; wide: string; track: string; fill: string };
