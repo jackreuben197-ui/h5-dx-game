@@ -99,6 +99,11 @@
   background-color: var(--fish-red);
 }
 .mx-game[data-skin-family="fishbase"] .mx-menu-bb[aria-checked="true"] { --mx-menu-switch-color: var(--fish-red); }
+
+.mx-game[data-skin-family="fishbase"] .mx-table[data-orientation="portrait"]
+  .mx-settings-panel.mx-personal-settings:has(.mx-settings-appearance:not([hidden]) .mx-settings-colors:not([hidden])) {
+  padding-bottom: calc(var(--mx-PersonalSettingsView-figma-12) * var(--settings-unit) + 16px);
+}
 .mx-game[data-skin-family="fishbase"] .mx-buyin-auto:checked + .mx-buyin-switch { --mx-switch-color: var(--fish-red); }
 .mx-game[data-skin-family="fishbase"] .mx-settings-panel .mx-settings-range,
 .mx-game[data-skin-family="fishbase"] .mx-chat-modes input { accent-color: var(--fish-red); }
