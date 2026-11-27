@@ -1,3 +1,6 @@
+.mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/setting.png"] {
+  --fish-image: url('./table/table_icon_setting.png');
+}
 .mx-game[data-skin-family="fishbase"] [data-sprite="raw/ui/dealer.png"] {
   --fish-image: url('./table/table_icon_dealer.png');
 }
@@ -33,6 +36,7 @@
 }
 
 .mx-game[data-skin-family="fishbase"] :is(
+  [data-sprite="raw/ui/setting.png"],
   [data-sprite="raw/ui/dealer.png"],
   /* Table chips use their style1 atlas frames; dialogs keep the fishbase artwork. */
   [data-sprite="raw/ui/chip.png"]:not(:where(.mx-seat-bet-chip-image, .mx-pot-chip, .mx-raise-chip, .mx-collecting-chip)),
@@ -55,4 +59,11 @@
 
 .mx-game[data-skin-family="fishbase"] .mx-table-tools .mx-table-safety {
   background: url('./table/table_icon_safety_guard.png') center / contain no-repeat !important;
+}
+
+/* The label plate is centered at (61, 144) in the 130 × 180 MX chat sprite. */
+.mx-game[data-skin-family="fishbase"] .mx-chat-button > span {
+  inset: 80% auto auto 46.92%;
+  width: max-content;
+  transform: translate(-50%, -50%);
 }
